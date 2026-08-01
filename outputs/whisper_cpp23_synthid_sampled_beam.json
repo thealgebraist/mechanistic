@@ -1,0 +1,51 @@
+{
+  "certificate": "WHISPER_CPP23_SAMPLED_BEAM_SYNTHID_1",
+  "state_rows": 12,
+  "processor_calls": 6,
+  "hashes": [
+    -4106384379532733411,
+    -4106384379532733411,
+    7900846866464399679,
+    7891328449466702199,
+    -1719838953366030752,
+    -3795486583394475801,
+    6135752515130674396,
+    3926241857843392160,
+    5073185812014576002,
+    1751070380859448566,
+    -3230804887842825303,
+    3637619638938877781
+  ],
+  "repeated": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "skipped": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "graph_nodes_visited": 74,
+  "same_seed_reproducible": true,
+  "rng_boundary": "C++ mt19937_64 replay is checked independently; no PyTorch bitstream identity is claimed.",
+  "scope": "finite batch-one sampled beam run; row transport and full-run replay only"
+}

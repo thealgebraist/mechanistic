@@ -4513,7 +4513,7 @@ int main(int argc, char **argv) try {
               << " graph_nodes_visited=" << execution.visited() << "\n";
     return 0;
   }
-  if (argc == 22 && std::string(argv[1]) == "--beam-sample") {
+  if ((argc == 22 || argc == 29) && std::string(argv[1]) == "--beam-sample") {
     TensorStore tensors(argv[2], argv[3]);
     audit_graph(tensors);
     const auto beams = parse_optional_size(argv[9], 32);
@@ -4554,9 +4554,16 @@ int main(int argc, char **argv) try {
     Encoder encoder(tensors, execution);
     auto memory = encoder.run(mel, trace);
     CachedDecoder cached(tensors, execution);
+    std::optional<whisper_interface::GenerationLogitPolicies> synthid_policies;
+    if (argc == 29) {
+      synthid_policies.emplace();
+      synthid_policies->watermark = parse_synthid_watermark_policy(
+          argv[22], argv[23], argv[24], argv[25], argv[26], argv[27], argv[28]);
+    }
     auto result = sampled_beam_search(
         cached, memory, generated_whisper::forced_prefix, configuration,
-        *maximum_positions, execution);
+        *maximum_positions, execution,
+        synthid_policies ? &*synthid_policies : nullptr);
     execution.require_all();
     std::cout << "WHISPER_CPP23_BEAM_SAMPLE beams=" << *beams
               << " returned=" << result.sequences.size() << " sequences=";
@@ -4583,6 +4590,17 @@ int main(int argc, char **argv) try {
               << " cache_branches=" << result.cache_branches
               << " unique_draw_sets=" << result.every_draw_set_unique
               << " mass_error=" << result.maximum_conditional_mass_error
+              << " synthid_state_rows=" << result.synthid_context_hashes.size()
+              << " synthid_hashes=";
+    for (std::size_t i = 0; i < result.synthid_context_hashes.size(); ++i) {
+      if (i) std::cout << ',';
+      std::cout << result.synthid_context_hashes[i];
+    }
+    std::cout << " synthid_repeated=";
+    for (bool value : result.synthid_repeated) std::cout << int(value);
+    std::cout << " synthid_skipped=";
+    for (bool value : result.synthid_skipped) std::cout << int(value);
+    std::cout
               << " graph_nodes_visited=" << execution.visited() << "\n";
     return 0;
   }
