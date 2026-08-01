@@ -11,7 +11,7 @@
     "CPP23_MODEL_IGNORED": 2,
     "CPP23_MODEL_REJECTED": 2,
     "CPP23_NAMED_OVERRIDE": 46,
-    "CPP23_PARTIAL_OVERRIDE": 8,
+    "CPP23_PARTIAL_OVERRIDE": 2,
     "METADATA_FIXED": 2,
     "PINNED_INACTIVE_GENERIC_EXTENSION": 14
   },
@@ -311,7 +311,7 @@
       "pinned_value": null,
       "global_default": null,
       "pinned_value_status": "CPP23_PINNED_VALUE_REPRESENTED",
-      "override_status": "CPP23_PARTIAL_OVERRIDE"
+      "override_status": "CPP23_NAMED_OVERRIDE"
     },
     {
       "field": "max_initial_timestamp_index",
@@ -335,7 +335,7 @@
       "pinned_value": null,
       "global_default": null,
       "pinned_value_status": "CPP23_PINNED_VALUE_REPRESENTED",
-      "override_status": "CPP23_PARTIAL_OVERRIDE"
+      "override_status": "CPP23_NAMED_OVERRIDE"
     },
     {
       "field": "max_new_tokens",
@@ -431,7 +431,7 @@
       "pinned_value": 1,
       "global_default": 1,
       "pinned_value_status": "CPP23_PINNED_VALUE_REPRESENTED",
-      "override_status": "CPP23_PARTIAL_OVERRIDE"
+      "override_status": "CPP23_NAMED_OVERRIDE"
     },
     {
       "field": "output_attentions",
@@ -503,7 +503,7 @@
       "pinned_value": null,
       "global_default": null,
       "pinned_value_status": "CPP23_PINNED_VALUE_REPRESENTED",
-      "override_status": "CPP23_PARTIAL_OVERRIDE"
+      "override_status": "CPP23_NAMED_OVERRIDE"
     },
     {
       "field": "remove_invalid_values",
@@ -567,7 +567,7 @@
       "pinned_value": null,
       "global_default": null,
       "pinned_value_status": "CPP23_PINNED_VALUE_REPRESENTED",
-      "override_status": "CPP23_PARTIAL_OVERRIDE"
+      "override_status": "CPP23_NAMED_OVERRIDE"
     },
     {
       "field": "suppress_tokens",
@@ -738,7 +738,7 @@
       "pinned_value": null,
       "global_default": null,
       "pinned_value_status": "CPP23_PINNED_VALUE_REPRESENTED",
-      "override_status": "CPP23_PARTIAL_OVERRIDE"
+      "override_status": "CPP23_NAMED_OVERRIDE"
     }
   ],
   "generic_generation_extensions": [

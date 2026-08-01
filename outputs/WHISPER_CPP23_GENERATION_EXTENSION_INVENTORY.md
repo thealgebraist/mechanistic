@@ -39,10 +39,10 @@ This does **not** claim every non-default generic GenerationMixin algorithm is c
 | `is_assistant` | `false` | `IsAssistant` | PINNED_INACTIVE_GENERIC_EXTENSION |
 | `is_multilingual` | `false` | `IsMultilingual` | PINNED_INACTIVE_GENERIC_EXTENSION |
 | `length_penalty` | `1.0` | `LengthPenalty` | CPP23_NAMED_OVERRIDE |
-| `low_memory` | `null` | `LowMemory` | CPP23_PARTIAL_OVERRIDE |
+| `low_memory` | `null` | `LowMemory` | CPP23_NAMED_OVERRIDE |
 | `max_initial_timestamp_index` | `50` | `MaxInitialTimestampIndex` | CPP23_NAMED_OVERRIDE |
 | `max_length` | `448` | `MaxLength` | CPP23_NAMED_OVERRIDE |
-| `max_matching_ngram_size` | `null` | `MaxMatchingNgramSize` | CPP23_PARTIAL_OVERRIDE |
+| `max_matching_ngram_size` | `null` | `MaxMatchingNgramSize` | CPP23_NAMED_OVERRIDE |
 | `max_new_tokens` | `null` | `MaxNewTokens` | CPP23_NAMED_OVERRIDE |
 | `max_time` | `null` | `MaxTime` | PINNED_INACTIVE_GENERIC_EXTENSION |
 | `min_length` | `0` | `MinLength` | CPP23_NAMED_OVERRIDE |
@@ -54,7 +54,7 @@ This does **not** claim every non-default generic GenerationMixin algorithm is c
 | `num_assistant_tokens_schedule` | `"constant"` | `NumAssistantTokensSchedule` | PINNED_INACTIVE_GENERIC_EXTENSION |
 | `num_beam_groups` | `1` | `NumBeamGroups` | CPP23_NAMED_OVERRIDE |
 | `num_beams` | `1` | `NumBeams` | CPP23_NAMED_OVERRIDE |
-| `num_return_sequences` | `1` | `NumReturnSequences` | CPP23_PARTIAL_OVERRIDE |
+| `num_return_sequences` | `1` | `NumReturnSequences` | CPP23_NAMED_OVERRIDE |
 | `output_attentions` | `false` | `OutputAttentions` | CPP23_NAMED_OVERRIDE |
 | `output_hidden_states` | `false` | `OutputHiddenStates` | CPP23_NAMED_OVERRIDE |
 | `output_logits` | `null` | `OutputLogits` | CPP23_NAMED_OVERRIDE |
@@ -63,7 +63,7 @@ This does **not** claim every non-default generic GenerationMixin algorithm is c
 | `penalty_alpha` | `null` | `PenaltyAlpha` | CPP23_NAMED_OVERRIDE |
 | `prefill_chunk_size` | `null` | `PrefillChunkSize` | PINNED_INACTIVE_GENERIC_EXTENSION |
 | `prev_sot_token_id` | `50360` | `PrevSotTokenId` | CPP23_NAMED_OVERRIDE |
-| `prompt_lookup_num_tokens` | `null` | `PromptLookupNumTokens` | CPP23_PARTIAL_OVERRIDE |
+| `prompt_lookup_num_tokens` | `null` | `PromptLookupNumTokens` | CPP23_NAMED_OVERRIDE |
 | `remove_invalid_values` | `false` | `RemoveInvalidValues` | CPP23_NAMED_OVERRIDE |
 | `renormalize_logits` | `false` | `RenormalizeLogits` | CPP23_NAMED_OVERRIDE |
 | `repetition_penalty` | `1.0` | `RepetitionPenalty` | CPP23_NAMED_OVERRIDE |
@@ -71,7 +71,7 @@ This does **not** claim every non-default generic GenerationMixin algorithm is c
 | `return_legacy_cache` | `null` | `ReturnLegacyCache` | CPP23_PARTIAL_OVERRIDE |
 | `return_timestamps` | `false` | `ReturnTimestamps` | CPP23_NAMED_OVERRIDE |
 | `sequence_bias` | `null` | `SequenceBias` | CPP23_NAMED_OVERRIDE |
-| `stop_strings` | `null` | `StopStrings` | CPP23_PARTIAL_OVERRIDE |
+| `stop_strings` | `null` | `StopStrings` | CPP23_NAMED_OVERRIDE |
 | `suppress_tokens` | `[1,2,7,8,9,10,14,25,26,27,28,29,31,58,59,60,61,62,63,90,91,92,93,357,…` | `SuppressTokens` | CPP23_NAMED_OVERRIDE |
 | `target_lookbehind` | `10` | `TargetLookbehind` | PINNED_INACTIVE_GENERIC_EXTENSION |
 | `temperature` | `1.0` | `Temperature` | CPP23_NAMED_OVERRIDE |
@@ -81,7 +81,7 @@ This does **not** claim every non-default generic GenerationMixin algorithm is c
 | `transformers_version` | `"4.57.3"` | `TransformersVersion` | METADATA_FIXED |
 | `typical_p` | `1.0` | `TypicalP` | CPP23_NAMED_OVERRIDE |
 | `use_cache` | `true` | `UseCache` | CPP23_NAMED_OVERRIDE |
-| `watermarking_config` | `null` | `WatermarkingConfig` | CPP23_PARTIAL_OVERRIDE |
+| `watermarking_config` | `null` | `WatermarkingConfig` | CPP23_NAMED_OVERRIDE |
 
 ## Generic explicit extensions carried through Whisper `kwargs`
 

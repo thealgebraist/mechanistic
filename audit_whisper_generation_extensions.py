@@ -74,14 +74,19 @@ full_override = {
 # The pinned value is executable, while only the listed subset of non-default values is lowered.
 partial_override = {
     "bos_token_id",
-    "low_memory",
-    "max_matching_ngram_size",
-    "num_return_sequences",
-    "prompt_lookup_num_tokens",
     "return_legacy_cache",
-    "stop_strings",
-    "watermarking_config",
 }
+full_override.update(
+    {
+        # These paths have source-pinned differential fixtures in outputs/.
+        "low_memory",
+        "max_matching_ngram_size",
+        "num_return_sequences",
+        "prompt_lookup_num_tokens",
+        "stop_strings",
+        "watermarking_config",
+    }
+)
 
 # These non-default values have no executable neural path for this model. The
 # C++ ADT preserves the pinned framework's rejection or warning-plus-ignore

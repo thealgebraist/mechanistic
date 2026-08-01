@@ -113,10 +113,10 @@ inline constexpr std::array<PinnedGenerationField,74> pinned_generation_fields={
  {GenerationField::IsAssistant,"is_assistant",R"json(false)json",OverrideStatus::PINNED_INACTIVE_GENERIC_EXTENSION},
  {GenerationField::IsMultilingual,"is_multilingual",R"json(false)json",OverrideStatus::PINNED_INACTIVE_GENERIC_EXTENSION},
  {GenerationField::LengthPenalty,"length_penalty",R"json(1.0)json",OverrideStatus::CPP23_NAMED_OVERRIDE},
- {GenerationField::LowMemory,"low_memory",R"json(null)json",OverrideStatus::CPP23_PARTIAL_OVERRIDE},
+ {GenerationField::LowMemory,"low_memory",R"json(null)json",OverrideStatus::CPP23_NAMED_OVERRIDE},
  {GenerationField::MaxInitialTimestampIndex,"max_initial_timestamp_index",R"json(50)json",OverrideStatus::CPP23_NAMED_OVERRIDE},
  {GenerationField::MaxLength,"max_length",R"json(448)json",OverrideStatus::CPP23_NAMED_OVERRIDE},
- {GenerationField::MaxMatchingNgramSize,"max_matching_ngram_size",R"json(null)json",OverrideStatus::CPP23_PARTIAL_OVERRIDE},
+ {GenerationField::MaxMatchingNgramSize,"max_matching_ngram_size",R"json(null)json",OverrideStatus::CPP23_NAMED_OVERRIDE},
  {GenerationField::MaxNewTokens,"max_new_tokens",R"json(null)json",OverrideStatus::CPP23_NAMED_OVERRIDE},
  {GenerationField::MaxTime,"max_time",R"json(null)json",OverrideStatus::PINNED_INACTIVE_GENERIC_EXTENSION},
  {GenerationField::MinLength,"min_length",R"json(0)json",OverrideStatus::CPP23_NAMED_OVERRIDE},
@@ -128,7 +128,7 @@ inline constexpr std::array<PinnedGenerationField,74> pinned_generation_fields={
  {GenerationField::NumAssistantTokensSchedule,"num_assistant_tokens_schedule",R"json("constant")json",OverrideStatus::PINNED_INACTIVE_GENERIC_EXTENSION},
  {GenerationField::NumBeamGroups,"num_beam_groups",R"json(1)json",OverrideStatus::CPP23_NAMED_OVERRIDE},
  {GenerationField::NumBeams,"num_beams",R"json(1)json",OverrideStatus::CPP23_NAMED_OVERRIDE},
- {GenerationField::NumReturnSequences,"num_return_sequences",R"json(1)json",OverrideStatus::CPP23_PARTIAL_OVERRIDE},
+ {GenerationField::NumReturnSequences,"num_return_sequences",R"json(1)json",OverrideStatus::CPP23_NAMED_OVERRIDE},
  {GenerationField::OutputAttentions,"output_attentions",R"json(false)json",OverrideStatus::CPP23_NAMED_OVERRIDE},
  {GenerationField::OutputHiddenStates,"output_hidden_states",R"json(false)json",OverrideStatus::CPP23_NAMED_OVERRIDE},
  {GenerationField::OutputLogits,"output_logits",R"json(null)json",OverrideStatus::CPP23_NAMED_OVERRIDE},
@@ -137,7 +137,7 @@ inline constexpr std::array<PinnedGenerationField,74> pinned_generation_fields={
  {GenerationField::PenaltyAlpha,"penalty_alpha",R"json(null)json",OverrideStatus::CPP23_NAMED_OVERRIDE},
  {GenerationField::PrefillChunkSize,"prefill_chunk_size",R"json(null)json",OverrideStatus::PINNED_INACTIVE_GENERIC_EXTENSION},
  {GenerationField::PrevSotTokenId,"prev_sot_token_id",R"json(50360)json",OverrideStatus::CPP23_NAMED_OVERRIDE},
- {GenerationField::PromptLookupNumTokens,"prompt_lookup_num_tokens",R"json(null)json",OverrideStatus::CPP23_PARTIAL_OVERRIDE},
+ {GenerationField::PromptLookupNumTokens,"prompt_lookup_num_tokens",R"json(null)json",OverrideStatus::CPP23_NAMED_OVERRIDE},
  {GenerationField::RemoveInvalidValues,"remove_invalid_values",R"json(false)json",OverrideStatus::CPP23_NAMED_OVERRIDE},
  {GenerationField::RenormalizeLogits,"renormalize_logits",R"json(false)json",OverrideStatus::CPP23_NAMED_OVERRIDE},
  {GenerationField::RepetitionPenalty,"repetition_penalty",R"json(1.0)json",OverrideStatus::CPP23_NAMED_OVERRIDE},
@@ -145,7 +145,7 @@ inline constexpr std::array<PinnedGenerationField,74> pinned_generation_fields={
  {GenerationField::ReturnLegacyCache,"return_legacy_cache",R"json(null)json",OverrideStatus::CPP23_PARTIAL_OVERRIDE},
  {GenerationField::ReturnTimestamps,"return_timestamps",R"json(false)json",OverrideStatus::CPP23_NAMED_OVERRIDE},
  {GenerationField::SequenceBias,"sequence_bias",R"json(null)json",OverrideStatus::CPP23_NAMED_OVERRIDE},
- {GenerationField::StopStrings,"stop_strings",R"json(null)json",OverrideStatus::CPP23_PARTIAL_OVERRIDE},
+ {GenerationField::StopStrings,"stop_strings",R"json(null)json",OverrideStatus::CPP23_NAMED_OVERRIDE},
  {GenerationField::SuppressTokens,"suppress_tokens",R"json([1,2,7,8,9,10,14,25,26,27,28,29,31,58,59,60,61,62,63,90,91,92,93,357,366,438,532,685,705,796,930,1058,1220,1267,1279,1303,1343,1377,1391,1635,1782,1875,2162,2361,2488,3467,4008,4211,4600,4808,5299,5855,6329,7203,9609,9959,10563,10786,11420,11709,11907,13163,13697,13700,14808,15306,16410,16791,17992,19203,19510,20724,22305,22935,27007,30109,30420,33409,34949,40283,40493,40549,47282,49146,50257,50357,50358,50359,50360,50361])json",OverrideStatus::CPP23_NAMED_OVERRIDE},
  {GenerationField::TargetLookbehind,"target_lookbehind",R"json(10)json",OverrideStatus::PINNED_INACTIVE_GENERIC_EXTENSION},
  {GenerationField::Temperature,"temperature",R"json(1.0)json",OverrideStatus::CPP23_NAMED_OVERRIDE},
@@ -155,7 +155,7 @@ inline constexpr std::array<PinnedGenerationField,74> pinned_generation_fields={
  {GenerationField::TransformersVersion,"transformers_version",R"json("4.57.3")json",OverrideStatus::METADATA_FIXED},
  {GenerationField::TypicalP,"typical_p",R"json(1.0)json",OverrideStatus::CPP23_NAMED_OVERRIDE},
  {GenerationField::UseCache,"use_cache",R"json(true)json",OverrideStatus::CPP23_NAMED_OVERRIDE},
- {GenerationField::WatermarkingConfig,"watermarking_config",R"json(null)json",OverrideStatus::CPP23_PARTIAL_OVERRIDE}
+ {GenerationField::WatermarkingConfig,"watermarking_config",R"json(null)json",OverrideStatus::CPP23_NAMED_OVERRIDE}
 }};
 inline constexpr std::string_view transformers_version="4.57.3";
 } // namespace whisper_generation_config
