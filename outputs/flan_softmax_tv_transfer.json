@@ -1,0 +1,21 @@
+{
+  "language": "FLAN-SOFTMAX-TV-TRANSFER-1",
+  "graph_sha256": "9178011e37e276c040400099b87fc34c961429a71386eb38ed92d5cfbb227c76",
+  "transfer": {
+    "index": 127,
+    "opcode": "SOFTMAX",
+    "input": "logits",
+    "output": "next_token_distribution",
+    "error_units_per_real_and_tv": 1099511627776,
+    "gain": 1,
+    "bias_units": 1099511627776,
+    "tv_diameter_units": 1099511627776,
+    "theorem": "TV(source_float_softmax(x), exact_softmax(y)) <= min(1, ||x-y||_inf + 1)",
+    "source_contract": "softmax output denotes a probability law over the 32128-token vocabulary",
+    "target_contract": "exact-real softmax probability law",
+    "quality": "TRIVIAL_DIAMETER_BOUND; occurrence coverage only, not a nontrivial approximation guarantee",
+    "status": "CERTIFIED_PROBABILITY_SIMPLEX_DIAMETER",
+    "transfer_sha256": "3bd2377b828bf9a1acfb72b54d9ad8ea981e74b77141024ea2d68ef4fb918967"
+  },
+  "nontrivial": false
+}

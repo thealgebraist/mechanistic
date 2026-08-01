@@ -1,0 +1,1779 @@
+{
+  "language": "FLAN-CONVEX-WEIGHTED-REACHABLE-1",
+  "checkpoint_sha256": "495fa51e204676f1a857a9fc13c4c89f3f5ba9f480b898cebca02add25e6d749",
+  "graph_sha256": "9178011e37e276c040400099b87fc34c961429a71386eb38ed92d5cfbb227c76",
+  "scope": "every backend-valid nonempty finite encoder sequence and every finite decoder continuation",
+  "sequence_length_cap": null,
+  "method": "weighted RMS ellipsoid support -> attention convex hull / coordinate support -> gated-product support -> residual triangle inequality",
+  "events": [
+    {
+      "register": "enc_h.embed",
+      "bound": 175.0
+    },
+    {
+      "register": "enc_h.layer0",
+      "attention": 9378.596900602439,
+      "v_coordinate": 18.65092239347742,
+      "mlp": 496102.65192567307,
+      "gate_coordinate": 33.64217497272635,
+      "linear_coordinate": 35.01627699391802,
+      "bound": 505656.2488262755
+    },
+    {
+      "register": "enc_h.layer1",
+      "attention": 21338.641373899176,
+      "v_coordinate": 32.07682337535658,
+      "mlp": 777574.6953093327,
+      "gate_coordinate": 51.70260295998898,
+      "linear_coordinate": 105.64030725199959,
+      "bound": 1304569.5855095075
+    },
+    {
+      "register": "enc_h.layer2",
+      "attention": 21114.704076208724,
+      "v_coordinate": 40.25017374413321,
+      "mlp": 1236863.570090911,
+      "gate_coordinate": 79.95931619735649,
+      "linear_coordinate": 277.1848563817592,
+      "bound": 2562547.859676627
+    },
+    {
+      "register": "enc_h.layer3",
+      "attention": 26925.096764349146,
+      "v_coordinate": 49.7741638400946,
+      "mlp": 914460.0767200694,
+      "gate_coordinate": 35.106796212458896,
+      "linear_coordinate": 87.66014724906131,
+      "bound": 3503933.033161045
+    },
+    {
+      "register": "enc_h.layer4",
+      "attention": 52315.46377866733,
+      "v_coordinate": 68.46461473949172,
+      "mlp": 1173529.376973752,
+      "gate_coordinate": 39.99213754030837,
+      "linear_coordinate": 118.25166024730004,
+      "bound": 4729777.873913464
+    },
+    {
+      "register": "enc_h.layer5",
+      "attention": 57749.0937454681,
+      "v_coordinate": 81.04548506843472,
+      "mlp": 1330258.814089,
+      "gate_coordinate": 38.69702274005316,
+      "linear_coordinate": 118.10479189420595,
+      "bound": 6117785.781747933
+    },
+    {
+      "register": "enc_h.layer6",
+      "attention": 67282.9419534619,
+      "v_coordinate": 78.38442720371883,
+      "mlp": 1982935.331223737,
+      "gate_coordinate": 58.547985189145344,
+      "linear_coordinate": 460.99091504587454,
+      "bound": 8168004.054925131
+    },
+    {
+      "register": "enc_h.layer7",
+      "attention": 100930.1985512109,
+      "v_coordinate": 95.62627175754557,
+      "mlp": 2090634.832743336,
+      "gate_coordinate": 36.547214159174025,
+      "linear_coordinate": 1278.4908911416535,
+      "bound": 10359569.086219678
+    },
+    {
+      "register": "encoder_memory",
+      "bound": 5.531395556942608,
+      "ellipsoid_weight": "encoder.final_layer_norm.weight"
+    },
+    {
+      "register": "dec_h.embed",
+      "bound": 175.0
+    },
+    {
+      "register": "dec_h.layer0",
+      "self_attention": 10213.350829317225,
+      "self_v_coordinate": 28.570647355903752,
+      "cross_attention": 16648.23922177424,
+      "cross_v_coordinate": 29.628478964394397,
+      "mlp": 585018.180431842,
+      "gate_coordinate": 31.83875774579794,
+      "linear_coordinate": 34.66730356206761,
+      "bound": 612054.7704829335
+    },
+    {
+      "register": "dec_h.layer1",
+      "self_attention": 16826.395653055974,
+      "self_v_coordinate": 31.51951701949401,
+      "cross_attention": 22678.827510542487,
+      "cross_v_coordinate": 38.075976142096984,
+      "mlp": 1396568.5096831112,
+      "gate_coordinate": 43.59731077615949,
+      "linear_coordinate": 52.0249193865531,
+      "bound": 2048128.503329643
+    },
+    {
+      "register": "dec_h.layer2",
+      "self_attention": 44209.04218864515,
+      "self_v_coordinate": 59.493345302850244,
+      "cross_attention": 42743.70722641872,
+      "cross_v_coordinate": 58.70259844302256,
+      "mlp": 3333781.8408962316,
+      "gate_coordinate": 48.2347334529974,
+      "linear_coordinate": 96.00435440267482,
+      "bound": 5468863.093640938
+    },
+    {
+      "register": "dec_h.layer3",
+      "self_attention": 136877.18876700304,
+      "self_v_coordinate": 124.86515644026467,
+      "cross_attention": 51119.309700267586,
+      "cross_v_coordinate": 65.15484761976278,
+      "mlp": 6944186.776062487,
+      "gate_coordinate": 103.7762063980316,
+      "linear_coordinate": 130.36603064707953,
+      "bound": 12601046.368170695
+    },
+    {
+      "register": "dec_h.layer4",
+      "self_attention": 166962.11412653257,
+      "self_v_coordinate": 128.8735073546418,
+      "cross_attention": 65052.89894385863,
+      "cross_v_coordinate": 74.18573634528228,
+      "mlp": 9751245.976446692,
+      "gate_coordinate": 77.05152037123325,
+      "linear_coordinate": 202.1296531438764,
+      "bound": 22584307.35768778
+    },
+    {
+      "register": "dec_h.layer5",
+      "self_attention": 277892.0819816785,
+      "self_v_coordinate": 188.03833645018307,
+      "cross_attention": 123070.74115684623,
+      "cross_v_coordinate": 107.70610585597241,
+      "mlp": 9637539.783632705,
+      "gate_coordinate": 83.45686725763063,
+      "linear_coordinate": 241.8284916602746,
+      "bound": 32622809.96445901
+    },
+    {
+      "register": "dec_h.layer6",
+      "self_attention": 441091.5818353726,
+      "self_v_coordinate": 231.116344439851,
+      "cross_attention": 184321.27226495527,
+      "cross_v_coordinate": 109.55682976450322,
+      "mlp": 14966119.904010378,
+      "gate_coordinate": 94.04021496963263,
+      "linear_coordinate": 396.98172000261616,
+      "bound": 48214342.72256972
+    },
+    {
+      "register": "dec_h.layer7",
+      "self_attention": 245087.18572887522,
+      "self_v_coordinate": 183.3844479345484,
+      "cross_attention": 272940.9214288777,
+      "cross_v_coordinate": 157.4263182780217,
+      "mlp": 61067598.27759537,
+      "gate_coordinate": 93.04739810281319,
+      "linear_coordinate": 1216.1971628530762,
+      "bound": 109799969.10732284
+    }
+  ],
+  "op_bounds": [
+    {
+      "index": 1,
+      "opcode": "EMBED",
+      "output": "enc_h",
+      "input_bounds": {},
+      "abs_bound": 175.0,
+      "ellipsoid_weight": null,
+      "projection_supports": null
+    },
+    {
+      "index": 2,
+      "opcode": "RMSNORM",
+      "output": "enc_n0",
+      "input_bounds": {
+        "input": 175.0
+      },
+      "abs_bound": 3.263191086098983,
+      "ellipsoid_weight": "encoder.block.0.layer.0.layer_norm.weight",
+      "projection_supports": null
+    },
+    {
+      "index": 3,
+      "opcode": "SELF_ATTENTION_SEQUENCE",
+      "output": "enc_a0",
+      "input_bounds": {
+        "input": 3.263191086098983
+      },
+      "abs_bound": 9378.596900602439,
+      "ellipsoid_weight": null,
+      "projection_supports": {
+        "q_max": 4.343145923457586,
+        "k_max": 34.34386192853667,
+        "v_max": 18.65092239347742
+      }
+    },
+    {
+      "index": 4,
+      "opcode": "ADD",
+      "output": "enc_r0",
+      "input_bounds": {
+        "left": 175.0,
+        "right": 9378.596900602439
+      },
+      "abs_bound": 9553.596900602439,
+      "ellipsoid_weight": null,
+      "projection_supports": null
+    },
+    {
+      "index": 5,
+      "opcode": "RMSNORM",
+      "output": "enc_mn0",
+      "input_bounds": {
+        "input": 9553.596900602439
+      },
+      "abs_bound": 4.248269145856824,
+      "ellipsoid_weight": "encoder.block.0.layer.1.layer_norm.weight",
+      "projection_supports": null
+    },
+    {
+      "index": 6,
+      "opcode": "GATED_MLP",
+      "output": "enc_m0",
+      "input_bounds": {
+        "input": 4.248269145856824
+      },
+      "abs_bound": 496102.65192567307,
+      "ellipsoid_weight": null,
+      "projection_supports": {
+        "wi_0_max": 33.64217497272635,
+        "wi_1_max": 35.01627699391802
+      }
+    },
+    {
+      "index": 7,
+      "opcode": "ADD",
+      "output": "enc_h",
+      "input_bounds": {
+        "left": 9553.596900602439,
+        "right": 496102.65192567307
+      },
+      "abs_bound": 505656.2488262755,
+      "ellipsoid_weight": null,
+      "projection_supports": null
+    },
+    {
+      "index": 8,
+      "opcode": "RMSNORM",
+      "output": "enc_n1",
+      "input_bounds": {
+        "input": 505656.2488262755
+      },
+      "abs_bound": 3.8841240836453688,
+      "ellipsoid_weight": "encoder.block.1.layer.0.layer_norm.weight",
+      "projection_supports": null
+    },
+    {
+      "index": 9,
+      "opcode": "SELF_ATTENTION_SEQUENCE",
+      "output": "enc_a1",
+      "input_bounds": {
+        "input": 3.8841240836453688
+      },
+      "abs_bound": 21338.641373899176,
+      "ellipsoid_weight": null,
+      "projection_supports": {
+        "q_max": 4.3808949485660404,
+        "k_max": 35.60401194496191,
+        "v_max": 32.07682337535658
+      }
+    },
+    {
+      "index": 10,
+      "opcode": "ADD",
+      "output": "enc_r1",
+      "input_bounds": {
+        "left": 505656.2488262755,
+        "right": 21338.641373899176
+      },
+      "abs_bound": 526994.8902001746,
+      "ellipsoid_weight": null,
+      "projection_supports": null
+    },
+    {
+      "index": 11,
+      "opcode": "RMSNORM",
+      "output": "enc_mn1",
+      "input_bounds": {
+        "input": 526994.8902001746
+      },
+      "abs_bound": 7.942858177399127,
+      "ellipsoid_weight": "encoder.block.1.layer.1.layer_norm.weight",
+      "projection_supports": null
+    },
+    {
+      "index": 12,
+      "opcode": "GATED_MLP",
+      "output": "enc_m1",
+      "input_bounds": {
+        "input": 7.942858177399127
+      },
+      "abs_bound": 777574.6953093327,
+      "ellipsoid_weight": null,
+      "projection_supports": {
+        "wi_0_max": 51.70260295998898,
+        "wi_1_max": 105.64030725199959
+      }
+    },
+    {
+      "index": 13,
+      "opcode": "ADD",
+      "output": "enc_h",
+      "input_bounds": {
+        "left": 526994.8902001746,
+        "right": 777574.6953093327
+      },
+      "abs_bound": 1304569.5855095075,
+      "ellipsoid_weight": null,
+      "projection_supports": null
+    },
+    {
+      "index": 14,
+      "opcode": "RMSNORM",
+      "output": "enc_n2",
+      "input_bounds": {
+        "input": 1304569.5855095075
+      },
+      "abs_bound": 3.993789846295927,
+      "ellipsoid_weight": "encoder.block.2.layer.0.layer_norm.weight",
+      "projection_supports": null
+    },
+    {
+      "index": 15,
+      "opcode": "SELF_ATTENTION_SEQUENCE",
+      "output": "enc_a2",
+      "input_bounds": {
+        "input": 3.993789846295927
+      },
+      "abs_bound": 21114.704076208724,
+      "ellipsoid_weight": null,
+      "projection_supports": {
+        "q_max": 3.7167567910167554,
+        "k_max": 31.06214718726347,
+        "v_max": 40.25017374413321
+      }
+    },
+    {
+      "index": 16,
+      "opcode": "ADD",
+      "output": "enc_r2",
+      "input_bounds": {
+        "left": 1304569.5855095075,
+        "right": 21114.704076208724
+      },
+      "abs_bound": 1325684.289585716,
+      "ellipsoid_weight": null,
+      "projection_supports": null
+    },
+    {
+      "index": 17,
+      "opcode": "RMSNORM",
+      "output": "enc_mn2",
+      "input_bounds": {
+        "input": 1325684.289585716
+      },
+      "abs_bound": 14.821389070023196,
+      "ellipsoid_weight": "encoder.block.2.layer.1.layer_norm.weight",
+      "projection_supports": null
+    },
+    {
+      "index": 18,
+      "opcode": "GATED_MLP",
+      "output": "enc_m2",
+      "input_bounds": {
+        "input": 14.821389070023196
+      },
+      "abs_bound": 1236863.570090911,
+      "ellipsoid_weight": null,
+      "projection_supports": {
+        "wi_0_max": 79.95931619735649,
+        "wi_1_max": 277.1848563817592
+      }
+    },
+    {
+      "index": 19,
+      "opcode": "ADD",
+      "output": "enc_h",
+      "input_bounds": {
+        "left": 1325684.289585716,
+        "right": 1236863.570090911
+      },
+      "abs_bound": 2562547.859676627,
+      "ellipsoid_weight": null,
+      "projection_supports": null
+    },
+    {
+      "index": 20,
+      "opcode": "RMSNORM",
+      "output": "enc_n3",
+      "input_bounds": {
+        "input": 2562547.859676627
+      },
+      "abs_bound": 4.7471674608264625,
+      "ellipsoid_weight": "encoder.block.3.layer.0.layer_norm.weight",
+      "projection_supports": null
+    },
+    {
+      "index": 21,
+      "opcode": "SELF_ATTENTION_SEQUENCE",
+      "output": "enc_a3",
+      "input_bounds": {
+        "input": 4.7471674608264625
+      },
+      "abs_bound": 26925.096764349146,
+      "ellipsoid_weight": null,
+      "projection_supports": {
+        "q_max": 4.065869929791807,
+        "k_max": 34.34493785751877,
+        "v_max": 49.7741638400946
+      }
+    },
+    {
+      "index": 22,
+      "opcode": "ADD",
+      "output": "enc_r3",
+      "input_bounds": {
+        "left": 2562547.859676627,
+        "right": 26925.096764349146
+      },
+      "abs_bound": 2589472.956440976,
+      "ellipsoid_weight": null,
+      "projection_supports": null
+    },
+    {
+      "index": 23,
+      "opcode": "RMSNORM",
+      "output": "enc_mn3",
+      "input_bounds": {
+        "input": 2589472.956440976
+      },
+      "abs_bound": 5.033635881232341,
+      "ellipsoid_weight": "encoder.block.3.layer.1.layer_norm.weight",
+      "projection_supports": null
+    },
+    {
+      "index": 24,
+      "opcode": "GATED_MLP",
+      "output": "enc_m3",
+      "input_bounds": {
+        "input": 5.033635881232341
+      },
+      "abs_bound": 914460.0767200694,
+      "ellipsoid_weight": null,
+      "projection_supports": {
+        "wi_0_max": 35.106796212458896,
+        "wi_1_max": 87.66014724906131
+      }
+    },
+    {
+      "index": 25,
+      "opcode": "ADD",
+      "output": "enc_h",
+      "input_bounds": {
+        "left": 2589472.956440976,
+        "right": 914460.0767200694
+      },
+      "abs_bound": 3503933.033161045,
+      "ellipsoid_weight": null,
+      "projection_supports": null
+    },
+    {
+      "index": 26,
+      "opcode": "RMSNORM",
+      "output": "enc_n4",
+      "input_bounds": {
+        "input": 3503933.033161045
+      },
+      "abs_bound": 5.103090515830413,
+      "ellipsoid_weight": "encoder.block.4.layer.0.layer_norm.weight",
+      "projection_supports": null
+    },
+    {
+      "index": 27,
+      "opcode": "SELF_ATTENTION_SEQUENCE",
+      "output": "enc_a4",
+      "input_bounds": {
+        "input": 5.103090515830413
+      },
+      "abs_bound": 52315.46377866733,
+      "ellipsoid_weight": null,
+      "projection_supports": {
+        "q_max": 3.6758354620244327,
+        "k_max": 30.80552521971753,
+        "v_max": 68.46461473949172
+      }
+    },
+    {
+      "index": 28,
+      "opcode": "ADD",
+      "output": "enc_r4",
+      "input_bounds": {
+        "left": 3503933.033161045,
+        "right": 52315.46377866733
+      },
+      "abs_bound": 3556248.496939712,
+      "ellipsoid_weight": null,
+      "projection_supports": null
+    },
+    {
+      "index": 29,
+      "opcode": "RMSNORM",
+      "output": "enc_mn4",
+      "input_bounds": {
+        "input": 3556248.496939712
+      },
+      "abs_bound": 5.507211020917481,
+      "ellipsoid_weight": "encoder.block.4.layer.1.layer_norm.weight",
+      "projection_supports": null
+    },
+    {
+      "index": 30,
+      "opcode": "GATED_MLP",
+      "output": "enc_m4",
+      "input_bounds": {
+        "input": 5.507211020917481
+      },
+      "abs_bound": 1173529.376973752,
+      "ellipsoid_weight": null,
+      "projection_supports": {
+        "wi_0_max": 39.99213754030837,
+        "wi_1_max": 118.25166024730004
+      }
+    },
+    {
+      "index": 31,
+      "opcode": "ADD",
+      "output": "enc_h",
+      "input_bounds": {
+        "left": 3556248.496939712,
+        "right": 1173529.376973752
+      },
+      "abs_bound": 4729777.873913464,
+      "ellipsoid_weight": null,
+      "projection_supports": null
+    },
+    {
+      "index": 32,
+      "opcode": "RMSNORM",
+      "output": "enc_n5",
+      "input_bounds": {
+        "input": 4729777.873913464
+      },
+      "abs_bound": 4.846253352976422,
+      "ellipsoid_weight": "encoder.block.5.layer.0.layer_norm.weight",
+      "projection_supports": null
+    },
+    {
+      "index": 33,
+      "opcode": "SELF_ATTENTION_SEQUENCE",
+      "output": "enc_a5",
+      "input_bounds": {
+        "input": 4.846253352976422
+      },
+      "abs_bound": 57749.0937454681,
+      "ellipsoid_weight": null,
+      "projection_supports": {
+        "q_max": 4.486032651978332,
+        "k_max": 35.95347633563843,
+        "v_max": 81.04548506843472
+      }
+    },
+    {
+      "index": 34,
+      "opcode": "ADD",
+      "output": "enc_r5",
+      "input_bounds": {
+        "left": 4729777.873913464,
+        "right": 57749.0937454681
+      },
+      "abs_bound": 4787526.967658932,
+      "ellipsoid_weight": null,
+      "projection_supports": null
+    },
+    {
+      "index": 35,
+      "opcode": "RMSNORM",
+      "output": "enc_mn5",
+      "input_bounds": {
+        "input": 4787526.967658932
+      },
+      "abs_bound": 5.023178068005029,
+      "ellipsoid_weight": "encoder.block.5.layer.1.layer_norm.weight",
+      "projection_supports": null
+    },
+    {
+      "index": 36,
+      "opcode": "GATED_MLP",
+      "output": "enc_m5",
+      "input_bounds": {
+        "input": 5.023178068005029
+      },
+      "abs_bound": 1330258.814089,
+      "ellipsoid_weight": null,
+      "projection_supports": {
+        "wi_0_max": 38.69702274005316,
+        "wi_1_max": 118.10479189420595
+      }
+    },
+    {
+      "index": 37,
+      "opcode": "ADD",
+      "output": "enc_h",
+      "input_bounds": {
+        "left": 4787526.967658932,
+        "right": 1330258.814089
+      },
+      "abs_bound": 6117785.781747933,
+      "ellipsoid_weight": null,
+      "projection_supports": null
+    },
+    {
+      "index": 38,
+      "opcode": "RMSNORM",
+      "output": "enc_n6",
+      "input_bounds": {
+        "input": 6117785.781747933
+      },
+      "abs_bound": 4.9587351994570845,
+      "ellipsoid_weight": "encoder.block.6.layer.0.layer_norm.weight",
+      "projection_supports": null
+    },
+    {
+      "index": 39,
+      "opcode": "SELF_ATTENTION_SEQUENCE",
+      "output": "enc_a6",
+      "input_bounds": {
+        "input": 4.9587351994570845
+      },
+      "abs_bound": 67282.9419534619,
+      "ellipsoid_weight": null,
+      "projection_supports": {
+        "q_max": 3.4131101245262774,
+        "k_max": 28.9337610848079,
+        "v_max": 78.38442720371883
+      }
+    },
+    {
+      "index": 40,
+      "opcode": "ADD",
+      "output": "enc_r6",
+      "input_bounds": {
+        "left": 6117785.781747933,
+        "right": 67282.9419534619
+      },
+      "abs_bound": 6185068.723701394,
+      "ellipsoid_weight": null,
+      "projection_supports": null
+    },
+    {
+      "index": 41,
+      "opcode": "RMSNORM",
+      "output": "enc_mn6",
+      "input_bounds": {
+        "input": 6185068.723701394
+      },
+      "abs_bound": 13.51023095858021,
+      "ellipsoid_weight": "encoder.block.6.layer.1.layer_norm.weight",
+      "projection_supports": null
+    },
+    {
+      "index": 42,
+      "opcode": "GATED_MLP",
+      "output": "enc_m6",
+      "input_bounds": {
+        "input": 13.51023095858021
+      },
+      "abs_bound": 1982935.331223737,
+      "ellipsoid_weight": null,
+      "projection_supports": {
+        "wi_0_max": 58.547985189145344,
+        "wi_1_max": 460.99091504587454
+      }
+    },
+    {
+      "index": 43,
+      "opcode": "ADD",
+      "output": "enc_h",
+      "input_bounds": {
+        "left": 6185068.723701394,
+        "right": 1982935.331223737
+      },
+      "abs_bound": 8168004.054925131,
+      "ellipsoid_weight": null,
+      "projection_supports": null
+    },
+    {
+      "index": 44,
+      "opcode": "RMSNORM",
+      "output": "enc_n7",
+      "input_bounds": {
+        "input": 8168004.054925131
+      },
+      "abs_bound": 5.741586273738682,
+      "ellipsoid_weight": "encoder.block.7.layer.0.layer_norm.weight",
+      "projection_supports": null
+    },
+    {
+      "index": 45,
+      "opcode": "SELF_ATTENTION_SEQUENCE",
+      "output": "enc_a7",
+      "input_bounds": {
+        "input": 5.741586273738682
+      },
+      "abs_bound": 100930.1985512109,
+      "ellipsoid_weight": null,
+      "projection_supports": {
+        "q_max": 3.661209096109693,
+        "k_max": 29.79536470770167,
+        "v_max": 95.62627175754557
+      }
+    },
+    {
+      "index": 46,
+      "opcode": "ADD",
+      "output": "enc_r7",
+      "input_bounds": {
+        "left": 8168004.054925131,
+        "right": 100930.1985512109
+      },
+      "abs_bound": 8268934.253476341,
+      "ellipsoid_weight": null,
+      "projection_supports": null
+    },
+    {
+      "index": 47,
+      "opcode": "RMSNORM",
+      "output": "enc_mn7",
+      "input_bounds": {
+        "input": 8268934.253476341
+      },
+      "abs_bound": 22.154463271418827,
+      "ellipsoid_weight": "encoder.block.7.layer.1.layer_norm.weight",
+      "projection_supports": null
+    },
+    {
+      "index": 48,
+      "opcode": "GATED_MLP",
+      "output": "enc_m7",
+      "input_bounds": {
+        "input": 22.154463271418827
+      },
+      "abs_bound": 2090634.832743336,
+      "ellipsoid_weight": null,
+      "projection_supports": {
+        "wi_0_max": 36.547214159174025,
+        "wi_1_max": 1278.4908911416535
+      }
+    },
+    {
+      "index": 49,
+      "opcode": "ADD",
+      "output": "enc_h",
+      "input_bounds": {
+        "left": 8268934.253476341,
+        "right": 2090634.832743336
+      },
+      "abs_bound": 10359569.086219678,
+      "ellipsoid_weight": null,
+      "projection_supports": null
+    },
+    {
+      "index": 50,
+      "opcode": "RMSNORM",
+      "output": "encoder_memory",
+      "input_bounds": {
+        "input": 10359569.086219678
+      },
+      "abs_bound": 5.531395556942608,
+      "ellipsoid_weight": "encoder.final_layer_norm.weight",
+      "projection_supports": null
+    },
+    {
+      "index": 52,
+      "opcode": "EMBED",
+      "output": "dec_h",
+      "input_bounds": {},
+      "abs_bound": 175.0,
+      "ellipsoid_weight": null,
+      "projection_supports": null
+    },
+    {
+      "index": 53,
+      "opcode": "RMSNORM",
+      "output": "dec_n0",
+      "input_bounds": {
+        "input": 175.0
+      },
+      "abs_bound": 3.691082750920984,
+      "ellipsoid_weight": "decoder.block.0.layer.0.layer_norm.weight",
+      "projection_supports": null
+    },
+    {
+      "index": 54,
+      "opcode": "SELF_ATTENTION_KV",
+      "output": "dec_a0",
+      "input_bounds": {
+        "input": 3.691082750920984
+      },
+      "abs_bound": 10213.350829317225,
+      "ellipsoid_weight": null,
+      "projection_supports": {
+        "q_max": 3.530281657650979,
+        "k_max": 27.60459548779801,
+        "v_max": 28.570647355903752
+      }
+    },
+    {
+      "index": 55,
+      "opcode": "ADD",
+      "output": "dec_r0",
+      "input_bounds": {
+        "left": 175.0,
+        "right": 10213.350829317225
+      },
+      "abs_bound": 10388.350829317225,
+      "ellipsoid_weight": null,
+      "projection_supports": null
+    },
+    {
+      "index": 56,
+      "opcode": "RMSNORM",
+      "output": "dec_cn0",
+      "input_bounds": {
+        "input": 10388.350829317225
+      },
+      "abs_bound": 5.203094872103121,
+      "ellipsoid_weight": "decoder.block.0.layer.1.layer_norm.weight",
+      "projection_supports": null
+    },
+    {
+      "index": 57,
+      "opcode": "CROSS_ATTENTION",
+      "output": "dec_ca0",
+      "input_bounds": {
+        "memory": 5.531395556942608,
+        "input": 5.203094872103121
+      },
+      "abs_bound": 16648.23922177424,
+      "ellipsoid_weight": null,
+      "projection_supports": {
+        "q_max": 3.721703785841867,
+        "k_max": 45.266871463939104,
+        "v_max": 29.628478964394397
+      }
+    },
+    {
+      "index": 58,
+      "opcode": "ADD",
+      "output": "dec_cr0",
+      "input_bounds": {
+        "left": 10388.350829317225,
+        "right": 16648.23922177424
+      },
+      "abs_bound": 27036.590051091465,
+      "ellipsoid_weight": null,
+      "projection_supports": null
+    },
+    {
+      "index": 59,
+      "opcode": "RMSNORM",
+      "output": "dec_mn0",
+      "input_bounds": {
+        "input": 27036.590051091465
+      },
+      "abs_bound": 3.0518624043931153,
+      "ellipsoid_weight": "decoder.block.0.layer.2.layer_norm.weight",
+      "projection_supports": null
+    },
+    {
+      "index": 60,
+      "opcode": "GATED_MLP",
+      "output": "dec_m0",
+      "input_bounds": {
+        "input": 3.0518624043931153
+      },
+      "abs_bound": 585018.180431842,
+      "ellipsoid_weight": null,
+      "projection_supports": {
+        "wi_0_max": 31.83875774579794,
+        "wi_1_max": 34.66730356206761
+      }
+    },
+    {
+      "index": 61,
+      "opcode": "ADD",
+      "output": "dec_h",
+      "input_bounds": {
+        "left": 27036.590051091465,
+        "right": 585018.180431842
+      },
+      "abs_bound": 612054.7704829335,
+      "ellipsoid_weight": null,
+      "projection_supports": null
+    },
+    {
+      "index": 62,
+      "opcode": "RMSNORM",
+      "output": "dec_n1",
+      "input_bounds": {
+        "input": 612054.7704829335
+      },
+      "abs_bound": 4.092250616388773,
+      "ellipsoid_weight": "decoder.block.1.layer.0.layer_norm.weight",
+      "projection_supports": null
+    },
+    {
+      "index": 63,
+      "opcode": "SELF_ATTENTION_KV",
+      "output": "dec_a1",
+      "input_bounds": {
+        "input": 4.092250616388773
+      },
+      "abs_bound": 16826.395653055974,
+      "ellipsoid_weight": null,
+      "projection_supports": {
+        "q_max": 4.546577279122095,
+        "k_max": 24.93592265013864,
+        "v_max": 31.51951701949401
+      }
+    },
+    {
+      "index": 64,
+      "opcode": "ADD",
+      "output": "dec_r1",
+      "input_bounds": {
+        "left": 612054.7704829335,
+        "right": 16826.395653055974
+      },
+      "abs_bound": 628881.1661359895,
+      "ellipsoid_weight": null,
+      "projection_supports": null
+    },
+    {
+      "index": 65,
+      "opcode": "RMSNORM",
+      "output": "dec_cn1",
+      "input_bounds": {
+        "input": 628881.1661359895
+      },
+      "abs_bound": 7.47345625006614,
+      "ellipsoid_weight": "decoder.block.1.layer.1.layer_norm.weight",
+      "projection_supports": null
+    },
+    {
+      "index": 66,
+      "opcode": "CROSS_ATTENTION",
+      "output": "dec_ca1",
+      "input_bounds": {
+        "memory": 5.531395556942608,
+        "input": 7.47345625006614
+      },
+      "abs_bound": 22678.827510542487,
+      "ellipsoid_weight": null,
+      "projection_supports": {
+        "q_max": 4.4049985559269595,
+        "k_max": 44.10166769831796,
+        "v_max": 38.075976142096984
+      }
+    },
+    {
+      "index": 67,
+      "opcode": "ADD",
+      "output": "dec_cr1",
+      "input_bounds": {
+        "left": 628881.1661359895,
+        "right": 22678.827510542487
+      },
+      "abs_bound": 651559.993646532,
+      "ellipsoid_weight": null,
+      "projection_supports": null
+    },
+    {
+      "index": 68,
+      "opcode": "RMSNORM",
+      "output": "dec_mn1",
+      "input_bounds": {
+        "input": 651559.993646532
+      },
+      "abs_bound": 5.978860218213068,
+      "ellipsoid_weight": "decoder.block.1.layer.2.layer_norm.weight",
+      "projection_supports": null
+    },
+    {
+      "index": 69,
+      "opcode": "GATED_MLP",
+      "output": "dec_m1",
+      "input_bounds": {
+        "input": 5.978860218213068
+      },
+      "abs_bound": 1396568.5096831112,
+      "ellipsoid_weight": null,
+      "projection_supports": {
+        "wi_0_max": 43.59731077615949,
+        "wi_1_max": 52.0249193865531
+      }
+    },
+    {
+      "index": 70,
+      "opcode": "ADD",
+      "output": "dec_h",
+      "input_bounds": {
+        "left": 651559.993646532,
+        "right": 1396568.5096831112
+      },
+      "abs_bound": 2048128.503329643,
+      "ellipsoid_weight": null,
+      "projection_supports": null
+    },
+    {
+      "index": 71,
+      "opcode": "RMSNORM",
+      "output": "dec_n2",
+      "input_bounds": {
+        "input": 2048128.503329643
+      },
+      "abs_bound": 12.193130478671977,
+      "ellipsoid_weight": "decoder.block.2.layer.0.layer_norm.weight",
+      "projection_supports": null
+    },
+    {
+      "index": 72,
+      "opcode": "SELF_ATTENTION_KV",
+      "output": "dec_a2",
+      "input_bounds": {
+        "input": 12.193130478671977
+      },
+      "abs_bound": 44209.04218864515,
+      "ellipsoid_weight": null,
+      "projection_supports": {
+        "q_max": 4.441191002942498,
+        "k_max": 37.27835186466715,
+        "v_max": 59.493345302850244
+      }
+    },
+    {
+      "index": 73,
+      "opcode": "ADD",
+      "output": "dec_r2",
+      "input_bounds": {
+        "left": 2048128.503329643,
+        "right": 44209.04218864515
+      },
+      "abs_bound": 2092337.5455182882,
+      "ellipsoid_weight": null,
+      "projection_supports": null
+    },
+    {
+      "index": 74,
+      "opcode": "RMSNORM",
+      "output": "dec_cn2",
+      "input_bounds": {
+        "input": 2092337.5455182882
+      },
+      "abs_bound": 8.98602841857129,
+      "ellipsoid_weight": "decoder.block.2.layer.1.layer_norm.weight",
+      "projection_supports": null
+    },
+    {
+      "index": 75,
+      "opcode": "CROSS_ATTENTION",
+      "output": "dec_ca2",
+      "input_bounds": {
+        "memory": 5.531395556942608,
+        "input": 8.98602841857129
+      },
+      "abs_bound": 42743.70722641872,
+      "ellipsoid_weight": null,
+      "projection_supports": {
+        "q_max": 6.174776280736668,
+        "k_max": 39.7797757738894,
+        "v_max": 58.70259844302256
+      }
+    },
+    {
+      "index": 76,
+      "opcode": "ADD",
+      "output": "dec_cr2",
+      "input_bounds": {
+        "left": 2092337.5455182882,
+        "right": 42743.70722641872
+      },
+      "abs_bound": 2135081.252744707,
+      "ellipsoid_weight": null,
+      "projection_supports": null
+    },
+    {
+      "index": 77,
+      "opcode": "RMSNORM",
+      "output": "dec_mn2",
+      "input_bounds": {
+        "input": 2135081.252744707
+      },
+      "abs_bound": 6.645261910282582,
+      "ellipsoid_weight": "decoder.block.2.layer.2.layer_norm.weight",
+      "projection_supports": null
+    },
+    {
+      "index": 78,
+      "opcode": "GATED_MLP",
+      "output": "dec_m2",
+      "input_bounds": {
+        "input": 6.645261910282582
+      },
+      "abs_bound": 3333781.8408962316,
+      "ellipsoid_weight": null,
+      "projection_supports": {
+        "wi_0_max": 48.2347334529974,
+        "wi_1_max": 96.00435440267482
+      }
+    },
+    {
+      "index": 79,
+      "opcode": "ADD",
+      "output": "dec_h",
+      "input_bounds": {
+        "left": 2135081.252744707,
+        "right": 3333781.8408962316
+      },
+      "abs_bound": 5468863.093640938,
+      "ellipsoid_weight": null,
+      "projection_supports": null
+    },
+    {
+      "index": 80,
+      "opcode": "RMSNORM",
+      "output": "dec_n3",
+      "input_bounds": {
+        "input": 5468863.093640938
+      },
+      "abs_bound": 9.220833569247302,
+      "ellipsoid_weight": "decoder.block.3.layer.0.layer_norm.weight",
+      "projection_supports": null
+    },
+    {
+      "index": 81,
+      "opcode": "SELF_ATTENTION_KV",
+      "output": "dec_a3",
+      "input_bounds": {
+        "input": 9.220833569247302
+      },
+      "abs_bound": 136877.18876700304,
+      "ellipsoid_weight": null,
+      "projection_supports": {
+        "q_max": 5.834072937659024,
+        "k_max": 42.93394412254904,
+        "v_max": 124.86515644026467
+      }
+    },
+    {
+      "index": 82,
+      "opcode": "ADD",
+      "output": "dec_r3",
+      "input_bounds": {
+        "left": 5468863.093640938,
+        "right": 136877.18876700304
+      },
+      "abs_bound": 5605740.282407941,
+      "ellipsoid_weight": null,
+      "projection_supports": null
+    },
+    {
+      "index": 83,
+      "opcode": "RMSNORM",
+      "output": "dec_cn3",
+      "input_bounds": {
+        "input": 5605740.282407941
+      },
+      "abs_bound": 9.391935612860433,
+      "ellipsoid_weight": "decoder.block.3.layer.1.layer_norm.weight",
+      "projection_supports": null
+    },
+    {
+      "index": 84,
+      "opcode": "CROSS_ATTENTION",
+      "output": "dec_ca3",
+      "input_bounds": {
+        "memory": 5.531395556942608,
+        "input": 9.391935612860433
+      },
+      "abs_bound": 51119.309700267586,
+      "ellipsoid_weight": null,
+      "projection_supports": {
+        "q_max": 5.699451552457122,
+        "k_max": 46.74250235877711,
+        "v_max": 65.15484761976278
+      }
+    },
+    {
+      "index": 85,
+      "opcode": "ADD",
+      "output": "dec_cr3",
+      "input_bounds": {
+        "left": 5605740.282407941,
+        "right": 51119.309700267586
+      },
+      "abs_bound": 5656859.592108209,
+      "ellipsoid_weight": null,
+      "projection_supports": null
+    },
+    {
+      "index": 86,
+      "opcode": "RMSNORM",
+      "output": "dec_mn3",
+      "input_bounds": {
+        "input": 5656859.592108209
+      },
+      "abs_bound": 12.129471878681121,
+      "ellipsoid_weight": "decoder.block.3.layer.2.layer_norm.weight",
+      "projection_supports": null
+    },
+    {
+      "index": 87,
+      "opcode": "GATED_MLP",
+      "output": "dec_m3",
+      "input_bounds": {
+        "input": 12.129471878681121
+      },
+      "abs_bound": 6944186.776062487,
+      "ellipsoid_weight": null,
+      "projection_supports": {
+        "wi_0_max": 103.7762063980316,
+        "wi_1_max": 130.36603064707953
+      }
+    },
+    {
+      "index": 88,
+      "opcode": "ADD",
+      "output": "dec_h",
+      "input_bounds": {
+        "left": 5656859.592108209,
+        "right": 6944186.776062487
+      },
+      "abs_bound": 12601046.368170695,
+      "ellipsoid_weight": null,
+      "projection_supports": null
+    },
+    {
+      "index": 89,
+      "opcode": "RMSNORM",
+      "output": "dec_n4",
+      "input_bounds": {
+        "input": 12601046.368170695
+      },
+      "abs_bound": 10.674472979591428,
+      "ellipsoid_weight": "decoder.block.4.layer.0.layer_norm.weight",
+      "projection_supports": null
+    },
+    {
+      "index": 90,
+      "opcode": "SELF_ATTENTION_KV",
+      "output": "dec_a4",
+      "input_bounds": {
+        "input": 10.674472979591428
+      },
+      "abs_bound": 166962.11412653257,
+      "ellipsoid_weight": null,
+      "projection_supports": {
+        "q_max": 9.295811506745997,
+        "k_max": 66.0192034913368,
+        "v_max": 128.8735073546418
+      }
+    },
+    {
+      "index": 91,
+      "opcode": "ADD",
+      "output": "dec_r4",
+      "input_bounds": {
+        "left": 12601046.368170695,
+        "right": 166962.11412653257
+      },
+      "abs_bound": 12768008.482297229,
+      "ellipsoid_weight": null,
+      "projection_supports": null
+    },
+    {
+      "index": 92,
+      "opcode": "RMSNORM",
+      "output": "dec_cn4",
+      "input_bounds": {
+        "input": 12768008.482297229
+      },
+      "abs_bound": 10.692044506497803,
+      "ellipsoid_weight": "decoder.block.4.layer.1.layer_norm.weight",
+      "projection_supports": null
+    },
+    {
+      "index": 93,
+      "opcode": "CROSS_ATTENTION",
+      "output": "dec_ca4",
+      "input_bounds": {
+        "memory": 5.531395556942608,
+        "input": 10.692044506497803
+      },
+      "abs_bound": 65052.89894385863,
+      "ellipsoid_weight": null,
+      "projection_supports": {
+        "q_max": 6.683169911865795,
+        "k_max": 73.35183669454804,
+        "v_max": 74.18573634528228
+      }
+    },
+    {
+      "index": 94,
+      "opcode": "ADD",
+      "output": "dec_cr4",
+      "input_bounds": {
+        "left": 12768008.482297229,
+        "right": 65052.89894385863
+      },
+      "abs_bound": 12833061.381241087,
+      "ellipsoid_weight": null,
+      "projection_supports": null
+    },
+    {
+      "index": 95,
+      "opcode": "RMSNORM",
+      "output": "dec_mn4",
+      "input_bounds": {
+        "input": 12833061.381241087
+      },
+      "abs_bound": 9.213578916506819,
+      "ellipsoid_weight": "decoder.block.4.layer.2.layer_norm.weight",
+      "projection_supports": null
+    },
+    {
+      "index": 96,
+      "opcode": "GATED_MLP",
+      "output": "dec_m4",
+      "input_bounds": {
+        "input": 9.213578916506819
+      },
+      "abs_bound": 9751245.976446692,
+      "ellipsoid_weight": null,
+      "projection_supports": {
+        "wi_0_max": 77.05152037123325,
+        "wi_1_max": 202.1296531438764
+      }
+    },
+    {
+      "index": 97,
+      "opcode": "ADD",
+      "output": "dec_h",
+      "input_bounds": {
+        "left": 12833061.381241087,
+        "right": 9751245.976446692
+      },
+      "abs_bound": 22584307.35768778,
+      "ellipsoid_weight": null,
+      "projection_supports": null
+    },
+    {
+      "index": 98,
+      "opcode": "RMSNORM",
+      "output": "dec_n5",
+      "input_bounds": {
+        "input": 22584307.35768778
+      },
+      "abs_bound": 26.642828851901115,
+      "ellipsoid_weight": "decoder.block.5.layer.0.layer_norm.weight",
+      "projection_supports": null
+    },
+    {
+      "index": 99,
+      "opcode": "SELF_ATTENTION_KV",
+      "output": "dec_a5",
+      "input_bounds": {
+        "input": 26.642828851901115
+      },
+      "abs_bound": 277892.0819816785,
+      "ellipsoid_weight": null,
+      "projection_supports": {
+        "q_max": 7.529868764441448,
+        "k_max": 64.61825455323418,
+        "v_max": 188.03833645018307
+      }
+    },
+    {
+      "index": 100,
+      "opcode": "ADD",
+      "output": "dec_r5",
+      "input_bounds": {
+        "left": 22584307.35768778,
+        "right": 277892.0819816785
+      },
+      "abs_bound": 22862199.439669456,
+      "ellipsoid_weight": null,
+      "projection_supports": null
+    },
+    {
+      "index": 101,
+      "opcode": "RMSNORM",
+      "output": "dec_cn5",
+      "input_bounds": {
+        "input": 22862199.439669456
+      },
+      "abs_bound": 13.137210444421937,
+      "ellipsoid_weight": "decoder.block.5.layer.1.layer_norm.weight",
+      "projection_supports": null
+    },
+    {
+      "index": 102,
+      "opcode": "CROSS_ATTENTION",
+      "output": "dec_ca5",
+      "input_bounds": {
+        "memory": 5.531395556942608,
+        "input": 13.137210444421937
+      },
+      "abs_bound": 123070.74115684623,
+      "ellipsoid_weight": null,
+      "projection_supports": {
+        "q_max": 7.228146731927105,
+        "k_max": 47.120732286937525,
+        "v_max": 107.70610585597241
+      }
+    },
+    {
+      "index": 103,
+      "opcode": "ADD",
+      "output": "dec_cr5",
+      "input_bounds": {
+        "left": 22862199.439669456,
+        "right": 123070.74115684623
+      },
+      "abs_bound": 22985270.180826303,
+      "ellipsoid_weight": null,
+      "projection_supports": null
+    },
+    {
+      "index": 104,
+      "opcode": "RMSNORM",
+      "output": "dec_mn5",
+      "input_bounds": {
+        "input": 22985270.180826303
+      },
+      "abs_bound": 9.962386126784834,
+      "ellipsoid_weight": "decoder.block.5.layer.2.layer_norm.weight",
+      "projection_supports": null
+    },
+    {
+      "index": 105,
+      "opcode": "GATED_MLP",
+      "output": "dec_m5",
+      "input_bounds": {
+        "input": 9.962386126784834
+      },
+      "abs_bound": 9637539.783632705,
+      "ellipsoid_weight": null,
+      "projection_supports": {
+        "wi_0_max": 83.45686725763063,
+        "wi_1_max": 241.8284916602746
+      }
+    },
+    {
+      "index": 106,
+      "opcode": "ADD",
+      "output": "dec_h",
+      "input_bounds": {
+        "left": 22985270.180826303,
+        "right": 9637539.783632705
+      },
+      "abs_bound": 32622809.96445901,
+      "ellipsoid_weight": null,
+      "projection_supports": null
+    },
+    {
+      "index": 107,
+      "opcode": "RMSNORM",
+      "output": "dec_n6",
+      "input_bounds": {
+        "input": 32622809.96445901
+      },
+      "abs_bound": 23.79040297443803,
+      "ellipsoid_weight": "decoder.block.6.layer.0.layer_norm.weight",
+      "projection_supports": null
+    },
+    {
+      "index": 108,
+      "opcode": "SELF_ATTENTION_KV",
+      "output": "dec_a6",
+      "input_bounds": {
+        "input": 23.79040297443803
+      },
+      "abs_bound": 441091.5818353726,
+      "ellipsoid_weight": null,
+      "projection_supports": {
+        "q_max": 6.801391304636495,
+        "k_max": 56.360274974173194,
+        "v_max": 231.116344439851
+      }
+    },
+    {
+      "index": 109,
+      "opcode": "ADD",
+      "output": "dec_r6",
+      "input_bounds": {
+        "left": 32622809.96445901,
+        "right": 441091.5818353726
+      },
+      "abs_bound": 33063901.546294384,
+      "ellipsoid_weight": null,
+      "projection_supports": null
+    },
+    {
+      "index": 110,
+      "opcode": "RMSNORM",
+      "output": "dec_cn6",
+      "input_bounds": {
+        "input": 33063901.546294384
+      },
+      "abs_bound": 9.31253095026591,
+      "ellipsoid_weight": "decoder.block.6.layer.1.layer_norm.weight",
+      "projection_supports": null
+    },
+    {
+      "index": 111,
+      "opcode": "CROSS_ATTENTION",
+      "output": "dec_ca6",
+      "input_bounds": {
+        "memory": 5.531395556942608,
+        "input": 9.31253095026591
+      },
+      "abs_bound": 184321.27226495527,
+      "ellipsoid_weight": null,
+      "projection_supports": {
+        "q_max": 6.657941755740164,
+        "k_max": 42.41503056436879,
+        "v_max": 109.55682976450322
+      }
+    },
+    {
+      "index": 112,
+      "opcode": "ADD",
+      "output": "dec_cr6",
+      "input_bounds": {
+        "left": 33063901.546294384,
+        "right": 184321.27226495527
+      },
+      "abs_bound": 33248222.818559337,
+      "ellipsoid_weight": null,
+      "projection_supports": null
+    },
+    {
+      "index": 113,
+      "opcode": "RMSNORM",
+      "output": "dec_mn6",
+      "input_bounds": {
+        "input": 33248222.818559337
+      },
+      "abs_bound": 15.095981520043068,
+      "ellipsoid_weight": "decoder.block.6.layer.2.layer_norm.weight",
+      "projection_supports": null
+    },
+    {
+      "index": 114,
+      "opcode": "GATED_MLP",
+      "output": "dec_m6",
+      "input_bounds": {
+        "input": 15.095981520043068
+      },
+      "abs_bound": 14966119.904010378,
+      "ellipsoid_weight": null,
+      "projection_supports": {
+        "wi_0_max": 94.04021496963263,
+        "wi_1_max": 396.98172000261616
+      }
+    },
+    {
+      "index": 115,
+      "opcode": "ADD",
+      "output": "dec_h",
+      "input_bounds": {
+        "left": 33248222.818559337,
+        "right": 14966119.904010378
+      },
+      "abs_bound": 48214342.72256972,
+      "ellipsoid_weight": null,
+      "projection_supports": null
+    },
+    {
+      "index": 116,
+      "opcode": "RMSNORM",
+      "output": "dec_n7",
+      "input_bounds": {
+        "input": 48214342.72256972
+      },
+      "abs_bound": 31.138809187797563,
+      "ellipsoid_weight": "decoder.block.7.layer.0.layer_norm.weight",
+      "projection_supports": null
+    },
+    {
+      "index": 117,
+      "opcode": "SELF_ATTENTION_KV",
+      "output": "dec_a7",
+      "input_bounds": {
+        "input": 31.138809187797563
+      },
+      "abs_bound": 245087.18572887522,
+      "ellipsoid_weight": null,
+      "projection_supports": {
+        "q_max": 6.9166666858800845,
+        "k_max": 70.70470414467275,
+        "v_max": 183.3844479345484
+      }
+    },
+    {
+      "index": 118,
+      "opcode": "ADD",
+      "output": "dec_r7",
+      "input_bounds": {
+        "left": 48214342.72256972,
+        "right": 245087.18572887522
+      },
+      "abs_bound": 48459429.9082986,
+      "ellipsoid_weight": null,
+      "projection_supports": null
+    },
+    {
+      "index": 119,
+      "opcode": "RMSNORM",
+      "output": "dec_cn7",
+      "input_bounds": {
+        "input": 48459429.9082986
+      },
+      "abs_bound": 7.703117462175094,
+      "ellipsoid_weight": "decoder.block.7.layer.1.layer_norm.weight",
+      "projection_supports": null
+    },
+    {
+      "index": 120,
+      "opcode": "CROSS_ATTENTION",
+      "output": "dec_ca7",
+      "input_bounds": {
+        "memory": 5.531395556942608,
+        "input": 7.703117462175094
+      },
+      "abs_bound": 272940.9214288777,
+      "ellipsoid_weight": null,
+      "projection_supports": {
+        "q_max": 6.614910849324151,
+        "k_max": 52.68085232601404,
+        "v_max": 157.4263182780217
+      }
+    },
+    {
+      "index": 121,
+      "opcode": "ADD",
+      "output": "dec_cr7",
+      "input_bounds": {
+        "left": 48459429.9082986,
+        "right": 272940.9214288777
+      },
+      "abs_bound": 48732370.82972747,
+      "ellipsoid_weight": null,
+      "projection_supports": null
+    },
+    {
+      "index": 122,
+      "opcode": "RMSNORM",
+      "output": "dec_mn7",
+      "input_bounds": {
+        "input": 48732370.82972747
+      },
+      "abs_bound": 16.02615370013401,
+      "ellipsoid_weight": "decoder.block.7.layer.2.layer_norm.weight",
+      "projection_supports": null
+    },
+    {
+      "index": 123,
+      "opcode": "GATED_MLP",
+      "output": "dec_m7",
+      "input_bounds": {
+        "input": 16.02615370013401
+      },
+      "abs_bound": 61067598.27759537,
+      "ellipsoid_weight": null,
+      "projection_supports": {
+        "wi_0_max": 93.04739810281319,
+        "wi_1_max": 1216.1971628530762
+      }
+    },
+    {
+      "index": 124,
+      "opcode": "ADD",
+      "output": "dec_h",
+      "input_bounds": {
+        "left": 48732370.82972747,
+        "right": 61067598.27759537
+      },
+      "abs_bound": 109799969.10732284,
+      "ellipsoid_weight": null,
+      "projection_supports": null
+    },
+    {
+      "index": 125,
+      "opcode": "RMSNORM",
+      "output": "readout_h",
+      "input_bounds": {
+        "input": 109799969.10732284
+      },
+      "abs_bound": 181.99536258632781,
+      "ellipsoid_weight": "decoder.final_layer_norm.weight",
+      "projection_supports": null
+    },
+    {
+      "index": 126,
+      "opcode": "MATMUL",
+      "output": "logits",
+      "input_bounds": {
+        "input": 181.99536258632781
+      },
+      "abs_bound": 280.118926785733,
+      "ellipsoid_weight": null,
+      "projection_supports": null
+    },
+    {
+      "index": 127,
+      "opcode": "SOFTMAX",
+      "output": "next_token_distribution",
+      "input_bounds": {
+        "input": 280.118926785733
+      },
+      "abs_bound": 1.0,
+      "ellipsoid_weight": null,
+      "projection_supports": null
+    }
+  ],
+  "final_bounds": {
+    "encoder_hidden": 10359569.086219678,
+    "encoder_memory": 5.531395556942608,
+    "decoder_hidden": 109799969.10732284,
+    "readout_hidden": 181.99536258632781,
+    "logit_abs": 280.118926785733
+  },
+  "previous_box_bounds": {
+    "encoder_hidden": 384525644104.064,
+    "encoder_memory": 5.531395556942611,
+    "decoder_hidden": 1737237047190.3113,
+    "readout_hidden": 181.99536258632793,
+    "logit_abs": 154309.48885745442
+  },
+  "improvement": {
+    "encoder_hidden": 37117.91879602028,
+    "decoder_hidden": 15821.835482415,
+    "logit_abs": 550.8713410696735
+  },
+  "status": "checkpoint-derived universal convex envelope; no sampled prompts used"
+}

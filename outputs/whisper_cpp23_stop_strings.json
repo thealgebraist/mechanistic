@@ -1,0 +1,211 @@
+{
+  "certificate": "WHISPER_CPP23_STOP_STRING_AUTOMATON_1",
+  "transformers_version": "4.57.3",
+  "stopping_criteria_source_sha256": "495628e4c877f667fbbd9ed4cc83b680de9eac2abc97ec3903f6e9219af3ecd2",
+  "case_count": 7,
+  "all_complete_tokens_exact": true,
+  "all_graph_nodes_visited": true,
+  "cases": [
+    {
+      "case": "whole_token",
+      "stop_strings": [
+        " apostle"
+      ],
+      "tokens": [
+        1770,
+        13,
+        2264,
+        346,
+        353,
+        318,
+        262,
+        46329
+      ],
+      "text": " Mr. Quilter is the apostle",
+      "terminated_by_stop_string": true,
+      "terminated_by_eos": false,
+      "complete_tokens_exact": true,
+      "graph_nodes_visited": 74,
+      "constructor": "StopStringSet"
+    },
+    {
+      "case": "three_token_span",
+      "stop_strings": [
+        "ilter is"
+      ],
+      "tokens": [
+        1770,
+        13,
+        2264,
+        346,
+        353,
+        318
+      ],
+      "text": " Mr. Quilter is",
+      "terminated_by_stop_string": true,
+      "terminated_by_eos": false,
+      "complete_tokens_exact": true,
+      "graph_nodes_visited": 74,
+      "constructor": "StopStringSet"
+    },
+    {
+      "case": "ends_inside_final_token",
+      "stop_strings": [
+        "middle cl"
+      ],
+      "tokens": [
+        1770,
+        13,
+        2264,
+        346,
+        353,
+        318,
+        262,
+        46329,
+        286,
+        262,
+        3504,
+        6097
+      ],
+      "text": " Mr. Quilter is the apostle of the middle classes",
+      "terminated_by_stop_string": true,
+      "terminated_by_eos": false,
+      "complete_tokens_exact": true,
+      "graph_nodes_visited": 74,
+      "constructor": "StopStringSet"
+    },
+    {
+      "case": "starts_inside_previous_token",
+      "stop_strings": [
+        "dle classes"
+      ],
+      "tokens": [
+        1770,
+        13,
+        2264,
+        346,
+        353,
+        318,
+        262,
+        46329,
+        286,
+        262,
+        3504,
+        6097
+      ],
+      "text": " Mr. Quilter is the apostle of the middle classes",
+      "terminated_by_stop_string": true,
+      "terminated_by_eos": false,
+      "complete_tokens_exact": true,
+      "graph_nodes_visited": 74,
+      "constructor": "StopStringSet"
+    },
+    {
+      "case": "multiple_alternatives",
+      "stop_strings": [
+        "absent",
+        "glad to"
+      ],
+      "tokens": [
+        1770,
+        13,
+        2264,
+        346,
+        353,
+        318,
+        262,
+        46329,
+        286,
+        262,
+        3504,
+        6097,
+        11,
+        290,
+        356,
+        389,
+        9675,
+        284
+      ],
+      "text": " Mr. Quilter is the apostle of the middle classes, and we are glad to",
+      "terminated_by_stop_string": true,
+      "terminated_by_eos": false,
+      "complete_tokens_exact": true,
+      "graph_nodes_visited": 74,
+      "constructor": "StopStringSet"
+    },
+    {
+      "case": "period_completion",
+      "stop_strings": [
+        "gospel."
+      ],
+      "tokens": [
+        1770,
+        13,
+        2264,
+        346,
+        353,
+        318,
+        262,
+        46329,
+        286,
+        262,
+        3504,
+        6097,
+        11,
+        290,
+        356,
+        389,
+        9675,
+        284,
+        7062,
+        465,
+        21443,
+        13
+      ],
+      "text": " Mr. Quilter is the apostle of the middle classes, and we are glad to welcome his gospel.",
+      "terminated_by_stop_string": true,
+      "terminated_by_eos": false,
+      "complete_tokens_exact": true,
+      "graph_nodes_visited": 74,
+      "constructor": "StopStringSet"
+    },
+    {
+      "case": "no_match_eos",
+      "stop_strings": [
+        "this string is absent"
+      ],
+      "tokens": [
+        1770,
+        13,
+        2264,
+        346,
+        353,
+        318,
+        262,
+        46329,
+        286,
+        262,
+        3504,
+        6097,
+        11,
+        290,
+        356,
+        389,
+        9675,
+        284,
+        7062,
+        465,
+        21443,
+        13
+      ],
+      "text": " Mr. Quilter is the apostle of the middle classes, and we are glad to welcome his gospel.",
+      "terminated_by_stop_string": false,
+      "terminated_by_eos": true,
+      "complete_tokens_exact": true,
+      "graph_nodes_visited": 74,
+      "constructor": "StopStringSet"
+    }
+  ],
+  "scope": "Batch-one greedy Whisper generation with one or more UTF-8 stop strings, including whole-token, cross-token, token-overhang, alternative, and EOS paths.",
+  "framework_boundary": "Transformers 4.57.3 StopStringCriteria is invoked directly because its generic generate tokenizer kwarg leaks through _sample for this Whisper wrapper version."
+}

@@ -1,0 +1,300 @@
+{
+  "certificate": "WHISPER_CPP23_INTERFACE_ADT_LEDGER_8",
+  "source_class": "transformers.WhisperForConditionalGeneration",
+  "forward_signature": "(self, input_features: torch.FloatTensor | None = None, attention_mask: torch.LongTensor | None = None, decoder_input_ids: torch.LongTensor | None = None, decoder_attention_mask: torch.LongTensor | None = None, head_mask: torch.Tensor | None = None, decoder_head_mask: torch.Tensor | None = None, cross_attn_head_mask: torch.Tensor | None = None, encoder_outputs: tuple[tuple[torch.FloatTensor]] | None = None, past_key_values: transformers.cache_utils.Cache | None = None, decoder_inputs_embeds: tuple[torch.FloatTensor] | None = None, decoder_position_ids: tuple[torch.LongTensor] | None = None, labels: torch.LongTensor | None = None, use_cache: bool | None = None, output_attentions: bool | None = None, output_hidden_states: bool | None = None, return_dict: bool | None = None, cache_position: torch.LongTensor | None = None) -> tuple[torch.Tensor] | transformers.modeling_outputs.Seq2SeqLMOutput",
+  "generate_signature": "(self, input_features: torch.Tensor | None = None, generation_config: transformers.generation.configuration_utils.GenerationConfig | None = None, logits_processor: transformers.generation.logits_process.LogitsProcessorList | None = None, stopping_criteria: transformers.generation.stopping_criteria.StoppingCriteriaList | None = None, prefix_allowed_tokens_fn: Callable[[int, torch.Tensor], list[int]] | None = None, synced_gpus: bool = False, return_timestamps: bool | None = None, task: str | None = None, language: str | list[str] | None = None, is_multilingual: bool | None = None, prompt_ids: torch.Tensor | None = None, prompt_condition_type: str | None = None, condition_on_prev_tokens: bool | None = None, temperature: float | tuple[float, ...] | None = None, compression_ratio_threshold: float | None = None, logprob_threshold: float | None = None, no_speech_threshold: float | None = None, num_segment_frames: int | None = None, attention_mask: torch.Tensor | None = None, time_precision: float = 0.02, time_precision_features: float = 0.01, return_token_timestamps: bool | None = None, return_segments: bool = False, return_dict_in_generate: bool | None = None, force_unique_generate_call: bool | None = None, monitor_progress: Callable[[torch.Tensor], NoneType] | None = None, **kwargs)",
+  "forward_parameters": [
+    {
+      "parameter": "input_features",
+      "status": "EXECUTABLE_GRAPH",
+      "adt_constructor": "EncoderInput.InputFeatures",
+      "evidence_or_gap": "nodes 1-29"
+    },
+    {
+      "parameter": "attention_mask",
+      "status": "EXECUTABLE_MODEL_NOOP",
+      "adt_constructor": "AttentionMask.EncoderAttentionMask",
+      "evidence_or_gap": "current WhisperEncoder accepts but does not consume this argument"
+    },
+    {
+      "parameter": "decoder_input_ids",
+      "status": "EXECUTABLE_GRAPH",
+      "adt_constructor": "DecoderInput.TokenIds",
+      "evidence_or_gap": "nodes 30-69; arbitrary valid IDs verified"
+    },
+    {
+      "parameter": "decoder_attention_mask",
+      "status": "EXECUTABLE_GRAPH",
+      "adt_constructor": "AttentionMask.DecoderAttentionMask",
+      "evidence_or_gap": "arbitrary binary key mask combined with causal mask and verified"
+    },
+    {
+      "parameter": "head_mask",
+      "status": "EXECUTABLE_GRAPH_EAGER",
+      "adt_constructor": "HeadSelection.EncoderHeadMask",
+      "evidence_or_gap": "24 head masses verified against eager PyTorch attention"
+    },
+    {
+      "parameter": "decoder_head_mask",
+      "status": "EXECUTABLE_GRAPH_EAGER",
+      "adt_constructor": "HeadSelection.DecoderHeadMask",
+      "evidence_or_gap": "24 head masses verified against eager PyTorch attention"
+    },
+    {
+      "parameter": "cross_attn_head_mask",
+      "status": "EXECUTABLE_GRAPH_EAGER",
+      "adt_constructor": "HeadSelection.CrossAttentionHeadMask",
+      "evidence_or_gap": "24 head masses verified against eager PyTorch attention"
+    },
+    {
+      "parameter": "encoder_outputs",
+      "status": "EXECUTABLE_GRAPH",
+      "adt_constructor": "EncoderInput.SuppliedEncoderMemory",
+      "evidence_or_gap": "typed MatrixRef<1500,384> decoder-only graph entry verified"
+    },
+    {
+      "parameter": "past_key_values",
+      "status": "EXECUTABLE_GRAPH",
+      "adt_constructor": "CacheMode.SuppliedKeyValueCache",
+      "evidence_or_gap": "typed four-layer self/cross cache import, step, and export verified"
+    },
+    {
+      "parameter": "decoder_inputs_embeds",
+      "status": "EXECUTABLE_GRAPH",
+      "adt_constructor": "DecoderInput.SuppliedDecoderEmbeddings",
+      "evidence_or_gap": "typed bounded embedding-matrix graph entry verified"
+    },
+    {
+      "parameter": "decoder_position_ids",
+      "status": "EXECUTABLE_GRAPH",
+      "adt_constructor": "PositionInput.SuppliedPositionIds",
+      "evidence_or_gap": "arbitrary bounded position lookup verified"
+    },
+    {
+      "parameter": "labels",
+      "status": "EXECUTABLE_GRAPH",
+      "adt_constructor": "Objective.LabelledCrossEntropy",
+      "evidence_or_gap": "decoder right-shift, -100 ignore rule, and mean cross-entropy verified"
+    },
+    {
+      "parameter": "use_cache",
+      "status": "EXECUTABLE_GRAPH",
+      "adt_constructor": "CacheMode.NoCache|InternalIncrementalCache",
+      "evidence_or_gap": "both full causal and incremental graph paths verified"
+    },
+    {
+      "parameter": "output_attentions",
+      "status": "EXECUTABLE_GRAPH_EAGER",
+      "adt_constructor": "Objective.EvalWithAttentions",
+      "evidence_or_gap": "four encoder, four decoder, and four cross-attention tensors exported and verified"
+    },
+    {
+      "parameter": "output_hidden_states",
+      "status": "EXECUTABLE_GRAPH",
+      "adt_constructor": "Objective.EvalWithHiddenStates",
+      "evidence_or_gap": "complete five encoder plus five decoder hidden-state tuples exported and verified"
+    },
+    {
+      "parameter": "return_dict",
+      "status": "ABI_PROJECTION",
+      "adt_constructor": "ForwardRequest",
+      "evidence_or_gap": "C++ returns typed values rather than Python ModelOutput"
+    },
+    {
+      "parameter": "cache_position",
+      "status": "EXECUTABLE_GRAPH",
+      "adt_constructor": "CacheMode.InternalIncrementalCache",
+      "evidence_or_gap": "explicit imported position drives positional lookup and cache append"
+    }
+  ],
+  "generate_parameters": [
+    {
+      "parameter": "input_features",
+      "status": "EXECUTABLE_GRAPH",
+      "adt_constructor": "GenerationRequest.input",
+      "evidence_or_gap": "nodes 1-29"
+    },
+    {
+      "parameter": "generation_config",
+      "status": "PINNED_EXECUTABLE_PLUS_POLICIES",
+      "adt_constructor": "GenerationRequest",
+      "evidence_or_gap": "pinned English policy plus typed sequence bias, repetition, no-repeat n-gram, forbidden-sequence, boundary/decay/length, repair/normalization, six sampling filters, contrastive hidden-state ranking, greedy stop-string and prompt-lookup speculation, standard/sampled/diverse-group beam search, and phrase/disjunction-constrained beam search"
+    },
+    {
+      "parameter": "logits_processor",
+      "status": "EXECUTABLE_NAMED_SUBSET",
+      "adt_constructor": "GenerationLogitPolicies",
+      "evidence_or_gap": "forced/suppressed tokens, additive sequence bias, repetition and n-gram policies, EOS decay, invalid repair, normalization, and six sampling filters; arbitrary user processor classes remain external"
+    },
+    {
+      "parameter": "stopping_criteria",
+      "status": "EXECUTABLE_BUILTIN_SUBSET",
+      "adt_constructor": "GenerationLengthLimit",
+      "evidence_or_gap": "EOS, typed max_length, typed max_new_tokens, and the 448-position model bound; arbitrary user callbacks remain external"
+    },
+    {
+      "parameter": "prefix_allowed_tokens_fn",
+      "status": "EXECUTABLE_GRAPH_CALLBACK",
+      "adt_constructor": "VocabularyConstraint.PrefixAllowedTokensFn",
+      "evidence_or_gap": "step/stack/token predicate masks the policy node and an altered first-token constraint exactly matches Transformers"
+    },
+    {
+      "parameter": "synced_gpus",
+      "status": "SINGLE_PROCESS_NOOP",
+      "adt_constructor": "GenerationRequest",
+      "evidence_or_gap": "C++ runtime is single-process"
+    },
+    {
+      "parameter": "return_timestamps",
+      "status": "EXECUTABLE_GRAPH",
+      "adt_constructor": "TimeOutput.TimestampTokens",
+      "evidence_or_gap": "timestamp-pair, monotonicity, initial bound, and aggregate-mass policy exactly verified"
+    },
+    {
+      "parameter": "task",
+      "status": "PINNED_EXECUTABLE_SUBSET",
+      "adt_constructor": "GenerationRequest",
+      "evidence_or_gap": "English transcription task"
+    },
+    {
+      "parameter": "language",
+      "status": "PINNED_EXECUTABLE_SUBSET",
+      "adt_constructor": "GenerationRequest",
+      "evidence_or_gap": "tiny.en English only"
+    },
+    {
+      "parameter": "is_multilingual",
+      "status": "PINNED_EXECUTABLE_SUBSET",
+      "adt_constructor": "GenerationRequest",
+      "evidence_or_gap": "false for tiny.en"
+    },
+    {
+      "parameter": "prompt_ids",
+      "status": "EXECUTABLE_GRAPH",
+      "adt_constructor": "PromptCondition.PromptTokens",
+      "evidence_or_gap": "prompt prefix before decoder start/no-timestamps prefix exactly matches Transformers tokens"
+    },
+    {
+      "parameter": "prompt_condition_type",
+      "status": "EXECUTABLE_GRAPH_LONGFORM",
+      "adt_constructor": "PromptConditionType",
+      "evidence_or_gap": "first-segment and all-segments history placement exactly verified with a concrete prompt"
+    },
+    {
+      "parameter": "condition_on_prev_tokens",
+      "status": "EXECUTABLE_GRAPH_LONGFORM",
+      "adt_constructor": "PromptCondition.PreviousSegmentTokens",
+      "evidence_or_gap": "223-token cutoff, previous-start token, double-timestamp elision, and changed second-window output exactly verified"
+    },
+    {
+      "parameter": "temperature",
+      "status": "EXECUTABLE_GRAPH",
+      "adt_constructor": "Selection.CategoricalSample",
+      "evidence_or_gap": "positive temperature scales logits before six typed sampling filters; complete first-step categorical distributions verified"
+    },
+    {
+      "parameter": "compression_ratio_threshold",
+      "status": "EXECUTABLE_GRAPH_FALLBACK",
+      "adt_constructor": "FallbackPolicy.FallbackThresholds",
+      "evidence_or_gap": "zlib token compression ratio forces and records two attempts per long-form window"
+    },
+    {
+      "parameter": "logprob_threshold",
+      "status": "EXECUTABLE_GRAPH_FALLBACK",
+      "adt_constructor": "FallbackPolicy.FallbackThresholds",
+      "evidence_or_gap": "processed-policy average selected logprob forces and records two attempts per window"
+    },
+    {
+      "parameter": "no_speech_threshold",
+      "status": "EXECUTABLE_GRAPH_FALLBACK",
+      "adt_constructor": "FallbackPolicy.FallbackThresholds",
+      "evidence_or_gap": "raw no-speech probability combined with average logprob exactly skips the final silent window"
+    },
+    {
+      "parameter": "num_segment_frames",
+      "status": "EXECUTABLE_MODEL_PINNED",
+      "adt_constructor": "GenerationWindowing.LongFormWindowing",
+      "evidence_or_gap": "installed implementation overwrites this argument with 3000; two-window 3513-frame execution verified"
+    },
+    {
+      "parameter": "attention_mask",
+      "status": "EXECUTABLE_CONTIGUOUS_AUDIO_MASK",
+      "adt_constructor": "GenerationWindowing.ContiguousGenerationAttentionMask",
+      "evidence_or_gap": "raw-audio-derived contiguous valid extent drives max frames, seeks, and DTW crop"
+    },
+    {
+      "parameter": "time_precision",
+      "status": "PINNED_EXECUTABLE_SUBSET",
+      "adt_constructor": "TimeOutput.TimestampTokens",
+      "evidence_or_gap": "pinned 0.02 seconds per timestamp token is represented and verified"
+    },
+    {
+      "parameter": "time_precision_features",
+      "status": "PINNED_EXECUTABLE_SUBSET",
+      "adt_constructor": "TimeOutput.Segments",
+      "evidence_or_gap": "pinned 0.01 seconds per feature frame is represented for segment arithmetic"
+    },
+    {
+      "parameter": "return_token_timestamps",
+      "status": "EXECUTABLE_GRAPH_DTW",
+      "adt_constructor": "TimeOutput.TokenTimestamps",
+      "evidence_or_gap": "eight configured cross-attention heads, normalization, reflected median filter, head mean, and DTW exactly verified"
+    },
+    {
+      "parameter": "return_segments",
+      "status": "EXECUTABLE_GRAPH_SHORTFORM",
+      "adt_constructor": "TimeOutput.Segments",
+      "evidence_or_gap": "timestamp-delimited short-form segment tokens and boundaries exactly verified"
+    },
+    {
+      "parameter": "return_dict_in_generate",
+      "status": "ABI_PROJECTION",
+      "adt_constructor": "GenerationRequest",
+      "evidence_or_gap": "C++ GenerationResult replaces Python GenerateOutput"
+    },
+    {
+      "parameter": "force_unique_generate_call",
+      "status": "SINGLE_PROCESS_NOOP",
+      "adt_constructor": "GenerationRequest",
+      "evidence_or_gap": "one graph invocation per request"
+    },
+    {
+      "parameter": "monitor_progress",
+      "status": "EXECUTABLE_GRAPH_CALLBACK",
+      "adt_constructor": "ProgressMonitor.MonitorProgress",
+      "evidence_or_gap": "typed seek/max callback emits the exact two PyTorch long-form progress states"
+    },
+    {
+      "parameter": "kwargs",
+      "status": "VERSION_PINNED_CLOSED_INVENTORY",
+      "adt_constructor": "GenerationExtensionInventory",
+      "evidence_or_gap": "74 GenerationConfig fields, 6 generic extensions, and 17 forward kwargs are named; unknown keys are rejected"
+    }
+  ],
+  "status_counts": {
+    "ABI_PROJECTION": 2,
+    "EXECUTABLE_BUILTIN_SUBSET": 1,
+    "EXECUTABLE_CONTIGUOUS_AUDIO_MASK": 1,
+    "EXECUTABLE_GRAPH": 15,
+    "EXECUTABLE_GRAPH_CALLBACK": 2,
+    "EXECUTABLE_GRAPH_DTW": 1,
+    "EXECUTABLE_GRAPH_EAGER": 4,
+    "EXECUTABLE_GRAPH_FALLBACK": 3,
+    "EXECUTABLE_GRAPH_LONGFORM": 2,
+    "EXECUTABLE_GRAPH_SHORTFORM": 1,
+    "EXECUTABLE_MODEL_NOOP": 1,
+    "EXECUTABLE_MODEL_PINNED": 1,
+    "EXECUTABLE_NAMED_SUBSET": 1,
+    "PINNED_EXECUTABLE_PLUS_POLICIES": 1,
+    "PINNED_EXECUTABLE_SUBSET": 5,
+    "SINGLE_PROCESS_NOOP": 2,
+    "VERSION_PINNED_CLOSED_INVENTORY": 1
+  },
+  "pending_parameter_count": 0,
+  "all_parameters_classified": true,
+  "adt_header": "whisper_interface_adt.hpp",
+  "generation_extension_inventory": "WHISPER_CPP23_GENERATION_EXTENSION_INVENTORY_1",
+  "all_pinned_generation_values_represented": true,
+  "all_nondefault_generation_variants_executable": false,
+  "proof_boundary": "Every top-level parameter and pinned generation value is classified and represented. This does not convert every non-default generic GenerationMixin algorithm; those external variants remain explicit in the extension inventory."
+}

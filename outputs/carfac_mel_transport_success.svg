@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="760" viewBox="0 0 1500 760" role="img" aria-labelledby="t d">
+<title id="t">CAR-FAC temporal transport reaches the exact target transcript</title>
+<desc id="d">Search from static through three-frame to five-frame transport, followed by the successful graph path into Whisper.</desc>
+<rect width="100%" height="100%" fill="#fbfcfe"/><defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#526274"/></marker></defs>
+<style>text{font-family:Menlo,monospace;fill:#17212b}.title{font-size:20px;font-weight:bold}.h{font-size:14px;font-weight:bold}.s{font-size:11px;fill:#526274}.box{fill:#edf4ff;stroke:#285c9e;stroke-width:1.5}.fail{fill:#fff4e9;stroke:#a45a24;stroke-width:1.5}.ok{fill:#ecf8ef;stroke:#287a42;stroke-width:1.8}.edge{stroke:#526274;stroke-width:1.6;marker-end:url(#a)}.look{stroke:#a45a24;stroke-dasharray:5 4}</style>
+<text x="28" y="34" class="title">Finite-sample CAR-FAC → Mel transport reaches the target</text>
+<text x="28" y="58" class="s">Smallest successful tested stencil: five frames, offsets −2 −1 0 +1 +2, 32,080 binary32 parameters, 128,320 bytes.</text>
+<rect class="box" x="30" y="120" width="260" height="150" rx="10"/>
+<text x="44" y="144" class="h">CAR-FAC graph</text>
+<text x="44" y="168" class="s">81 sections + IHC + AGC</text>
+<text x="44" y="187" class="s">80 log-place features</text>
+<text x="44" y="206" class="s">same actual waveform</text>
+<rect class="box" x="350" y="95" width="260" height="200" rx="10"/>
+<text x="364" y="119" class="h">Five-frame hypernode</text>
+<text x="364" y="143" class="s">past: t−2, t−1</text>
+<text x="364" y="162" class="s">present: t</text>
+<text x="364" y="181" class="s">lookahead: t+1, t+2</text>
+<text x="364" y="200" class="s">concat + bias = 401</text>
+<text x="364" y="219" class="s">affine 401 × 80</text>
+<rect class="box" x="680" y="120" width="240" height="150" rx="10"/>
+<text x="694" y="144" class="h">Whisper interface</text>
+<text x="694" y="168" class="s">RMSE=0.04320</text>
+<text x="694" y="187" class="s">80 × 3000 features</text>
+<text x="694" y="206" class="s">fixed neural suffix</text>
+<rect class="ok" x="990" y="95" width="480" height="200" rx="10"/>
+<text x="1004" y="119" class="h">Exact token law</text>
+<text x="1004" y="143" class="s">Mr. Quilter is the apostle of the</text>
+<text x="1004" y="162" class="s">middle classes, and we are glad to</text>
+<text x="1004" y="181" class="s">welcome his gospel.</text>
+<text x="1004" y="200" class="s">WER=0 · exact normalized text</text>
+<line class="edge" x1="290" y1="195" x2="350" y2="195"/>
+<line class="edge" x1="610" y1="195" x2="680" y2="195"/>
+<line class="edge" x1="920" y1="195" x2="990" y2="195"/>
+<text x="955.0" y="188.0" text-anchor="middle" class="s">MODEL_INTERFACE</text>
+<path class="edge look" d="M420 95 C420 74 540 74 540 95"/><text x="480" y="87" text-anchor="middle" class="s">two lookahead edges</text>
+<text x="30" y="390" class="h">Minimality ledger within the tested stencil family</text>
+<rect class="fail" x="30" y="430" width="1440" height="66" rx="10"/>
+<text x="44" y="454" class="h">radius 0 · 1 frame(s) · 6,480 params</text>
+<text x="44" y="478" class="s">RMSE=0.08866 · WER=0.294 · Mr. Krueger is an apostle of the middle class, and we&#x27;re going to welcome his gospel.</text>
+<rect class="fail" x="30" y="520" width="1440" height="66" rx="10"/>
+<text x="44" y="544" class="h">radius 1 · 3 frame(s) · 19,280 params</text>
+<text x="44" y="568" class="s">RMSE=0.06554 · WER=0.059 · Mr. Crowder is the apostle of the middle classes and we are glad to welcome his gospel.</text>
+<rect class="ok" x="30" y="610" width="1440" height="66" rx="10"/>
+<text x="44" y="634" class="h">radius 2 · 5 frame(s) · 32,080 params</text>
+<text x="44" y="658" class="s">RMSE=0.04320 · WER=0.000 · Mr. Quilter is the apostle of the middle classes, and we are glad to welcome his gospel.</text>
+<text x="30" y="728" class="s">This is same-utterance specialization. It proves a finite compiled path for this sample, not general cochlear-to-Mel equivalence.</text>
+</svg>

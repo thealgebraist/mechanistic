@@ -1,0 +1,30 @@
+{
+  "certificate": "T5_FORWARD_SCHEDULE_TO_129_OP_GRAPH_OK",
+  "method_sha256": {
+    "MODEL": "dead2f04d6c9f347b65ef9b6fa8a946717978e6971a41185f755b03b34fd8149",
+    "STACK": "5c64cac00504b3c8d85f73a5ac011339a9f73d2a1d587ce4e41bd21d03256cce",
+    "BLOCK": "d729f8a03ed202ac273b8ea5157a4deae2425496b58289f75793b47734c1e9f5",
+    "SELF_LAYER": "c96a65a87b85b6816ebbce6d6423c970677e5736e62e9ae7b634649b69e04bee",
+    "CROSS_LAYER": "fc5f5e9f14c059590435cdf6f70ab094cab6678c3b2bb2445a49598a664bddaa",
+    "FF_LAYER": "af8ceeb3e8f5d52ce451d561d80ecdce4ba7e51ade8ee937ec2d459316db0125"
+  },
+  "checks": [
+    "model encoder -> decoder -> lm_head",
+    "stack embedding -> block loop -> final norm",
+    "block self -> optional cross -> feed-forward",
+    "self/cross/FF pre-norm and residual order",
+    "exact 8-layer encoder/decoder opcode template"
+  ],
+  "graph_sha256": "9178011e37e276c040400099b87fc34c961429a71386eb38ed92d5cfbb227c76",
+  "opcode_count": 129,
+  "encoder_layers": 8,
+  "decoder_layers": 8,
+  "inference_contract": {
+    "dtype": "float32",
+    "training": false,
+    "dropout": "identity",
+    "tie_word_embeddings": false
+  },
+  "probabilistic_extension": "SOFTMAX and SAMPLE_PUSH_UPDATE_CACHE are the explicit autoregressive wrapper after source lm_logits",
+  "status": "source AST parses and required dataflow/order patterns match exact graph template; not a formal semantics proof of Python/PyTorch"
+}

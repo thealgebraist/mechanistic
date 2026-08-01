@@ -1,0 +1,32 @@
+{
+  "language": "FLAN-CONVEX-L2-GEOMETRY-1",
+  "checkpoint_sha256": "495fa51e204676f1a857a9fc13c4c89f3f5ba9f480b898cebca02add25e6d749",
+  "graph_sha256": "9178011e37e276c040400099b87fc34c961429a71386eb38ed92d5cfbb227c76",
+  "convex_sets": {
+    "rms_readout_ellipsoid": "sum_i (y_i/w_i)^2 <= d_model",
+    "attention_value_hull": "each head output lies in conv{projected value rows}",
+    "softmax_potential": "softmax(z) = gradient logsumexp(z)"
+  },
+  "d_model": 512,
+  "decoder_final_norm_weight_max_abs": 8.043134689331055,
+  "readout_l2_bound": 181.99536258632784,
+  "lm_head_max_row_l2": 47.148832069313585,
+  "max_row_l2_index": 31283,
+  "logit_abs_bound_l2": 8580.86878797661,
+  "lm_head_max_weighted_row_l2": 12.379624541805613,
+  "max_weighted_row_index": 21515,
+  "logit_abs_bound_weighted_ellipsoid": 280.11892678573304,
+  "previous_box_logit_abs_bound": 154309.48885745442,
+  "euclidean_improvement_factor": 17.98296800362111,
+  "weighted_ellipsoid_improvement_factor": 550.8713410696733,
+  "gamma_1024": 6.103888176768602e-05,
+  "zero_input_error_dot_rounding_bound": 0.017098146052965457,
+  "lemmas": [
+    "RMSNorm implies ||y/w||_2 <= sqrt(d)",
+    "Cauchy-Schwarz: |row dot y| <= ||row||_2 ||y||_2",
+    "logsumexp is convex and softmax is its gradient",
+    "attention is a convex mixture of value rows"
+  ],
+  "scope": "every backend-valid finite prompt and continuation; no sequence-length dependence",
+  "status": "checkpoint-derived convex geometry; raw tensors independently checked in C++23"
+}

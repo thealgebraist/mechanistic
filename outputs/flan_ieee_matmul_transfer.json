@@ -1,0 +1,29 @@
+{
+  "language": "FLAN-IEEE754-MATMUL-TRANSFER-1",
+  "checkpoint_sha256": "495fa51e204676f1a857a9fc13c4c89f3f5ba9f480b898cebca02add25e6d749",
+  "graph_sha256": "9178011e37e276c040400099b87fc34c961429a71386eb38ed92d5cfbb227c76",
+  "reachable_bounds_sha256": "d1d3f0f2c8e677aa2fc9eafad1a336aa8ef8ab87d40dcc34b5c3afcf75af0797",
+  "convex_geometry_sha256": "b6ffb6880f36fd580f0234682e1e1781a49412db5c137e37a760e52e12495f69",
+  "transfer": {
+    "index": 126,
+    "opcode": "MATMUL",
+    "weight": "lm_head.weight",
+    "rows": 32128,
+    "dot_length": 512,
+    "operation_count_bound": 1024,
+    "weight_max_row_l1": "847.87593851057056",
+    "input_abs_bound": "181.9953625863278148244717158377170562744140625",
+    "unit_roundoff": "5.9604644775390625E-8",
+    "gamma_k": "0.00006103888176768601599218702313373618995300006103888176768601599218702313373618995300006103888176768602",
+    "convex_rounding_product_bound": "280.11892678573304",
+    "error_units_per_real": 1099511627776,
+    "gain": 848,
+    "bias_units": 18799610399,
+    "bias_real_upper": "0.0170981460532857454381883144378662109375",
+    "theorem": "e_out <= ceil(||W||_inf)*e_in + ceil(scale*(gamma_(2n)*sqrt(d)*max_row_l2(W_row .* rms_weight) + 2n*2^-150))/scale",
+    "source_contract": "binary32 RNE multiply/reduction, at most 2n rounded operations per output; no overflow",
+    "target_contract": "exact-real checkpoint matrix multiplication",
+    "status": "CERTIFIED_UNDER_IEEE754_RNE_REDUCTION_CONTRACT",
+    "transfer_sha256": "0dd926fa71e1a687ba8e67008988ea81c616b2ea8669cb7215cb65c0d8851e3e"
+  }
+}

@@ -1,0 +1,2230 @@
+{
+  "language": "FLAN-IEEE754-ADD-TRANSFER-1",
+  "checkpoint_sha256": "495fa51e204676f1a857a9fc13c4c89f3f5ba9f480b898cebca02add25e6d749",
+  "graph_sha256": "9178011e37e276c040400099b87fc34c961429a71386eb38ed92d5cfbb227c76",
+  "reachable_bounds_sha256": "d1d3f0f2c8e677aa2fc9eafad1a336aa8ef8ab87d40dcc34b5c3afcf75af0797",
+  "convex_reachable_bounds_sha256": "a5a928579b33bd7b1599604036680f96262633ce2c15d720f81f1e33a3b64078",
+  "error_units_per_real": 1099511627776,
+  "source": "IEEE-754 binary32 round-to-nearest-ties-to-even",
+  "target": "exact-real probabilistic register machine",
+  "transfers": [
+    {
+      "index": 4,
+      "opcode": "ADD",
+      "left": "enc_h",
+      "right": "enc_a0",
+      "left_abs_bound": "175.0",
+      "right_abs_bound": "9378.596900602439",
+      "error_scale": 1099511627776,
+      "gain": 2,
+      "bias_units": 626104527,
+      "bias_real_upper": "0.0005694387500625452958047389984130859375",
+      "theorem": "|RN32(a+b)-(a_prime+b_prime)| <= 2*e + 2^-24*(B_left+B_right) + 2^-150",
+      "assumption": "IEEE-754 binary32 round-to-nearest-ties-to-even; exact-real target ADD",
+      "status": "CERTIFIED_UNDER_IEEE754_RNE",
+      "transfer_sha256": "e4adf3810365c275b15c17574ae20baa0c4e2ba581ac75f715187c95c0af5bae"
+    },
+    {
+      "index": 7,
+      "opcode": "ADD",
+      "left": "enc_r0",
+      "right": "enc_m0",
+      "left_abs_bound": "9553.596900602439",
+      "right_abs_bound": "496102.65192567307",
+      "error_scale": 1099511627776,
+      "gain": 2,
+      "bias_units": 33138687924,
+      "bias_real_upper": "0.03013946109058451838791370391845703125",
+      "theorem": "|RN32(a+b)-(a_prime+b_prime)| <= 2*e + 2^-24*(B_left+B_right) + 2^-150",
+      "assumption": "IEEE-754 binary32 round-to-nearest-ties-to-even; exact-real target ADD",
+      "status": "CERTIFIED_UNDER_IEEE754_RNE",
+      "transfer_sha256": "2bfa677c77f967840e21ea3a4c543cd1da36f6e7e301a52972fe8839a0140a81"
+    },
+    {
+      "index": 10,
+      "opcode": "ADD",
+      "left": "enc_h",
+      "right": "enc_a1",
+      "left_abs_bound": "505656.2488262755",
+      "right_abs_bound": "21338.641373899176",
+      "error_scale": 1099511627776,
+      "gain": 2,
+      "bias_units": 34537137125,
+      "bias_real_upper": "0.0314113432295926031656563282012939453125",
+      "theorem": "|RN32(a+b)-(a_prime+b_prime)| <= 2*e + 2^-24*(B_left+B_right) + 2^-150",
+      "assumption": "IEEE-754 binary32 round-to-nearest-ties-to-even; exact-real target ADD",
+      "status": "CERTIFIED_UNDER_IEEE754_RNE",
+      "transfer_sha256": "efadda938d79d4410c72f3763de81c103a4b90aab195e81ef37902d4403a1855"
+    },
+    {
+      "index": 13,
+      "opcode": "ADD",
+      "left": "enc_r1",
+      "right": "enc_m1",
+      "left_abs_bound": "526994.8902001746",
+      "right_abs_bound": "777574.6953093327",
+      "error_scale": 1099511627776,
+      "gain": 2,
+      "bias_units": 85496272356,
+      "bias_real_upper": "0.07775840672911726869642734527587890625",
+      "theorem": "|RN32(a+b)-(a_prime+b_prime)| <= 2*e + 2^-24*(B_left+B_right) + 2^-150",
+      "assumption": "IEEE-754 binary32 round-to-nearest-ties-to-even; exact-real target ADD",
+      "status": "CERTIFIED_UNDER_IEEE754_RNE",
+      "transfer_sha256": "baa84c9bd07488327f412989efc435e36ec4216334965808b3d58f57f8f970a5"
+    },
+    {
+      "index": 16,
+      "opcode": "ADD",
+      "left": "enc_h",
+      "right": "enc_a2",
+      "left_abs_bound": "1304569.5855095075",
+      "right_abs_bound": "21114.704076208724",
+      "error_scale": 1099511627776,
+      "gain": 2,
+      "bias_units": 86880045603,
+      "bias_real_upper": "0.0790169411657188902609050273895263671875",
+      "theorem": "|RN32(a+b)-(a_prime+b_prime)| <= 2*e + 2^-24*(B_left+B_right) + 2^-150",
+      "assumption": "IEEE-754 binary32 round-to-nearest-ties-to-even; exact-real target ADD",
+      "status": "CERTIFIED_UNDER_IEEE754_RNE",
+      "transfer_sha256": "2809d1c8e49b8d5452e048c8950c2b7d58b4e5515e2ff141ae2c351bdba40253"
+    },
+    {
+      "index": 19,
+      "opcode": "ADD",
+      "left": "enc_r2",
+      "right": "enc_m2",
+      "left_abs_bound": "1325684.289585716",
+      "right_abs_bound": "1236863.570090911",
+      "error_scale": 1099511627776,
+      "gain": 2,
+      "bias_units": 167939136532,
+      "bias_real_upper": "0.15273975489617441780865192413330078125",
+      "theorem": "|RN32(a+b)-(a_prime+b_prime)| <= 2*e + 2^-24*(B_left+B_right) + 2^-150",
+      "assumption": "IEEE-754 binary32 round-to-nearest-ties-to-even; exact-real target ADD",
+      "status": "CERTIFIED_UNDER_IEEE754_RNE",
+      "transfer_sha256": "65f3635b942663f2b90622ffdd650c6c01818c3d238e2b9d535c108821a4bdbf"
+    },
+    {
+      "index": 22,
+      "opcode": "ADD",
+      "left": "enc_h",
+      "right": "enc_a3",
+      "left_abs_bound": "2562547.859676627",
+      "right_abs_bound": "26925.096764349146",
+      "error_scale": 1099511627776,
+      "gain": 2,
+      "bias_units": 169703699674,
+      "bias_real_upper": "0.154344615724767209030687808990478515625",
+      "theorem": "|RN32(a+b)-(a_prime+b_prime)| <= 2*e + 2^-24*(B_left+B_right) + 2^-150",
+      "assumption": "IEEE-754 binary32 round-to-nearest-ties-to-even; exact-real target ADD",
+      "status": "CERTIFIED_UNDER_IEEE754_RNE",
+      "transfer_sha256": "be6ebe6635aa83307ac2edc47b9e68c9c4d8049be55e7d3bae36d5587e75ab26"
+    },
+    {
+      "index": 25,
+      "opcode": "ADD",
+      "left": "enc_r3",
+      "right": "enc_m3",
+      "left_abs_bound": "2589472.956440976",
+      "right_abs_bound": "914460.0767200694",
+      "error_scale": 1099511627776,
+      "gain": 2,
+      "bias_units": 229633755262,
+      "bias_real_upper": "0.208850683759010280482470989227294921875",
+      "theorem": "|RN32(a+b)-(a_prime+b_prime)| <= 2*e + 2^-24*(B_left+B_right) + 2^-150",
+      "assumption": "IEEE-754 binary32 round-to-nearest-ties-to-even; exact-real target ADD",
+      "status": "CERTIFIED_UNDER_IEEE754_RNE",
+      "transfer_sha256": "22aedca94772cc85d83d84436679f998186a728c61ebfd78ab205aa0fc324cb4"
+    },
+    {
+      "index": 28,
+      "opcode": "ADD",
+      "left": "enc_h",
+      "right": "enc_a4",
+      "left_abs_bound": "3503933.033161045",
+      "right_abs_bound": "52315.46377866733",
+      "error_scale": 1099511627776,
+      "gain": 2,
+      "bias_units": 233062301496,
+      "bias_real_upper": "0.2119689283936168067157268524169921875",
+      "theorem": "|RN32(a+b)-(a_prime+b_prime)| <= 2*e + 2^-24*(B_left+B_right) + 2^-150",
+      "assumption": "IEEE-754 binary32 round-to-nearest-ties-to-even; exact-real target ADD",
+      "status": "CERTIFIED_UNDER_IEEE754_RNE",
+      "transfer_sha256": "e63a0716eb458e1fd4cbe7e3e3691ac8cd2aad695ec483c5a8fa407381a01a1f"
+    },
+    {
+      "index": 31,
+      "opcode": "ADD",
+      "left": "enc_r4",
+      "right": "enc_m4",
+      "left_abs_bound": "3556248.496939712",
+      "right_abs_bound": "1173529.376973752",
+      "error_scale": 1099511627776,
+      "gain": 2,
+      "bias_units": 309970722745,
+      "bias_real_upper": "0.2819167300413027987815439701080322265625",
+      "theorem": "|RN32(a+b)-(a_prime+b_prime)| <= 2*e + 2^-24*(B_left+B_right) + 2^-150",
+      "assumption": "IEEE-754 binary32 round-to-nearest-ties-to-even; exact-real target ADD",
+      "status": "CERTIFIED_UNDER_IEEE754_RNE",
+      "transfer_sha256": "7dd162e4d38a6080abd9c9c7a9286d425118d110174b770a1a0b0eb6f70ad8dd"
+    },
+    {
+      "index": 34,
+      "opcode": "ADD",
+      "left": "enc_h",
+      "right": "enc_a5",
+      "left_abs_bound": "4729777.873913464",
+      "right_abs_bound": "57749.0937454681",
+      "error_scale": 1099511627776,
+      "gain": 2,
+      "bias_units": 313755367353,
+      "bias_real_upper": "0.2853588442603722796775400638580322265625",
+      "theorem": "|RN32(a+b)-(a_prime+b_prime)| <= 2*e + 2^-24*(B_left+B_right) + 2^-150",
+      "assumption": "IEEE-754 binary32 round-to-nearest-ties-to-even; exact-real target ADD",
+      "status": "CERTIFIED_UNDER_IEEE754_RNE",
+      "transfer_sha256": "3ce80c4a56473dd98b8e778d38e62634e373fe4cc8895c1319ad52102fd49c7d"
+    },
+    {
+      "index": 37,
+      "opcode": "ADD",
+      "left": "enc_r5",
+      "right": "enc_m5",
+      "left_abs_bound": "4787526.967658932",
+      "right_abs_bound": "1330258.814089",
+      "error_scale": 1099511627776,
+      "gain": 2,
+      "bias_units": 400935208993,
+      "bias_real_upper": "0.3646484483333551906980574131011962890625",
+      "theorem": "|RN32(a+b)-(a_prime+b_prime)| <= 2*e + 2^-24*(B_left+B_right) + 2^-150",
+      "assumption": "IEEE-754 binary32 round-to-nearest-ties-to-even; exact-real target ADD",
+      "status": "CERTIFIED_UNDER_IEEE754_RNE",
+      "transfer_sha256": "54799098c9fc9b75091ba0e80aa164d61ceed4f8bf0c6d5807c0c2f92f20c115"
+    },
+    {
+      "index": 40,
+      "opcode": "ADD",
+      "left": "enc_h",
+      "right": "enc_a6",
+      "left_abs_bound": "6117785.781747933",
+      "right_abs_bound": "67282.9419534619",
+      "error_scale": 1099511627776,
+      "gain": 2,
+      "bias_units": 405344663877,
+      "bias_real_upper": "0.3686588241880599525757133960723876953125",
+      "theorem": "|RN32(a+b)-(a_prime+b_prime)| <= 2*e + 2^-24*(B_left+B_right) + 2^-150",
+      "assumption": "IEEE-754 binary32 round-to-nearest-ties-to-even; exact-real target ADD",
+      "status": "CERTIFIED_UNDER_IEEE754_RNE",
+      "transfer_sha256": "da7b0f43e476aef46ac54f3153f4f21d1ffb56e6a119f1027824a1a81315cd7f"
+    },
+    {
+      "index": 43,
+      "opcode": "ADD",
+      "left": "enc_r6",
+      "right": "enc_m6",
+      "left_abs_bound": "6185068.723701394",
+      "right_abs_bound": "1982935.331223737",
+      "error_scale": 1099511627776,
+      "gain": 2,
+      "bias_units": 535298313744,
+      "bias_real_upper": "0.486850980218150652945041656494140625",
+      "theorem": "|RN32(a+b)-(a_prime+b_prime)| <= 2*e + 2^-24*(B_left+B_right) + 2^-150",
+      "assumption": "IEEE-754 binary32 round-to-nearest-ties-to-even; exact-real target ADD",
+      "status": "CERTIFIED_UNDER_IEEE754_RNE",
+      "transfer_sha256": "7ebae630dbca44d278d9bc6007dd63a7ace64f36ff32122cf6209ce1ec7c91f2"
+    },
+    {
+      "index": 46,
+      "opcode": "ADD",
+      "left": "enc_h",
+      "right": "enc_a7",
+      "left_abs_bound": "8168004.054925131",
+      "right_abs_bound": "100930.1985512109",
+      "error_scale": 1099511627776,
+      "gain": 2,
+      "bias_units": 541912875236,
+      "bias_real_upper": "0.49286688884967588819563388824462890625",
+      "theorem": "|RN32(a+b)-(a_prime+b_prime)| <= 2*e + 2^-24*(B_left+B_right) + 2^-150",
+      "assumption": "IEEE-754 binary32 round-to-nearest-ties-to-even; exact-real target ADD",
+      "status": "CERTIFIED_UNDER_IEEE754_RNE",
+      "transfer_sha256": "a84478e7d7bbbd65194d4977ea2c0d9b52d72b0df20cc0cb45c4d02a407deaa4"
+    },
+    {
+      "index": 49,
+      "opcode": "ADD",
+      "left": "enc_r7",
+      "right": "enc_m7",
+      "left_abs_bound": "8268934.253476341",
+      "right_abs_bound": "2090634.832743336",
+      "error_scale": 1099511627776,
+      "gain": 2,
+      "bias_units": 678924719635,
+      "bias_real_upper": "0.6174784354107032413594424724578857421875",
+      "theorem": "|RN32(a+b)-(a_prime+b_prime)| <= 2*e + 2^-24*(B_left+B_right) + 2^-150",
+      "assumption": "IEEE-754 binary32 round-to-nearest-ties-to-even; exact-real target ADD",
+      "status": "CERTIFIED_UNDER_IEEE754_RNE",
+      "transfer_sha256": "ca8e250eccafb19fe60d06fbb5c484e480f2eca5e99dcf182af3134a96461ca8"
+    },
+    {
+      "index": 55,
+      "opcode": "ADD",
+      "left": "dec_h",
+      "right": "dec_a0",
+      "left_abs_bound": "175.0",
+      "right_abs_bound": "10213.350829317225",
+      "error_scale": 1099511627776,
+      "gain": 2,
+      "bias_units": 680810960,
+      "bias_real_upper": "0.000619193961028940975666046142578125",
+      "theorem": "|RN32(a+b)-(a_prime+b_prime)| <= 2*e + 2^-24*(B_left+B_right) + 2^-150",
+      "assumption": "IEEE-754 binary32 round-to-nearest-ties-to-even; exact-real target ADD",
+      "status": "CERTIFIED_UNDER_IEEE754_RNE",
+      "transfer_sha256": "6367531e2847dcef90b664828d25bfab9464f2c0b1a3a4b1caf2cfe97fd802f8"
+    },
+    {
+      "index": 58,
+      "opcode": "ADD",
+      "left": "dec_r0",
+      "right": "dec_ca0",
+      "left_abs_bound": "10388.350829317225",
+      "right_abs_bound": "16648.23922177424",
+      "error_scale": 1099511627776,
+      "gain": 2,
+      "bias_units": 1771869966,
+      "bias_real_upper": "0.001611506346307578496634960174560546875",
+      "theorem": "|RN32(a+b)-(a_prime+b_prime)| <= 2*e + 2^-24*(B_left+B_right) + 2^-150",
+      "assumption": "IEEE-754 binary32 round-to-nearest-ties-to-even; exact-real target ADD",
+      "status": "CERTIFIED_UNDER_IEEE754_RNE",
+      "transfer_sha256": "7d448c1e903c58bb42451882799eaa4db6edca44c3b384f02e34a8653f793e8f"
+    },
+    {
+      "index": 61,
+      "opcode": "ADD",
+      "left": "dec_cr0",
+      "right": "dec_m0",
+      "left_abs_bound": "27036.590051091465",
+      "right_abs_bound": "585018.180431842",
+      "error_scale": 1099511627776,
+      "gain": 2,
+      "bias_units": 40111621439,
+      "bias_real_upper": "0.0364813071782918996177613735198974609375",
+      "theorem": "|RN32(a+b)-(a_prime+b_prime)| <= 2*e + 2^-24*(B_left+B_right) + 2^-150",
+      "assumption": "IEEE-754 binary32 round-to-nearest-ties-to-even; exact-real target ADD",
+      "status": "CERTIFIED_UNDER_IEEE754_RNE",
+      "transfer_sha256": "6b30ed838689b249f9d35043b6aaf449dcf8e85d87d29fc2e4daf1b3fad3eed7"
+    },
+    {
+      "index": 64,
+      "opcode": "ADD",
+      "left": "dec_h",
+      "right": "dec_a1",
+      "left_abs_bound": "612054.7704829335",
+      "right_abs_bound": "16826.395653055974",
+      "error_scale": 1099511627776,
+      "gain": 2,
+      "bias_units": 41214356104,
+      "bias_real_upper": "0.0374842385135707445442676544189453125",
+      "theorem": "|RN32(a+b)-(a_prime+b_prime)| <= 2*e + 2^-24*(B_left+B_right) + 2^-150",
+      "assumption": "IEEE-754 binary32 round-to-nearest-ties-to-even; exact-real target ADD",
+      "status": "CERTIFIED_UNDER_IEEE754_RNE",
+      "transfer_sha256": "223adadc4f222f049a6e788c57e1af08aca8d7b79d75fb398d2352804245b11b"
+    },
+    {
+      "index": 67,
+      "opcode": "ADD",
+      "left": "dec_r1",
+      "right": "dec_ca1",
+      "left_abs_bound": "628881.1661359895",
+      "right_abs_bound": "22678.827510542487",
+      "error_scale": 1099511627776,
+      "gain": 2,
+      "bias_units": 42700635744,
+      "bias_real_upper": "0.03883600197150371968746185302734375",
+      "theorem": "|RN32(a+b)-(a_prime+b_prime)| <= 2*e + 2^-24*(B_left+B_right) + 2^-150",
+      "assumption": "IEEE-754 binary32 round-to-nearest-ties-to-even; exact-real target ADD",
+      "status": "CERTIFIED_UNDER_IEEE754_RNE",
+      "transfer_sha256": "f7ec04459576d05c55dbf690e99c07840187917045445b1fdfee47874c873384"
+    },
+    {
+      "index": 70,
+      "opcode": "ADD",
+      "left": "dec_cr1",
+      "right": "dec_m1",
+      "left_abs_bound": "651559.993646532",
+      "right_abs_bound": "1396568.5096831112",
+      "error_scale": 1099511627776,
+      "gain": 2,
+      "bias_units": 134226149595,
+      "bias_real_upper": "0.1220779718960329773835837841033935546875",
+      "theorem": "|RN32(a+b)-(a_prime+b_prime)| <= 2*e + 2^-24*(B_left+B_right) + 2^-150",
+      "assumption": "IEEE-754 binary32 round-to-nearest-ties-to-even; exact-real target ADD",
+      "status": "CERTIFIED_UNDER_IEEE754_RNE",
+      "transfer_sha256": "b7240aaf69193cd490907e496795d148dcbe67b0242646a9187ea35d67331041"
+    },
+    {
+      "index": 73,
+      "opcode": "ADD",
+      "left": "dec_h",
+      "right": "dec_a2",
+      "left_abs_bound": "2048128.503329643",
+      "right_abs_bound": "44209.04218864515",
+      "error_scale": 1099511627776,
+      "gain": 2,
+      "bias_units": 137123433384,
+      "bias_real_upper": "0.1247130361516610719263553619384765625",
+      "theorem": "|RN32(a+b)-(a_prime+b_prime)| <= 2*e + 2^-24*(B_left+B_right) + 2^-150",
+      "assumption": "IEEE-754 binary32 round-to-nearest-ties-to-even; exact-real target ADD",
+      "status": "CERTIFIED_UNDER_IEEE754_RNE",
+      "transfer_sha256": "e914515ed6d249a4c887baa10f1adfab7fa9e13501735832cc6d9498709c4444"
+    },
+    {
+      "index": 76,
+      "opcode": "ADD",
+      "left": "dec_r2",
+      "right": "dec_ca2",
+      "left_abs_bound": "2092337.5455182882",
+      "right_abs_bound": "42743.70722641872",
+      "error_scale": 1099511627776,
+      "gain": 2,
+      "bias_units": 139924684980,
+      "bias_real_upper": "0.12726075963655603118240833282470703125",
+      "theorem": "|RN32(a+b)-(a_prime+b_prime)| <= 2*e + 2^-24*(B_left+B_right) + 2^-150",
+      "assumption": "IEEE-754 binary32 round-to-nearest-ties-to-even; exact-real target ADD",
+      "status": "CERTIFIED_UNDER_IEEE754_RNE",
+      "transfer_sha256": "a3a0af8573d6dbb7d0c1f44b3d0c7e06248bc21e55616e49eb8b0f4d7d3e7be9"
+    },
+    {
+      "index": 79,
+      "opcode": "ADD",
+      "left": "dec_cr2",
+      "right": "dec_m2",
+      "left_abs_bound": "2135081.252744707",
+      "right_abs_bound": "3333781.8408962316",
+      "error_scale": 1099511627776,
+      "gain": 2,
+      "bias_units": 358407411705,
+      "bias_real_upper": "0.3259696420218460843898355960845947265625",
+      "theorem": "|RN32(a+b)-(a_prime+b_prime)| <= 2*e + 2^-24*(B_left+B_right) + 2^-150",
+      "assumption": "IEEE-754 binary32 round-to-nearest-ties-to-even; exact-real target ADD",
+      "status": "CERTIFIED_UNDER_IEEE754_RNE",
+      "transfer_sha256": "cf322a42da059be54634a773ec176d71ed85b8e359cfdb7a0c07fe83f1ae613b"
+    },
+    {
+      "index": 82,
+      "opcode": "ADD",
+      "left": "dec_h",
+      "right": "dec_a3",
+      "left_abs_bound": "5468863.093640938",
+      "right_abs_bound": "136877.18876700304",
+      "error_scale": 1099511627776,
+      "gain": 2,
+      "bias_units": 367377795148,
+      "bias_real_upper": "0.33412815823612618260085582733154296875",
+      "theorem": "|RN32(a+b)-(a_prime+b_prime)| <= 2*e + 2^-24*(B_left+B_right) + 2^-150",
+      "assumption": "IEEE-754 binary32 round-to-nearest-ties-to-even; exact-real target ADD",
+      "status": "CERTIFIED_UNDER_IEEE754_RNE",
+      "transfer_sha256": "b411909ee0d11f2b761150bfb966004aad7a91f3ce59a4620f2e51bd531b2147"
+    },
+    {
+      "index": 85,
+      "opcode": "ADD",
+      "left": "dec_r3",
+      "right": "dec_ca3",
+      "left_abs_bound": "5605740.282407941",
+      "right_abs_bound": "51119.309700267586",
+      "error_scale": 1099511627776,
+      "gain": 2,
+      "bias_units": 370727950229,
+      "bias_real_upper": "0.3371751065324133378453552722930908203125",
+      "theorem": "|RN32(a+b)-(a_prime+b_prime)| <= 2*e + 2^-24*(B_left+B_right) + 2^-150",
+      "assumption": "IEEE-754 binary32 round-to-nearest-ties-to-even; exact-real target ADD",
+      "status": "CERTIFIED_UNDER_IEEE754_RNE",
+      "transfer_sha256": "85d7938f3b38af609c1de5705ec725c8e06e98dfd34eb217ab141197131df101"
+    },
+    {
+      "index": 88,
+      "opcode": "ADD",
+      "left": "dec_cr3",
+      "right": "dec_m3",
+      "left_abs_bound": "5656859.592108209",
+      "right_abs_bound": "6944186.776062487",
+      "error_scale": 1099511627776,
+      "gain": 2,
+      "bias_units": 825822174785,
+      "bias_real_upper": "0.7510808925735545926727354526519775390625",
+      "theorem": "|RN32(a+b)-(a_prime+b_prime)| <= 2*e + 2^-24*(B_left+B_right) + 2^-150",
+      "assumption": "IEEE-754 binary32 round-to-nearest-ties-to-even; exact-real target ADD",
+      "status": "CERTIFIED_UNDER_IEEE754_RNE",
+      "transfer_sha256": "a29f183776dbbd772973b05b83f2aed970c17690d6f5f51fc6bc351d30a94ba5"
+    },
+    {
+      "index": 91,
+      "opcode": "ADD",
+      "left": "dec_h",
+      "right": "dec_a4",
+      "left_abs_bound": "12601046.368170695",
+      "right_abs_bound": "166962.11412653257",
+      "error_scale": 1099511627776,
+      "gain": 2,
+      "bias_units": 836764203896,
+      "bias_real_upper": "0.7610326100766542367637157440185546875",
+      "theorem": "|RN32(a+b)-(a_prime+b_prime)| <= 2*e + 2^-24*(B_left+B_right) + 2^-150",
+      "assumption": "IEEE-754 binary32 round-to-nearest-ties-to-even; exact-real target ADD",
+      "status": "CERTIFIED_UNDER_IEEE754_RNE",
+      "transfer_sha256": "11c6badfa42ea50ec0976f4ee1dd63d18bbf6e0568de03b5e9dcda7e4d91c42c"
+    },
+    {
+      "index": 94,
+      "opcode": "ADD",
+      "left": "dec_r4",
+      "right": "dec_ca4",
+      "left_abs_bound": "12768008.482297229",
+      "right_abs_bound": "65052.89894385863",
+      "error_scale": 1099511627776,
+      "gain": 2,
+      "bias_units": 841027510682,
+      "bias_real_upper": "0.764910065010553807951509952545166015625",
+      "theorem": "|RN32(a+b)-(a_prime+b_prime)| <= 2*e + 2^-24*(B_left+B_right) + 2^-150",
+      "assumption": "IEEE-754 binary32 round-to-nearest-ties-to-even; exact-real target ADD",
+      "status": "CERTIFIED_UNDER_IEEE754_RNE",
+      "transfer_sha256": "1c09516de2537c2998a2c566ea53ac7c80d39a7dc683d479f6fb21a16fe1da38"
+    },
+    {
+      "index": 97,
+      "opcode": "ADD",
+      "left": "dec_cr4",
+      "right": "dec_m4",
+      "left_abs_bound": "12833061.381241087",
+      "right_abs_bound": "9751245.976446692",
+      "error_scale": 1099511627776,
+      "gain": 2,
+      "bias_units": 1480085166994,
+      "bias_real_upper": "1.346129617553742718882858753204345703125",
+      "theorem": "|RN32(a+b)-(a_prime+b_prime)| <= 2*e + 2^-24*(B_left+B_right) + 2^-150",
+      "assumption": "IEEE-754 binary32 round-to-nearest-ties-to-even; exact-real target ADD",
+      "status": "CERTIFIED_UNDER_IEEE754_RNE",
+      "transfer_sha256": "5fae541677b3176698acefb05a152ec64fd255b3370f0f15d0c447ae8760c58a"
+    },
+    {
+      "index": 100,
+      "opcode": "ADD",
+      "left": "dec_h",
+      "right": "dec_a5",
+      "left_abs_bound": "22584307.35768778",
+      "right_abs_bound": "277892.0819816785",
+      "error_scale": 1099511627776,
+      "gain": 2,
+      "bias_units": 1498297102479,
+      "bias_real_upper": "1.3626932763863806030713021755218505859375",
+      "theorem": "|RN32(a+b)-(a_prime+b_prime)| <= 2*e + 2^-24*(B_left+B_right) + 2^-150",
+      "assumption": "IEEE-754 binary32 round-to-nearest-ties-to-even; exact-real target ADD",
+      "status": "CERTIFIED_UNDER_IEEE754_RNE",
+      "transfer_sha256": "9823b2c3fed35e0f8e15d3694ae7ad391e74213fb2b486e942b830d5b6e4c4d2"
+    },
+    {
+      "index": 103,
+      "opcode": "ADD",
+      "left": "dec_r5",
+      "right": "dec_ca5",
+      "left_abs_bound": "22862199.439669456",
+      "right_abs_bound": "123070.74115684623",
+      "error_scale": 1099511627776,
+      "gain": 2,
+      "bias_units": 1506362666571,
+      "bias_real_upper": "1.3700288641948645818047225475311279296875",
+      "theorem": "|RN32(a+b)-(a_prime+b_prime)| <= 2*e + 2^-24*(B_left+B_right) + 2^-150",
+      "assumption": "IEEE-754 binary32 round-to-nearest-ties-to-even; exact-real target ADD",
+      "status": "CERTIFIED_UNDER_IEEE754_RNE",
+      "transfer_sha256": "b429c38257def658c9d7e7a17734891aec444031d4d00dc2331e6b75cc45aee7"
+    },
+    {
+      "index": 106,
+      "opcode": "ADD",
+      "left": "dec_cr5",
+      "right": "dec_m5",
+      "left_abs_bound": "22985270.180826303",
+      "right_abs_bound": "9637539.783632705",
+      "error_scale": 1099511627776,
+      "gain": 2,
+      "bias_units": 2137968473831,
+      "bias_real_upper": "1.9444709995068478747271001338958740234375",
+      "theorem": "|RN32(a+b)-(a_prime+b_prime)| <= 2*e + 2^-24*(B_left+B_right) + 2^-150",
+      "assumption": "IEEE-754 binary32 round-to-nearest-ties-to-even; exact-real target ADD",
+      "status": "CERTIFIED_UNDER_IEEE754_RNE",
+      "transfer_sha256": "550c6f99ddbedaa0c1e8988250b04d58da878a17577c4093b764953679129507"
+    },
+    {
+      "index": 109,
+      "opcode": "ADD",
+      "left": "dec_h",
+      "right": "dec_a6",
+      "left_abs_bound": "32622809.96445901",
+      "right_abs_bound": "441091.5818353726",
+      "error_scale": 1099511627776,
+      "gain": 2,
+      "bias_units": 2166875851738,
+      "bias_real_upper": "1.970762106555412174202501773834228515625",
+      "theorem": "|RN32(a+b)-(a_prime+b_prime)| <= 2*e + 2^-24*(B_left+B_right) + 2^-150",
+      "assumption": "IEEE-754 binary32 round-to-nearest-ties-to-even; exact-real target ADD",
+      "status": "CERTIFIED_UNDER_IEEE754_RNE",
+      "transfer_sha256": "0375dc390a4d808af5eb465c56765cdb988defacadf50601808ded4eef4b9e9e"
+    },
+    {
+      "index": 112,
+      "opcode": "ADD",
+      "left": "dec_r6",
+      "right": "dec_ca6",
+      "left_abs_bound": "33063901.546294384",
+      "right_abs_bound": "184321.27226495527",
+      "error_scale": 1099511627776,
+      "gain": 2,
+      "bias_units": 2178955530638,
+      "bias_real_upper": "1.981748510514080408029258251190185546875",
+      "theorem": "|RN32(a+b)-(a_prime+b_prime)| <= 2*e + 2^-24*(B_left+B_right) + 2^-150",
+      "assumption": "IEEE-754 binary32 round-to-nearest-ties-to-even; exact-real target ADD",
+      "status": "CERTIFIED_UNDER_IEEE754_RNE",
+      "transfer_sha256": "c75b682d5e2c69066c83f3a5cb41209a16372f571a4898b8b96785e9450ad5fe"
+    },
+    {
+      "index": 115,
+      "opcode": "ADD",
+      "left": "dec_cr6",
+      "right": "dec_m6",
+      "left_abs_bound": "33248222.818559337",
+      "right_abs_bound": "14966119.904010378",
+      "error_scale": 1099511627776,
+      "gain": 2,
+      "bias_units": 3159775164667,
+      "bias_real_upper": "2.8737987710583183798007667064666748046875",
+      "theorem": "|RN32(a+b)-(a_prime+b_prime)| <= 2*e + 2^-24*(B_left+B_right) + 2^-150",
+      "assumption": "IEEE-754 binary32 round-to-nearest-ties-to-even; exact-real target ADD",
+      "status": "CERTIFIED_UNDER_IEEE754_RNE",
+      "transfer_sha256": "dc9392c893012ff918d9fa2fd8ae38682b3eef2629be109e134eaa9352273e09"
+    },
+    {
+      "index": 118,
+      "opcode": "ADD",
+      "left": "dec_h",
+      "right": "dec_a7",
+      "left_abs_bound": "48214342.72256972",
+      "right_abs_bound": "245087.18572887522",
+      "error_scale": 1099511627776,
+      "gain": 2,
+      "bias_units": 3175837198471,
+      "bias_real_upper": "2.8884071057027540518902242183685302734375",
+      "theorem": "|RN32(a+b)-(a_prime+b_prime)| <= 2*e + 2^-24*(B_left+B_right) + 2^-150",
+      "assumption": "IEEE-754 binary32 round-to-nearest-ties-to-even; exact-real target ADD",
+      "status": "CERTIFIED_UNDER_IEEE754_RNE",
+      "transfer_sha256": "a4e6db9e3bee393ec191cf6add2ecdd510b9e0c124aa3fb47c8c6c7ccdb565f6"
+    },
+    {
+      "index": 121,
+      "opcode": "ADD",
+      "left": "dec_r7",
+      "right": "dec_ca7",
+      "left_abs_bound": "48459429.9082986",
+      "right_abs_bound": "272940.9214288777",
+      "error_scale": 1099511627776,
+      "gain": 2,
+      "bias_units": 3193724654698,
+      "bias_real_upper": "2.904675652369405725039541721343994140625",
+      "theorem": "|RN32(a+b)-(a_prime+b_prime)| <= 2*e + 2^-24*(B_left+B_right) + 2^-150",
+      "assumption": "IEEE-754 binary32 round-to-nearest-ties-to-even; exact-real target ADD",
+      "status": "CERTIFIED_UNDER_IEEE754_RNE",
+      "transfer_sha256": "01b313416a994cbd66e5c0430bb1e8ec209b82f649817a9a31f6b9109136034c"
+    },
+    {
+      "index": 124,
+      "opcode": "ADD",
+      "left": "dec_cr7",
+      "right": "dec_m7",
+      "left_abs_bound": "48732370.82972747",
+      "right_abs_bound": "61067598.27759537",
+      "error_scale": 1099511627776,
+      "gain": 2,
+      "bias_units": 7195850775418,
+      "bias_real_upper": "6.544588154991288320161402225494384765625",
+      "theorem": "|RN32(a+b)-(a_prime+b_prime)| <= 2*e + 2^-24*(B_left+B_right) + 2^-150",
+      "assumption": "IEEE-754 binary32 round-to-nearest-ties-to-even; exact-real target ADD",
+      "status": "CERTIFIED_UNDER_IEEE754_RNE",
+      "transfer_sha256": "e81aadb6cf0febf5ccf4835c823985fd367eb25dc08363a67771d4292d3e708b"
+    }
+  ],
+  "op_output_bounds": [
+    {
+      "index": 1,
+      "opcode": "EMBED",
+      "output": "enc_h",
+      "input_bounds": {},
+      "abs_bound": 175.0,
+      "ellipsoid_weight": null,
+      "projection_supports": null
+    },
+    {
+      "index": 2,
+      "opcode": "RMSNORM",
+      "output": "enc_n0",
+      "input_bounds": {
+        "input": 175.0
+      },
+      "abs_bound": 3.263191086098983,
+      "ellipsoid_weight": "encoder.block.0.layer.0.layer_norm.weight",
+      "projection_supports": null
+    },
+    {
+      "index": 3,
+      "opcode": "SELF_ATTENTION_SEQUENCE",
+      "output": "enc_a0",
+      "input_bounds": {
+        "input": 3.263191086098983
+      },
+      "abs_bound": 9378.596900602439,
+      "ellipsoid_weight": null,
+      "projection_supports": {
+        "q_max": 4.343145923457586,
+        "k_max": 34.34386192853667,
+        "v_max": 18.65092239347742
+      }
+    },
+    {
+      "index": 4,
+      "opcode": "ADD",
+      "output": "enc_r0",
+      "input_bounds": {
+        "left": 175.0,
+        "right": 9378.596900602439
+      },
+      "abs_bound": 9553.596900602439,
+      "ellipsoid_weight": null,
+      "projection_supports": null
+    },
+    {
+      "index": 5,
+      "opcode": "RMSNORM",
+      "output": "enc_mn0",
+      "input_bounds": {
+        "input": 9553.596900602439
+      },
+      "abs_bound": 4.248269145856824,
+      "ellipsoid_weight": "encoder.block.0.layer.1.layer_norm.weight",
+      "projection_supports": null
+    },
+    {
+      "index": 6,
+      "opcode": "GATED_MLP",
+      "output": "enc_m0",
+      "input_bounds": {
+        "input": 4.248269145856824
+      },
+      "abs_bound": 496102.65192567307,
+      "ellipsoid_weight": null,
+      "projection_supports": {
+        "wi_0_max": 33.64217497272635,
+        "wi_1_max": 35.01627699391802
+      }
+    },
+    {
+      "index": 7,
+      "opcode": "ADD",
+      "output": "enc_h",
+      "input_bounds": {
+        "left": 9553.596900602439,
+        "right": 496102.65192567307
+      },
+      "abs_bound": 505656.2488262755,
+      "ellipsoid_weight": null,
+      "projection_supports": null
+    },
+    {
+      "index": 8,
+      "opcode": "RMSNORM",
+      "output": "enc_n1",
+      "input_bounds": {
+        "input": 505656.2488262755
+      },
+      "abs_bound": 3.8841240836453688,
+      "ellipsoid_weight": "encoder.block.1.layer.0.layer_norm.weight",
+      "projection_supports": null
+    },
+    {
+      "index": 9,
+      "opcode": "SELF_ATTENTION_SEQUENCE",
+      "output": "enc_a1",
+      "input_bounds": {
+        "input": 3.8841240836453688
+      },
+      "abs_bound": 21338.641373899176,
+      "ellipsoid_weight": null,
+      "projection_supports": {
+        "q_max": 4.3808949485660404,
+        "k_max": 35.60401194496191,
+        "v_max": 32.07682337535658
+      }
+    },
+    {
+      "index": 10,
+      "opcode": "ADD",
+      "output": "enc_r1",
+      "input_bounds": {
+        "left": 505656.2488262755,
+        "right": 21338.641373899176
+      },
+      "abs_bound": 526994.8902001746,
+      "ellipsoid_weight": null,
+      "projection_supports": null
+    },
+    {
+      "index": 11,
+      "opcode": "RMSNORM",
+      "output": "enc_mn1",
+      "input_bounds": {
+        "input": 526994.8902001746
+      },
+      "abs_bound": 7.942858177399127,
+      "ellipsoid_weight": "encoder.block.1.layer.1.layer_norm.weight",
+      "projection_supports": null
+    },
+    {
+      "index": 12,
+      "opcode": "GATED_MLP",
+      "output": "enc_m1",
+      "input_bounds": {
+        "input": 7.942858177399127
+      },
+      "abs_bound": 777574.6953093327,
+      "ellipsoid_weight": null,
+      "projection_supports": {
+        "wi_0_max": 51.70260295998898,
+        "wi_1_max": 105.64030725199959
+      }
+    },
+    {
+      "index": 13,
+      "opcode": "ADD",
+      "output": "enc_h",
+      "input_bounds": {
+        "left": 526994.8902001746,
+        "right": 777574.6953093327
+      },
+      "abs_bound": 1304569.5855095075,
+      "ellipsoid_weight": null,
+      "projection_supports": null
+    },
+    {
+      "index": 14,
+      "opcode": "RMSNORM",
+      "output": "enc_n2",
+      "input_bounds": {
+        "input": 1304569.5855095075
+      },
+      "abs_bound": 3.993789846295927,
+      "ellipsoid_weight": "encoder.block.2.layer.0.layer_norm.weight",
+      "projection_supports": null
+    },
+    {
+      "index": 15,
+      "opcode": "SELF_ATTENTION_SEQUENCE",
+      "output": "enc_a2",
+      "input_bounds": {
+        "input": 3.993789846295927
+      },
+      "abs_bound": 21114.704076208724,
+      "ellipsoid_weight": null,
+      "projection_supports": {
+        "q_max": 3.7167567910167554,
+        "k_max": 31.06214718726347,
+        "v_max": 40.25017374413321
+      }
+    },
+    {
+      "index": 16,
+      "opcode": "ADD",
+      "output": "enc_r2",
+      "input_bounds": {
+        "left": 1304569.5855095075,
+        "right": 21114.704076208724
+      },
+      "abs_bound": 1325684.289585716,
+      "ellipsoid_weight": null,
+      "projection_supports": null
+    },
+    {
+      "index": 17,
+      "opcode": "RMSNORM",
+      "output": "enc_mn2",
+      "input_bounds": {
+        "input": 1325684.289585716
+      },
+      "abs_bound": 14.821389070023196,
+      "ellipsoid_weight": "encoder.block.2.layer.1.layer_norm.weight",
+      "projection_supports": null
+    },
+    {
+      "index": 18,
+      "opcode": "GATED_MLP",
+      "output": "enc_m2",
+      "input_bounds": {
+        "input": 14.821389070023196
+      },
+      "abs_bound": 1236863.570090911,
+      "ellipsoid_weight": null,
+      "projection_supports": {
+        "wi_0_max": 79.95931619735649,
+        "wi_1_max": 277.1848563817592
+      }
+    },
+    {
+      "index": 19,
+      "opcode": "ADD",
+      "output": "enc_h",
+      "input_bounds": {
+        "left": 1325684.289585716,
+        "right": 1236863.570090911
+      },
+      "abs_bound": 2562547.859676627,
+      "ellipsoid_weight": null,
+      "projection_supports": null
+    },
+    {
+      "index": 20,
+      "opcode": "RMSNORM",
+      "output": "enc_n3",
+      "input_bounds": {
+        "input": 2562547.859676627
+      },
+      "abs_bound": 4.7471674608264625,
+      "ellipsoid_weight": "encoder.block.3.layer.0.layer_norm.weight",
+      "projection_supports": null
+    },
+    {
+      "index": 21,
+      "opcode": "SELF_ATTENTION_SEQUENCE",
+      "output": "enc_a3",
+      "input_bounds": {
+        "input": 4.7471674608264625
+      },
+      "abs_bound": 26925.096764349146,
+      "ellipsoid_weight": null,
+      "projection_supports": {
+        "q_max": 4.065869929791807,
+        "k_max": 34.34493785751877,
+        "v_max": 49.7741638400946
+      }
+    },
+    {
+      "index": 22,
+      "opcode": "ADD",
+      "output": "enc_r3",
+      "input_bounds": {
+        "left": 2562547.859676627,
+        "right": 26925.096764349146
+      },
+      "abs_bound": 2589472.956440976,
+      "ellipsoid_weight": null,
+      "projection_supports": null
+    },
+    {
+      "index": 23,
+      "opcode": "RMSNORM",
+      "output": "enc_mn3",
+      "input_bounds": {
+        "input": 2589472.956440976
+      },
+      "abs_bound": 5.033635881232341,
+      "ellipsoid_weight": "encoder.block.3.layer.1.layer_norm.weight",
+      "projection_supports": null
+    },
+    {
+      "index": 24,
+      "opcode": "GATED_MLP",
+      "output": "enc_m3",
+      "input_bounds": {
+        "input": 5.033635881232341
+      },
+      "abs_bound": 914460.0767200694,
+      "ellipsoid_weight": null,
+      "projection_supports": {
+        "wi_0_max": 35.106796212458896,
+        "wi_1_max": 87.66014724906131
+      }
+    },
+    {
+      "index": 25,
+      "opcode": "ADD",
+      "output": "enc_h",
+      "input_bounds": {
+        "left": 2589472.956440976,
+        "right": 914460.0767200694
+      },
+      "abs_bound": 3503933.033161045,
+      "ellipsoid_weight": null,
+      "projection_supports": null
+    },
+    {
+      "index": 26,
+      "opcode": "RMSNORM",
+      "output": "enc_n4",
+      "input_bounds": {
+        "input": 3503933.033161045
+      },
+      "abs_bound": 5.103090515830413,
+      "ellipsoid_weight": "encoder.block.4.layer.0.layer_norm.weight",
+      "projection_supports": null
+    },
+    {
+      "index": 27,
+      "opcode": "SELF_ATTENTION_SEQUENCE",
+      "output": "enc_a4",
+      "input_bounds": {
+        "input": 5.103090515830413
+      },
+      "abs_bound": 52315.46377866733,
+      "ellipsoid_weight": null,
+      "projection_supports": {
+        "q_max": 3.6758354620244327,
+        "k_max": 30.80552521971753,
+        "v_max": 68.46461473949172
+      }
+    },
+    {
+      "index": 28,
+      "opcode": "ADD",
+      "output": "enc_r4",
+      "input_bounds": {
+        "left": 3503933.033161045,
+        "right": 52315.46377866733
+      },
+      "abs_bound": 3556248.496939712,
+      "ellipsoid_weight": null,
+      "projection_supports": null
+    },
+    {
+      "index": 29,
+      "opcode": "RMSNORM",
+      "output": "enc_mn4",
+      "input_bounds": {
+        "input": 3556248.496939712
+      },
+      "abs_bound": 5.507211020917481,
+      "ellipsoid_weight": "encoder.block.4.layer.1.layer_norm.weight",
+      "projection_supports": null
+    },
+    {
+      "index": 30,
+      "opcode": "GATED_MLP",
+      "output": "enc_m4",
+      "input_bounds": {
+        "input": 5.507211020917481
+      },
+      "abs_bound": 1173529.376973752,
+      "ellipsoid_weight": null,
+      "projection_supports": {
+        "wi_0_max": 39.99213754030837,
+        "wi_1_max": 118.25166024730004
+      }
+    },
+    {
+      "index": 31,
+      "opcode": "ADD",
+      "output": "enc_h",
+      "input_bounds": {
+        "left": 3556248.496939712,
+        "right": 1173529.376973752
+      },
+      "abs_bound": 4729777.873913464,
+      "ellipsoid_weight": null,
+      "projection_supports": null
+    },
+    {
+      "index": 32,
+      "opcode": "RMSNORM",
+      "output": "enc_n5",
+      "input_bounds": {
+        "input": 4729777.873913464
+      },
+      "abs_bound": 4.846253352976422,
+      "ellipsoid_weight": "encoder.block.5.layer.0.layer_norm.weight",
+      "projection_supports": null
+    },
+    {
+      "index": 33,
+      "opcode": "SELF_ATTENTION_SEQUENCE",
+      "output": "enc_a5",
+      "input_bounds": {
+        "input": 4.846253352976422
+      },
+      "abs_bound": 57749.0937454681,
+      "ellipsoid_weight": null,
+      "projection_supports": {
+        "q_max": 4.486032651978332,
+        "k_max": 35.95347633563843,
+        "v_max": 81.04548506843472
+      }
+    },
+    {
+      "index": 34,
+      "opcode": "ADD",
+      "output": "enc_r5",
+      "input_bounds": {
+        "left": 4729777.873913464,
+        "right": 57749.0937454681
+      },
+      "abs_bound": 4787526.967658932,
+      "ellipsoid_weight": null,
+      "projection_supports": null
+    },
+    {
+      "index": 35,
+      "opcode": "RMSNORM",
+      "output": "enc_mn5",
+      "input_bounds": {
+        "input": 4787526.967658932
+      },
+      "abs_bound": 5.023178068005029,
+      "ellipsoid_weight": "encoder.block.5.layer.1.layer_norm.weight",
+      "projection_supports": null
+    },
+    {
+      "index": 36,
+      "opcode": "GATED_MLP",
+      "output": "enc_m5",
+      "input_bounds": {
+        "input": 5.023178068005029
+      },
+      "abs_bound": 1330258.814089,
+      "ellipsoid_weight": null,
+      "projection_supports": {
+        "wi_0_max": 38.69702274005316,
+        "wi_1_max": 118.10479189420595
+      }
+    },
+    {
+      "index": 37,
+      "opcode": "ADD",
+      "output": "enc_h",
+      "input_bounds": {
+        "left": 4787526.967658932,
+        "right": 1330258.814089
+      },
+      "abs_bound": 6117785.781747933,
+      "ellipsoid_weight": null,
+      "projection_supports": null
+    },
+    {
+      "index": 38,
+      "opcode": "RMSNORM",
+      "output": "enc_n6",
+      "input_bounds": {
+        "input": 6117785.781747933
+      },
+      "abs_bound": 4.9587351994570845,
+      "ellipsoid_weight": "encoder.block.6.layer.0.layer_norm.weight",
+      "projection_supports": null
+    },
+    {
+      "index": 39,
+      "opcode": "SELF_ATTENTION_SEQUENCE",
+      "output": "enc_a6",
+      "input_bounds": {
+        "input": 4.9587351994570845
+      },
+      "abs_bound": 67282.9419534619,
+      "ellipsoid_weight": null,
+      "projection_supports": {
+        "q_max": 3.4131101245262774,
+        "k_max": 28.9337610848079,
+        "v_max": 78.38442720371883
+      }
+    },
+    {
+      "index": 40,
+      "opcode": "ADD",
+      "output": "enc_r6",
+      "input_bounds": {
+        "left": 6117785.781747933,
+        "right": 67282.9419534619
+      },
+      "abs_bound": 6185068.723701394,
+      "ellipsoid_weight": null,
+      "projection_supports": null
+    },
+    {
+      "index": 41,
+      "opcode": "RMSNORM",
+      "output": "enc_mn6",
+      "input_bounds": {
+        "input": 6185068.723701394
+      },
+      "abs_bound": 13.51023095858021,
+      "ellipsoid_weight": "encoder.block.6.layer.1.layer_norm.weight",
+      "projection_supports": null
+    },
+    {
+      "index": 42,
+      "opcode": "GATED_MLP",
+      "output": "enc_m6",
+      "input_bounds": {
+        "input": 13.51023095858021
+      },
+      "abs_bound": 1982935.331223737,
+      "ellipsoid_weight": null,
+      "projection_supports": {
+        "wi_0_max": 58.547985189145344,
+        "wi_1_max": 460.99091504587454
+      }
+    },
+    {
+      "index": 43,
+      "opcode": "ADD",
+      "output": "enc_h",
+      "input_bounds": {
+        "left": 6185068.723701394,
+        "right": 1982935.331223737
+      },
+      "abs_bound": 8168004.054925131,
+      "ellipsoid_weight": null,
+      "projection_supports": null
+    },
+    {
+      "index": 44,
+      "opcode": "RMSNORM",
+      "output": "enc_n7",
+      "input_bounds": {
+        "input": 8168004.054925131
+      },
+      "abs_bound": 5.741586273738682,
+      "ellipsoid_weight": "encoder.block.7.layer.0.layer_norm.weight",
+      "projection_supports": null
+    },
+    {
+      "index": 45,
+      "opcode": "SELF_ATTENTION_SEQUENCE",
+      "output": "enc_a7",
+      "input_bounds": {
+        "input": 5.741586273738682
+      },
+      "abs_bound": 100930.1985512109,
+      "ellipsoid_weight": null,
+      "projection_supports": {
+        "q_max": 3.661209096109693,
+        "k_max": 29.79536470770167,
+        "v_max": 95.62627175754557
+      }
+    },
+    {
+      "index": 46,
+      "opcode": "ADD",
+      "output": "enc_r7",
+      "input_bounds": {
+        "left": 8168004.054925131,
+        "right": 100930.1985512109
+      },
+      "abs_bound": 8268934.253476341,
+      "ellipsoid_weight": null,
+      "projection_supports": null
+    },
+    {
+      "index": 47,
+      "opcode": "RMSNORM",
+      "output": "enc_mn7",
+      "input_bounds": {
+        "input": 8268934.253476341
+      },
+      "abs_bound": 22.154463271418827,
+      "ellipsoid_weight": "encoder.block.7.layer.1.layer_norm.weight",
+      "projection_supports": null
+    },
+    {
+      "index": 48,
+      "opcode": "GATED_MLP",
+      "output": "enc_m7",
+      "input_bounds": {
+        "input": 22.154463271418827
+      },
+      "abs_bound": 2090634.832743336,
+      "ellipsoid_weight": null,
+      "projection_supports": {
+        "wi_0_max": 36.547214159174025,
+        "wi_1_max": 1278.4908911416535
+      }
+    },
+    {
+      "index": 49,
+      "opcode": "ADD",
+      "output": "enc_h",
+      "input_bounds": {
+        "left": 8268934.253476341,
+        "right": 2090634.832743336
+      },
+      "abs_bound": 10359569.086219678,
+      "ellipsoid_weight": null,
+      "projection_supports": null
+    },
+    {
+      "index": 50,
+      "opcode": "RMSNORM",
+      "output": "encoder_memory",
+      "input_bounds": {
+        "input": 10359569.086219678
+      },
+      "abs_bound": 5.531395556942608,
+      "ellipsoid_weight": "encoder.final_layer_norm.weight",
+      "projection_supports": null
+    },
+    {
+      "index": 52,
+      "opcode": "EMBED",
+      "output": "dec_h",
+      "input_bounds": {},
+      "abs_bound": 175.0,
+      "ellipsoid_weight": null,
+      "projection_supports": null
+    },
+    {
+      "index": 53,
+      "opcode": "RMSNORM",
+      "output": "dec_n0",
+      "input_bounds": {
+        "input": 175.0
+      },
+      "abs_bound": 3.691082750920984,
+      "ellipsoid_weight": "decoder.block.0.layer.0.layer_norm.weight",
+      "projection_supports": null
+    },
+    {
+      "index": 54,
+      "opcode": "SELF_ATTENTION_KV",
+      "output": "dec_a0",
+      "input_bounds": {
+        "input": 3.691082750920984
+      },
+      "abs_bound": 10213.350829317225,
+      "ellipsoid_weight": null,
+      "projection_supports": {
+        "q_max": 3.530281657650979,
+        "k_max": 27.60459548779801,
+        "v_max": 28.570647355903752
+      }
+    },
+    {
+      "index": 55,
+      "opcode": "ADD",
+      "output": "dec_r0",
+      "input_bounds": {
+        "left": 175.0,
+        "right": 10213.350829317225
+      },
+      "abs_bound": 10388.350829317225,
+      "ellipsoid_weight": null,
+      "projection_supports": null
+    },
+    {
+      "index": 56,
+      "opcode": "RMSNORM",
+      "output": "dec_cn0",
+      "input_bounds": {
+        "input": 10388.350829317225
+      },
+      "abs_bound": 5.203094872103121,
+      "ellipsoid_weight": "decoder.block.0.layer.1.layer_norm.weight",
+      "projection_supports": null
+    },
+    {
+      "index": 57,
+      "opcode": "CROSS_ATTENTION",
+      "output": "dec_ca0",
+      "input_bounds": {
+        "memory": 5.531395556942608,
+        "input": 5.203094872103121
+      },
+      "abs_bound": 16648.23922177424,
+      "ellipsoid_weight": null,
+      "projection_supports": {
+        "q_max": 3.721703785841867,
+        "k_max": 45.266871463939104,
+        "v_max": 29.628478964394397
+      }
+    },
+    {
+      "index": 58,
+      "opcode": "ADD",
+      "output": "dec_cr0",
+      "input_bounds": {
+        "left": 10388.350829317225,
+        "right": 16648.23922177424
+      },
+      "abs_bound": 27036.590051091465,
+      "ellipsoid_weight": null,
+      "projection_supports": null
+    },
+    {
+      "index": 59,
+      "opcode": "RMSNORM",
+      "output": "dec_mn0",
+      "input_bounds": {
+        "input": 27036.590051091465
+      },
+      "abs_bound": 3.0518624043931153,
+      "ellipsoid_weight": "decoder.block.0.layer.2.layer_norm.weight",
+      "projection_supports": null
+    },
+    {
+      "index": 60,
+      "opcode": "GATED_MLP",
+      "output": "dec_m0",
+      "input_bounds": {
+        "input": 3.0518624043931153
+      },
+      "abs_bound": 585018.180431842,
+      "ellipsoid_weight": null,
+      "projection_supports": {
+        "wi_0_max": 31.83875774579794,
+        "wi_1_max": 34.66730356206761
+      }
+    },
+    {
+      "index": 61,
+      "opcode": "ADD",
+      "output": "dec_h",
+      "input_bounds": {
+        "left": 27036.590051091465,
+        "right": 585018.180431842
+      },
+      "abs_bound": 612054.7704829335,
+      "ellipsoid_weight": null,
+      "projection_supports": null
+    },
+    {
+      "index": 62,
+      "opcode": "RMSNORM",
+      "output": "dec_n1",
+      "input_bounds": {
+        "input": 612054.7704829335
+      },
+      "abs_bound": 4.092250616388773,
+      "ellipsoid_weight": "decoder.block.1.layer.0.layer_norm.weight",
+      "projection_supports": null
+    },
+    {
+      "index": 63,
+      "opcode": "SELF_ATTENTION_KV",
+      "output": "dec_a1",
+      "input_bounds": {
+        "input": 4.092250616388773
+      },
+      "abs_bound": 16826.395653055974,
+      "ellipsoid_weight": null,
+      "projection_supports": {
+        "q_max": 4.546577279122095,
+        "k_max": 24.93592265013864,
+        "v_max": 31.51951701949401
+      }
+    },
+    {
+      "index": 64,
+      "opcode": "ADD",
+      "output": "dec_r1",
+      "input_bounds": {
+        "left": 612054.7704829335,
+        "right": 16826.395653055974
+      },
+      "abs_bound": 628881.1661359895,
+      "ellipsoid_weight": null,
+      "projection_supports": null
+    },
+    {
+      "index": 65,
+      "opcode": "RMSNORM",
+      "output": "dec_cn1",
+      "input_bounds": {
+        "input": 628881.1661359895
+      },
+      "abs_bound": 7.47345625006614,
+      "ellipsoid_weight": "decoder.block.1.layer.1.layer_norm.weight",
+      "projection_supports": null
+    },
+    {
+      "index": 66,
+      "opcode": "CROSS_ATTENTION",
+      "output": "dec_ca1",
+      "input_bounds": {
+        "memory": 5.531395556942608,
+        "input": 7.47345625006614
+      },
+      "abs_bound": 22678.827510542487,
+      "ellipsoid_weight": null,
+      "projection_supports": {
+        "q_max": 4.4049985559269595,
+        "k_max": 44.10166769831796,
+        "v_max": 38.075976142096984
+      }
+    },
+    {
+      "index": 67,
+      "opcode": "ADD",
+      "output": "dec_cr1",
+      "input_bounds": {
+        "left": 628881.1661359895,
+        "right": 22678.827510542487
+      },
+      "abs_bound": 651559.993646532,
+      "ellipsoid_weight": null,
+      "projection_supports": null
+    },
+    {
+      "index": 68,
+      "opcode": "RMSNORM",
+      "output": "dec_mn1",
+      "input_bounds": {
+        "input": 651559.993646532
+      },
+      "abs_bound": 5.978860218213068,
+      "ellipsoid_weight": "decoder.block.1.layer.2.layer_norm.weight",
+      "projection_supports": null
+    },
+    {
+      "index": 69,
+      "opcode": "GATED_MLP",
+      "output": "dec_m1",
+      "input_bounds": {
+        "input": 5.978860218213068
+      },
+      "abs_bound": 1396568.5096831112,
+      "ellipsoid_weight": null,
+      "projection_supports": {
+        "wi_0_max": 43.59731077615949,
+        "wi_1_max": 52.0249193865531
+      }
+    },
+    {
+      "index": 70,
+      "opcode": "ADD",
+      "output": "dec_h",
+      "input_bounds": {
+        "left": 651559.993646532,
+        "right": 1396568.5096831112
+      },
+      "abs_bound": 2048128.503329643,
+      "ellipsoid_weight": null,
+      "projection_supports": null
+    },
+    {
+      "index": 71,
+      "opcode": "RMSNORM",
+      "output": "dec_n2",
+      "input_bounds": {
+        "input": 2048128.503329643
+      },
+      "abs_bound": 12.193130478671977,
+      "ellipsoid_weight": "decoder.block.2.layer.0.layer_norm.weight",
+      "projection_supports": null
+    },
+    {
+      "index": 72,
+      "opcode": "SELF_ATTENTION_KV",
+      "output": "dec_a2",
+      "input_bounds": {
+        "input": 12.193130478671977
+      },
+      "abs_bound": 44209.04218864515,
+      "ellipsoid_weight": null,
+      "projection_supports": {
+        "q_max": 4.441191002942498,
+        "k_max": 37.27835186466715,
+        "v_max": 59.493345302850244
+      }
+    },
+    {
+      "index": 73,
+      "opcode": "ADD",
+      "output": "dec_r2",
+      "input_bounds": {
+        "left": 2048128.503329643,
+        "right": 44209.04218864515
+      },
+      "abs_bound": 2092337.5455182882,
+      "ellipsoid_weight": null,
+      "projection_supports": null
+    },
+    {
+      "index": 74,
+      "opcode": "RMSNORM",
+      "output": "dec_cn2",
+      "input_bounds": {
+        "input": 2092337.5455182882
+      },
+      "abs_bound": 8.98602841857129,
+      "ellipsoid_weight": "decoder.block.2.layer.1.layer_norm.weight",
+      "projection_supports": null
+    },
+    {
+      "index": 75,
+      "opcode": "CROSS_ATTENTION",
+      "output": "dec_ca2",
+      "input_bounds": {
+        "memory": 5.531395556942608,
+        "input": 8.98602841857129
+      },
+      "abs_bound": 42743.70722641872,
+      "ellipsoid_weight": null,
+      "projection_supports": {
+        "q_max": 6.174776280736668,
+        "k_max": 39.7797757738894,
+        "v_max": 58.70259844302256
+      }
+    },
+    {
+      "index": 76,
+      "opcode": "ADD",
+      "output": "dec_cr2",
+      "input_bounds": {
+        "left": 2092337.5455182882,
+        "right": 42743.70722641872
+      },
+      "abs_bound": 2135081.252744707,
+      "ellipsoid_weight": null,
+      "projection_supports": null
+    },
+    {
+      "index": 77,
+      "opcode": "RMSNORM",
+      "output": "dec_mn2",
+      "input_bounds": {
+        "input": 2135081.252744707
+      },
+      "abs_bound": 6.645261910282582,
+      "ellipsoid_weight": "decoder.block.2.layer.2.layer_norm.weight",
+      "projection_supports": null
+    },
+    {
+      "index": 78,
+      "opcode": "GATED_MLP",
+      "output": "dec_m2",
+      "input_bounds": {
+        "input": 6.645261910282582
+      },
+      "abs_bound": 3333781.8408962316,
+      "ellipsoid_weight": null,
+      "projection_supports": {
+        "wi_0_max": 48.2347334529974,
+        "wi_1_max": 96.00435440267482
+      }
+    },
+    {
+      "index": 79,
+      "opcode": "ADD",
+      "output": "dec_h",
+      "input_bounds": {
+        "left": 2135081.252744707,
+        "right": 3333781.8408962316
+      },
+      "abs_bound": 5468863.093640938,
+      "ellipsoid_weight": null,
+      "projection_supports": null
+    },
+    {
+      "index": 80,
+      "opcode": "RMSNORM",
+      "output": "dec_n3",
+      "input_bounds": {
+        "input": 5468863.093640938
+      },
+      "abs_bound": 9.220833569247302,
+      "ellipsoid_weight": "decoder.block.3.layer.0.layer_norm.weight",
+      "projection_supports": null
+    },
+    {
+      "index": 81,
+      "opcode": "SELF_ATTENTION_KV",
+      "output": "dec_a3",
+      "input_bounds": {
+        "input": 9.220833569247302
+      },
+      "abs_bound": 136877.18876700304,
+      "ellipsoid_weight": null,
+      "projection_supports": {
+        "q_max": 5.834072937659024,
+        "k_max": 42.93394412254904,
+        "v_max": 124.86515644026467
+      }
+    },
+    {
+      "index": 82,
+      "opcode": "ADD",
+      "output": "dec_r3",
+      "input_bounds": {
+        "left": 5468863.093640938,
+        "right": 136877.18876700304
+      },
+      "abs_bound": 5605740.282407941,
+      "ellipsoid_weight": null,
+      "projection_supports": null
+    },
+    {
+      "index": 83,
+      "opcode": "RMSNORM",
+      "output": "dec_cn3",
+      "input_bounds": {
+        "input": 5605740.282407941
+      },
+      "abs_bound": 9.391935612860433,
+      "ellipsoid_weight": "decoder.block.3.layer.1.layer_norm.weight",
+      "projection_supports": null
+    },
+    {
+      "index": 84,
+      "opcode": "CROSS_ATTENTION",
+      "output": "dec_ca3",
+      "input_bounds": {
+        "memory": 5.531395556942608,
+        "input": 9.391935612860433
+      },
+      "abs_bound": 51119.309700267586,
+      "ellipsoid_weight": null,
+      "projection_supports": {
+        "q_max": 5.699451552457122,
+        "k_max": 46.74250235877711,
+        "v_max": 65.15484761976278
+      }
+    },
+    {
+      "index": 85,
+      "opcode": "ADD",
+      "output": "dec_cr3",
+      "input_bounds": {
+        "left": 5605740.282407941,
+        "right": 51119.309700267586
+      },
+      "abs_bound": 5656859.592108209,
+      "ellipsoid_weight": null,
+      "projection_supports": null
+    },
+    {
+      "index": 86,
+      "opcode": "RMSNORM",
+      "output": "dec_mn3",
+      "input_bounds": {
+        "input": 5656859.592108209
+      },
+      "abs_bound": 12.129471878681121,
+      "ellipsoid_weight": "decoder.block.3.layer.2.layer_norm.weight",
+      "projection_supports": null
+    },
+    {
+      "index": 87,
+      "opcode": "GATED_MLP",
+      "output": "dec_m3",
+      "input_bounds": {
+        "input": 12.129471878681121
+      },
+      "abs_bound": 6944186.776062487,
+      "ellipsoid_weight": null,
+      "projection_supports": {
+        "wi_0_max": 103.7762063980316,
+        "wi_1_max": 130.36603064707953
+      }
+    },
+    {
+      "index": 88,
+      "opcode": "ADD",
+      "output": "dec_h",
+      "input_bounds": {
+        "left": 5656859.592108209,
+        "right": 6944186.776062487
+      },
+      "abs_bound": 12601046.368170695,
+      "ellipsoid_weight": null,
+      "projection_supports": null
+    },
+    {
+      "index": 89,
+      "opcode": "RMSNORM",
+      "output": "dec_n4",
+      "input_bounds": {
+        "input": 12601046.368170695
+      },
+      "abs_bound": 10.674472979591428,
+      "ellipsoid_weight": "decoder.block.4.layer.0.layer_norm.weight",
+      "projection_supports": null
+    },
+    {
+      "index": 90,
+      "opcode": "SELF_ATTENTION_KV",
+      "output": "dec_a4",
+      "input_bounds": {
+        "input": 10.674472979591428
+      },
+      "abs_bound": 166962.11412653257,
+      "ellipsoid_weight": null,
+      "projection_supports": {
+        "q_max": 9.295811506745997,
+        "k_max": 66.0192034913368,
+        "v_max": 128.8735073546418
+      }
+    },
+    {
+      "index": 91,
+      "opcode": "ADD",
+      "output": "dec_r4",
+      "input_bounds": {
+        "left": 12601046.368170695,
+        "right": 166962.11412653257
+      },
+      "abs_bound": 12768008.482297229,
+      "ellipsoid_weight": null,
+      "projection_supports": null
+    },
+    {
+      "index": 92,
+      "opcode": "RMSNORM",
+      "output": "dec_cn4",
+      "input_bounds": {
+        "input": 12768008.482297229
+      },
+      "abs_bound": 10.692044506497803,
+      "ellipsoid_weight": "decoder.block.4.layer.1.layer_norm.weight",
+      "projection_supports": null
+    },
+    {
+      "index": 93,
+      "opcode": "CROSS_ATTENTION",
+      "output": "dec_ca4",
+      "input_bounds": {
+        "memory": 5.531395556942608,
+        "input": 10.692044506497803
+      },
+      "abs_bound": 65052.89894385863,
+      "ellipsoid_weight": null,
+      "projection_supports": {
+        "q_max": 6.683169911865795,
+        "k_max": 73.35183669454804,
+        "v_max": 74.18573634528228
+      }
+    },
+    {
+      "index": 94,
+      "opcode": "ADD",
+      "output": "dec_cr4",
+      "input_bounds": {
+        "left": 12768008.482297229,
+        "right": 65052.89894385863
+      },
+      "abs_bound": 12833061.381241087,
+      "ellipsoid_weight": null,
+      "projection_supports": null
+    },
+    {
+      "index": 95,
+      "opcode": "RMSNORM",
+      "output": "dec_mn4",
+      "input_bounds": {
+        "input": 12833061.381241087
+      },
+      "abs_bound": 9.213578916506819,
+      "ellipsoid_weight": "decoder.block.4.layer.2.layer_norm.weight",
+      "projection_supports": null
+    },
+    {
+      "index": 96,
+      "opcode": "GATED_MLP",
+      "output": "dec_m4",
+      "input_bounds": {
+        "input": 9.213578916506819
+      },
+      "abs_bound": 9751245.976446692,
+      "ellipsoid_weight": null,
+      "projection_supports": {
+        "wi_0_max": 77.05152037123325,
+        "wi_1_max": 202.1296531438764
+      }
+    },
+    {
+      "index": 97,
+      "opcode": "ADD",
+      "output": "dec_h",
+      "input_bounds": {
+        "left": 12833061.381241087,
+        "right": 9751245.976446692
+      },
+      "abs_bound": 22584307.35768778,
+      "ellipsoid_weight": null,
+      "projection_supports": null
+    },
+    {
+      "index": 98,
+      "opcode": "RMSNORM",
+      "output": "dec_n5",
+      "input_bounds": {
+        "input": 22584307.35768778
+      },
+      "abs_bound": 26.642828851901115,
+      "ellipsoid_weight": "decoder.block.5.layer.0.layer_norm.weight",
+      "projection_supports": null
+    },
+    {
+      "index": 99,
+      "opcode": "SELF_ATTENTION_KV",
+      "output": "dec_a5",
+      "input_bounds": {
+        "input": 26.642828851901115
+      },
+      "abs_bound": 277892.0819816785,
+      "ellipsoid_weight": null,
+      "projection_supports": {
+        "q_max": 7.529868764441448,
+        "k_max": 64.61825455323418,
+        "v_max": 188.03833645018307
+      }
+    },
+    {
+      "index": 100,
+      "opcode": "ADD",
+      "output": "dec_r5",
+      "input_bounds": {
+        "left": 22584307.35768778,
+        "right": 277892.0819816785
+      },
+      "abs_bound": 22862199.439669456,
+      "ellipsoid_weight": null,
+      "projection_supports": null
+    },
+    {
+      "index": 101,
+      "opcode": "RMSNORM",
+      "output": "dec_cn5",
+      "input_bounds": {
+        "input": 22862199.439669456
+      },
+      "abs_bound": 13.137210444421937,
+      "ellipsoid_weight": "decoder.block.5.layer.1.layer_norm.weight",
+      "projection_supports": null
+    },
+    {
+      "index": 102,
+      "opcode": "CROSS_ATTENTION",
+      "output": "dec_ca5",
+      "input_bounds": {
+        "memory": 5.531395556942608,
+        "input": 13.137210444421937
+      },
+      "abs_bound": 123070.74115684623,
+      "ellipsoid_weight": null,
+      "projection_supports": {
+        "q_max": 7.228146731927105,
+        "k_max": 47.120732286937525,
+        "v_max": 107.70610585597241
+      }
+    },
+    {
+      "index": 103,
+      "opcode": "ADD",
+      "output": "dec_cr5",
+      "input_bounds": {
+        "left": 22862199.439669456,
+        "right": 123070.74115684623
+      },
+      "abs_bound": 22985270.180826303,
+      "ellipsoid_weight": null,
+      "projection_supports": null
+    },
+    {
+      "index": 104,
+      "opcode": "RMSNORM",
+      "output": "dec_mn5",
+      "input_bounds": {
+        "input": 22985270.180826303
+      },
+      "abs_bound": 9.962386126784834,
+      "ellipsoid_weight": "decoder.block.5.layer.2.layer_norm.weight",
+      "projection_supports": null
+    },
+    {
+      "index": 105,
+      "opcode": "GATED_MLP",
+      "output": "dec_m5",
+      "input_bounds": {
+        "input": 9.962386126784834
+      },
+      "abs_bound": 9637539.783632705,
+      "ellipsoid_weight": null,
+      "projection_supports": {
+        "wi_0_max": 83.45686725763063,
+        "wi_1_max": 241.8284916602746
+      }
+    },
+    {
+      "index": 106,
+      "opcode": "ADD",
+      "output": "dec_h",
+      "input_bounds": {
+        "left": 22985270.180826303,
+        "right": 9637539.783632705
+      },
+      "abs_bound": 32622809.96445901,
+      "ellipsoid_weight": null,
+      "projection_supports": null
+    },
+    {
+      "index": 107,
+      "opcode": "RMSNORM",
+      "output": "dec_n6",
+      "input_bounds": {
+        "input": 32622809.96445901
+      },
+      "abs_bound": 23.79040297443803,
+      "ellipsoid_weight": "decoder.block.6.layer.0.layer_norm.weight",
+      "projection_supports": null
+    },
+    {
+      "index": 108,
+      "opcode": "SELF_ATTENTION_KV",
+      "output": "dec_a6",
+      "input_bounds": {
+        "input": 23.79040297443803
+      },
+      "abs_bound": 441091.5818353726,
+      "ellipsoid_weight": null,
+      "projection_supports": {
+        "q_max": 6.801391304636495,
+        "k_max": 56.360274974173194,
+        "v_max": 231.116344439851
+      }
+    },
+    {
+      "index": 109,
+      "opcode": "ADD",
+      "output": "dec_r6",
+      "input_bounds": {
+        "left": 32622809.96445901,
+        "right": 441091.5818353726
+      },
+      "abs_bound": 33063901.546294384,
+      "ellipsoid_weight": null,
+      "projection_supports": null
+    },
+    {
+      "index": 110,
+      "opcode": "RMSNORM",
+      "output": "dec_cn6",
+      "input_bounds": {
+        "input": 33063901.546294384
+      },
+      "abs_bound": 9.31253095026591,
+      "ellipsoid_weight": "decoder.block.6.layer.1.layer_norm.weight",
+      "projection_supports": null
+    },
+    {
+      "index": 111,
+      "opcode": "CROSS_ATTENTION",
+      "output": "dec_ca6",
+      "input_bounds": {
+        "memory": 5.531395556942608,
+        "input": 9.31253095026591
+      },
+      "abs_bound": 184321.27226495527,
+      "ellipsoid_weight": null,
+      "projection_supports": {
+        "q_max": 6.657941755740164,
+        "k_max": 42.41503056436879,
+        "v_max": 109.55682976450322
+      }
+    },
+    {
+      "index": 112,
+      "opcode": "ADD",
+      "output": "dec_cr6",
+      "input_bounds": {
+        "left": 33063901.546294384,
+        "right": 184321.27226495527
+      },
+      "abs_bound": 33248222.818559337,
+      "ellipsoid_weight": null,
+      "projection_supports": null
+    },
+    {
+      "index": 113,
+      "opcode": "RMSNORM",
+      "output": "dec_mn6",
+      "input_bounds": {
+        "input": 33248222.818559337
+      },
+      "abs_bound": 15.095981520043068,
+      "ellipsoid_weight": "decoder.block.6.layer.2.layer_norm.weight",
+      "projection_supports": null
+    },
+    {
+      "index": 114,
+      "opcode": "GATED_MLP",
+      "output": "dec_m6",
+      "input_bounds": {
+        "input": 15.095981520043068
+      },
+      "abs_bound": 14966119.904010378,
+      "ellipsoid_weight": null,
+      "projection_supports": {
+        "wi_0_max": 94.04021496963263,
+        "wi_1_max": 396.98172000261616
+      }
+    },
+    {
+      "index": 115,
+      "opcode": "ADD",
+      "output": "dec_h",
+      "input_bounds": {
+        "left": 33248222.818559337,
+        "right": 14966119.904010378
+      },
+      "abs_bound": 48214342.72256972,
+      "ellipsoid_weight": null,
+      "projection_supports": null
+    },
+    {
+      "index": 116,
+      "opcode": "RMSNORM",
+      "output": "dec_n7",
+      "input_bounds": {
+        "input": 48214342.72256972
+      },
+      "abs_bound": 31.138809187797563,
+      "ellipsoid_weight": "decoder.block.7.layer.0.layer_norm.weight",
+      "projection_supports": null
+    },
+    {
+      "index": 117,
+      "opcode": "SELF_ATTENTION_KV",
+      "output": "dec_a7",
+      "input_bounds": {
+        "input": 31.138809187797563
+      },
+      "abs_bound": 245087.18572887522,
+      "ellipsoid_weight": null,
+      "projection_supports": {
+        "q_max": 6.9166666858800845,
+        "k_max": 70.70470414467275,
+        "v_max": 183.3844479345484
+      }
+    },
+    {
+      "index": 118,
+      "opcode": "ADD",
+      "output": "dec_r7",
+      "input_bounds": {
+        "left": 48214342.72256972,
+        "right": 245087.18572887522
+      },
+      "abs_bound": 48459429.9082986,
+      "ellipsoid_weight": null,
+      "projection_supports": null
+    },
+    {
+      "index": 119,
+      "opcode": "RMSNORM",
+      "output": "dec_cn7",
+      "input_bounds": {
+        "input": 48459429.9082986
+      },
+      "abs_bound": 7.703117462175094,
+      "ellipsoid_weight": "decoder.block.7.layer.1.layer_norm.weight",
+      "projection_supports": null
+    },
+    {
+      "index": 120,
+      "opcode": "CROSS_ATTENTION",
+      "output": "dec_ca7",
+      "input_bounds": {
+        "memory": 5.531395556942608,
+        "input": 7.703117462175094
+      },
+      "abs_bound": 272940.9214288777,
+      "ellipsoid_weight": null,
+      "projection_supports": {
+        "q_max": 6.614910849324151,
+        "k_max": 52.68085232601404,
+        "v_max": 157.4263182780217
+      }
+    },
+    {
+      "index": 121,
+      "opcode": "ADD",
+      "output": "dec_cr7",
+      "input_bounds": {
+        "left": 48459429.9082986,
+        "right": 272940.9214288777
+      },
+      "abs_bound": 48732370.82972747,
+      "ellipsoid_weight": null,
+      "projection_supports": null
+    },
+    {
+      "index": 122,
+      "opcode": "RMSNORM",
+      "output": "dec_mn7",
+      "input_bounds": {
+        "input": 48732370.82972747
+      },
+      "abs_bound": 16.02615370013401,
+      "ellipsoid_weight": "decoder.block.7.layer.2.layer_norm.weight",
+      "projection_supports": null
+    },
+    {
+      "index": 123,
+      "opcode": "GATED_MLP",
+      "output": "dec_m7",
+      "input_bounds": {
+        "input": 16.02615370013401
+      },
+      "abs_bound": 61067598.27759537,
+      "ellipsoid_weight": null,
+      "projection_supports": {
+        "wi_0_max": 93.04739810281319,
+        "wi_1_max": 1216.1971628530762
+      }
+    },
+    {
+      "index": 124,
+      "opcode": "ADD",
+      "output": "dec_h",
+      "input_bounds": {
+        "left": 48732370.82972747,
+        "right": 61067598.27759537
+      },
+      "abs_bound": 109799969.10732284,
+      "ellipsoid_weight": null,
+      "projection_supports": null
+    },
+    {
+      "index": 125,
+      "opcode": "RMSNORM",
+      "output": "readout_h",
+      "input_bounds": {
+        "input": 109799969.10732284
+      },
+      "abs_bound": 181.99536258632781,
+      "ellipsoid_weight": "decoder.final_layer_norm.weight",
+      "projection_supports": null
+    },
+    {
+      "index": 126,
+      "opcode": "MATMUL",
+      "output": "logits",
+      "input_bounds": {
+        "input": 181.99536258632781
+      },
+      "abs_bound": 280.118926785733,
+      "ellipsoid_weight": null,
+      "projection_supports": null
+    },
+    {
+      "index": 127,
+      "opcode": "SOFTMAX",
+      "output": "next_token_distribution",
+      "input_bounds": {
+        "input": 280.118926785733
+      },
+      "abs_bound": 1.0,
+      "ellipsoid_weight": null,
+      "projection_supports": null
+    }
+  ],
+  "tsv_sha256": "b84e9f44dde1e1a53d93c2f594c4c9066e46612d2f12139e5f97f47518490225",
+  "status": "40/40 ADD occurrences certified under the explicit IEEE-754 source contract"
+}

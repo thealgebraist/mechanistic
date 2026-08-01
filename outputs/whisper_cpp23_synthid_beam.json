@@ -1,0 +1,377 @@
+{
+  "certificate": "WHISPER_CPP23_SYNTHID_BEAM_ROW_STATE_1",
+  "case_count": 6,
+  "all_ranked_sequences_exact": true,
+  "all_context_hashes_exact": true,
+  "all_repeated_decisions_exact": true,
+  "all_skipped_decisions_exact": true,
+  "worst_sequence_score_error": 0.00010323513046262,
+  "all_graph_nodes_visited": true,
+  "cases": [
+    {
+      "case": "two_rows_short",
+      "num_beams": 2,
+      "num_return_sequences": 2,
+      "maximum_positions": 8,
+      "ngram_len": 5,
+      "key_depth": 9,
+      "context_history_size": 1024,
+      "sampling_table_seed": 0,
+      "sampling_table_size": 65536,
+      "skip_first_ngram_calls": false,
+      "debug_mode": false,
+      "processor_calls": 6,
+      "flattened_state_rows": 12,
+      "repeated_rows": 0,
+      "skipped_rows": 0,
+      "ranked_sequences": [
+        [
+          50257,
+          50362,
+          1770,
+          13,
+          2264,
+          346,
+          353,
+          318
+        ],
+        [
+          50257,
+          50362,
+          1770,
+          13,
+          421,
+          346,
+          353,
+          318
+        ]
+      ],
+      "cpp23_sequence_scores": [
+        -0.105849318,
+        -0.531805634
+      ],
+      "transformers_sequence_scores": [
+        -0.10583695769309998,
+        -0.5318031311035156
+      ],
+      "maximum_sequence_score_error": 1.2360306900022211e-05,
+      "all_ranked_sequences_exact": true,
+      "all_context_hashes_exact": true,
+      "all_repeated_decisions_exact": true,
+      "all_skipped_decisions_exact": true,
+      "graph_nodes_visited": 74,
+      "constructor": "Selection.StandardBeamSearch + WatermarkPolicy.SynthIDTextWatermark"
+    },
+    {
+      "case": "four_rows_short",
+      "num_beams": 4,
+      "num_return_sequences": 4,
+      "maximum_positions": 8,
+      "ngram_len": 5,
+      "key_depth": 9,
+      "context_history_size": 1024,
+      "sampling_table_seed": 0,
+      "sampling_table_size": 65536,
+      "skip_first_ngram_calls": false,
+      "debug_mode": false,
+      "processor_calls": 6,
+      "flattened_state_rows": 24,
+      "repeated_rows": 0,
+      "skipped_rows": 0,
+      "ranked_sequences": [
+        [
+          50257,
+          50362,
+          1770,
+          13,
+          2264,
+          346,
+          353,
+          318
+        ],
+        [
+          50257,
+          50362,
+          1770,
+          13,
+          421,
+          346,
+          353,
+          318
+        ],
+        [
+          50257,
+          50362,
+          1770,
+          13,
+          33405,
+          283,
+          318,
+          262
+        ],
+        [
+          50257,
+          50362,
+          1770,
+          13,
+          2264,
+          343,
+          346,
+          353
+        ]
+      ],
+      "cpp23_sequence_scores": [
+        -0.105849318,
+        -0.531805634,
+        -0.62117058,
+        -0.695944965
+      ],
+      "transformers_sequence_scores": [
+        -0.10583695769309998,
+        -0.5318031311035156,
+        -0.6211690306663513,
+        -0.6960482001304626
+      ],
+      "maximum_sequence_score_error": 0.00010323513046262,
+      "all_ranked_sequences_exact": true,
+      "all_context_hashes_exact": true,
+      "all_repeated_decisions_exact": true,
+      "all_skipped_decisions_exact": true,
+      "graph_nodes_visited": 74,
+      "constructor": "Selection.StandardBeamSearch + WatermarkPolicy.SynthIDTextWatermark"
+    },
+    {
+      "case": "startup_skip_rows",
+      "num_beams": 2,
+      "num_return_sequences": 2,
+      "maximum_positions": 8,
+      "ngram_len": 4,
+      "key_depth": 2,
+      "context_history_size": 32,
+      "sampling_table_seed": 1,
+      "sampling_table_size": 1024,
+      "skip_first_ngram_calls": true,
+      "debug_mode": false,
+      "processor_calls": 6,
+      "flattened_state_rows": 12,
+      "repeated_rows": 0,
+      "skipped_rows": 6,
+      "ranked_sequences": [
+        [
+          50257,
+          50362,
+          1770,
+          13,
+          2264,
+          346,
+          353,
+          318
+        ],
+        [
+          50257,
+          50362,
+          1770,
+          13,
+          627,
+          346,
+          353,
+          318
+        ]
+      ],
+      "cpp23_sequence_scores": [
+        -0.106374227,
+        -0.600135148
+      ],
+      "transformers_sequence_scores": [
+        -0.10631993412971497,
+        -0.6001052856445312
+      ],
+      "maximum_sequence_score_error": 5.429287028503593e-05,
+      "all_ranked_sequences_exact": true,
+      "all_context_hashes_exact": true,
+      "all_repeated_decisions_exact": true,
+      "all_skipped_decisions_exact": true,
+      "graph_nodes_visited": 74,
+      "constructor": "Selection.StandardBeamSearch + WatermarkPolicy.SynthIDTextWatermark"
+    },
+    {
+      "case": "repeated_empty_context_rows",
+      "num_beams": 2,
+      "num_return_sequences": 2,
+      "maximum_positions": 8,
+      "ngram_len": 1,
+      "key_depth": 1,
+      "context_history_size": 4,
+      "sampling_table_seed": 17,
+      "sampling_table_size": 257,
+      "skip_first_ngram_calls": false,
+      "debug_mode": false,
+      "processor_calls": 6,
+      "flattened_state_rows": 12,
+      "repeated_rows": 10,
+      "skipped_rows": 0,
+      "ranked_sequences": [
+        [
+          50257,
+          50362,
+          1770,
+          13,
+          2264,
+          346,
+          353,
+          318
+        ],
+        [
+          50257,
+          50362,
+          1770,
+          13,
+          627,
+          346,
+          353,
+          318
+        ]
+      ],
+      "cpp23_sequence_scores": [
+        -0.0755084977,
+        -0.591735601
+      ],
+      "transformers_sequence_scores": [
+        -0.07545328885316849,
+        -0.5916792750358582
+      ],
+      "maximum_sequence_score_error": 5.632596414184565e-05,
+      "all_ranked_sequences_exact": true,
+      "all_context_hashes_exact": true,
+      "all_repeated_decisions_exact": true,
+      "all_skipped_decisions_exact": true,
+      "graph_nodes_visited": 74,
+      "constructor": "Selection.StandardBeamSearch + WatermarkPolicy.SynthIDTextWatermark"
+    },
+    {
+      "case": "signed_zero_history",
+      "num_beams": 3,
+      "num_return_sequences": 3,
+      "maximum_positions": 8,
+      "ngram_len": 2,
+      "key_depth": 2,
+      "context_history_size": 0,
+      "sampling_table_seed": -17,
+      "sampling_table_size": 31,
+      "skip_first_ngram_calls": false,
+      "debug_mode": false,
+      "processor_calls": 6,
+      "flattened_state_rows": 18,
+      "repeated_rows": 0,
+      "skipped_rows": 0,
+      "ranked_sequences": [
+        [
+          50257,
+          50362,
+          1770,
+          13,
+          2264,
+          346,
+          353,
+          318
+        ],
+        [
+          50257,
+          50362,
+          1770,
+          13,
+          421,
+          346,
+          353,
+          318
+        ],
+        [
+          50257,
+          50362,
+          1770,
+          13,
+          2264,
+          343,
+          353,
+          318
+        ]
+      ],
+      "cpp23_sequence_scores": [
+        -0.0812490508,
+        -0.695809662,
+        -0.725484788
+      ],
+      "transformers_sequence_scores": [
+        -0.08122418820858002,
+        -0.6957976818084717,
+        -0.7254597544670105
+      ],
+      "maximum_sequence_score_error": 2.5033532989549023e-05,
+      "all_ranked_sequences_exact": true,
+      "all_context_hashes_exact": true,
+      "all_repeated_decisions_exact": true,
+      "all_skipped_decisions_exact": true,
+      "graph_nodes_visited": 74,
+      "constructor": "Selection.StandardBeamSearch + WatermarkPolicy.SynthIDTextWatermark"
+    },
+    {
+      "case": "eos_finalization",
+      "num_beams": 2,
+      "num_return_sequences": 1,
+      "maximum_positions": 30,
+      "ngram_len": 5,
+      "key_depth": 9,
+      "context_history_size": 1024,
+      "sampling_table_seed": 0,
+      "sampling_table_size": 65536,
+      "skip_first_ngram_calls": false,
+      "debug_mode": false,
+      "processor_calls": 22,
+      "flattened_state_rows": 44,
+      "repeated_rows": 0,
+      "skipped_rows": 0,
+      "ranked_sequences": [
+        [
+          50257,
+          50362,
+          1770,
+          13,
+          2264,
+          346,
+          353,
+          318,
+          262,
+          29748,
+          286,
+          262,
+          3504,
+          6097,
+          290,
+          356,
+          389,
+          9675,
+          284,
+          7062,
+          465,
+          23244,
+          13,
+          50256
+        ]
+      ],
+      "cpp23_sequence_scores": [
+        -0.0777541623
+      ],
+      "transformers_sequence_scores": [
+        -0.07774899899959564
+      ],
+      "maximum_sequence_score_error": 5.163300404356641e-06,
+      "all_ranked_sequences_exact": true,
+      "all_context_hashes_exact": true,
+      "all_repeated_decisions_exact": true,
+      "all_skipped_decisions_exact": true,
+      "graph_nodes_visited": 74,
+      "constructor": "Selection.StandardBeamSearch + WatermarkPolicy.SynthIDTextWatermark"
+    }
+  ],
+  "scope": "Batch-one deterministic standard beam search with SynthID processor state attached to persistent beam-row slots exactly as in Transformers, including row reordering, startup skips, repeated contexts, signed hashes, EOS and maximum-length finalization."
+}

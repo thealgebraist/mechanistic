@@ -1,0 +1,110 @@
+{
+  "language": "PRSL-WHOLE-MODEL-HYBRID-1",
+  "model": {
+    "name": "google/flan-t5-small",
+    "checkpoint": "work/google_flan/model.safetensors",
+    "checkpoint_sha256": "495fa51e204676f1a857a9fc13c4c89f3f5ba9f480b898cebca02add25e6d749",
+    "tokenizer": "work/google_flan/spiece.model",
+    "tokenizer_sha256": "d60acb128cf7b7f2536e8f38a5b18a05535c9e14c7a355904270e15b0945ea86",
+    "numerical_semantics": "float32 PyTorch-compatible T5 opcodes"
+  },
+  "whole_model_register_program": {
+    "artifact": "outputs/flan_full_graph.json",
+    "sha256": "9178011e37e276c040400099b87fc34c961429a71386eb38ed92d5cfbb227c76",
+    "opcodes": 129,
+    "coverage": "all tokenized inputs within runtime resource limits",
+    "state": [
+      "encoder_memory",
+      "decoder_hidden",
+      "self_KV_cache",
+      "fuel",
+      "token_stack"
+    ],
+    "verification": [
+      "FULL_GRAPH_TENSOR_REFERENCES_OK",
+      "FULL_GRAPH_NUMERIC_REPLAY",
+      "REGISTER_KV_CACHE_REPLAY"
+    ]
+  },
+  "backend_contract": {
+    "artifact": "outputs/flan_backend_contract.json",
+    "sha256": "fa1d9cf8fc56bf7a8c22b98d4986d8a6caa3cc9e27ce98d6222ff17f8b15cd4f",
+    "status": "reproducible hashed semantics; universal IEEE-754 proof pending"
+  },
+  "certified_graph_patch": {
+    "artifact": "outputs/flan_domain32_refinement_tower.json",
+    "sha256": "0a3e66002bc33b773335b882b7843ee0a34cf6314995f6897eeb5f2f513dd20b",
+    "guard": {
+      "prompt_set": 32,
+      "prompt_identity": "exact serialized prompt string",
+      "max_decoder_horizon": 3
+    },
+    "levels": [
+      {
+        "level": 0,
+        "states": 216,
+        "epsilon": 0.1,
+        "horizon_tv_bound": 0.27049668116273745,
+        "neural_horizon_tv_bound": 0.2706797894254978,
+        "direct_trace_max_tv": 0.005322132394000637,
+        "direct_neural_trace_bound": 0.005505240656760994,
+        "status": "certified approximate",
+        "certificate_sha256": "44a2d174e682bdade9807b74c4ca1686098d0facf3bf0a8b8e8f837c1e031982"
+      },
+      {
+        "level": 1,
+        "states": 221,
+        "epsilon": 0.05,
+        "horizon_tv_bound": 0.06857404440375371,
+        "neural_horizon_tv_bound": 0.06875715266651407,
+        "direct_trace_max_tv": 0.004073862676800885,
+        "direct_neural_trace_bound": 0.004256970939561242,
+        "status": "certified approximate",
+        "certificate_sha256": "b55ef39a87a158717b30d93c43a0828455d2003b26d1de33a37117c87ffc4786"
+      },
+      {
+        "level": 2,
+        "states": 222,
+        "epsilon": 0.02,
+        "horizon_tv_bound": 0.01249713893339437,
+        "neural_horizon_tv_bound": 0.012680247196154727,
+        "direct_trace_max_tv": 0.004073862676800885,
+        "direct_neural_trace_bound": 0.004256970939561242,
+        "status": "certified approximate",
+        "certificate_sha256": "d8db1f02b4886f02be2fe9328b3d4b815e41662a0456ff8febaf96b434935a5c"
+      },
+      {
+        "level": 3,
+        "states": 224,
+        "epsilon": 0.0,
+        "horizon_tv_bound": 0.0,
+        "neural_horizon_tv_bound": 0.00018310826276035706,
+        "direct_trace_max_tv": 0.0,
+        "direct_neural_trace_bound": 0.00018310826276035706,
+        "status": "certified exact",
+        "certificate_sha256": "44632915f119983ec8b2ef468bb15661b2e14f1d5f95a9e9bb9da1ef3b2a0224"
+      }
+    ],
+    "verification": "REFINEMENT_TOWER_OK"
+  },
+  "router": {
+    "priority": [
+      "certified_graph_patch_when_guard_holds",
+      "whole_model_register_program"
+    ],
+    "total": true,
+    "graph_residual_overlap": "graph takes priority only under exact guard",
+    "outside_patch": "register program; never reported as graph-certified"
+  },
+  "semantic_contract": {
+    "inside_patch": "TV(neural projected output traces) <= selected level neural_horizon_tv_bound",
+    "outside_patch": "execute complete register program",
+    "whole_input_space_coverage": "graph patch union register residual",
+    "unproven": [
+      "universal floating-point equivalence for every possible input",
+      "finite quotient of unrestricted FLAN behavior",
+      "resource-unbounded execution"
+    ]
+  },
+  "manifest_sha256": "8f1d7efa9d9da1d971e04f206b34ac887c6a6c0031585553d038ea47a52ebcf1"
+}

@@ -1,0 +1,690 @@
+{
+  "language": "WHISPER-CPP23-CONVERSION-LEDGER-20",
+  "model": "openai/whisper-tiny.en",
+  "checkpoint_sha256": "db59695928ded6043adaef491a53ef4e12da9611184d77c53baa691a60b958ad",
+  "graph_sha256": "2adbb1fb4d6d14993772e13d596d7f77981ca7c5be27c0a1088a338927a5fe3c",
+  "cpp_source_sha256": "4958b16a129b4317072c6918cfb66a4e432cf9ed92d1f10942eca06f8189be88",
+  "generated_header_sha256": "d046e5e3e947bf7de87cc59a01e5d08e36156ff59864a9b616707a2b4091b71f",
+  "generation_config_header_sha256": "9c3c8e646e892189e1c0604049642175f1fd9033544c556520770e55be1afc41",
+  "sampling_filter_fixture_sha256": "5f41ea938e5d4eeacb1a67cfb1bdf5a133272a1e913b76dfb4fa09036d38334f",
+  "score_policy_fixture_sha256": "c5938915d3df389b4e79aa87699d4aea24fee6996aa0e97f500e51e2a27ddd24",
+  "beam_search_fixture_sha256": "de8bfd281d1fdae0e4b9080fde3005648077a2a2221b084b46f8d748fe90afb2",
+  "synthid_beam_fixture_sha256": "c4802eb77505d4ee51830e7b38d39baa7799bcf4a6d605d533a3073b9ffde21b",
+  "synthid_group_beam_fixture_sha256": "fd03036cb29fb147ba80b37c6c13e6e09cf0d4091c514485725ec6af0dac0560",
+  "synthid_constrained_beam_fixture_sha256": "baf8693dd1f82ce0f31ed4b5854f6c5edbffe590e208c0c783eb952a998c1fd8",
+  "group_beam_search_fixture_sha256": "d80b9d729f66ff5df84d8d221e00d2503c7d5faa8f4db3d6301f6aa352bc4318",
+  "constrained_beam_search_fixture_sha256": "8bb0cc53ca1832855e20c8b7d624c7287695465653807a79a20772e114a107ca",
+  "beam_sampling_fixture_sha256": "796bb17a0313604e872a31a8b21f7da4553c15c30655264c99a39c30a4106672",
+  "contrastive_search_fixture_sha256": "deb5c4dc3a2e4e86b5734a7e87bca08d87e3a7bc51f51a5cda81eb2c13089183",
+  "model_applicability_fixture_sha256": "f0c936cd3a56ceb289dd0fc2782d65aaaf5c6ac3016e5ac078b56d41be0ee696",
+  "stop_strings_fixture_sha256": "9703890e4189b9b662ccb61d2c0d3ea75d4d1c0cc9b3c39d5413a35b40df3f5d",
+  "prompt_lookup_fixture_sha256": "3c93c3b57d90d68906f9d2d803826f54c58be3b8848dbb1ed3c7d74bbab237ed",
+  "watermark_fixture_sha256": "70f4ed51ac2bafc909c47d9c74029c7f9407f42e0f30a479d579c57e1c904a1f",
+  "batch_fixture_sha256": "5ba8708f2c49d0c4edde66da939b1b344a3565c24eae6a2e252a43dfce562125",
+  "fixture_sha256": "a38ec0ec6a6ce500fdce2a9a150a142c32266ccc38be2cd29e1970ac3809dfaf",
+  "graph_nodes_in_cpp23": 74,
+  "graph_nodes_visited": 74,
+  "checkpoint_tensors_validated_in_cpp23": 167,
+  "weight_references_in_cpp23": 168,
+  "greedy_generated_tokens": 22,
+  "seeded_sampled_tokens": 22,
+  "cache_positions": 24,
+  "sample_transcript": "Mr. Quilter is the apostle of the middle classes, and we are glad to welcome his gospel.",
+  "cache_logit_error": 4.19617e-05,
+  "mass_sum_error": 2.76716e-08,
+  "selected_mass_error": 0.000108838,
+  "mel_max_abs": 1.41859e-05,
+  "worst_stage_max_abs": 0.00180054,
+  "multiaudio_cases": 4,
+  "multiaudio_all_token_sequences_exact": true,
+  "batch_size_verified": 5,
+  "batch_all_token_sequences_exact": true,
+  "batch_execution_policy": "sequential items with shared immutable weights",
+  "batch_vectorized_linear_algebra": false,
+  "group_beam_search_cases": 6,
+  "group_beam_search_all_ranked_sequences_exact": true,
+  "group_beam_reference_revision": "1a281620f7c5fa711c6a44d61c42a4e3a9c2098b",
+  "synthid_group_beam_cases": 5,
+  "synthid_group_beam_all_context_hashes_exact": true,
+  "synthid_group_beam_worst_sequence_score_error": 6.908219442747221e-05,
+  "constrained_beam_search_cases": 8,
+  "constrained_beam_search_all_ranked_sequences_exact": true,
+  "constrained_beam_reference_revision": "57fb32700aa9933f2e5077030f479d4931e56267",
+  "synthid_constrained_beam_cases": 5,
+  "synthid_constrained_beam_all_context_hashes_exact": true,
+  "synthid_constrained_beam_worst_sequence_score_error": 0.0024335394348145023,
+  "beam_sampling_probability_cases": 4,
+  "beam_sampling_run_cases": 4,
+  "beam_sampling_all_flattened_supports_exact": true,
+  "beam_sampling_worst_probability_error": 6.085634231567383e-05,
+  "contrastive_search_cases": 6,
+  "contrastive_search_all_token_sequences_exact": true,
+  "contrastive_search_reference_revision": "89ece6d21c47e6187e86d45d98fd495feadb33cb",
+  "contrastive_search_worst_cosine_penalty_error": 5.067895202381933e-07,
+  "model_applicability_cases": 9,
+  "model_applicability_all_behaviors_exact": true,
+  "stop_string_cases": 7,
+  "stop_string_all_complete_tokens_exact": true,
+  "prompt_lookup_cases": 6,
+  "prompt_lookup_all_complete_tokens_exact": true,
+  "prompt_lookup_accepted_candidates": 7,
+  "watermark_cases": 11,
+  "classic_watermark_cases": 6,
+  "synthid_watermark_cases": 5,
+  "watermark_all_green_masks_exact": true,
+  "watermark_all_complete_sequences_exact": true,
+  "watermark_all_synthid_g_values_exact": true,
+  "watermark_all_synthid_state_trajectories_exact": true,
+  "watermark_worst_full_probability_error": 6.473064422607422e-05,
+  "synthid_beam_cases": 6,
+  "synthid_beam_all_ranked_sequences_exact": true,
+  "synthid_beam_all_context_hashes_exact": true,
+  "synthid_beam_worst_sequence_score_error": 0.00010323513046262,
+  "status_counts": {
+    "CPP23_EXECUTABLE_NUMERICAL": 67,
+    "CPP23_EXECUTABLE_INCREMENTAL_KV": 4,
+    "CPP23_EXECUTABLE_PROBABILISTIC": 2,
+    "CPP23_EXECUTABLE_STATE_TRANSITION": 1
+  },
+  "ops": [
+    {
+      "index": 0,
+      "opcode": "PCM_AUDIO_INPUT",
+      "stage": "frontend",
+      "status": "CPP23_EXECUTABLE_NUMERICAL"
+    },
+    {
+      "index": 1,
+      "opcode": "LOG_MEL_STFT",
+      "stage": "frontend",
+      "status": "CPP23_EXECUTABLE_NUMERICAL"
+    },
+    {
+      "index": 2,
+      "opcode": "CONV1_GELU",
+      "stage": "encoder",
+      "status": "CPP23_EXECUTABLE_NUMERICAL"
+    },
+    {
+      "index": 3,
+      "opcode": "CONV2_GELU",
+      "stage": "encoder",
+      "status": "CPP23_EXECUTABLE_NUMERICAL"
+    },
+    {
+      "index": 4,
+      "opcode": "POSITIONAL_ADD",
+      "stage": "encoder",
+      "status": "CPP23_EXECUTABLE_NUMERICAL"
+    },
+    {
+      "index": 5,
+      "opcode": "LAYER_NORM",
+      "stage": "encoder.0",
+      "status": "CPP23_EXECUTABLE_NUMERICAL"
+    },
+    {
+      "index": 6,
+      "opcode": "SELF_ATTENTION",
+      "stage": "encoder.0",
+      "status": "CPP23_EXECUTABLE_NUMERICAL"
+    },
+    {
+      "index": 7,
+      "opcode": "RESIDUAL_ADD",
+      "stage": "encoder.0",
+      "status": "CPP23_EXECUTABLE_NUMERICAL"
+    },
+    {
+      "index": 8,
+      "opcode": "LAYER_NORM",
+      "stage": "encoder.0",
+      "status": "CPP23_EXECUTABLE_NUMERICAL"
+    },
+    {
+      "index": 9,
+      "opcode": "MLP_GELU",
+      "stage": "encoder.0",
+      "status": "CPP23_EXECUTABLE_NUMERICAL"
+    },
+    {
+      "index": 10,
+      "opcode": "RESIDUAL_ADD",
+      "stage": "encoder.0",
+      "status": "CPP23_EXECUTABLE_NUMERICAL"
+    },
+    {
+      "index": 11,
+      "opcode": "LAYER_NORM",
+      "stage": "encoder.1",
+      "status": "CPP23_EXECUTABLE_NUMERICAL"
+    },
+    {
+      "index": 12,
+      "opcode": "SELF_ATTENTION",
+      "stage": "encoder.1",
+      "status": "CPP23_EXECUTABLE_NUMERICAL"
+    },
+    {
+      "index": 13,
+      "opcode": "RESIDUAL_ADD",
+      "stage": "encoder.1",
+      "status": "CPP23_EXECUTABLE_NUMERICAL"
+    },
+    {
+      "index": 14,
+      "opcode": "LAYER_NORM",
+      "stage": "encoder.1",
+      "status": "CPP23_EXECUTABLE_NUMERICAL"
+    },
+    {
+      "index": 15,
+      "opcode": "MLP_GELU",
+      "stage": "encoder.1",
+      "status": "CPP23_EXECUTABLE_NUMERICAL"
+    },
+    {
+      "index": 16,
+      "opcode": "RESIDUAL_ADD",
+      "stage": "encoder.1",
+      "status": "CPP23_EXECUTABLE_NUMERICAL"
+    },
+    {
+      "index": 17,
+      "opcode": "LAYER_NORM",
+      "stage": "encoder.2",
+      "status": "CPP23_EXECUTABLE_NUMERICAL"
+    },
+    {
+      "index": 18,
+      "opcode": "SELF_ATTENTION",
+      "stage": "encoder.2",
+      "status": "CPP23_EXECUTABLE_NUMERICAL"
+    },
+    {
+      "index": 19,
+      "opcode": "RESIDUAL_ADD",
+      "stage": "encoder.2",
+      "status": "CPP23_EXECUTABLE_NUMERICAL"
+    },
+    {
+      "index": 20,
+      "opcode": "LAYER_NORM",
+      "stage": "encoder.2",
+      "status": "CPP23_EXECUTABLE_NUMERICAL"
+    },
+    {
+      "index": 21,
+      "opcode": "MLP_GELU",
+      "stage": "encoder.2",
+      "status": "CPP23_EXECUTABLE_NUMERICAL"
+    },
+    {
+      "index": 22,
+      "opcode": "RESIDUAL_ADD",
+      "stage": "encoder.2",
+      "status": "CPP23_EXECUTABLE_NUMERICAL"
+    },
+    {
+      "index": 23,
+      "opcode": "LAYER_NORM",
+      "stage": "encoder.3",
+      "status": "CPP23_EXECUTABLE_NUMERICAL"
+    },
+    {
+      "index": 24,
+      "opcode": "SELF_ATTENTION",
+      "stage": "encoder.3",
+      "status": "CPP23_EXECUTABLE_NUMERICAL"
+    },
+    {
+      "index": 25,
+      "opcode": "RESIDUAL_ADD",
+      "stage": "encoder.3",
+      "status": "CPP23_EXECUTABLE_NUMERICAL"
+    },
+    {
+      "index": 26,
+      "opcode": "LAYER_NORM",
+      "stage": "encoder.3",
+      "status": "CPP23_EXECUTABLE_NUMERICAL"
+    },
+    {
+      "index": 27,
+      "opcode": "MLP_GELU",
+      "stage": "encoder.3",
+      "status": "CPP23_EXECUTABLE_NUMERICAL"
+    },
+    {
+      "index": 28,
+      "opcode": "RESIDUAL_ADD",
+      "stage": "encoder.3",
+      "status": "CPP23_EXECUTABLE_NUMERICAL"
+    },
+    {
+      "index": 29,
+      "opcode": "LAYER_NORM",
+      "stage": "encoder.final",
+      "status": "CPP23_EXECUTABLE_NUMERICAL"
+    },
+    {
+      "index": 30,
+      "opcode": "TOKEN_STACK_INPUT",
+      "stage": "decoder",
+      "status": "CPP23_EXECUTABLE_NUMERICAL"
+    },
+    {
+      "index": 31,
+      "opcode": "TOKEN_POSITION_EMBED",
+      "stage": "decoder",
+      "status": "CPP23_EXECUTABLE_NUMERICAL"
+    },
+    {
+      "index": 32,
+      "opcode": "LAYER_NORM",
+      "stage": "decoder.0",
+      "status": "CPP23_EXECUTABLE_NUMERICAL"
+    },
+    {
+      "index": 33,
+      "opcode": "CACHED_SELF_ATTENTION",
+      "stage": "decoder.0",
+      "status": "CPP23_EXECUTABLE_INCREMENTAL_KV"
+    },
+    {
+      "index": 34,
+      "opcode": "RESIDUAL_ADD",
+      "stage": "decoder.0",
+      "status": "CPP23_EXECUTABLE_NUMERICAL"
+    },
+    {
+      "index": 35,
+      "opcode": "LAYER_NORM",
+      "stage": "decoder.0",
+      "status": "CPP23_EXECUTABLE_NUMERICAL"
+    },
+    {
+      "index": 36,
+      "opcode": "CROSS_ATTENTION",
+      "stage": "decoder.0",
+      "status": "CPP23_EXECUTABLE_NUMERICAL"
+    },
+    {
+      "index": 37,
+      "opcode": "RESIDUAL_ADD",
+      "stage": "decoder.0",
+      "status": "CPP23_EXECUTABLE_NUMERICAL"
+    },
+    {
+      "index": 38,
+      "opcode": "LAYER_NORM",
+      "stage": "decoder.0",
+      "status": "CPP23_EXECUTABLE_NUMERICAL"
+    },
+    {
+      "index": 39,
+      "opcode": "MLP_GELU",
+      "stage": "decoder.0",
+      "status": "CPP23_EXECUTABLE_NUMERICAL"
+    },
+    {
+      "index": 40,
+      "opcode": "RESIDUAL_ADD",
+      "stage": "decoder.0",
+      "status": "CPP23_EXECUTABLE_NUMERICAL"
+    },
+    {
+      "index": 41,
+      "opcode": "LAYER_NORM",
+      "stage": "decoder.1",
+      "status": "CPP23_EXECUTABLE_NUMERICAL"
+    },
+    {
+      "index": 42,
+      "opcode": "CACHED_SELF_ATTENTION",
+      "stage": "decoder.1",
+      "status": "CPP23_EXECUTABLE_INCREMENTAL_KV"
+    },
+    {
+      "index": 43,
+      "opcode": "RESIDUAL_ADD",
+      "stage": "decoder.1",
+      "status": "CPP23_EXECUTABLE_NUMERICAL"
+    },
+    {
+      "index": 44,
+      "opcode": "LAYER_NORM",
+      "stage": "decoder.1",
+      "status": "CPP23_EXECUTABLE_NUMERICAL"
+    },
+    {
+      "index": 45,
+      "opcode": "CROSS_ATTENTION",
+      "stage": "decoder.1",
+      "status": "CPP23_EXECUTABLE_NUMERICAL"
+    },
+    {
+      "index": 46,
+      "opcode": "RESIDUAL_ADD",
+      "stage": "decoder.1",
+      "status": "CPP23_EXECUTABLE_NUMERICAL"
+    },
+    {
+      "index": 47,
+      "opcode": "LAYER_NORM",
+      "stage": "decoder.1",
+      "status": "CPP23_EXECUTABLE_NUMERICAL"
+    },
+    {
+      "index": 48,
+      "opcode": "MLP_GELU",
+      "stage": "decoder.1",
+      "status": "CPP23_EXECUTABLE_NUMERICAL"
+    },
+    {
+      "index": 49,
+      "opcode": "RESIDUAL_ADD",
+      "stage": "decoder.1",
+      "status": "CPP23_EXECUTABLE_NUMERICAL"
+    },
+    {
+      "index": 50,
+      "opcode": "LAYER_NORM",
+      "stage": "decoder.2",
+      "status": "CPP23_EXECUTABLE_NUMERICAL"
+    },
+    {
+      "index": 51,
+      "opcode": "CACHED_SELF_ATTENTION",
+      "stage": "decoder.2",
+      "status": "CPP23_EXECUTABLE_INCREMENTAL_KV"
+    },
+    {
+      "index": 52,
+      "opcode": "RESIDUAL_ADD",
+      "stage": "decoder.2",
+      "status": "CPP23_EXECUTABLE_NUMERICAL"
+    },
+    {
+      "index": 53,
+      "opcode": "LAYER_NORM",
+      "stage": "decoder.2",
+      "status": "CPP23_EXECUTABLE_NUMERICAL"
+    },
+    {
+      "index": 54,
+      "opcode": "CROSS_ATTENTION",
+      "stage": "decoder.2",
+      "status": "CPP23_EXECUTABLE_NUMERICAL"
+    },
+    {
+      "index": 55,
+      "opcode": "RESIDUAL_ADD",
+      "stage": "decoder.2",
+      "status": "CPP23_EXECUTABLE_NUMERICAL"
+    },
+    {
+      "index": 56,
+      "opcode": "LAYER_NORM",
+      "stage": "decoder.2",
+      "status": "CPP23_EXECUTABLE_NUMERICAL"
+    },
+    {
+      "index": 57,
+      "opcode": "MLP_GELU",
+      "stage": "decoder.2",
+      "status": "CPP23_EXECUTABLE_NUMERICAL"
+    },
+    {
+      "index": 58,
+      "opcode": "RESIDUAL_ADD",
+      "stage": "decoder.2",
+      "status": "CPP23_EXECUTABLE_NUMERICAL"
+    },
+    {
+      "index": 59,
+      "opcode": "LAYER_NORM",
+      "stage": "decoder.3",
+      "status": "CPP23_EXECUTABLE_NUMERICAL"
+    },
+    {
+      "index": 60,
+      "opcode": "CACHED_SELF_ATTENTION",
+      "stage": "decoder.3",
+      "status": "CPP23_EXECUTABLE_INCREMENTAL_KV"
+    },
+    {
+      "index": 61,
+      "opcode": "RESIDUAL_ADD",
+      "stage": "decoder.3",
+      "status": "CPP23_EXECUTABLE_NUMERICAL"
+    },
+    {
+      "index": 62,
+      "opcode": "LAYER_NORM",
+      "stage": "decoder.3",
+      "status": "CPP23_EXECUTABLE_NUMERICAL"
+    },
+    {
+      "index": 63,
+      "opcode": "CROSS_ATTENTION",
+      "stage": "decoder.3",
+      "status": "CPP23_EXECUTABLE_NUMERICAL"
+    },
+    {
+      "index": 64,
+      "opcode": "RESIDUAL_ADD",
+      "stage": "decoder.3",
+      "status": "CPP23_EXECUTABLE_NUMERICAL"
+    },
+    {
+      "index": 65,
+      "opcode": "LAYER_NORM",
+      "stage": "decoder.3",
+      "status": "CPP23_EXECUTABLE_NUMERICAL"
+    },
+    {
+      "index": 66,
+      "opcode": "MLP_GELU",
+      "stage": "decoder.3",
+      "status": "CPP23_EXECUTABLE_NUMERICAL"
+    },
+    {
+      "index": 67,
+      "opcode": "RESIDUAL_ADD",
+      "stage": "decoder.3",
+      "status": "CPP23_EXECUTABLE_NUMERICAL"
+    },
+    {
+      "index": 68,
+      "opcode": "LAYER_NORM",
+      "stage": "decoder.final",
+      "status": "CPP23_EXECUTABLE_NUMERICAL"
+    },
+    {
+      "index": 69,
+      "opcode": "TIED_LM_HEAD",
+      "stage": "readout",
+      "status": "CPP23_EXECUTABLE_NUMERICAL"
+    },
+    {
+      "index": 70,
+      "opcode": "GENERATION_POLICY",
+      "stage": "readout",
+      "status": "CPP23_EXECUTABLE_NUMERICAL"
+    },
+    {
+      "index": 71,
+      "opcode": "SOFTMAX",
+      "stage": "readout",
+      "status": "CPP23_EXECUTABLE_PROBABILISTIC"
+    },
+    {
+      "index": 72,
+      "opcode": "SAMPLE_OR_ARGMAX",
+      "stage": "transition",
+      "status": "CPP23_EXECUTABLE_PROBABILISTIC"
+    },
+    {
+      "index": 73,
+      "opcode": "TOKEN_AND_CACHE_APPEND",
+      "stage": "transition",
+      "status": "CPP23_EXECUTABLE_STATE_TRANSITION"
+    }
+  ],
+  "requirements": [
+    {
+      "requirement": "complete graph structure in C++23",
+      "status": "PROVED_CURRENT_ARTIFACT",
+      "evidence": "74 constexpr nodes, 184 port references, 168 weight references"
+    },
+    {
+      "requirement": "graph-driven execution",
+      "status": "PROVED_CONCRETE_AND_ALGORITHMIC",
+      "evidence": "runtime opcode dispatch visited 74/74 generated nodes; node-declared weight references drive tensor lookup"
+    },
+    {
+      "requirement": "complete checkpoint binding",
+      "status": "PROVED_CURRENT_ARTIFACT",
+      "evidence": "167/167 binary32 tensor slices CRC-validated by C++23"
+    },
+    {
+      "requirement": "native audio frontend",
+      "status": "PROVED_CONCRETE_AND_ALGORITHMIC",
+      "evidence": "PCM16 WAV, 30-second truncate/pad, reflected Hann STFT and Mel; sample max error 1.41859e-05"
+    },
+    {
+      "requirement": "encoder and decoder numerical execution",
+      "status": "PROVED_CONCRETE",
+      "evidence": "14 stage comparisons; worst max absolute error 0.00180054"
+    },
+    {
+      "requirement": "explicit probabilistic graph state",
+      "status": "PROVED_CONCRETE_AND_STRUCTURAL",
+      "evidence": "four self K/V and cross K/V cache pairs; 24 positions; cached logit error 4.19617e-05"
+    },
+    {
+      "requirement": "probability law and transitions",
+      "status": "PROVED_CONCRETE_AND_ALGORITHMIC",
+      "evidence": "masked softmax mass error 2.76716e-08; full greedy and seeded sampled traces terminate"
+    },
+    {
+      "requirement": "sampling-filter probability transport",
+      "status": "PROVED_FINITE",
+      "evidence": "8 complete 51,864-way distributions; exact supports and argmax tokens; worst probability error 9.7155571e-06"
+    },
+    {
+      "requirement": "deterministic generation score policies",
+      "status": "PROVED_FINITE",
+      "evidence": "7 real-audio altered configurations exactly match Transformers token sequences and visit all graph nodes"
+    },
+    {
+      "requirement": "explicit multi-hypothesis probabilistic search",
+      "status": "PROVED_FINITE",
+      "evidence": "5 standard, 6 diverse-group, 8 constrained, and 4 sampled beam runs; exact deterministic rankings plus 4 exact flattened supports; worst normalized score error 0.000145584139"
+    },
+    {
+      "requirement": "hidden-state contrastive search",
+      "status": "PROVED_FINITE",
+      "evidence": "6 complete source-pinned token sequences; exact first candidate sets/ranks; worst cosine-penalty error 5.0678952e-07"
+    },
+    {
+      "requirement": "model-specific generic generation boundaries",
+      "status": "PROVED_FINITE_AND_SOURCE_STRUCTURAL",
+      "evidence": "5 model-rejected and 4 warning-plus-ignored cases agree with pinned Transformers; DoLa source hash pinned"
+    },
+    {
+      "requirement": "token-byte stop-string termination",
+      "status": "PROVED_FINITE_GREEDY",
+      "evidence": "7 whole/cross-token/overhang/alternative/EOS cases exactly match pinned StopStringCriteria"
+    },
+    {
+      "requirement": "prompt-lookup speculative state transport",
+      "status": "PROVED_FINITE_GREEDY",
+      "evidence": "6 exact complete sequences and first proposals/acceptance counts; 7/35 proposal occurrences accepted"
+    },
+    {
+      "requirement": "history-keyed watermark probability transport",
+      "status": "PROVED_FINITE_CLASSIC_AND_GREEDY_STANDARD_CONSTRAINED_GROUP_SYNTHID",
+      "evidence": "6 classic and 5 greedy SynthID configurations have exact masks/g-values and state trajectories; exact row-state and ranked-sequence certificates cover 6 standard, 5 constrained, and 5 diverse-group cases; sampled-beam SynthID remains separate"
+    },
+    {
+      "requirement": "readable token output",
+      "status": "PROVED_CONCRETE",
+      "evidence": "all 51,864 token byte strings bound; exact requested transcript"
+    },
+    {
+      "requirement": "more than one favorable sample",
+      "status": "PROVED_FINITE",
+      "evidence": "original plus 4 additional records; additional token and text sequences exactly match Transformers"
+    },
+    {
+      "requirement": "batched model execution",
+      "status": "PROVED_FINITE_SEQUENTIAL_SEMANTICS",
+      "evidence": "one true Transformers batch of 5 variable-length recordings exactly matches one shared-checkpoint C++23 process; every item has isolated graph/cache state and visits 74 nodes"
+    },
+    {
+      "requirement": "complete PyTorch forward interface",
+      "status": "PROVED_CURRENT_ARTIFACT",
+      "evidence": "all 17 forward parameters have executable semantics, an intentional model no-op, or an ABI projection"
+    },
+    {
+      "requirement": "pinned PyTorch generation interface",
+      "status": "PROVED_CURRENT_ARTIFACT",
+      "evidence": "0 of 27 top-level parameters pending; 74/74 pinned GenerationConfig values represented"
+    },
+    {
+      "requirement": "arbitrary non-default GenerationMixin reconfiguration",
+      "status": "IN_PROGRESS",
+      "evidence": "full non-default closure=False; 14 inactive and 8 partial generic fields remain explicitly inventoried"
+    }
+  ],
+  "all_opcodes_executable": true,
+  "core_graph_complete": true,
+  "pinned_model_interface_complete": true,
+  "all_nondefault_generation_variants_complete": false,
+  "complete_conversion": false,
+  "pending_generate_parameters": [],
+  "inactive_generic_generation_fields": [
+    "assistant_confidence_threshold",
+    "assistant_early_exit",
+    "assistant_lookbehind",
+    "cache_config",
+    "cache_implementation",
+    "disable_compile",
+    "is_assistant",
+    "is_multilingual",
+    "max_time",
+    "num_assistant_tokens",
+    "num_assistant_tokens_schedule",
+    "prefill_chunk_size",
+    "target_lookbehind",
+    "token_healing"
+  ],
+  "partial_generic_generation_fields": [
+    "bos_token_id",
+    "low_memory",
+    "max_matching_ngram_size",
+    "num_return_sequences",
+    "prompt_lookup_num_tokens",
+    "return_legacy_cache",
+    "stop_strings",
+    "watermarking_config"
+  ],
+  "backend_contract": {
+    "language": "C++23",
+    "linear_algebra": "macOS Accelerate CBLAS binary32",
+    "audio": "mono 16 kHz signed PCM16 WAV; finite inputs truncate or zero-pad to 30 seconds",
+    "generation": "greedy, categorical, and contrastive decoding; greedy token-byte stop strings and prompt-lookup speculative transport; classic left/self-hash watermark probability transport plus greedy, standard-beam, constrained-beam, and diverse-group SynthID row-state transport; standard/sampled/diverse-group/phrase-and-disjunction-constrained beam search; prompts, timestamp-token policy, short-form segments, eight-head DTW token timestamps, and sequential batches with shared immutable weights and isolated item state; maximum 448 decoder positions",
+    "checkpoint": "pinned openai/whisper-tiny.en safetensors"
+  },
+  "portable_backend_independent": false,
+  "universal_numerical_equivalence_proved": false,
+  "remaining_validation": [
+    "implement or formally exclude the explicitly inventoried non-default generic generation algorithms, including SynthID scheduling for sampled beam search",
+    "repeat numerical validation on a non-Accelerate backend if portability is required",
+    "expand finite corpus beyond five recordings",
+    "formalize primitive floating-point correspondence if a universal proof is required"
+  ],
+  "scope": "complete graph-driven executable conversion of the pinned Whisper Tiny English tensor graph under the declared C++23/Accelerate ABI; all pinned top-level values are represented, while generic non-default generation reconfiguration remains in progress and finite tests do not prove equality for every waveform"
+}

@@ -1,0 +1,503 @@
+{
+  "language": "FLAN-SHARED-ATEN-DISPATCH-1",
+  "torch_version": "2.10.0",
+  "platform": "macOS-26.5.1-arm64-arm-64bit-Mach-O",
+  "device": "cpu",
+  "dtype": "float32",
+  "deterministic_algorithms": true,
+  "full_dispatch_calls": 1767,
+  "cached_dispatch_calls": 964,
+  "unique_schemas": 48,
+  "schemas": [
+    {
+      "schema": "aten::_softmax(Tensor self, int dim, bool half_to_float) -> Tensor",
+      "family": "aten::_softmax",
+      "schema_sha256": "aea9ea26d7c25f2230cba60af7365a1f3586ae339b0633ec209b7cee155b3b04",
+      "full_calls": 24,
+      "cached_calls": 16,
+      "category": "TRANSCENDENTAL_OR_SOFTMAX_ATEN",
+      "target_binding": "invoke the identical torch.ops ATen schema on the same device/dtype/arguments",
+      "semantic_status": "DEFINITIONAL_EQUALITY_UNDER_SHARED_ATEN_DISPATCH"
+    },
+    {
+      "schema": "aten::_to_copy(Tensor self, *, ScalarType? dtype=None, Layout? layout=None, Device? device=None, bool? pin_memory=None, bool non_blocking=False, MemoryFormat? memory_format=None) -> Tensor",
+      "family": "aten::_to_copy",
+      "schema_sha256": "a968ce2b51295b75978f500aeff890791412a118f8c24b1e832f771876c278e2",
+      "full_calls": 6,
+      "cached_calls": 3,
+      "category": "STRUCTURAL_ATEN",
+      "target_binding": "invoke the identical torch.ops ATen schema on the same device/dtype/arguments",
+      "semantic_status": "DEFINITIONAL_EQUALITY_UNDER_SHARED_ATEN_DISPATCH"
+    },
+    {
+      "schema": "aten::_unsafe_view(Tensor self, SymInt[] size) -> Tensor",
+      "family": "aten::_unsafe_view",
+      "schema_sha256": "ddaf526985c2b748f7da6ad111a291efb35a4ded01167b3d45ce89e2b61fcf18",
+      "full_calls": 193,
+      "cached_calls": 105,
+      "category": "STRUCTURAL_ATEN",
+      "target_binding": "invoke the identical torch.ops ATen schema on the same device/dtype/arguments",
+      "semantic_status": "DEFINITIONAL_EQUALITY_UNDER_SHARED_ATEN_DISPATCH"
+    },
+    {
+      "schema": "aten::abs(Tensor self) -> Tensor",
+      "family": "aten::abs",
+      "schema_sha256": "7eff4cedd34bab81e80525a292ba21110cbbc59789f2c043d532916b41df50b1",
+      "full_calls": 1,
+      "cached_calls": 0,
+      "category": "MASK_AND_CONTROL_ATEN",
+      "target_binding": "invoke the identical torch.ops ATen schema on the same device/dtype/arguments",
+      "semantic_status": "DEFINITIONAL_EQUALITY_UNDER_SHARED_ATEN_DISPATCH"
+    },
+    {
+      "schema": "aten::add.Tensor(Tensor self, Tensor other, *, Scalar alpha=1) -> Tensor",
+      "family": "aten::add.Tensor",
+      "schema_sha256": "7eed5479f797e635e558f125991a16ac375b332723d600b6949fd8a5acb8a849",
+      "full_calls": 132,
+      "cached_calls": 79,
+      "category": "ELEMENTARY_F32_ATEN",
+      "target_binding": "invoke the identical torch.ops ATen schema on the same device/dtype/arguments",
+      "semantic_status": "DEFINITIONAL_EQUALITY_UNDER_SHARED_ATEN_DISPATCH"
+    },
+    {
+      "schema": "aten::add_.Tensor(Tensor(a!) self, Tensor other, *, Scalar alpha=1) -> Tensor(a!)",
+      "family": "aten::add_.Tensor",
+      "schema_sha256": "a7653c51c3946b425cc9e4a89766f52ee4422385a372bf349ffa9fc74d5c36c0",
+      "full_calls": 25,
+      "cached_calls": 16,
+      "category": "ELEMENTARY_F32_ATEN",
+      "target_binding": "invoke the identical torch.ops ATen schema on the same device/dtype/arguments",
+      "semantic_status": "DEFINITIONAL_EQUALITY_UNDER_SHARED_ATEN_DISPATCH"
+    },
+    {
+      "schema": "aten::alias(Tensor(a) self) -> Tensor(a)",
+      "family": "aten::alias",
+      "schema_sha256": "12757c01624e0ca87fa68f57f7dedc3b53b906da3747f2bbc91ffcf173f198c5",
+      "full_calls": 5,
+      "cached_calls": 4,
+      "category": "STRUCTURAL_ATEN",
+      "target_binding": "invoke the identical torch.ops ATen schema on the same device/dtype/arguments",
+      "semantic_status": "DEFINITIONAL_EQUALITY_UNDER_SHARED_ATEN_DISPATCH"
+    },
+    {
+      "schema": "aten::arange(Scalar end, *, ScalarType? dtype=None, Layout? layout=None, Device? device=None, bool? pin_memory=None) -> Tensor",
+      "family": "aten::arange",
+      "schema_sha256": "90ec7a12e302a11f865e3f4a3c610304605464b920b0b61ab9828f91e57a3dfe",
+      "full_calls": 3,
+      "cached_calls": 2,
+      "category": "STRUCTURAL_ATEN",
+      "target_binding": "invoke the identical torch.ops ATen schema on the same device/dtype/arguments",
+      "semantic_status": "DEFINITIONAL_EQUALITY_UNDER_SHARED_ATEN_DISPATCH"
+    },
+    {
+      "schema": "aten::arange.start(Scalar start, Scalar end, *, ScalarType? dtype=None, Layout? layout=None, Device? device=None, bool? pin_memory=None) -> Tensor",
+      "family": "aten::arange.start",
+      "schema_sha256": "8ebe1e01e15a83ac54a95731fdc9cd2fc934868aea99c3a06fca5a064c246db9",
+      "full_calls": 2,
+      "cached_calls": 1,
+      "category": "STRUCTURAL_ATEN",
+      "target_binding": "invoke the identical torch.ops ATen schema on the same device/dtype/arguments",
+      "semantic_status": "DEFINITIONAL_EQUALITY_UNDER_SHARED_ATEN_DISPATCH"
+    },
+    {
+      "schema": "aten::bmm(Tensor self, Tensor mat2) -> Tensor",
+      "family": "aten::bmm",
+      "schema_sha256": "54398ac2a10530a0c1003cf7302f2c74457bd74ec40116c7af6b10a9e02a1994",
+      "full_calls": 48,
+      "cached_calls": 32,
+      "category": "REDUCTION_ATEN",
+      "target_binding": "invoke the identical torch.ops ATen schema on the same device/dtype/arguments",
+      "semantic_status": "DEFINITIONAL_EQUALITY_UNDER_SHARED_ATEN_DISPATCH"
+    },
+    {
+      "schema": "aten::cat(Tensor[] tensors, int dim=0) -> Tensor",
+      "family": "aten::cat",
+      "schema_sha256": "4640e91df509d7b051b10e21b44ee20ef6c97a0227a545f6f3c2cdb32a3ad7cb",
+      "full_calls": 32,
+      "cached_calls": 16,
+      "category": "STRUCTURAL_ATEN",
+      "target_binding": "invoke the identical torch.ops ATen schema on the same device/dtype/arguments",
+      "semantic_status": "DEFINITIONAL_EQUALITY_UNDER_SHARED_ATEN_DISPATCH"
+    },
+    {
+      "schema": "aten::clone(Tensor self, *, MemoryFormat? memory_format=None) -> Tensor",
+      "family": "aten::clone",
+      "schema_sha256": "4eb57a7d2e0eb329a429828d3d0d888cd0b4ad6af7cb360f005c696bf8109e1b",
+      "full_calls": 25,
+      "cached_calls": 1,
+      "category": "STRUCTURAL_ATEN",
+      "target_binding": "invoke the identical torch.ops ATen schema on the same device/dtype/arguments",
+      "semantic_status": "DEFINITIONAL_EQUALITY_UNDER_SHARED_ATEN_DISPATCH"
+    },
+    {
+      "schema": "aten::copy_(Tensor(a!) self, Tensor src, bool non_blocking=False) -> Tensor(a!)",
+      "family": "aten::copy_",
+      "schema_sha256": "fe4718df3a2d866d6c1051787300fe19158f94500c37dc64b1ad552f140c5706",
+      "full_calls": 1,
+      "cached_calls": 1,
+      "category": "STRUCTURAL_ATEN",
+      "target_binding": "invoke the identical torch.ops ATen schema on the same device/dtype/arguments",
+      "semantic_status": "DEFINITIONAL_EQUALITY_UNDER_SHARED_ATEN_DISPATCH"
+    },
+    {
+      "schema": "aten::div.Tensor(Tensor self, Tensor other) -> Tensor",
+      "family": "aten::div.Tensor",
+      "schema_sha256": "0c9c78625050e6a7b57c56fb1c8144b6b02237504bcde488f56be184df2c8a66",
+      "full_calls": 4,
+      "cached_calls": 2,
+      "category": "ELEMENTARY_F32_ATEN",
+      "target_binding": "invoke the identical torch.ops ATen schema on the same device/dtype/arguments",
+      "semantic_status": "DEFINITIONAL_EQUALITY_UNDER_SHARED_ATEN_DISPATCH"
+    },
+    {
+      "schema": "aten::embedding(Tensor weight, Tensor indices, SymInt padding_idx=-1, bool scale_grad_by_freq=False, bool sparse=False) -> Tensor",
+      "family": "aten::embedding",
+      "schema_sha256": "8713acc65a409b18aea675ac4b16ac0c3c1720da534e8b7ecc763ae34a8f044f",
+      "full_calls": 4,
+      "cached_calls": 2,
+      "category": "STRUCTURAL_ATEN",
+      "target_binding": "invoke the identical torch.ops ATen schema on the same device/dtype/arguments",
+      "semantic_status": "DEFINITIONAL_EQUALITY_UNDER_SHARED_ATEN_DISPATCH"
+    },
+    {
+      "schema": "aten::eq.Scalar(Tensor self, Scalar other) -> Tensor",
+      "family": "aten::eq.Scalar",
+      "schema_sha256": "31fa176f13daf67a02a70b7146622acd3432c0d28af3275d3cdf9348114d887d",
+      "full_calls": 1,
+      "cached_calls": 1,
+      "category": "MASK_AND_CONTROL_ATEN",
+      "target_binding": "invoke the identical torch.ops ATen schema on the same device/dtype/arguments",
+      "semantic_status": "DEFINITIONAL_EQUALITY_UNDER_SHARED_ATEN_DISPATCH"
+    },
+    {
+      "schema": "aten::expand(Tensor(a) self, SymInt[] size, *, bool implicit=False) -> Tensor(a)",
+      "family": "aten::expand",
+      "schema_sha256": "4ba6f4248f92621a564b0756f663ba8e53e19fa43cecc86adb38865ae151b186",
+      "full_calls": 97,
+      "cached_calls": 65,
+      "category": "STRUCTURAL_ATEN",
+      "target_binding": "invoke the identical torch.ops ATen schema on the same device/dtype/arguments",
+      "semantic_status": "DEFINITIONAL_EQUALITY_UNDER_SHARED_ATEN_DISPATCH"
+    },
+    {
+      "schema": "aten::full(SymInt[] size, Scalar fill_value, *, ScalarType? dtype=None, Layout? layout=None, Device? device=None, bool? pin_memory=None) -> Tensor",
+      "family": "aten::full",
+      "schema_sha256": "bd25b2f25331ee6412dead925082e9b232d9ad5bab6e2cd2f94e83f4205f810c",
+      "full_calls": 1,
+      "cached_calls": 1,
+      "category": "STRUCTURAL_ATEN",
+      "target_binding": "invoke the identical torch.ops ATen schema on the same device/dtype/arguments",
+      "semantic_status": "DEFINITIONAL_EQUALITY_UNDER_SHARED_ATEN_DISPATCH"
+    },
+    {
+      "schema": "aten::full_like(Tensor self, Scalar fill_value, *, ScalarType? dtype=None, Layout? layout=None, Device? device=None, bool? pin_memory=None, MemoryFormat? memory_format=None) -> Tensor",
+      "family": "aten::full_like",
+      "schema_sha256": "7e47dc6053769f9bb2f0fa08a003791318cdaf5d7b3e1342e8a148eb494023b0",
+      "full_calls": 2,
+      "cached_calls": 1,
+      "category": "STRUCTURAL_ATEN",
+      "target_binding": "invoke the identical torch.ops ATen schema on the same device/dtype/arguments",
+      "semantic_status": "DEFINITIONAL_EQUALITY_UNDER_SHARED_ATEN_DISPATCH"
+    },
+    {
+      "schema": "aten::gt.Scalar(Tensor self, Scalar other) -> Tensor",
+      "family": "aten::gt.Scalar",
+      "schema_sha256": "86bb690ca65a13fabc25e6b9baa59dc906775f756f1c9db8844b4174f030fec3",
+      "full_calls": 1,
+      "cached_calls": 0,
+      "category": "MASK_AND_CONTROL_ATEN",
+      "target_binding": "invoke the identical torch.ops ATen schema on the same device/dtype/arguments",
+      "semantic_status": "DEFINITIONAL_EQUALITY_UNDER_SHARED_ATEN_DISPATCH"
+    },
+    {
+      "schema": "aten::gt.Tensor(Tensor self, Tensor other) -> Tensor",
+      "family": "aten::gt.Tensor",
+      "schema_sha256": "a153ba3d460530cf4bb16b16869b211880348dde6f86b9455838016e58414413",
+      "full_calls": 1,
+      "cached_calls": 1,
+      "category": "MASK_AND_CONTROL_ATEN",
+      "target_binding": "invoke the identical torch.ops ATen schema on the same device/dtype/arguments",
+      "semantic_status": "DEFINITIONAL_EQUALITY_UNDER_SHARED_ATEN_DISPATCH"
+    },
+    {
+      "schema": "aten::lift_fresh(Tensor(a) self) -> Tensor(a)",
+      "family": "aten::lift_fresh",
+      "schema_sha256": "694a3316d0063e18b94deaf91b21fa4e345d02aeeabcd923b010db523cd1283c",
+      "full_calls": 32,
+      "cached_calls": 1,
+      "category": "STRUCTURAL_ATEN",
+      "target_binding": "invoke the identical torch.ops ATen schema on the same device/dtype/arguments",
+      "semantic_status": "DEFINITIONAL_EQUALITY_UNDER_SHARED_ATEN_DISPATCH"
+    },
+    {
+      "schema": "aten::log(Tensor self) -> Tensor",
+      "family": "aten::log",
+      "schema_sha256": "ca6c89aae686c36c4b1adea4de65bbcecea81d8b0d1d0de18efaeb2cbf0ce3a1",
+      "full_calls": 2,
+      "cached_calls": 1,
+      "category": "TRANSCENDENTAL_OR_SOFTMAX_ATEN",
+      "target_binding": "invoke the identical torch.ops ATen schema on the same device/dtype/arguments",
+      "semantic_status": "DEFINITIONAL_EQUALITY_UNDER_SHARED_ATEN_DISPATCH"
+    },
+    {
+      "schema": "aten::lt.Scalar(Tensor self, Scalar other) -> Tensor",
+      "family": "aten::lt.Scalar",
+      "schema_sha256": "a1650bf80f672b259d6571122c5bf8153937a604e66a918c1a7c07e8f5642c60",
+      "full_calls": 2,
+      "cached_calls": 1,
+      "category": "MASK_AND_CONTROL_ATEN",
+      "target_binding": "invoke the identical torch.ops ATen schema on the same device/dtype/arguments",
+      "semantic_status": "DEFINITIONAL_EQUALITY_UNDER_SHARED_ATEN_DISPATCH"
+    },
+    {
+      "schema": "aten::masked_fill.Scalar(Tensor self, Tensor mask, Scalar value) -> Tensor",
+      "family": "aten::masked_fill.Scalar",
+      "schema_sha256": "d1c9c141d020a5930b308fc1be15c34440f68a194a9cea501a63363ab5da3790",
+      "full_calls": 1,
+      "cached_calls": 1,
+      "category": "MASK_AND_CONTROL_ATEN",
+      "target_binding": "invoke the identical torch.ops ATen schema on the same device/dtype/arguments",
+      "semantic_status": "DEFINITIONAL_EQUALITY_UNDER_SHARED_ATEN_DISPATCH"
+    },
+    {
+      "schema": "aten::mean.dim(Tensor self, int[1]? dim, bool keepdim=False, *, ScalarType? dtype=None) -> Tensor",
+      "family": "aten::mean.dim",
+      "schema_sha256": "ee07aaa89ee9845ea95c1523b2864b6cac5c5d534e42ecde26ed14d4714819ea",
+      "full_calls": 42,
+      "cached_calls": 25,
+      "category": "REDUCTION_ATEN",
+      "target_binding": "invoke the identical torch.ops ATen schema on the same device/dtype/arguments",
+      "semantic_status": "DEFINITIONAL_EQUALITY_UNDER_SHARED_ATEN_DISPATCH"
+    },
+    {
+      "schema": "aten::minimum(Tensor self, Tensor other) -> Tensor",
+      "family": "aten::minimum",
+      "schema_sha256": "e76fa2b72f6ba3d8eade50ce6736fece8af251961188b724338a9411f2711ea2",
+      "full_calls": 3,
+      "cached_calls": 2,
+      "category": "MASK_AND_CONTROL_ATEN",
+      "target_binding": "invoke the identical torch.ops ATen schema on the same device/dtype/arguments",
+      "semantic_status": "DEFINITIONAL_EQUALITY_UNDER_SHARED_ATEN_DISPATCH"
+    },
+    {
+      "schema": "aten::mm(Tensor self, Tensor mat2) -> Tensor",
+      "family": "aten::mm",
+      "schema_sha256": "858756c0f22052de641bfde6c0c93bfacfb7c16094a9e1ead7e1802c3ca043c4",
+      "full_calls": 145,
+      "cached_calls": 73,
+      "category": "REDUCTION_ATEN",
+      "target_binding": "invoke the identical torch.ops ATen schema on the same device/dtype/arguments",
+      "semantic_status": "DEFINITIONAL_EQUALITY_UNDER_SHARED_ATEN_DISPATCH"
+    },
+    {
+      "schema": "aten::mul.Tensor(Tensor self, Tensor other) -> Tensor",
+      "family": "aten::mul.Tensor",
+      "schema_sha256": "6f90f982af430228b652c50f4a3874afdd6931a3eb3235b51e5abda7dcea926a",
+      "full_calls": 169,
+      "cached_calls": 92,
+      "category": "ELEMENTARY_F32_ATEN",
+      "target_binding": "invoke the identical torch.ops ATen schema on the same device/dtype/arguments",
+      "semantic_status": "DEFINITIONAL_EQUALITY_UNDER_SHARED_ATEN_DISPATCH"
+    },
+    {
+      "schema": "aten::mul_.Tensor(Tensor(a!) self, Tensor other) -> Tensor(a!)",
+      "family": "aten::mul_.Tensor",
+      "schema_sha256": "12443b2a746b97941ca3dfd9540702c98f28147e2048275d7a94b057488fc269",
+      "full_calls": 1,
+      "cached_calls": 1,
+      "category": "ELEMENTARY_F32_ATEN",
+      "target_binding": "invoke the identical torch.ops ATen schema on the same device/dtype/arguments",
+      "semantic_status": "DEFINITIONAL_EQUALITY_UNDER_SHARED_ATEN_DISPATCH"
+    },
+    {
+      "schema": "aten::neg(Tensor self) -> Tensor",
+      "family": "aten::neg",
+      "schema_sha256": "f4aca0233e6dc73657853dcf2557ebe04aa8ed86d367913dbace4d6e45af1802",
+      "full_calls": 1,
+      "cached_calls": 1,
+      "category": "MASK_AND_CONTROL_ATEN",
+      "target_binding": "invoke the identical torch.ops ATen schema on the same device/dtype/arguments",
+      "semantic_status": "DEFINITIONAL_EQUALITY_UNDER_SHARED_ATEN_DISPATCH"
+    },
+    {
+      "schema": "aten::ones(SymInt[] size, *, ScalarType? dtype=None, Layout? layout=None, Device? device=None, bool? pin_memory=None) -> Tensor",
+      "family": "aten::ones",
+      "schema_sha256": "98ff5228cc79a77e9702a26d69c18214e3fb0cf5580472c1e3f49d7f10a81b7c",
+      "full_calls": 3,
+      "cached_calls": 2,
+      "category": "STRUCTURAL_ATEN",
+      "target_binding": "invoke the identical torch.ops ATen schema on the same device/dtype/arguments",
+      "semantic_status": "DEFINITIONAL_EQUALITY_UNDER_SHARED_ATEN_DISPATCH"
+    },
+    {
+      "schema": "aten::permute(Tensor(a) self, int[] dims) -> Tensor(a)",
+      "family": "aten::permute",
+      "schema_sha256": "fceef00391ac76f5d46014735f426d84552bbb1e34b71f2446af3ce36b69b2ea",
+      "full_calls": 2,
+      "cached_calls": 1,
+      "category": "STRUCTURAL_ATEN",
+      "target_binding": "invoke the identical torch.ops ATen schema on the same device/dtype/arguments",
+      "semantic_status": "DEFINITIONAL_EQUALITY_UNDER_SHARED_ATEN_DISPATCH"
+    },
+    {
+      "schema": "aten::pow.Tensor_Scalar(Tensor self, Scalar exponent) -> Tensor",
+      "family": "aten::pow.Tensor_Scalar",
+      "schema_sha256": "c56e96b83a9eee0120e94603216bc8aa7f552014dad57c8ceeccd68b0114732e",
+      "full_calls": 58,
+      "cached_calls": 33,
+      "category": "ELEMENTARY_F32_ATEN",
+      "target_binding": "invoke the identical torch.ops ATen schema on the same device/dtype/arguments",
+      "semantic_status": "DEFINITIONAL_EQUALITY_UNDER_SHARED_ATEN_DISPATCH"
+    },
+    {
+      "schema": "aten::rsqrt(Tensor self) -> Tensor",
+      "family": "aten::rsqrt",
+      "schema_sha256": "7e5911a94fae4bed3bb5659ce5ed4324c738e62d9657797ef86e131198a175fd",
+      "full_calls": 42,
+      "cached_calls": 25,
+      "category": "TRANSCENDENTAL_OR_SOFTMAX_ATEN",
+      "target_binding": "invoke the identical torch.ops ATen schema on the same device/dtype/arguments",
+      "semantic_status": "DEFINITIONAL_EQUALITY_UNDER_SHARED_ATEN_DISPATCH"
+    },
+    {
+      "schema": "aten::rsub.Scalar(Tensor self, Scalar other, Scalar alpha=1) -> Tensor",
+      "family": "aten::rsub.Scalar",
+      "schema_sha256": "91f4706a1a1ada1c5656da0e8a78c889b67a2db0bbbaef99d9dec96df322b56a",
+      "full_calls": 2,
+      "cached_calls": 1,
+      "category": "MASK_AND_CONTROL_ATEN",
+      "target_binding": "invoke the identical torch.ops ATen schema on the same device/dtype/arguments",
+      "semantic_status": "DEFINITIONAL_EQUALITY_UNDER_SHARED_ATEN_DISPATCH"
+    },
+    {
+      "schema": "aten::select.int(Tensor(a) self, int dim, SymInt index) -> Tensor(a)",
+      "family": "aten::select.int",
+      "schema_sha256": "7f38f84f13300e0dfb53c7a8647ebce5db445a59c7ecac8f9fad9bc882c8dd84",
+      "full_calls": 10,
+      "cached_calls": 9,
+      "category": "STRUCTURAL_ATEN",
+      "target_binding": "invoke the identical torch.ops ATen schema on the same device/dtype/arguments",
+      "semantic_status": "DEFINITIONAL_EQUALITY_UNDER_SHARED_ATEN_DISPATCH"
+    },
+    {
+      "schema": "aten::slice.Tensor(Tensor(a) self, int dim=0, SymInt? start=None, SymInt? end=None, SymInt step=1) -> Tensor(a)",
+      "family": "aten::slice.Tensor",
+      "schema_sha256": "07ffa1ca72f4722fe00256473494b5deb7026b854a7537390027a060c4a4082c",
+      "full_calls": 2,
+      "cached_calls": 1,
+      "category": "STRUCTURAL_ATEN",
+      "target_binding": "invoke the identical torch.ops ATen schema on the same device/dtype/arguments",
+      "semantic_status": "DEFINITIONAL_EQUALITY_UNDER_SHARED_ATEN_DISPATCH"
+    },
+    {
+      "schema": "aten::sub.Tensor(Tensor self, Tensor other, *, Scalar alpha=1) -> Tensor",
+      "family": "aten::sub.Tensor",
+      "schema_sha256": "c0536990a095d634eb2741d761ce7292ce46cf29776fe276ef73edb31228389c",
+      "full_calls": 2,
+      "cached_calls": 1,
+      "category": "ELEMENTARY_F32_ATEN",
+      "target_binding": "invoke the identical torch.ops ATen schema on the same device/dtype/arguments",
+      "semantic_status": "DEFINITIONAL_EQUALITY_UNDER_SHARED_ATEN_DISPATCH"
+    },
+    {
+      "schema": "aten::t(Tensor(a) self) -> Tensor(a)",
+      "family": "aten::t",
+      "schema_sha256": "1794caf75d408df32fb362615d7288dbafb0787eb36368f2d275ee98f149cd64",
+      "full_calls": 145,
+      "cached_calls": 73,
+      "category": "STRUCTURAL_ATEN",
+      "target_binding": "invoke the identical torch.ops ATen schema on the same device/dtype/arguments",
+      "semantic_status": "DEFINITIONAL_EQUALITY_UNDER_SHARED_ATEN_DISPATCH"
+    },
+    {
+      "schema": "aten::tanh(Tensor self) -> Tensor",
+      "family": "aten::tanh",
+      "schema_sha256": "4744695982b1df6645421da6336ae9407a18c69e1ac015ca24701f3c1bbd3eed",
+      "full_calls": 16,
+      "cached_calls": 8,
+      "category": "TRANSCENDENTAL_OR_SOFTMAX_ATEN",
+      "target_binding": "invoke the identical torch.ops ATen schema on the same device/dtype/arguments",
+      "semantic_status": "DEFINITIONAL_EQUALITY_UNDER_SHARED_ATEN_DISPATCH"
+    },
+    {
+      "schema": "aten::transpose.int(Tensor(a) self, int dim0, int dim1) -> Tensor(a)",
+      "family": "aten::transpose.int",
+      "schema_sha256": "0fd8ee7d070329e4c877097e6bfdb1bfb21c2dbec6b0c174e7af34fb80a9ea19",
+      "full_calls": 120,
+      "cached_calls": 64,
+      "category": "STRUCTURAL_ATEN",
+      "target_binding": "invoke the identical torch.ops ATen schema on the same device/dtype/arguments",
+      "semantic_status": "DEFINITIONAL_EQUALITY_UNDER_SHARED_ATEN_DISPATCH"
+    },
+    {
+      "schema": "aten::triu(Tensor self, SymInt diagonal=0) -> Tensor",
+      "family": "aten::triu",
+      "schema_sha256": "5b2159aeb75eb33b1405c274760180bd3bfecaba789eda4de0f6b51cb845630a",
+      "full_calls": 1,
+      "cached_calls": 0,
+      "category": "MASK_AND_CONTROL_ATEN",
+      "target_binding": "invoke the identical torch.ops ATen schema on the same device/dtype/arguments",
+      "semantic_status": "DEFINITIONAL_EQUALITY_UNDER_SHARED_ATEN_DISPATCH"
+    },
+    {
+      "schema": "aten::unsqueeze(Tensor(a) self, int dim) -> Tensor(a)",
+      "family": "aten::unsqueeze",
+      "schema_sha256": "ad9e5d0a69d058dc2a12ad6072dbcadff3ff74d6c1fda3bed5ec26606a3787f6",
+      "full_calls": 14,
+      "cached_calls": 9,
+      "category": "STRUCTURAL_ATEN",
+      "target_binding": "invoke the identical torch.ops ATen schema on the same device/dtype/arguments",
+      "semantic_status": "DEFINITIONAL_EQUALITY_UNDER_SHARED_ATEN_DISPATCH"
+    },
+    {
+      "schema": "aten::view(Tensor(a) self, SymInt[] size) -> Tensor(a)",
+      "family": "aten::view",
+      "schema_sha256": "9318b7ccc0632ff21831b1397317654bf4a68ffefb635febef57bbeb43274964",
+      "full_calls": 340,
+      "cached_calls": 187,
+      "category": "STRUCTURAL_ATEN",
+      "target_binding": "invoke the identical torch.ops ATen schema on the same device/dtype/arguments",
+      "semantic_status": "DEFINITIONAL_EQUALITY_UNDER_SHARED_ATEN_DISPATCH"
+    },
+    {
+      "schema": "aten::where.self(Tensor condition, Tensor self, Tensor other) -> Tensor",
+      "family": "aten::where.self",
+      "schema_sha256": "609e7d1d3a583a9d213f9066960ec78da61b5af3b3f2c31f634e9cabeedf6330",
+      "full_calls": 2,
+      "cached_calls": 1,
+      "category": "MASK_AND_CONTROL_ATEN",
+      "target_binding": "invoke the identical torch.ops ATen schema on the same device/dtype/arguments",
+      "semantic_status": "DEFINITIONAL_EQUALITY_UNDER_SHARED_ATEN_DISPATCH"
+    },
+    {
+      "schema": "aten::zeros(SymInt[] size, *, ScalarType? dtype=None, Layout? layout=None, Device? device=None, bool? pin_memory=None) -> Tensor",
+      "family": "aten::zeros",
+      "schema_sha256": "ea306f1814d9c1acf015183a87c86f5d8b0b36c762a0c5f1314851c03df3c2a6",
+      "full_calls": 1,
+      "cached_calls": 1,
+      "category": "STRUCTURAL_ATEN",
+      "target_binding": "invoke the identical torch.ops ATen schema on the same device/dtype/arguments",
+      "semantic_status": "DEFINITIONAL_EQUALITY_UNDER_SHARED_ATEN_DISPATCH"
+    },
+    {
+      "schema": "aten::zeros_like(Tensor self, *, ScalarType? dtype=None, Layout? layout=None, Device? device=None, bool? pin_memory=None, MemoryFormat? memory_format=None) -> Tensor",
+      "family": "aten::zeros_like",
+      "schema_sha256": "864db785a7c98c0e782d8d0357d7a408c5ac3f9a411821a4db000dfe3fb925b8",
+      "full_calls": 1,
+      "cached_calls": 1,
+      "category": "STRUCTURAL_ATEN",
+      "target_binding": "invoke the identical torch.ops ATen schema on the same device/dtype/arguments",
+      "semantic_status": "DEFINITIONAL_EQUALITY_UNDER_SHARED_ATEN_DISPATCH"
+    }
+  ],
+  "required_path_coverage": [
+    "full encoder plus full decoder",
+    "one-token decoder with populated KV cache"
+  ],
+  "shape_generality_argument": "operator schemas are shape-polymorphic; source schedule certificate proves fixed layer/control structure, while both cache branches are traced",
+  "forward_schedule_sha256": "4560e4196f886cd89fbb780b5988662c95cd115717c5b49824afbdd9349bb127",
+  "backend_contract_sha256": "fa1d9cf8fc56bf7a8c22b98d4986d8a6caa3cc9e27ce98d6222ff17f8b15cd4f",
+  "exact_result": "source and PRSL target are definitionally equal when both dispatch these same schemas with bit-identical arguments",
+  "portable_backend_independent": false,
+  "trust_boundary": "dispatcher kernel implementation and argument correspondence remain shared ABI assumptions"
+}

@@ -1,0 +1,234 @@
+{
+  "certificate": "WHISPER_CPP23_DETERMINISTIC_SCORE_POLICIES_1",
+  "case_count": 7,
+  "all_token_sequences_exact": true,
+  "all_graph_nodes_visited": true,
+  "cases": [
+    {
+      "case": "single_token_sequence_bias",
+      "generation_kwargs": {
+        "sequence_bias": [
+          [
+            [
+              1770
+            ],
+            -100.0
+          ]
+        ]
+      },
+      "generated_token_ids": [
+        43438,
+        2264,
+        346,
+        353,
+        318,
+        262,
+        46329,
+        286,
+        262,
+        3504,
+        6097,
+        11,
+        290,
+        356,
+        389,
+        9675,
+        284,
+        7062,
+        465,
+        21443,
+        13
+      ],
+      "token_count": 21,
+      "exact_transformers_token_match": true,
+      "terminated_by_eos": true,
+      "graph_nodes_visited": 74,
+      "constructor": "SequenceBiasPolicy.AdditiveSequenceBias"
+    },
+    {
+      "case": "contextual_sequence_bias",
+      "generation_kwargs": {
+        "sequence_bias": [
+          [
+            [
+              50362,
+              1770
+            ],
+            -100.0
+          ]
+        ]
+      },
+      "generated_token_ids": [
+        43438,
+        2264,
+        346,
+        353,
+        318,
+        262,
+        46329,
+        286,
+        262,
+        3504,
+        6097,
+        11,
+        290,
+        356,
+        389,
+        9675,
+        284,
+        7062,
+        465,
+        21443,
+        13
+      ],
+      "token_count": 21,
+      "exact_transformers_token_match": true,
+      "terminated_by_eos": true,
+      "graph_nodes_visited": 74,
+      "constructor": "SequenceBiasPolicy.AdditiveSequenceBias"
+    },
+    {
+      "case": "forced_bos_model_noop",
+      "generation_kwargs": {
+        "forced_bos_token_id": 464
+      },
+      "generated_token_ids": [
+        1770,
+        13,
+        2264,
+        346,
+        353,
+        318,
+        262,
+        46329,
+        286,
+        262,
+        3504,
+        6097,
+        11,
+        290,
+        356,
+        389,
+        9675,
+        284,
+        7062,
+        465,
+        21443,
+        13
+      ],
+      "token_count": 22,
+      "exact_transformers_token_match": true,
+      "terminated_by_eos": true,
+      "graph_nodes_visited": 74,
+      "constructor": "ForcedBeginningPolicy.ForcedBeginningToken"
+    },
+    {
+      "case": "forced_eos_at_maximum",
+      "generation_kwargs": {
+        "forced_eos_token_id": 50256,
+        "max_length": 8
+      },
+      "generated_token_ids": [
+        1770,
+        13,
+        2264,
+        346,
+        353
+      ],
+      "token_count": 5,
+      "exact_transformers_token_match": true,
+      "terminated_by_eos": true,
+      "graph_nodes_visited": 74,
+      "constructor": "ForcedEndingPolicy.ForcedEndingTokens"
+    },
+    {
+      "case": "exponential_eos_decay",
+      "generation_kwargs": {
+        "exponential_decay_length_penalty": [
+          0,
+          2.0
+        ]
+      },
+      "generated_token_ids": [
+        1770,
+        13
+      ],
+      "token_count": 2,
+      "exact_transformers_token_match": true,
+      "terminated_by_eos": true,
+      "graph_nodes_visited": 74,
+      "constructor": "ExponentialEosPolicy.ExponentialEosDecay"
+    },
+    {
+      "case": "repair_invalid_finite_model_path",
+      "generation_kwargs": {
+        "remove_invalid_values": true
+      },
+      "generated_token_ids": [
+        1770,
+        13,
+        2264,
+        346,
+        353,
+        318,
+        262,
+        46329,
+        286,
+        262,
+        3504,
+        6097,
+        11,
+        290,
+        356,
+        389,
+        9675,
+        284,
+        7062,
+        465,
+        21443,
+        13
+      ],
+      "token_count": 22,
+      "exact_transformers_token_match": true,
+      "terminated_by_eos": true,
+      "graph_nodes_visited": 74,
+      "constructor": "InvalidLogitPolicy.RepairInvalidLogits"
+    },
+    {
+      "case": "renormalize_logits",
+      "generation_kwargs": {
+        "renormalize_logits": true
+      },
+      "generated_token_ids": [
+        1770,
+        13,
+        2264,
+        346,
+        353,
+        318,
+        262,
+        46329,
+        286,
+        262,
+        3504,
+        6097,
+        11,
+        290,
+        356,
+        389,
+        9675,
+        284,
+        7062,
+        465,
+        21443,
+        13
+      ],
+      "token_count": 22,
+      "exact_transformers_token_match": true,
+      "terminated_by_eos": true,
+      "graph_nodes_visited": 74,
+      "constructor": "LogitNormalizationPolicy.NormalizeLogProbabilities"
+    }
+  ],
+  "scope": "Real-audio greedy generation under sequence bias, forced boundaries, exponential EOS decay, invalid-value repair on the finite model path, and final logit normalization."
+}

@@ -1,0 +1,37 @@
+{
+  "checkpoint_root": "work/google_flan",
+  "artifacts": {
+    "work/google_flan/config.json": {
+      "bytes": 1401,
+      "sha256": "439aa0fecf5a5546a1def68b1fc45e538e2c94528ce805378daf091e2bf6e4de"
+    },
+    "work/google_flan/model.safetensors": {
+      "bytes": 307867048,
+      "sha256": "495fa51e204676f1a857a9fc13c4c89f3f5ba9f480b898cebca02add25e6d749"
+    },
+    "work/google_flan/spiece.model": {
+      "bytes": 791656,
+      "sha256": "d60acb128cf7b7f2536e8f38a5b18a05535c9e14c7a355904270e15b0945ea86"
+    },
+    "outputs/flan_domain32_program.json.gz": {
+      "bytes": 35947,
+      "sha256": "8f07061c39c63fa0b536cad6f20e1696b7028d28158378f3a1e1da4c6a0a7590"
+    },
+    "outputs/flan_domain32_quotient.json": {
+      "bytes": 151546,
+      "sha256": "fe6ead6820139afd9d4729de2684a37db8dc76f585db132e488efb4ee832de56"
+    },
+    "outputs/flan_domain32.prslb": {
+      "bytes": 4275,
+      "sha256": "14c5aedd649c152d5046691db1f20630b589356ad4ddbb8b8a487a7643d23627"
+    }
+  },
+  "domain": {
+    "prompts": 32,
+    "source_states": 224,
+    "quotient_states": 221,
+    "horizon": 3,
+    "local_tv": 0.012649729152361334,
+    "horizon_bound": 0.037949187457084005
+  }
+}

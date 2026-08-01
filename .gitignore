@@ -67,3 +67,11 @@ vcpkg_installed/
 # test output & cache
 Testing/
 .cache/
+
+# Local model/runtime material
+work/
+.ruff_cache/
+__pycache__/
+.DS_Store
+outputs/.DS_Store
+*.olean

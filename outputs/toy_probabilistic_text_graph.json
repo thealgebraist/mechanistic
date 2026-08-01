@@ -1,0 +1,18 @@
+{
+  "language": "TOY-PROBABILISTIC-QUOTIENT-1",
+  "source_states": 7,
+  "quotient_states": 5,
+  "denominator": 16,
+  "tokens": ["key", "keys", "is", "are", "found", "missing", ".", "<eos>"],
+  "projection_Q": [0, 1, 2, 3, 3, 4, 4],
+  "states": [
+    {"id": 0, "source_names": ["START"], "emission_counts": [8, 8, 0, 0, 0, 0, 0, 0], "successors": [1, 2, 4, 4, 4, 4, 4, 4]},
+    {"id": 1, "source_names": ["SINGULAR"], "emission_counts": [0, 0, 14, 0, 1, 1, 0, 0], "successors": [4, 4, 3, 4, 4, 4, 4, 4]},
+    {"id": 2, "source_names": ["PLURAL"], "emission_counts": [0, 0, 0, 14, 1, 1, 0, 0], "successors": [4, 4, 4, 3, 4, 4, 4, 4]},
+    {"id": 3, "source_names": ["PREDICATE_A", "PREDICATE_B"], "emission_counts": [0, 0, 0, 0, 10, 5, 1, 0], "successors": [4, 4, 4, 4, 4, 4, 4, 4]},
+    {"id": 4, "source_names": ["TERMINAL_A", "TERMINAL_B"], "emission_counts": [0, 0, 0, 0, 0, 0, 16, 0], "successors": [4, 4, 4, 4, 4, 4, 4, 4]}
+  ],
+  "commutation": {"lambda_Q_equals_O": true, "delta_a_Q_equals_Q_T_a": true},
+  "all_finite_continuations_exact": true,
+  "minimality": "coarsest stable probabilistic Moore partition"
+}

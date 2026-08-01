@@ -1,0 +1,324 @@
+{
+  "certificate": "WHISPER_CPP23_SYNTHID_GROUP_BEAM_SHARED_ROW_STATE_1",
+  "reference_repository": "transformers-community/group-beam-search",
+  "reference_revision": "1a281620f7c5fa711c6a44d61c42a4e3a9c2098b",
+  "reference_source_sha256": {
+    "custom_generate/generate.py": "07cb918df0a9298b89debb926b672bf8fd688cc2e66ba97a756cd04c12d02b42",
+    "custom_generate/beam_search.py": "b55a2e9c65c357391eb78cc37bf0ecaeb89034b4dc2789a2d9c7516f4dd803a4"
+  },
+  "case_count": 5,
+  "all_ranked_sequences_exact": true,
+  "all_context_hashes_exact": true,
+  "all_repeated_decisions_exact": true,
+  "all_skipped_decisions_exact": true,
+  "worst_sequence_score_error": 6.908219442747221e-05,
+  "all_graph_nodes_visited": true,
+  "cases": [
+    {
+      "case": "two_groups",
+      "num_beams": 4,
+      "num_beam_groups": 2,
+      "group_size": 2,
+      "processor_calls": 12,
+      "flattened_row_states": 24,
+      "ranked_sequences": [
+        [
+          50257,
+          50362,
+          1770,
+          13,
+          2264,
+          346,
+          353,
+          318
+        ],
+        [
+          50257,
+          50362,
+          1770,
+          13,
+          2264,
+          346,
+          353,
+          318
+        ],
+        [
+          50257,
+          50362,
+          1770,
+          13,
+          2264,
+          50076,
+          372,
+          318
+        ],
+        [
+          50257,
+          50362,
+          43438,
+          2264,
+          346,
+          353,
+          318,
+          262
+        ]
+      ],
+      "maximum_sequence_score_error": 6.854855834959039e-06,
+      "all_ranked_sequences_exact": true,
+      "all_context_hashes_exact": true,
+      "all_repeated_decisions_exact": true,
+      "all_skipped_decisions_exact": true,
+      "graph_nodes_visited": 74,
+      "constructor": "Selection.DiverseGroupBeamSearch + WatermarkPolicy.SynthIDTextWatermark"
+    },
+    {
+      "case": "three_groups",
+      "num_beams": 6,
+      "num_beam_groups": 3,
+      "group_size": 2,
+      "processor_calls": 18,
+      "flattened_row_states": 36,
+      "ranked_sequences": [
+        [
+          50257,
+          50362,
+          1770,
+          13,
+          2264,
+          346,
+          353,
+          318
+        ],
+        [
+          50257,
+          50362,
+          1770,
+          13,
+          2264,
+          417,
+          353,
+          318
+        ],
+        [
+          50257,
+          50362,
+          43438,
+          2264,
+          346,
+          353,
+          318,
+          262
+        ],
+        [
+          50257,
+          50362,
+          43438,
+          2264,
+          343,
+          353,
+          318,
+          262
+        ],
+        [
+          50257,
+          50362,
+          1770,
+          13,
+          2264,
+          346,
+          353,
+          318
+        ],
+        [
+          50257,
+          50362,
+          1770,
+          13,
+          627,
+          346,
+          353,
+          318
+        ]
+      ],
+      "maximum_sequence_score_error": 3.803113616940301e-05,
+      "all_ranked_sequences_exact": true,
+      "all_context_hashes_exact": true,
+      "all_repeated_decisions_exact": true,
+      "all_skipped_decisions_exact": true,
+      "graph_nodes_visited": 74,
+      "constructor": "Selection.DiverseGroupBeamSearch + WatermarkPolicy.SynthIDTextWatermark"
+    },
+    {
+      "case": "startup_skip",
+      "num_beams": 4,
+      "num_beam_groups": 2,
+      "group_size": 2,
+      "processor_calls": 12,
+      "flattened_row_states": 24,
+      "ranked_sequences": [
+        [
+          50257,
+          50362,
+          1770,
+          13,
+          2264,
+          346,
+          353,
+          318
+        ],
+        [
+          50257,
+          50362,
+          1770,
+          13,
+          627,
+          346,
+          353,
+          318
+        ],
+        [
+          50257,
+          50362,
+          1770,
+          13,
+          509,
+          688,
+          263,
+          318
+        ],
+        [
+          50257,
+          50362,
+          1770,
+          13,
+          509,
+          688,
+          333,
+          318
+        ]
+      ],
+      "maximum_sequence_score_error": 6.908219442747221e-05,
+      "all_ranked_sequences_exact": true,
+      "all_context_hashes_exact": true,
+      "all_repeated_decisions_exact": true,
+      "all_skipped_decisions_exact": true,
+      "graph_nodes_visited": 74,
+      "constructor": "Selection.DiverseGroupBeamSearch + WatermarkPolicy.SynthIDTextWatermark"
+    },
+    {
+      "case": "repeated_empty",
+      "num_beams": 4,
+      "num_beam_groups": 2,
+      "group_size": 2,
+      "processor_calls": 12,
+      "flattened_row_states": 24,
+      "ranked_sequences": [
+        [
+          50257,
+          50362,
+          1770,
+          13,
+          2264,
+          346,
+          353,
+          318
+        ],
+        [
+          50257,
+          50362,
+          1770,
+          13,
+          627,
+          346,
+          353,
+          318
+        ],
+        [
+          50257,
+          50362,
+          1770,
+          13,
+          2264,
+          346,
+          353,
+          318
+        ],
+        [
+          50257,
+          50362,
+          1770,
+          13,
+          2264,
+          343,
+          353,
+          318
+        ]
+      ],
+      "maximum_sequence_score_error": 6.48493559874952e-05,
+      "all_ranked_sequences_exact": true,
+      "all_context_hashes_exact": true,
+      "all_repeated_decisions_exact": true,
+      "all_skipped_decisions_exact": true,
+      "graph_nodes_visited": 74,
+      "constructor": "Selection.DiverseGroupBeamSearch + WatermarkPolicy.SynthIDTextWatermark"
+    },
+    {
+      "case": "three_rows_per_group",
+      "num_beams": 6,
+      "num_beam_groups": 2,
+      "group_size": 3,
+      "processor_calls": 12,
+      "flattened_row_states": 36,
+      "ranked_sequences": [
+        [
+          50257,
+          50362,
+          1770,
+          13,
+          2264,
+          346,
+          353,
+          318
+        ],
+        [
+          50257,
+          50362,
+          1770,
+          13,
+          421,
+          346,
+          353,
+          318
+        ],
+        [
+          50257,
+          50362,
+          1770,
+          13,
+          2264,
+          343,
+          353,
+          318
+        ],
+        [
+          50257,
+          50362,
+          43438,
+          2264,
+          346,
+          353,
+          318,
+          262
+        ]
+      ],
+      "maximum_sequence_score_error": 2.5033532989549023e-05,
+      "all_ranked_sequences_exact": true,
+      "all_context_hashes_exact": true,
+      "all_repeated_decisions_exact": true,
+      "all_skipped_decisions_exact": true,
+      "graph_nodes_visited": 74,
+      "constructor": "Selection.DiverseGroupBeamSearch + WatermarkPolicy.SynthIDTextWatermark"
+    }
+  ],
+  "scope": "Batch-one diverse-group beam search with one persistent SynthID state tensor shared by sequential group calls and indexed by within-group row."
+}

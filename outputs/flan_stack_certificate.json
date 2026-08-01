@@ -1,0 +1,51 @@
+{
+  "model": "google/flan-t5-small",
+  "language": "PRSL-STACK-1",
+  "prompts": [
+    "translate English to German: The keys are on the table.",
+    "translate English to German: The cat is on the mat.",
+    "summarize: The small observatory was flooded after a storm.",
+    "question: What color is the sky? answer:",
+    "classify sentiment: I loved the careful and helpful explanation.",
+    "complete: The keys to the cabinet",
+    "translate English to French: The door is open.",
+    "question: Who wrote Hamlet? answer:"
+  ],
+  "horizon": 3,
+  "branching": 2,
+  "state_count": 56,
+  "frontier": [
+    {
+      "budget": 2048,
+      "actual_bytes": 992,
+      "top_k": 1,
+      "states": 56,
+      "max_tv_error": 0.46948564952788374,
+      "mean_tv_error": 0.26971913870227493
+    },
+    {
+      "budget": 4096,
+      "actual_bytes": 1292,
+      "top_k": 2,
+      "states": 56,
+      "max_tv_error": 0.44613934602593824,
+      "mean_tv_error": 0.22571609538194834
+    },
+    {
+      "budget": 8192,
+      "actual_bytes": 1855,
+      "top_k": 4,
+      "states": 56,
+      "max_tv_error": 0.4158711462911465,
+      "mean_tv_error": 0.18745697978120363
+    },
+    {
+      "budget": 16384,
+      "actual_bytes": 2850,
+      "top_k": 8,
+      "states": 56,
+      "max_tv_error": 0.3650418194413511,
+      "mean_tv_error": 0.15888164527293872
+    }
+  ]
+}

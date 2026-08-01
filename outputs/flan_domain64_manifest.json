@@ -1,0 +1,22 @@
+{
+  "source": {
+    "bytes": 16189,
+    "sha256": "c68dd363f30a761c3c1cf9ff5d74f37459275af226e800bfda50237d14ba828b"
+  },
+  "quotient": {
+    "bytes": 225354,
+    "sha256": "d955345ccf5af1c809fab860909c3aed0eb8aa4d66c908f635ea54ff36b1cc6b"
+  },
+  "binary": {
+    "bytes": 6340,
+    "sha256": "1d6e0bf6681ba460ec81767340bf15474f25196c47afbfe2ea78cb2dd5e42ae0"
+  },
+  "domain": {
+    "prompts": 48,
+    "source_states": 336,
+    "quotient_states": 328,
+    "horizon": 3,
+    "local_tv": 0.01965362020294499,
+    "horizon_bound": 0.05896086060883497
+  }
+}

@@ -1,0 +1,134 @@
+{
+  "certificate": "WHISPER_CPP23_SAMPLING_FILTER_DISTRIBUTIONS_1",
+  "vocabulary_size": 51864,
+  "case_count": 8,
+  "all_supports_exact": true,
+  "all_argmax_tokens_exact": true,
+  "worst_max_absolute_probability_error": 9.715557098388672e-06,
+  "worst_l1_probability_error": 9.933819862054302e-06,
+  "cases": [
+    {
+      "case": "temperature",
+      "generation_kwargs": {
+        "temperature": 0.7,
+        "top_k": 0
+      },
+      "support_count": 51772,
+      "selected_token": 1770,
+      "support_exact": true,
+      "max_absolute_probability_error": 9.715557098388672e-06,
+      "l1_probability_error": 9.933819862054302e-06,
+      "cpp23_probability_sum": 1.0000000081178688,
+      "graph_nodes_visited": 73
+    },
+    {
+      "case": "top_k",
+      "generation_kwargs": {
+        "temperature": 1.0,
+        "top_k": 20
+      },
+      "support_count": 20,
+      "selected_token": 1770,
+      "support_exact": true,
+      "max_absolute_probability_error": 5.960464477539062e-07,
+      "l1_probability_error": 1.3219541870057583e-06,
+      "cpp23_probability_sum": 1.0000000017753337,
+      "graph_nodes_visited": 73
+    },
+    {
+      "case": "top_p",
+      "generation_kwargs": {
+        "temperature": 1.0,
+        "top_k": 0,
+        "top_p": 0.9
+      },
+      "support_count": 1,
+      "selected_token": 1770,
+      "support_exact": true,
+      "max_absolute_probability_error": 0.0,
+      "l1_probability_error": 0.0,
+      "cpp23_probability_sum": 1.0,
+      "graph_nodes_visited": 73
+    },
+    {
+      "case": "min_p",
+      "generation_kwargs": {
+        "temperature": 1.0,
+        "top_k": 0,
+        "min_p": 0.02
+      },
+      "support_count": 2,
+      "selected_token": 1770,
+      "support_exact": true,
+      "max_absolute_probability_error": 4.172325134277344e-07,
+      "l1_probability_error": 8.23289155960083e-07,
+      "cpp23_probability_sum": 0.9999999776482582,
+      "graph_nodes_visited": 73
+    },
+    {
+      "case": "typical_p",
+      "generation_kwargs": {
+        "temperature": 1.0,
+        "top_k": 0,
+        "typical_p": 0.9
+      },
+      "support_count": 1,
+      "selected_token": 1770,
+      "support_exact": true,
+      "max_absolute_probability_error": 0.0,
+      "l1_probability_error": 0.0,
+      "cpp23_probability_sum": 1.0,
+      "graph_nodes_visited": 73
+    },
+    {
+      "case": "epsilon",
+      "generation_kwargs": {
+        "temperature": 1.0,
+        "top_k": 0,
+        "epsilon_cutoff": 0.0005
+      },
+      "support_count": 18,
+      "selected_token": 1770,
+      "support_exact": true,
+      "max_absolute_probability_error": 5.960464477539062e-07,
+      "l1_probability_error": 1.3089156709611416e-06,
+      "cpp23_probability_sum": 1.0000000044237822,
+      "graph_nodes_visited": 73
+    },
+    {
+      "case": "eta",
+      "generation_kwargs": {
+        "temperature": 1.0,
+        "top_k": 0,
+        "eta_cutoff": 0.001
+      },
+      "support_count": 9,
+      "selected_token": 1770,
+      "support_exact": true,
+      "max_absolute_probability_error": 6.556510925292969e-07,
+      "l1_probability_error": 1.257401891052723e-06,
+      "cpp23_probability_sum": 1.0000000254949555,
+      "graph_nodes_visited": 73
+    },
+    {
+      "case": "composed",
+      "generation_kwargs": {
+        "temperature": 1.2,
+        "top_k": 100,
+        "top_p": 0.98,
+        "min_p": 0.0001,
+        "typical_p": 0.99,
+        "epsilon_cutoff": 1e-07,
+        "eta_cutoff": 1e-07
+      },
+      "support_count": 31,
+      "selected_token": 1770,
+      "support_exact": true,
+      "max_absolute_probability_error": 1.3113021850585938e-06,
+      "l1_probability_error": 2.668122760951519e-06,
+      "cpp23_probability_sum": 0.9999999807914719,
+      "graph_nodes_visited": 73
+    }
+  ],
+  "scope": "Complete first-step categorical distributions after Whisper suppression and Transformers-order sampling filters; this deliberately does not compare RNG streams."
+}

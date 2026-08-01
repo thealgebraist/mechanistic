@@ -1,0 +1,888 @@
+{
+  "certificate": "WHISPER_CPP23_GENERATION_EXTENSION_INVENTORY_1",
+  "transformers_version": "4.57.3",
+  "generation_config_field_count": 74,
+  "generic_explicit_extension_count": 6,
+  "forward_kwarg_count": 17,
+  "special_alias_count": 3,
+  "all_pinned_generation_values_represented": true,
+  "all_nondefault_generation_variants_executable": false,
+  "override_status_counts": {
+    "CPP23_MODEL_IGNORED": 2,
+    "CPP23_MODEL_REJECTED": 2,
+    "CPP23_NAMED_OVERRIDE": 46,
+    "CPP23_PARTIAL_OVERRIDE": 8,
+    "METADATA_FIXED": 2,
+    "PINNED_INACTIVE_GENERIC_EXTENSION": 14
+  },
+  "generation_config_fields": [
+    {
+      "field": "_from_model_config",
+      "cpp_constructor": "FromModelConfig",
+      "pinned_value": false,
+      "global_default": false,
+      "pinned_value_status": "CPP23_PINNED_VALUE_REPRESENTED",
+      "override_status": "METADATA_FIXED"
+    },
+    {
+      "field": "alignment_heads",
+      "cpp_constructor": "AlignmentHeads",
+      "pinned_value": [
+        [
+          1,
+          0
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          3,
+          0
+        ],
+        [
+          3,
+          1
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          3,
+          3
+        ],
+        [
+          3,
+          4
+        ]
+      ],
+      "global_default": null,
+      "pinned_value_status": "CPP23_PINNED_VALUE_REPRESENTED",
+      "override_status": "CPP23_NAMED_OVERRIDE"
+    },
+    {
+      "field": "assistant_confidence_threshold",
+      "cpp_constructor": "AssistantConfidenceThreshold",
+      "pinned_value": 0.4,
+      "global_default": 0.4,
+      "pinned_value_status": "CPP23_PINNED_VALUE_REPRESENTED",
+      "override_status": "PINNED_INACTIVE_GENERIC_EXTENSION"
+    },
+    {
+      "field": "assistant_early_exit",
+      "cpp_constructor": "AssistantEarlyExit",
+      "pinned_value": null,
+      "global_default": null,
+      "pinned_value_status": "CPP23_PINNED_VALUE_REPRESENTED",
+      "override_status": "PINNED_INACTIVE_GENERIC_EXTENSION"
+    },
+    {
+      "field": "assistant_lookbehind",
+      "cpp_constructor": "AssistantLookbehind",
+      "pinned_value": 10,
+      "global_default": 10,
+      "pinned_value_status": "CPP23_PINNED_VALUE_REPRESENTED",
+      "override_status": "PINNED_INACTIVE_GENERIC_EXTENSION"
+    },
+    {
+      "field": "bad_words_ids",
+      "cpp_constructor": "BadWordsIds",
+      "pinned_value": null,
+      "global_default": null,
+      "pinned_value_status": "CPP23_PINNED_VALUE_REPRESENTED",
+      "override_status": "CPP23_NAMED_OVERRIDE"
+    },
+    {
+      "field": "begin_suppress_tokens",
+      "cpp_constructor": "BeginSuppressTokens",
+      "pinned_value": [
+        220,
+        50256
+      ],
+      "global_default": null,
+      "pinned_value_status": "CPP23_PINNED_VALUE_REPRESENTED",
+      "override_status": "CPP23_NAMED_OVERRIDE"
+    },
+    {
+      "field": "bos_token_id",
+      "cpp_constructor": "BosTokenId",
+      "pinned_value": 50257,
+      "global_default": null,
+      "pinned_value_status": "CPP23_PINNED_VALUE_REPRESENTED",
+      "override_status": "CPP23_PARTIAL_OVERRIDE"
+    },
+    {
+      "field": "cache_config",
+      "cpp_constructor": "CacheConfig",
+      "pinned_value": null,
+      "global_default": null,
+      "pinned_value_status": "CPP23_PINNED_VALUE_REPRESENTED",
+      "override_status": "PINNED_INACTIVE_GENERIC_EXTENSION"
+    },
+    {
+      "field": "cache_implementation",
+      "cpp_constructor": "CacheImplementation",
+      "pinned_value": null,
+      "global_default": null,
+      "pinned_value_status": "CPP23_PINNED_VALUE_REPRESENTED",
+      "override_status": "PINNED_INACTIVE_GENERIC_EXTENSION"
+    },
+    {
+      "field": "constraints",
+      "cpp_constructor": "Constraints",
+      "pinned_value": null,
+      "global_default": null,
+      "pinned_value_status": "CPP23_PINNED_VALUE_REPRESENTED",
+      "override_status": "CPP23_NAMED_OVERRIDE"
+    },
+    {
+      "field": "decoder_start_token_id",
+      "cpp_constructor": "DecoderStartTokenId",
+      "pinned_value": 50257,
+      "global_default": null,
+      "pinned_value_status": "CPP23_PINNED_VALUE_REPRESENTED",
+      "override_status": "CPP23_NAMED_OVERRIDE"
+    },
+    {
+      "field": "disable_compile",
+      "cpp_constructor": "DisableCompile",
+      "pinned_value": false,
+      "global_default": false,
+      "pinned_value_status": "CPP23_PINNED_VALUE_REPRESENTED",
+      "override_status": "PINNED_INACTIVE_GENERIC_EXTENSION"
+    },
+    {
+      "field": "diversity_penalty",
+      "cpp_constructor": "DiversityPenalty",
+      "pinned_value": 0.0,
+      "global_default": 0.0,
+      "pinned_value_status": "CPP23_PINNED_VALUE_REPRESENTED",
+      "override_status": "CPP23_NAMED_OVERRIDE"
+    },
+    {
+      "field": "do_sample",
+      "cpp_constructor": "DoSample",
+      "pinned_value": false,
+      "global_default": false,
+      "pinned_value_status": "CPP23_PINNED_VALUE_REPRESENTED",
+      "override_status": "CPP23_NAMED_OVERRIDE"
+    },
+    {
+      "field": "dola_layers",
+      "cpp_constructor": "DolaLayers",
+      "pinned_value": null,
+      "global_default": null,
+      "pinned_value_status": "CPP23_PINNED_VALUE_REPRESENTED",
+      "override_status": "CPP23_MODEL_REJECTED"
+    },
+    {
+      "field": "early_stopping",
+      "cpp_constructor": "EarlyStopping",
+      "pinned_value": false,
+      "global_default": false,
+      "pinned_value_status": "CPP23_PINNED_VALUE_REPRESENTED",
+      "override_status": "CPP23_NAMED_OVERRIDE"
+    },
+    {
+      "field": "encoder_no_repeat_ngram_size",
+      "cpp_constructor": "EncoderNoRepeatNgramSize",
+      "pinned_value": 0,
+      "global_default": 0,
+      "pinned_value_status": "CPP23_PINNED_VALUE_REPRESENTED",
+      "override_status": "CPP23_MODEL_IGNORED"
+    },
+    {
+      "field": "encoder_repetition_penalty",
+      "cpp_constructor": "EncoderRepetitionPenalty",
+      "pinned_value": 1.0,
+      "global_default": 1.0,
+      "pinned_value_status": "CPP23_PINNED_VALUE_REPRESENTED",
+      "override_status": "CPP23_MODEL_IGNORED"
+    },
+    {
+      "field": "eos_token_id",
+      "cpp_constructor": "EosTokenId",
+      "pinned_value": 50256,
+      "global_default": null,
+      "pinned_value_status": "CPP23_PINNED_VALUE_REPRESENTED",
+      "override_status": "CPP23_NAMED_OVERRIDE"
+    },
+    {
+      "field": "epsilon_cutoff",
+      "cpp_constructor": "EpsilonCutoff",
+      "pinned_value": 0.0,
+      "global_default": 0.0,
+      "pinned_value_status": "CPP23_PINNED_VALUE_REPRESENTED",
+      "override_status": "CPP23_NAMED_OVERRIDE"
+    },
+    {
+      "field": "eta_cutoff",
+      "cpp_constructor": "EtaCutoff",
+      "pinned_value": 0.0,
+      "global_default": 0.0,
+      "pinned_value_status": "CPP23_PINNED_VALUE_REPRESENTED",
+      "override_status": "CPP23_NAMED_OVERRIDE"
+    },
+    {
+      "field": "exponential_decay_length_penalty",
+      "cpp_constructor": "ExponentialDecayLengthPenalty",
+      "pinned_value": null,
+      "global_default": null,
+      "pinned_value_status": "CPP23_PINNED_VALUE_REPRESENTED",
+      "override_status": "CPP23_NAMED_OVERRIDE"
+    },
+    {
+      "field": "force_words_ids",
+      "cpp_constructor": "ForceWordsIds",
+      "pinned_value": null,
+      "global_default": null,
+      "pinned_value_status": "CPP23_PINNED_VALUE_REPRESENTED",
+      "override_status": "CPP23_NAMED_OVERRIDE"
+    },
+    {
+      "field": "forced_bos_token_id",
+      "cpp_constructor": "ForcedBosTokenId",
+      "pinned_value": null,
+      "global_default": null,
+      "pinned_value_status": "CPP23_PINNED_VALUE_REPRESENTED",
+      "override_status": "CPP23_NAMED_OVERRIDE"
+    },
+    {
+      "field": "forced_decoder_ids",
+      "cpp_constructor": "ForcedDecoderIds",
+      "pinned_value": [
+        [
+          1,
+          50362
+        ]
+      ],
+      "global_default": null,
+      "pinned_value_status": "CPP23_PINNED_VALUE_REPRESENTED",
+      "override_status": "CPP23_NAMED_OVERRIDE"
+    },
+    {
+      "field": "forced_eos_token_id",
+      "cpp_constructor": "ForcedEosTokenId",
+      "pinned_value": null,
+      "global_default": null,
+      "pinned_value_status": "CPP23_PINNED_VALUE_REPRESENTED",
+      "override_status": "CPP23_NAMED_OVERRIDE"
+    },
+    {
+      "field": "guidance_scale",
+      "cpp_constructor": "GuidanceScale",
+      "pinned_value": null,
+      "global_default": null,
+      "pinned_value_status": "CPP23_PINNED_VALUE_REPRESENTED",
+      "override_status": "CPP23_MODEL_REJECTED"
+    },
+    {
+      "field": "is_assistant",
+      "cpp_constructor": "IsAssistant",
+      "pinned_value": false,
+      "global_default": false,
+      "pinned_value_status": "CPP23_PINNED_VALUE_REPRESENTED",
+      "override_status": "PINNED_INACTIVE_GENERIC_EXTENSION"
+    },
+    {
+      "field": "is_multilingual",
+      "cpp_constructor": "IsMultilingual",
+      "pinned_value": false,
+      "global_default": null,
+      "pinned_value_status": "CPP23_PINNED_VALUE_REPRESENTED",
+      "override_status": "PINNED_INACTIVE_GENERIC_EXTENSION"
+    },
+    {
+      "field": "length_penalty",
+      "cpp_constructor": "LengthPenalty",
+      "pinned_value": 1.0,
+      "global_default": 1.0,
+      "pinned_value_status": "CPP23_PINNED_VALUE_REPRESENTED",
+      "override_status": "CPP23_NAMED_OVERRIDE"
+    },
+    {
+      "field": "low_memory",
+      "cpp_constructor": "LowMemory",
+      "pinned_value": null,
+      "global_default": null,
+      "pinned_value_status": "CPP23_PINNED_VALUE_REPRESENTED",
+      "override_status": "CPP23_PARTIAL_OVERRIDE"
+    },
+    {
+      "field": "max_initial_timestamp_index",
+      "cpp_constructor": "MaxInitialTimestampIndex",
+      "pinned_value": 50,
+      "global_default": null,
+      "pinned_value_status": "CPP23_PINNED_VALUE_REPRESENTED",
+      "override_status": "CPP23_NAMED_OVERRIDE"
+    },
+    {
+      "field": "max_length",
+      "cpp_constructor": "MaxLength",
+      "pinned_value": 448,
+      "global_default": 20,
+      "pinned_value_status": "CPP23_PINNED_VALUE_REPRESENTED",
+      "override_status": "CPP23_NAMED_OVERRIDE"
+    },
+    {
+      "field": "max_matching_ngram_size",
+      "cpp_constructor": "MaxMatchingNgramSize",
+      "pinned_value": null,
+      "global_default": null,
+      "pinned_value_status": "CPP23_PINNED_VALUE_REPRESENTED",
+      "override_status": "CPP23_PARTIAL_OVERRIDE"
+    },
+    {
+      "field": "max_new_tokens",
+      "cpp_constructor": "MaxNewTokens",
+      "pinned_value": null,
+      "global_default": null,
+      "pinned_value_status": "CPP23_PINNED_VALUE_REPRESENTED",
+      "override_status": "CPP23_NAMED_OVERRIDE"
+    },
+    {
+      "field": "max_time",
+      "cpp_constructor": "MaxTime",
+      "pinned_value": null,
+      "global_default": null,
+      "pinned_value_status": "CPP23_PINNED_VALUE_REPRESENTED",
+      "override_status": "PINNED_INACTIVE_GENERIC_EXTENSION"
+    },
+    {
+      "field": "min_length",
+      "cpp_constructor": "MinLength",
+      "pinned_value": 0,
+      "global_default": 0,
+      "pinned_value_status": "CPP23_PINNED_VALUE_REPRESENTED",
+      "override_status": "CPP23_NAMED_OVERRIDE"
+    },
+    {
+      "field": "min_new_tokens",
+      "cpp_constructor": "MinNewTokens",
+      "pinned_value": null,
+      "global_default": null,
+      "pinned_value_status": "CPP23_PINNED_VALUE_REPRESENTED",
+      "override_status": "CPP23_NAMED_OVERRIDE"
+    },
+    {
+      "field": "min_p",
+      "cpp_constructor": "MinP",
+      "pinned_value": null,
+      "global_default": null,
+      "pinned_value_status": "CPP23_PINNED_VALUE_REPRESENTED",
+      "override_status": "CPP23_NAMED_OVERRIDE"
+    },
+    {
+      "field": "no_repeat_ngram_size",
+      "cpp_constructor": "NoRepeatNgramSize",
+      "pinned_value": 0,
+      "global_default": 0,
+      "pinned_value_status": "CPP23_PINNED_VALUE_REPRESENTED",
+      "override_status": "CPP23_NAMED_OVERRIDE"
+    },
+    {
+      "field": "no_timestamps_token_id",
+      "cpp_constructor": "NoTimestampsTokenId",
+      "pinned_value": 50362,
+      "global_default": null,
+      "pinned_value_status": "CPP23_PINNED_VALUE_REPRESENTED",
+      "override_status": "CPP23_NAMED_OVERRIDE"
+    },
+    {
+      "field": "num_assistant_tokens",
+      "cpp_constructor": "NumAssistantTokens",
+      "pinned_value": 20,
+      "global_default": 20,
+      "pinned_value_status": "CPP23_PINNED_VALUE_REPRESENTED",
+      "override_status": "PINNED_INACTIVE_GENERIC_EXTENSION"
+    },
+    {
+      "field": "num_assistant_tokens_schedule",
+      "cpp_constructor": "NumAssistantTokensSchedule",
+      "pinned_value": "constant",
+      "global_default": "constant",
+      "pinned_value_status": "CPP23_PINNED_VALUE_REPRESENTED",
+      "override_status": "PINNED_INACTIVE_GENERIC_EXTENSION"
+    },
+    {
+      "field": "num_beam_groups",
+      "cpp_constructor": "NumBeamGroups",
+      "pinned_value": 1,
+      "global_default": 1,
+      "pinned_value_status": "CPP23_PINNED_VALUE_REPRESENTED",
+      "override_status": "CPP23_NAMED_OVERRIDE"
+    },
+    {
+      "field": "num_beams",
+      "cpp_constructor": "NumBeams",
+      "pinned_value": 1,
+      "global_default": 1,
+      "pinned_value_status": "CPP23_PINNED_VALUE_REPRESENTED",
+      "override_status": "CPP23_NAMED_OVERRIDE"
+    },
+    {
+      "field": "num_return_sequences",
+      "cpp_constructor": "NumReturnSequences",
+      "pinned_value": 1,
+      "global_default": 1,
+      "pinned_value_status": "CPP23_PINNED_VALUE_REPRESENTED",
+      "override_status": "CPP23_PARTIAL_OVERRIDE"
+    },
+    {
+      "field": "output_attentions",
+      "cpp_constructor": "OutputAttentions",
+      "pinned_value": false,
+      "global_default": false,
+      "pinned_value_status": "CPP23_PINNED_VALUE_REPRESENTED",
+      "override_status": "CPP23_NAMED_OVERRIDE"
+    },
+    {
+      "field": "output_hidden_states",
+      "cpp_constructor": "OutputHiddenStates",
+      "pinned_value": false,
+      "global_default": false,
+      "pinned_value_status": "CPP23_PINNED_VALUE_REPRESENTED",
+      "override_status": "CPP23_NAMED_OVERRIDE"
+    },
+    {
+      "field": "output_logits",
+      "cpp_constructor": "OutputLogits",
+      "pinned_value": null,
+      "global_default": null,
+      "pinned_value_status": "CPP23_PINNED_VALUE_REPRESENTED",
+      "override_status": "CPP23_NAMED_OVERRIDE"
+    },
+    {
+      "field": "output_scores",
+      "cpp_constructor": "OutputScores",
+      "pinned_value": false,
+      "global_default": false,
+      "pinned_value_status": "CPP23_PINNED_VALUE_REPRESENTED",
+      "override_status": "CPP23_NAMED_OVERRIDE"
+    },
+    {
+      "field": "pad_token_id",
+      "cpp_constructor": "PadTokenId",
+      "pinned_value": 50256,
+      "global_default": null,
+      "pinned_value_status": "CPP23_PINNED_VALUE_REPRESENTED",
+      "override_status": "CPP23_NAMED_OVERRIDE"
+    },
+    {
+      "field": "penalty_alpha",
+      "cpp_constructor": "PenaltyAlpha",
+      "pinned_value": null,
+      "global_default": null,
+      "pinned_value_status": "CPP23_PINNED_VALUE_REPRESENTED",
+      "override_status": "CPP23_NAMED_OVERRIDE"
+    },
+    {
+      "field": "prefill_chunk_size",
+      "cpp_constructor": "PrefillChunkSize",
+      "pinned_value": null,
+      "global_default": null,
+      "pinned_value_status": "CPP23_PINNED_VALUE_REPRESENTED",
+      "override_status": "PINNED_INACTIVE_GENERIC_EXTENSION"
+    },
+    {
+      "field": "prev_sot_token_id",
+      "cpp_constructor": "PrevSotTokenId",
+      "pinned_value": 50360,
+      "global_default": null,
+      "pinned_value_status": "CPP23_PINNED_VALUE_REPRESENTED",
+      "override_status": "CPP23_NAMED_OVERRIDE"
+    },
+    {
+      "field": "prompt_lookup_num_tokens",
+      "cpp_constructor": "PromptLookupNumTokens",
+      "pinned_value": null,
+      "global_default": null,
+      "pinned_value_status": "CPP23_PINNED_VALUE_REPRESENTED",
+      "override_status": "CPP23_PARTIAL_OVERRIDE"
+    },
+    {
+      "field": "remove_invalid_values",
+      "cpp_constructor": "RemoveInvalidValues",
+      "pinned_value": false,
+      "global_default": false,
+      "pinned_value_status": "CPP23_PINNED_VALUE_REPRESENTED",
+      "override_status": "CPP23_NAMED_OVERRIDE"
+    },
+    {
+      "field": "renormalize_logits",
+      "cpp_constructor": "RenormalizeLogits",
+      "pinned_value": false,
+      "global_default": false,
+      "pinned_value_status": "CPP23_PINNED_VALUE_REPRESENTED",
+      "override_status": "CPP23_NAMED_OVERRIDE"
+    },
+    {
+      "field": "repetition_penalty",
+      "cpp_constructor": "RepetitionPenalty",
+      "pinned_value": 1.0,
+      "global_default": 1.0,
+      "pinned_value_status": "CPP23_PINNED_VALUE_REPRESENTED",
+      "override_status": "CPP23_NAMED_OVERRIDE"
+    },
+    {
+      "field": "return_dict_in_generate",
+      "cpp_constructor": "ReturnDictInGenerate",
+      "pinned_value": false,
+      "global_default": false,
+      "pinned_value_status": "CPP23_PINNED_VALUE_REPRESENTED",
+      "override_status": "CPP23_NAMED_OVERRIDE"
+    },
+    {
+      "field": "return_legacy_cache",
+      "cpp_constructor": "ReturnLegacyCache",
+      "pinned_value": null,
+      "global_default": null,
+      "pinned_value_status": "CPP23_PINNED_VALUE_REPRESENTED",
+      "override_status": "CPP23_PARTIAL_OVERRIDE"
+    },
+    {
+      "field": "return_timestamps",
+      "cpp_constructor": "ReturnTimestamps",
+      "pinned_value": false,
+      "global_default": null,
+      "pinned_value_status": "CPP23_PINNED_VALUE_REPRESENTED",
+      "override_status": "CPP23_NAMED_OVERRIDE"
+    },
+    {
+      "field": "sequence_bias",
+      "cpp_constructor": "SequenceBias",
+      "pinned_value": null,
+      "global_default": null,
+      "pinned_value_status": "CPP23_PINNED_VALUE_REPRESENTED",
+      "override_status": "CPP23_NAMED_OVERRIDE"
+    },
+    {
+      "field": "stop_strings",
+      "cpp_constructor": "StopStrings",
+      "pinned_value": null,
+      "global_default": null,
+      "pinned_value_status": "CPP23_PINNED_VALUE_REPRESENTED",
+      "override_status": "CPP23_PARTIAL_OVERRIDE"
+    },
+    {
+      "field": "suppress_tokens",
+      "cpp_constructor": "SuppressTokens",
+      "pinned_value": [
+        1,
+        2,
+        7,
+        8,
+        9,
+        10,
+        14,
+        25,
+        26,
+        27,
+        28,
+        29,
+        31,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63,
+        90,
+        91,
+        92,
+        93,
+        357,
+        366,
+        438,
+        532,
+        685,
+        705,
+        796,
+        930,
+        1058,
+        1220,
+        1267,
+        1279,
+        1303,
+        1343,
+        1377,
+        1391,
+        1635,
+        1782,
+        1875,
+        2162,
+        2361,
+        2488,
+        3467,
+        4008,
+        4211,
+        4600,
+        4808,
+        5299,
+        5855,
+        6329,
+        7203,
+        9609,
+        9959,
+        10563,
+        10786,
+        11420,
+        11709,
+        11907,
+        13163,
+        13697,
+        13700,
+        14808,
+        15306,
+        16410,
+        16791,
+        17992,
+        19203,
+        19510,
+        20724,
+        22305,
+        22935,
+        27007,
+        30109,
+        30420,
+        33409,
+        34949,
+        40283,
+        40493,
+        40549,
+        47282,
+        49146,
+        50257,
+        50357,
+        50358,
+        50359,
+        50360,
+        50361
+      ],
+      "global_default": null,
+      "pinned_value_status": "CPP23_PINNED_VALUE_REPRESENTED",
+      "override_status": "CPP23_NAMED_OVERRIDE"
+    },
+    {
+      "field": "target_lookbehind",
+      "cpp_constructor": "TargetLookbehind",
+      "pinned_value": 10,
+      "global_default": 10,
+      "pinned_value_status": "CPP23_PINNED_VALUE_REPRESENTED",
+      "override_status": "PINNED_INACTIVE_GENERIC_EXTENSION"
+    },
+    {
+      "field": "temperature",
+      "cpp_constructor": "Temperature",
+      "pinned_value": 1.0,
+      "global_default": 1.0,
+      "pinned_value_status": "CPP23_PINNED_VALUE_REPRESENTED",
+      "override_status": "CPP23_NAMED_OVERRIDE"
+    },
+    {
+      "field": "token_healing",
+      "cpp_constructor": "TokenHealing",
+      "pinned_value": false,
+      "global_default": false,
+      "pinned_value_status": "CPP23_PINNED_VALUE_REPRESENTED",
+      "override_status": "PINNED_INACTIVE_GENERIC_EXTENSION"
+    },
+    {
+      "field": "top_k",
+      "cpp_constructor": "TopK",
+      "pinned_value": 50,
+      "global_default": 50,
+      "pinned_value_status": "CPP23_PINNED_VALUE_REPRESENTED",
+      "override_status": "CPP23_NAMED_OVERRIDE"
+    },
+    {
+      "field": "top_p",
+      "cpp_constructor": "TopP",
+      "pinned_value": 1.0,
+      "global_default": 1.0,
+      "pinned_value_status": "CPP23_PINNED_VALUE_REPRESENTED",
+      "override_status": "CPP23_NAMED_OVERRIDE"
+    },
+    {
+      "field": "transformers_version",
+      "cpp_constructor": "TransformersVersion",
+      "pinned_value": "4.57.3",
+      "global_default": "4.57.3",
+      "pinned_value_status": "CPP23_PINNED_VALUE_REPRESENTED",
+      "override_status": "METADATA_FIXED"
+    },
+    {
+      "field": "typical_p",
+      "cpp_constructor": "TypicalP",
+      "pinned_value": 1.0,
+      "global_default": 1.0,
+      "pinned_value_status": "CPP23_PINNED_VALUE_REPRESENTED",
+      "override_status": "CPP23_NAMED_OVERRIDE"
+    },
+    {
+      "field": "use_cache",
+      "cpp_constructor": "UseCache",
+      "pinned_value": true,
+      "global_default": true,
+      "pinned_value_status": "CPP23_PINNED_VALUE_REPRESENTED",
+      "override_status": "CPP23_NAMED_OVERRIDE"
+    },
+    {
+      "field": "watermarking_config",
+      "cpp_constructor": "WatermarkingConfig",
+      "pinned_value": null,
+      "global_default": null,
+      "pinned_value_status": "CPP23_PINNED_VALUE_REPRESENTED",
+      "override_status": "CPP23_PARTIAL_OVERRIDE"
+    }
+  ],
+  "generic_generation_extensions": [
+    {
+      "parameter": "assistant_model",
+      "default": null,
+      "pinned_status": "DISABLED_IN_PINNED_MODEL",
+      "override_status": "EXTERNAL_GENERATION_ALGORITHM"
+    },
+    {
+      "parameter": "streamer",
+      "default": null,
+      "pinned_status": "DISABLED_IN_PINNED_MODEL",
+      "override_status": "EXTERNAL_GENERATION_ALGORITHM"
+    },
+    {
+      "parameter": "negative_prompt_ids",
+      "default": null,
+      "pinned_status": "DISABLED_IN_PINNED_MODEL",
+      "override_status": "EXTERNAL_GENERATION_ALGORITHM"
+    },
+    {
+      "parameter": "negative_prompt_attention_mask",
+      "default": null,
+      "pinned_status": "DISABLED_IN_PINNED_MODEL",
+      "override_status": "EXTERNAL_GENERATION_ALGORITHM"
+    },
+    {
+      "parameter": "use_model_defaults",
+      "default": null,
+      "pinned_status": "DISABLED_IN_PINNED_MODEL",
+      "override_status": "EXTERNAL_GENERATION_ALGORITHM"
+    },
+    {
+      "parameter": "custom_generate",
+      "default": null,
+      "pinned_status": "DISABLED_IN_PINNED_MODEL",
+      "override_status": "EXTERNAL_GENERATION_ALGORITHM"
+    }
+  ],
+  "forward_model_kwargs": [
+    {
+      "parameter": "input_features",
+      "routing": "WhisperForConditionalGeneration.forward",
+      "status": "ROUTED_TO_NAMED_FORWARD_ADT"
+    },
+    {
+      "parameter": "attention_mask",
+      "routing": "WhisperForConditionalGeneration.forward",
+      "status": "ROUTED_TO_NAMED_FORWARD_ADT"
+    },
+    {
+      "parameter": "decoder_input_ids",
+      "routing": "WhisperForConditionalGeneration.forward",
+      "status": "ROUTED_TO_NAMED_FORWARD_ADT"
+    },
+    {
+      "parameter": "decoder_attention_mask",
+      "routing": "WhisperForConditionalGeneration.forward",
+      "status": "ROUTED_TO_NAMED_FORWARD_ADT"
+    },
+    {
+      "parameter": "head_mask",
+      "routing": "WhisperForConditionalGeneration.forward",
+      "status": "ROUTED_TO_NAMED_FORWARD_ADT"
+    },
+    {
+      "parameter": "decoder_head_mask",
+      "routing": "WhisperForConditionalGeneration.forward",
+      "status": "ROUTED_TO_NAMED_FORWARD_ADT"
+    },
+    {
+      "parameter": "cross_attn_head_mask",
+      "routing": "WhisperForConditionalGeneration.forward",
+      "status": "ROUTED_TO_NAMED_FORWARD_ADT"
+    },
+    {
+      "parameter": "encoder_outputs",
+      "routing": "WhisperForConditionalGeneration.forward",
+      "status": "ROUTED_TO_NAMED_FORWARD_ADT"
+    },
+    {
+      "parameter": "past_key_values",
+      "routing": "WhisperForConditionalGeneration.forward",
+      "status": "ROUTED_TO_NAMED_FORWARD_ADT"
+    },
+    {
+      "parameter": "decoder_inputs_embeds",
+      "routing": "WhisperForConditionalGeneration.forward",
+      "status": "ROUTED_TO_NAMED_FORWARD_ADT"
+    },
+    {
+      "parameter": "decoder_position_ids",
+      "routing": "WhisperForConditionalGeneration.forward",
+      "status": "ROUTED_TO_NAMED_FORWARD_ADT"
+    },
+    {
+      "parameter": "labels",
+      "routing": "WhisperForConditionalGeneration.forward",
+      "status": "ROUTED_TO_NAMED_FORWARD_ADT"
+    },
+    {
+      "parameter": "use_cache",
+      "routing": "WhisperForConditionalGeneration.forward",
+      "status": "ROUTED_TO_NAMED_FORWARD_ADT"
+    },
+    {
+      "parameter": "output_attentions",
+      "routing": "WhisperForConditionalGeneration.forward",
+      "status": "ROUTED_TO_NAMED_FORWARD_ADT"
+    },
+    {
+      "parameter": "output_hidden_states",
+      "routing": "WhisperForConditionalGeneration.forward",
+      "status": "ROUTED_TO_NAMED_FORWARD_ADT"
+    },
+    {
+      "parameter": "return_dict",
+      "routing": "WhisperForConditionalGeneration.forward",
+      "status": "ROUTED_TO_NAMED_FORWARD_ADT"
+    },
+    {
+      "parameter": "cache_position",
+      "routing": "WhisperForConditionalGeneration.forward",
+      "status": "ROUTED_TO_NAMED_FORWARD_ADT"
+    }
+  ],
+  "special_aliases": [
+    {
+      "parameter": "inputs",
+      "routing": "input_features alias",
+      "status": "CPP23_INPUT_ALIAS"
+    },
+    {
+      "parameter": "num_frames",
+      "routing": "legacy token-timestamp mask extent",
+      "status": "CPP23_CONTIGUOUS_FRAME_EXTENT"
+    },
+    {
+      "parameter": "trust_remote_code",
+      "routing": "custom_generate loader",
+      "status": "EXTERNAL_CODE_LOADING_DISABLED"
+    }
+  ],
+  "unknown_kwarg_behavior": "rejected by GenerationMixin._validate_model_kwargs in the pinned Transformers version",
+  "scope": "Closes **kwargs for the pinned model/configuration, while preserving unsupported non-default generic generation algorithms as explicit external extensions."
+}

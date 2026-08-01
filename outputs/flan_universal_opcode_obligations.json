@@ -1,0 +1,3041 @@
+{
+  "language": "FLAN-UNIVERSAL-OPCODE-OBLIGATIONS-1",
+  "checkpoint_sha256": "495fa51e204676f1a857a9fc13c4c89f3f5ba9f480b898cebca02add25e6d749",
+  "full_graph_sha256": "9178011e37e276c040400099b87fc34c961429a71386eb38ed92d5cfbb227c76",
+  "transformers_t5_source_sha256": "ee1a043f5c03c684a2bbb0213ea3b3f8be272a03ab884bdca57c31e7315e7b7e",
+  "kernel_refinement_ledger_sha256": "484dbc36e94791d946e3674ead7fd735e18dd4bd0dcbb10dea9f0c14221fd11d",
+  "composition_theorem": "ProgramComposition.program_preserves_relation",
+  "all_sequence_theorem": "WholeModel.every_finite_trace_weight_equal",
+  "opcode_count": 129,
+  "opcode_histogram": {
+    "ADD": 40,
+    "CROSS_ATTENTION": 8,
+    "EMBED": 2,
+    "GATED_MLP": 16,
+    "INPUT_DECODER_STACK": 1,
+    "INPUT_TOKENS": 1,
+    "MATMUL": 1,
+    "RMSNORM": 42,
+    "SAMPLE_PUSH_UPDATE_CACHE": 1,
+    "SELF_ATTENTION_KV": 8,
+    "SELF_ATTENTION_SEQUENCE": 8,
+    "SOFTMAX": 1
+  },
+  "obligations": [
+    {
+      "index": 0,
+      "opcode": "INPUT_TOKENS",
+      "universal_statement": "for all shape-valid related source/register states, relation is preserved",
+      "sequence_polymorphic": true,
+      "tensor_references": [],
+      "structural_status": "verified",
+      "semantic_status": "definitionally lowered; universal schema available",
+      "evidence_only": [],
+      "proof_artifact": null,
+      "backend_assumption": null,
+      "discharged_subobligations": [],
+      "proof_layer": "opcode composition under declared primitive relations",
+      "microcode_pc_span": [
+        0,
+        1
+      ],
+      "open_backend_micro_occurrences": 0,
+      "backend_refinement_status": "NO_OPEN_BACKEND_MICRO_OCCURRENCE_IN_THIS_MACRO",
+      "obligation_sha256": "f5c1d56a43eae35c7887dc2e452758388632ce754c7e15809bda444095cebd52"
+    },
+    {
+      "index": 1,
+      "opcode": "EMBED",
+      "universal_statement": "for all shape-valid related source/register states, relation is preserved",
+      "sequence_polymorphic": true,
+      "tensor_references": [
+        "shared.weight"
+      ],
+      "structural_status": "verified",
+      "semantic_status": "definitionally lowered; universal schema available",
+      "evidence_only": [],
+      "proof_artifact": null,
+      "backend_assumption": null,
+      "discharged_subobligations": [],
+      "proof_layer": "opcode composition under declared primitive relations",
+      "microcode_pc_span": [
+        1,
+        2
+      ],
+      "open_backend_micro_occurrences": 0,
+      "backend_refinement_status": "NO_OPEN_BACKEND_MICRO_OCCURRENCE_IN_THIS_MACRO",
+      "obligation_sha256": "b50feaf6ad2aebb55b78e0d292e126d860d060307ff03ba111791bdf87ff6537"
+    },
+    {
+      "index": 2,
+      "opcode": "RMSNORM",
+      "universal_statement": "for all shape-valid related source/register states, relation is preserved",
+      "sequence_polymorphic": false,
+      "tensor_references": [
+        "encoder.block.0.layer.0.layer_norm.weight"
+      ],
+      "structural_status": "verified",
+      "semantic_status": "machine-checked parametric RMSNorm lowering",
+      "evidence_only": [],
+      "proof_artifact": "RMSNormLowering.lean",
+      "backend_assumption": "source and target use identical ordered primitive semantics",
+      "discharged_subobligations": [],
+      "proof_layer": "opcode composition under declared primitive relations",
+      "microcode_pc_span": [
+        2,
+        9
+      ],
+      "open_backend_micro_occurrences": 2,
+      "backend_refinement_status": "OPEN_PINNED_BACKEND_REFINEMENT",
+      "obligation_sha256": "423434a95fa0582361664fa2391bb5f041e88c103aec3076d66f9b795cd3a366"
+    },
+    {
+      "index": 3,
+      "opcode": "SELF_ATTENTION_SEQUENCE",
+      "universal_statement": "for all shape-valid related source/register states, relation is preserved",
+      "sequence_polymorphic": true,
+      "tensor_references": [
+        "encoder.block.0.layer.0.SelfAttention.q.weight",
+        "encoder.block.0.layer.0.SelfAttention.k.weight",
+        "encoder.block.0.layer.0.SelfAttention.v.weight",
+        "encoder.block.0.layer.0.SelfAttention.o.weight"
+      ],
+      "structural_status": "verified",
+      "semantic_status": "machine-checked parametric attention lowering",
+      "evidence_only": [],
+      "proof_artifact": "AttentionLowering.lean",
+      "backend_assumption": "source and target use identical ordered primitive semantics",
+      "discharged_subobligations": [],
+      "proof_layer": "opcode composition under declared primitive relations",
+      "microcode_pc_span": [
+        9,
+        26
+      ],
+      "open_backend_micro_occurrences": 8,
+      "backend_refinement_status": "OPEN_PINNED_BACKEND_REFINEMENT",
+      "obligation_sha256": "a18137cd196977d5e3224d11df451f2f7812aabc3ef4ae122c6b61c3f08c48d9"
+    },
+    {
+      "index": 4,
+      "opcode": "ADD",
+      "universal_statement": "for all shape-valid related source/register states, relation is preserved",
+      "sequence_polymorphic": false,
+      "tensor_references": [],
+      "structural_status": "verified",
+      "semantic_status": "definitionally lowered; universal schema available",
+      "evidence_only": [],
+      "proof_artifact": null,
+      "backend_assumption": null,
+      "discharged_subobligations": [],
+      "proof_layer": "opcode composition under declared primitive relations",
+      "microcode_pc_span": [
+        26,
+        27
+      ],
+      "open_backend_micro_occurrences": 0,
+      "backend_refinement_status": "NO_OPEN_BACKEND_MICRO_OCCURRENCE_IN_THIS_MACRO",
+      "obligation_sha256": "b0fb64c6148ee980d94d8ce1672d822423cba2a78d8480fa4f3c7c6114b3ad64"
+    },
+    {
+      "index": 5,
+      "opcode": "RMSNORM",
+      "universal_statement": "for all shape-valid related source/register states, relation is preserved",
+      "sequence_polymorphic": false,
+      "tensor_references": [
+        "encoder.block.0.layer.1.layer_norm.weight"
+      ],
+      "structural_status": "verified",
+      "semantic_status": "machine-checked parametric RMSNorm lowering",
+      "evidence_only": [],
+      "proof_artifact": "RMSNormLowering.lean",
+      "backend_assumption": "source and target use identical ordered primitive semantics",
+      "discharged_subobligations": [],
+      "proof_layer": "opcode composition under declared primitive relations",
+      "microcode_pc_span": [
+        27,
+        34
+      ],
+      "open_backend_micro_occurrences": 2,
+      "backend_refinement_status": "OPEN_PINNED_BACKEND_REFINEMENT",
+      "obligation_sha256": "916533be64485ea5db7ac60e982be1eaca77ca595cb7e015130697b593555b24"
+    },
+    {
+      "index": 6,
+      "opcode": "GATED_MLP",
+      "universal_statement": "for all shape-valid related source/register states, relation is preserved",
+      "sequence_polymorphic": false,
+      "tensor_references": [
+        "encoder.block.0.layer.1.DenseReluDense.wi_0.weight",
+        "encoder.block.0.layer.1.DenseReluDense.wi_1.weight",
+        "encoder.block.0.layer.1.DenseReluDense.wo.weight"
+      ],
+      "structural_status": "verified",
+      "semantic_status": "machine-checked parametric gated-MLP lowering",
+      "evidence_only": [],
+      "proof_artifact": "GatedMLPLowering.lean",
+      "backend_assumption": "source and target use identical ordered primitive semantics",
+      "discharged_subobligations": [],
+      "proof_layer": "opcode composition under declared primitive relations",
+      "microcode_pc_span": [
+        34,
+        46
+      ],
+      "open_backend_micro_occurrences": 4,
+      "backend_refinement_status": "OPEN_PINNED_BACKEND_REFINEMENT",
+      "obligation_sha256": "33490abf1e9c63f0faefce198c8dabc220be7969ef588e28d2a73850a776e852"
+    },
+    {
+      "index": 7,
+      "opcode": "ADD",
+      "universal_statement": "for all shape-valid related source/register states, relation is preserved",
+      "sequence_polymorphic": false,
+      "tensor_references": [],
+      "structural_status": "verified",
+      "semantic_status": "definitionally lowered; universal schema available",
+      "evidence_only": [],
+      "proof_artifact": null,
+      "backend_assumption": null,
+      "discharged_subobligations": [],
+      "proof_layer": "opcode composition under declared primitive relations",
+      "microcode_pc_span": [
+        46,
+        47
+      ],
+      "open_backend_micro_occurrences": 0,
+      "backend_refinement_status": "NO_OPEN_BACKEND_MICRO_OCCURRENCE_IN_THIS_MACRO",
+      "obligation_sha256": "6d4a55f43f596e54ecf163e18dcb56e973dbe2584d5ec732a4eab7b49fc18515"
+    },
+    {
+      "index": 8,
+      "opcode": "RMSNORM",
+      "universal_statement": "for all shape-valid related source/register states, relation is preserved",
+      "sequence_polymorphic": false,
+      "tensor_references": [
+        "encoder.block.1.layer.0.layer_norm.weight"
+      ],
+      "structural_status": "verified",
+      "semantic_status": "machine-checked parametric RMSNorm lowering",
+      "evidence_only": [],
+      "proof_artifact": "RMSNormLowering.lean",
+      "backend_assumption": "source and target use identical ordered primitive semantics",
+      "discharged_subobligations": [],
+      "proof_layer": "opcode composition under declared primitive relations",
+      "microcode_pc_span": [
+        47,
+        54
+      ],
+      "open_backend_micro_occurrences": 2,
+      "backend_refinement_status": "OPEN_PINNED_BACKEND_REFINEMENT",
+      "obligation_sha256": "0277343761b24cd3562b34507d76606b94ba2eec7cc442fd74f678fbb4dc67ab"
+    },
+    {
+      "index": 9,
+      "opcode": "SELF_ATTENTION_SEQUENCE",
+      "universal_statement": "for all shape-valid related source/register states, relation is preserved",
+      "sequence_polymorphic": true,
+      "tensor_references": [
+        "encoder.block.1.layer.0.SelfAttention.q.weight",
+        "encoder.block.1.layer.0.SelfAttention.k.weight",
+        "encoder.block.1.layer.0.SelfAttention.v.weight",
+        "encoder.block.1.layer.0.SelfAttention.o.weight"
+      ],
+      "structural_status": "verified",
+      "semantic_status": "machine-checked parametric attention lowering",
+      "evidence_only": [],
+      "proof_artifact": "AttentionLowering.lean",
+      "backend_assumption": "source and target use identical ordered primitive semantics",
+      "discharged_subobligations": [],
+      "proof_layer": "opcode composition under declared primitive relations",
+      "microcode_pc_span": [
+        54,
+        71
+      ],
+      "open_backend_micro_occurrences": 8,
+      "backend_refinement_status": "OPEN_PINNED_BACKEND_REFINEMENT",
+      "obligation_sha256": "18d99eb772904039a7fad51a3bdede2cd8d5d0f4fbeec9c9645567e787368038"
+    },
+    {
+      "index": 10,
+      "opcode": "ADD",
+      "universal_statement": "for all shape-valid related source/register states, relation is preserved",
+      "sequence_polymorphic": false,
+      "tensor_references": [],
+      "structural_status": "verified",
+      "semantic_status": "definitionally lowered; universal schema available",
+      "evidence_only": [],
+      "proof_artifact": null,
+      "backend_assumption": null,
+      "discharged_subobligations": [],
+      "proof_layer": "opcode composition under declared primitive relations",
+      "microcode_pc_span": [
+        71,
+        72
+      ],
+      "open_backend_micro_occurrences": 0,
+      "backend_refinement_status": "NO_OPEN_BACKEND_MICRO_OCCURRENCE_IN_THIS_MACRO",
+      "obligation_sha256": "ae476d35ef0f44a4d1918f38c820be9d8bc031f52f5cb82370ba71109878117f"
+    },
+    {
+      "index": 11,
+      "opcode": "RMSNORM",
+      "universal_statement": "for all shape-valid related source/register states, relation is preserved",
+      "sequence_polymorphic": false,
+      "tensor_references": [
+        "encoder.block.1.layer.1.layer_norm.weight"
+      ],
+      "structural_status": "verified",
+      "semantic_status": "machine-checked parametric RMSNorm lowering",
+      "evidence_only": [],
+      "proof_artifact": "RMSNormLowering.lean",
+      "backend_assumption": "source and target use identical ordered primitive semantics",
+      "discharged_subobligations": [],
+      "proof_layer": "opcode composition under declared primitive relations",
+      "microcode_pc_span": [
+        72,
+        79
+      ],
+      "open_backend_micro_occurrences": 2,
+      "backend_refinement_status": "OPEN_PINNED_BACKEND_REFINEMENT",
+      "obligation_sha256": "6c5b5a43065d7154b75129e6a8bca694f4859ba2792b4f7c01977aea30654369"
+    },
+    {
+      "index": 12,
+      "opcode": "GATED_MLP",
+      "universal_statement": "for all shape-valid related source/register states, relation is preserved",
+      "sequence_polymorphic": false,
+      "tensor_references": [
+        "encoder.block.1.layer.1.DenseReluDense.wi_0.weight",
+        "encoder.block.1.layer.1.DenseReluDense.wi_1.weight",
+        "encoder.block.1.layer.1.DenseReluDense.wo.weight"
+      ],
+      "structural_status": "verified",
+      "semantic_status": "machine-checked parametric gated-MLP lowering",
+      "evidence_only": [],
+      "proof_artifact": "GatedMLPLowering.lean",
+      "backend_assumption": "source and target use identical ordered primitive semantics",
+      "discharged_subobligations": [],
+      "proof_layer": "opcode composition under declared primitive relations",
+      "microcode_pc_span": [
+        79,
+        91
+      ],
+      "open_backend_micro_occurrences": 4,
+      "backend_refinement_status": "OPEN_PINNED_BACKEND_REFINEMENT",
+      "obligation_sha256": "7df80a9036ec50ff8c2ca868e01710cb5c1dd91b1a2143f1749b4026b5db101d"
+    },
+    {
+      "index": 13,
+      "opcode": "ADD",
+      "universal_statement": "for all shape-valid related source/register states, relation is preserved",
+      "sequence_polymorphic": false,
+      "tensor_references": [],
+      "structural_status": "verified",
+      "semantic_status": "definitionally lowered; universal schema available",
+      "evidence_only": [],
+      "proof_artifact": null,
+      "backend_assumption": null,
+      "discharged_subobligations": [],
+      "proof_layer": "opcode composition under declared primitive relations",
+      "microcode_pc_span": [
+        91,
+        92
+      ],
+      "open_backend_micro_occurrences": 0,
+      "backend_refinement_status": "NO_OPEN_BACKEND_MICRO_OCCURRENCE_IN_THIS_MACRO",
+      "obligation_sha256": "2d1ad09a7b937b06e0c3816b3c7c415738d961f487c6636d63eff423fa48035a"
+    },
+    {
+      "index": 14,
+      "opcode": "RMSNORM",
+      "universal_statement": "for all shape-valid related source/register states, relation is preserved",
+      "sequence_polymorphic": false,
+      "tensor_references": [
+        "encoder.block.2.layer.0.layer_norm.weight"
+      ],
+      "structural_status": "verified",
+      "semantic_status": "machine-checked parametric RMSNorm lowering",
+      "evidence_only": [],
+      "proof_artifact": "RMSNormLowering.lean",
+      "backend_assumption": "source and target use identical ordered primitive semantics",
+      "discharged_subobligations": [],
+      "proof_layer": "opcode composition under declared primitive relations",
+      "microcode_pc_span": [
+        92,
+        99
+      ],
+      "open_backend_micro_occurrences": 2,
+      "backend_refinement_status": "OPEN_PINNED_BACKEND_REFINEMENT",
+      "obligation_sha256": "6e410c16a3341f56536a751f9557383264c55274a255d49911159dead4bc4b09"
+    },
+    {
+      "index": 15,
+      "opcode": "SELF_ATTENTION_SEQUENCE",
+      "universal_statement": "for all shape-valid related source/register states, relation is preserved",
+      "sequence_polymorphic": true,
+      "tensor_references": [
+        "encoder.block.2.layer.0.SelfAttention.q.weight",
+        "encoder.block.2.layer.0.SelfAttention.k.weight",
+        "encoder.block.2.layer.0.SelfAttention.v.weight",
+        "encoder.block.2.layer.0.SelfAttention.o.weight"
+      ],
+      "structural_status": "verified",
+      "semantic_status": "machine-checked parametric attention lowering",
+      "evidence_only": [],
+      "proof_artifact": "AttentionLowering.lean",
+      "backend_assumption": "source and target use identical ordered primitive semantics",
+      "discharged_subobligations": [],
+      "proof_layer": "opcode composition under declared primitive relations",
+      "microcode_pc_span": [
+        99,
+        116
+      ],
+      "open_backend_micro_occurrences": 8,
+      "backend_refinement_status": "OPEN_PINNED_BACKEND_REFINEMENT",
+      "obligation_sha256": "46f971a7211abe3ab218607477aaf3dc281d3bfc8529ad67f2f7f9fe56a24cdb"
+    },
+    {
+      "index": 16,
+      "opcode": "ADD",
+      "universal_statement": "for all shape-valid related source/register states, relation is preserved",
+      "sequence_polymorphic": false,
+      "tensor_references": [],
+      "structural_status": "verified",
+      "semantic_status": "definitionally lowered; universal schema available",
+      "evidence_only": [],
+      "proof_artifact": null,
+      "backend_assumption": null,
+      "discharged_subobligations": [],
+      "proof_layer": "opcode composition under declared primitive relations",
+      "microcode_pc_span": [
+        116,
+        117
+      ],
+      "open_backend_micro_occurrences": 0,
+      "backend_refinement_status": "NO_OPEN_BACKEND_MICRO_OCCURRENCE_IN_THIS_MACRO",
+      "obligation_sha256": "1a76b4e635e8ff585b71eaf57a929a5c3f4805ad45a4098c58bca0f9b6a58fec"
+    },
+    {
+      "index": 17,
+      "opcode": "RMSNORM",
+      "universal_statement": "for all shape-valid related source/register states, relation is preserved",
+      "sequence_polymorphic": false,
+      "tensor_references": [
+        "encoder.block.2.layer.1.layer_norm.weight"
+      ],
+      "structural_status": "verified",
+      "semantic_status": "machine-checked parametric RMSNorm lowering",
+      "evidence_only": [],
+      "proof_artifact": "RMSNormLowering.lean",
+      "backend_assumption": "source and target use identical ordered primitive semantics",
+      "discharged_subobligations": [],
+      "proof_layer": "opcode composition under declared primitive relations",
+      "microcode_pc_span": [
+        117,
+        124
+      ],
+      "open_backend_micro_occurrences": 2,
+      "backend_refinement_status": "OPEN_PINNED_BACKEND_REFINEMENT",
+      "obligation_sha256": "1edef0f7cda8e57f29163b596363d1777e97baec989832bf33d66a0874610da1"
+    },
+    {
+      "index": 18,
+      "opcode": "GATED_MLP",
+      "universal_statement": "for all shape-valid related source/register states, relation is preserved",
+      "sequence_polymorphic": false,
+      "tensor_references": [
+        "encoder.block.2.layer.1.DenseReluDense.wi_0.weight",
+        "encoder.block.2.layer.1.DenseReluDense.wi_1.weight",
+        "encoder.block.2.layer.1.DenseReluDense.wo.weight"
+      ],
+      "structural_status": "verified",
+      "semantic_status": "machine-checked parametric gated-MLP lowering",
+      "evidence_only": [],
+      "proof_artifact": "GatedMLPLowering.lean",
+      "backend_assumption": "source and target use identical ordered primitive semantics",
+      "discharged_subobligations": [],
+      "proof_layer": "opcode composition under declared primitive relations",
+      "microcode_pc_span": [
+        124,
+        136
+      ],
+      "open_backend_micro_occurrences": 4,
+      "backend_refinement_status": "OPEN_PINNED_BACKEND_REFINEMENT",
+      "obligation_sha256": "a63b690a42f39e43e43b256d729fc566f074a597d38b23ab804e828fd3772d5c"
+    },
+    {
+      "index": 19,
+      "opcode": "ADD",
+      "universal_statement": "for all shape-valid related source/register states, relation is preserved",
+      "sequence_polymorphic": false,
+      "tensor_references": [],
+      "structural_status": "verified",
+      "semantic_status": "definitionally lowered; universal schema available",
+      "evidence_only": [],
+      "proof_artifact": null,
+      "backend_assumption": null,
+      "discharged_subobligations": [],
+      "proof_layer": "opcode composition under declared primitive relations",
+      "microcode_pc_span": [
+        136,
+        137
+      ],
+      "open_backend_micro_occurrences": 0,
+      "backend_refinement_status": "NO_OPEN_BACKEND_MICRO_OCCURRENCE_IN_THIS_MACRO",
+      "obligation_sha256": "cf4ad1ad038ead0ab7104d01ab9a22349581f5952bbd889bfe4fcf316a6c4f16"
+    },
+    {
+      "index": 20,
+      "opcode": "RMSNORM",
+      "universal_statement": "for all shape-valid related source/register states, relation is preserved",
+      "sequence_polymorphic": false,
+      "tensor_references": [
+        "encoder.block.3.layer.0.layer_norm.weight"
+      ],
+      "structural_status": "verified",
+      "semantic_status": "machine-checked parametric RMSNorm lowering",
+      "evidence_only": [],
+      "proof_artifact": "RMSNormLowering.lean",
+      "backend_assumption": "source and target use identical ordered primitive semantics",
+      "discharged_subobligations": [],
+      "proof_layer": "opcode composition under declared primitive relations",
+      "microcode_pc_span": [
+        137,
+        144
+      ],
+      "open_backend_micro_occurrences": 2,
+      "backend_refinement_status": "OPEN_PINNED_BACKEND_REFINEMENT",
+      "obligation_sha256": "dbdb6f701d26c64175457198eacbf69e79f9f22d5f964c2eb1b141197b7ccc94"
+    },
+    {
+      "index": 21,
+      "opcode": "SELF_ATTENTION_SEQUENCE",
+      "universal_statement": "for all shape-valid related source/register states, relation is preserved",
+      "sequence_polymorphic": true,
+      "tensor_references": [
+        "encoder.block.3.layer.0.SelfAttention.q.weight",
+        "encoder.block.3.layer.0.SelfAttention.k.weight",
+        "encoder.block.3.layer.0.SelfAttention.v.weight",
+        "encoder.block.3.layer.0.SelfAttention.o.weight"
+      ],
+      "structural_status": "verified",
+      "semantic_status": "machine-checked parametric attention lowering",
+      "evidence_only": [],
+      "proof_artifact": "AttentionLowering.lean",
+      "backend_assumption": "source and target use identical ordered primitive semantics",
+      "discharged_subobligations": [],
+      "proof_layer": "opcode composition under declared primitive relations",
+      "microcode_pc_span": [
+        144,
+        161
+      ],
+      "open_backend_micro_occurrences": 8,
+      "backend_refinement_status": "OPEN_PINNED_BACKEND_REFINEMENT",
+      "obligation_sha256": "bdb67d86e6da2d484a6281eb39b378e24138d5db598bf650c5464db8c406b65c"
+    },
+    {
+      "index": 22,
+      "opcode": "ADD",
+      "universal_statement": "for all shape-valid related source/register states, relation is preserved",
+      "sequence_polymorphic": false,
+      "tensor_references": [],
+      "structural_status": "verified",
+      "semantic_status": "definitionally lowered; universal schema available",
+      "evidence_only": [],
+      "proof_artifact": null,
+      "backend_assumption": null,
+      "discharged_subobligations": [],
+      "proof_layer": "opcode composition under declared primitive relations",
+      "microcode_pc_span": [
+        161,
+        162
+      ],
+      "open_backend_micro_occurrences": 0,
+      "backend_refinement_status": "NO_OPEN_BACKEND_MICRO_OCCURRENCE_IN_THIS_MACRO",
+      "obligation_sha256": "64ab732cacba539aeaa796985f238eba44a7474a1c3f21c51436a2152622d474"
+    },
+    {
+      "index": 23,
+      "opcode": "RMSNORM",
+      "universal_statement": "for all shape-valid related source/register states, relation is preserved",
+      "sequence_polymorphic": false,
+      "tensor_references": [
+        "encoder.block.3.layer.1.layer_norm.weight"
+      ],
+      "structural_status": "verified",
+      "semantic_status": "machine-checked parametric RMSNorm lowering",
+      "evidence_only": [],
+      "proof_artifact": "RMSNormLowering.lean",
+      "backend_assumption": "source and target use identical ordered primitive semantics",
+      "discharged_subobligations": [],
+      "proof_layer": "opcode composition under declared primitive relations",
+      "microcode_pc_span": [
+        162,
+        169
+      ],
+      "open_backend_micro_occurrences": 2,
+      "backend_refinement_status": "OPEN_PINNED_BACKEND_REFINEMENT",
+      "obligation_sha256": "20166f80b51ad867bf4ea73f2679f9429f485c53fd28578d0e7f6c7333668405"
+    },
+    {
+      "index": 24,
+      "opcode": "GATED_MLP",
+      "universal_statement": "for all shape-valid related source/register states, relation is preserved",
+      "sequence_polymorphic": false,
+      "tensor_references": [
+        "encoder.block.3.layer.1.DenseReluDense.wi_0.weight",
+        "encoder.block.3.layer.1.DenseReluDense.wi_1.weight",
+        "encoder.block.3.layer.1.DenseReluDense.wo.weight"
+      ],
+      "structural_status": "verified",
+      "semantic_status": "machine-checked parametric gated-MLP lowering",
+      "evidence_only": [],
+      "proof_artifact": "GatedMLPLowering.lean",
+      "backend_assumption": "source and target use identical ordered primitive semantics",
+      "discharged_subobligations": [],
+      "proof_layer": "opcode composition under declared primitive relations",
+      "microcode_pc_span": [
+        169,
+        181
+      ],
+      "open_backend_micro_occurrences": 4,
+      "backend_refinement_status": "OPEN_PINNED_BACKEND_REFINEMENT",
+      "obligation_sha256": "8c296a5737d4e171ffe2d02adb127de6a653c429fd1efbfe67e8d58e6210346c"
+    },
+    {
+      "index": 25,
+      "opcode": "ADD",
+      "universal_statement": "for all shape-valid related source/register states, relation is preserved",
+      "sequence_polymorphic": false,
+      "tensor_references": [],
+      "structural_status": "verified",
+      "semantic_status": "definitionally lowered; universal schema available",
+      "evidence_only": [],
+      "proof_artifact": null,
+      "backend_assumption": null,
+      "discharged_subobligations": [],
+      "proof_layer": "opcode composition under declared primitive relations",
+      "microcode_pc_span": [
+        181,
+        182
+      ],
+      "open_backend_micro_occurrences": 0,
+      "backend_refinement_status": "NO_OPEN_BACKEND_MICRO_OCCURRENCE_IN_THIS_MACRO",
+      "obligation_sha256": "ead6c13321273d4c805480be9f74f194ab41593dd322638b91d8f1f6d1ad6802"
+    },
+    {
+      "index": 26,
+      "opcode": "RMSNORM",
+      "universal_statement": "for all shape-valid related source/register states, relation is preserved",
+      "sequence_polymorphic": false,
+      "tensor_references": [
+        "encoder.block.4.layer.0.layer_norm.weight"
+      ],
+      "structural_status": "verified",
+      "semantic_status": "machine-checked parametric RMSNorm lowering",
+      "evidence_only": [],
+      "proof_artifact": "RMSNormLowering.lean",
+      "backend_assumption": "source and target use identical ordered primitive semantics",
+      "discharged_subobligations": [],
+      "proof_layer": "opcode composition under declared primitive relations",
+      "microcode_pc_span": [
+        182,
+        189
+      ],
+      "open_backend_micro_occurrences": 2,
+      "backend_refinement_status": "OPEN_PINNED_BACKEND_REFINEMENT",
+      "obligation_sha256": "7e986946cb256c13dfbed1938813b84f7c90725e7d2a33d7da08976a294d44d3"
+    },
+    {
+      "index": 27,
+      "opcode": "SELF_ATTENTION_SEQUENCE",
+      "universal_statement": "for all shape-valid related source/register states, relation is preserved",
+      "sequence_polymorphic": true,
+      "tensor_references": [
+        "encoder.block.4.layer.0.SelfAttention.q.weight",
+        "encoder.block.4.layer.0.SelfAttention.k.weight",
+        "encoder.block.4.layer.0.SelfAttention.v.weight",
+        "encoder.block.4.layer.0.SelfAttention.o.weight"
+      ],
+      "structural_status": "verified",
+      "semantic_status": "machine-checked parametric attention lowering",
+      "evidence_only": [],
+      "proof_artifact": "AttentionLowering.lean",
+      "backend_assumption": "source and target use identical ordered primitive semantics",
+      "discharged_subobligations": [],
+      "proof_layer": "opcode composition under declared primitive relations",
+      "microcode_pc_span": [
+        189,
+        206
+      ],
+      "open_backend_micro_occurrences": 8,
+      "backend_refinement_status": "OPEN_PINNED_BACKEND_REFINEMENT",
+      "obligation_sha256": "b6b9a1dffc886b748be1b2627a94db35e6947ee15cbe6d794f7da8d99b859cc3"
+    },
+    {
+      "index": 28,
+      "opcode": "ADD",
+      "universal_statement": "for all shape-valid related source/register states, relation is preserved",
+      "sequence_polymorphic": false,
+      "tensor_references": [],
+      "structural_status": "verified",
+      "semantic_status": "definitionally lowered; universal schema available",
+      "evidence_only": [],
+      "proof_artifact": null,
+      "backend_assumption": null,
+      "discharged_subobligations": [],
+      "proof_layer": "opcode composition under declared primitive relations",
+      "microcode_pc_span": [
+        206,
+        207
+      ],
+      "open_backend_micro_occurrences": 0,
+      "backend_refinement_status": "NO_OPEN_BACKEND_MICRO_OCCURRENCE_IN_THIS_MACRO",
+      "obligation_sha256": "eac90f963d4153c187f70281363a411404038ff083cceb6d261a8e0a3e46d685"
+    },
+    {
+      "index": 29,
+      "opcode": "RMSNORM",
+      "universal_statement": "for all shape-valid related source/register states, relation is preserved",
+      "sequence_polymorphic": false,
+      "tensor_references": [
+        "encoder.block.4.layer.1.layer_norm.weight"
+      ],
+      "structural_status": "verified",
+      "semantic_status": "machine-checked parametric RMSNorm lowering",
+      "evidence_only": [],
+      "proof_artifact": "RMSNormLowering.lean",
+      "backend_assumption": "source and target use identical ordered primitive semantics",
+      "discharged_subobligations": [],
+      "proof_layer": "opcode composition under declared primitive relations",
+      "microcode_pc_span": [
+        207,
+        214
+      ],
+      "open_backend_micro_occurrences": 2,
+      "backend_refinement_status": "OPEN_PINNED_BACKEND_REFINEMENT",
+      "obligation_sha256": "00554742222dcb87ad5fb5334fedd502c0e28de906d2ca9fb115401bbafc948d"
+    },
+    {
+      "index": 30,
+      "opcode": "GATED_MLP",
+      "universal_statement": "for all shape-valid related source/register states, relation is preserved",
+      "sequence_polymorphic": false,
+      "tensor_references": [
+        "encoder.block.4.layer.1.DenseReluDense.wi_0.weight",
+        "encoder.block.4.layer.1.DenseReluDense.wi_1.weight",
+        "encoder.block.4.layer.1.DenseReluDense.wo.weight"
+      ],
+      "structural_status": "verified",
+      "semantic_status": "machine-checked parametric gated-MLP lowering",
+      "evidence_only": [],
+      "proof_artifact": "GatedMLPLowering.lean",
+      "backend_assumption": "source and target use identical ordered primitive semantics",
+      "discharged_subobligations": [],
+      "proof_layer": "opcode composition under declared primitive relations",
+      "microcode_pc_span": [
+        214,
+        226
+      ],
+      "open_backend_micro_occurrences": 4,
+      "backend_refinement_status": "OPEN_PINNED_BACKEND_REFINEMENT",
+      "obligation_sha256": "d9dcbc851a306f8a6baa3abde9554ae55f7f201714cf23dd67bd103c4d93459a"
+    },
+    {
+      "index": 31,
+      "opcode": "ADD",
+      "universal_statement": "for all shape-valid related source/register states, relation is preserved",
+      "sequence_polymorphic": false,
+      "tensor_references": [],
+      "structural_status": "verified",
+      "semantic_status": "definitionally lowered; universal schema available",
+      "evidence_only": [],
+      "proof_artifact": null,
+      "backend_assumption": null,
+      "discharged_subobligations": [],
+      "proof_layer": "opcode composition under declared primitive relations",
+      "microcode_pc_span": [
+        226,
+        227
+      ],
+      "open_backend_micro_occurrences": 0,
+      "backend_refinement_status": "NO_OPEN_BACKEND_MICRO_OCCURRENCE_IN_THIS_MACRO",
+      "obligation_sha256": "4ddb9c0b028cd88cc5cf74ea4cd1e48f3461917cc50bc5345eda22df46cfcf0f"
+    },
+    {
+      "index": 32,
+      "opcode": "RMSNORM",
+      "universal_statement": "for all shape-valid related source/register states, relation is preserved",
+      "sequence_polymorphic": false,
+      "tensor_references": [
+        "encoder.block.5.layer.0.layer_norm.weight"
+      ],
+      "structural_status": "verified",
+      "semantic_status": "machine-checked parametric RMSNorm lowering",
+      "evidence_only": [],
+      "proof_artifact": "RMSNormLowering.lean",
+      "backend_assumption": "source and target use identical ordered primitive semantics",
+      "discharged_subobligations": [],
+      "proof_layer": "opcode composition under declared primitive relations",
+      "microcode_pc_span": [
+        227,
+        234
+      ],
+      "open_backend_micro_occurrences": 2,
+      "backend_refinement_status": "OPEN_PINNED_BACKEND_REFINEMENT",
+      "obligation_sha256": "11836e68e12157147eec983889b4aa33258c8b48f08d1e39eb9542862a73b026"
+    },
+    {
+      "index": 33,
+      "opcode": "SELF_ATTENTION_SEQUENCE",
+      "universal_statement": "for all shape-valid related source/register states, relation is preserved",
+      "sequence_polymorphic": true,
+      "tensor_references": [
+        "encoder.block.5.layer.0.SelfAttention.q.weight",
+        "encoder.block.5.layer.0.SelfAttention.k.weight",
+        "encoder.block.5.layer.0.SelfAttention.v.weight",
+        "encoder.block.5.layer.0.SelfAttention.o.weight"
+      ],
+      "structural_status": "verified",
+      "semantic_status": "machine-checked parametric attention lowering",
+      "evidence_only": [],
+      "proof_artifact": "AttentionLowering.lean",
+      "backend_assumption": "source and target use identical ordered primitive semantics",
+      "discharged_subobligations": [],
+      "proof_layer": "opcode composition under declared primitive relations",
+      "microcode_pc_span": [
+        234,
+        251
+      ],
+      "open_backend_micro_occurrences": 8,
+      "backend_refinement_status": "OPEN_PINNED_BACKEND_REFINEMENT",
+      "obligation_sha256": "a9a3311355d2e66ec85ed10c559aaa10cc8f2b00497671f8ca0da07cf370b0d0"
+    },
+    {
+      "index": 34,
+      "opcode": "ADD",
+      "universal_statement": "for all shape-valid related source/register states, relation is preserved",
+      "sequence_polymorphic": false,
+      "tensor_references": [],
+      "structural_status": "verified",
+      "semantic_status": "definitionally lowered; universal schema available",
+      "evidence_only": [],
+      "proof_artifact": null,
+      "backend_assumption": null,
+      "discharged_subobligations": [],
+      "proof_layer": "opcode composition under declared primitive relations",
+      "microcode_pc_span": [
+        251,
+        252
+      ],
+      "open_backend_micro_occurrences": 0,
+      "backend_refinement_status": "NO_OPEN_BACKEND_MICRO_OCCURRENCE_IN_THIS_MACRO",
+      "obligation_sha256": "bd155c0aa2003f32e0a527e61d7bd47578ae71ca311cdf652bdafacccda47190"
+    },
+    {
+      "index": 35,
+      "opcode": "RMSNORM",
+      "universal_statement": "for all shape-valid related source/register states, relation is preserved",
+      "sequence_polymorphic": false,
+      "tensor_references": [
+        "encoder.block.5.layer.1.layer_norm.weight"
+      ],
+      "structural_status": "verified",
+      "semantic_status": "machine-checked parametric RMSNorm lowering",
+      "evidence_only": [],
+      "proof_artifact": "RMSNormLowering.lean",
+      "backend_assumption": "source and target use identical ordered primitive semantics",
+      "discharged_subobligations": [],
+      "proof_layer": "opcode composition under declared primitive relations",
+      "microcode_pc_span": [
+        252,
+        259
+      ],
+      "open_backend_micro_occurrences": 2,
+      "backend_refinement_status": "OPEN_PINNED_BACKEND_REFINEMENT",
+      "obligation_sha256": "7003903aa729a7976e052dee5c13cdf53a359196fb50ec1ce49c3c037ceaa934"
+    },
+    {
+      "index": 36,
+      "opcode": "GATED_MLP",
+      "universal_statement": "for all shape-valid related source/register states, relation is preserved",
+      "sequence_polymorphic": false,
+      "tensor_references": [
+        "encoder.block.5.layer.1.DenseReluDense.wi_0.weight",
+        "encoder.block.5.layer.1.DenseReluDense.wi_1.weight",
+        "encoder.block.5.layer.1.DenseReluDense.wo.weight"
+      ],
+      "structural_status": "verified",
+      "semantic_status": "machine-checked parametric gated-MLP lowering",
+      "evidence_only": [],
+      "proof_artifact": "GatedMLPLowering.lean",
+      "backend_assumption": "source and target use identical ordered primitive semantics",
+      "discharged_subobligations": [],
+      "proof_layer": "opcode composition under declared primitive relations",
+      "microcode_pc_span": [
+        259,
+        271
+      ],
+      "open_backend_micro_occurrences": 4,
+      "backend_refinement_status": "OPEN_PINNED_BACKEND_REFINEMENT",
+      "obligation_sha256": "0da1348551bc805c7063bf8212a47722316d2b3e52edf5b8c33d450d3b1b3896"
+    },
+    {
+      "index": 37,
+      "opcode": "ADD",
+      "universal_statement": "for all shape-valid related source/register states, relation is preserved",
+      "sequence_polymorphic": false,
+      "tensor_references": [],
+      "structural_status": "verified",
+      "semantic_status": "definitionally lowered; universal schema available",
+      "evidence_only": [],
+      "proof_artifact": null,
+      "backend_assumption": null,
+      "discharged_subobligations": [],
+      "proof_layer": "opcode composition under declared primitive relations",
+      "microcode_pc_span": [
+        271,
+        272
+      ],
+      "open_backend_micro_occurrences": 0,
+      "backend_refinement_status": "NO_OPEN_BACKEND_MICRO_OCCURRENCE_IN_THIS_MACRO",
+      "obligation_sha256": "e0342c924b7ec914c3423bb95a45d2a2ed611500b647b0d4c9886141d3ce2508"
+    },
+    {
+      "index": 38,
+      "opcode": "RMSNORM",
+      "universal_statement": "for all shape-valid related source/register states, relation is preserved",
+      "sequence_polymorphic": false,
+      "tensor_references": [
+        "encoder.block.6.layer.0.layer_norm.weight"
+      ],
+      "structural_status": "verified",
+      "semantic_status": "machine-checked parametric RMSNorm lowering",
+      "evidence_only": [],
+      "proof_artifact": "RMSNormLowering.lean",
+      "backend_assumption": "source and target use identical ordered primitive semantics",
+      "discharged_subobligations": [],
+      "proof_layer": "opcode composition under declared primitive relations",
+      "microcode_pc_span": [
+        272,
+        279
+      ],
+      "open_backend_micro_occurrences": 2,
+      "backend_refinement_status": "OPEN_PINNED_BACKEND_REFINEMENT",
+      "obligation_sha256": "b37ba818ff140c3367c851790ea6068d82dfa02705f81d799880b7c4041b954c"
+    },
+    {
+      "index": 39,
+      "opcode": "SELF_ATTENTION_SEQUENCE",
+      "universal_statement": "for all shape-valid related source/register states, relation is preserved",
+      "sequence_polymorphic": true,
+      "tensor_references": [
+        "encoder.block.6.layer.0.SelfAttention.q.weight",
+        "encoder.block.6.layer.0.SelfAttention.k.weight",
+        "encoder.block.6.layer.0.SelfAttention.v.weight",
+        "encoder.block.6.layer.0.SelfAttention.o.weight"
+      ],
+      "structural_status": "verified",
+      "semantic_status": "machine-checked parametric attention lowering",
+      "evidence_only": [],
+      "proof_artifact": "AttentionLowering.lean",
+      "backend_assumption": "source and target use identical ordered primitive semantics",
+      "discharged_subobligations": [],
+      "proof_layer": "opcode composition under declared primitive relations",
+      "microcode_pc_span": [
+        279,
+        296
+      ],
+      "open_backend_micro_occurrences": 8,
+      "backend_refinement_status": "OPEN_PINNED_BACKEND_REFINEMENT",
+      "obligation_sha256": "7889d6bd47ab69a12838a4728b86894be45f1738603c90157d157b2082a4040c"
+    },
+    {
+      "index": 40,
+      "opcode": "ADD",
+      "universal_statement": "for all shape-valid related source/register states, relation is preserved",
+      "sequence_polymorphic": false,
+      "tensor_references": [],
+      "structural_status": "verified",
+      "semantic_status": "definitionally lowered; universal schema available",
+      "evidence_only": [],
+      "proof_artifact": null,
+      "backend_assumption": null,
+      "discharged_subobligations": [],
+      "proof_layer": "opcode composition under declared primitive relations",
+      "microcode_pc_span": [
+        296,
+        297
+      ],
+      "open_backend_micro_occurrences": 0,
+      "backend_refinement_status": "NO_OPEN_BACKEND_MICRO_OCCURRENCE_IN_THIS_MACRO",
+      "obligation_sha256": "f567aa57b63070fb051240a3a7c8f4978d65bded2f3a8458d5ac80c7c8ee93f7"
+    },
+    {
+      "index": 41,
+      "opcode": "RMSNORM",
+      "universal_statement": "for all shape-valid related source/register states, relation is preserved",
+      "sequence_polymorphic": false,
+      "tensor_references": [
+        "encoder.block.6.layer.1.layer_norm.weight"
+      ],
+      "structural_status": "verified",
+      "semantic_status": "machine-checked parametric RMSNorm lowering",
+      "evidence_only": [],
+      "proof_artifact": "RMSNormLowering.lean",
+      "backend_assumption": "source and target use identical ordered primitive semantics",
+      "discharged_subobligations": [],
+      "proof_layer": "opcode composition under declared primitive relations",
+      "microcode_pc_span": [
+        297,
+        304
+      ],
+      "open_backend_micro_occurrences": 2,
+      "backend_refinement_status": "OPEN_PINNED_BACKEND_REFINEMENT",
+      "obligation_sha256": "ab32348cf9b0d6d6824f18a87826aeb600946c4808bf0b3bc4ffbc182a5e2d11"
+    },
+    {
+      "index": 42,
+      "opcode": "GATED_MLP",
+      "universal_statement": "for all shape-valid related source/register states, relation is preserved",
+      "sequence_polymorphic": false,
+      "tensor_references": [
+        "encoder.block.6.layer.1.DenseReluDense.wi_0.weight",
+        "encoder.block.6.layer.1.DenseReluDense.wi_1.weight",
+        "encoder.block.6.layer.1.DenseReluDense.wo.weight"
+      ],
+      "structural_status": "verified",
+      "semantic_status": "machine-checked parametric gated-MLP lowering",
+      "evidence_only": [],
+      "proof_artifact": "GatedMLPLowering.lean",
+      "backend_assumption": "source and target use identical ordered primitive semantics",
+      "discharged_subobligations": [],
+      "proof_layer": "opcode composition under declared primitive relations",
+      "microcode_pc_span": [
+        304,
+        316
+      ],
+      "open_backend_micro_occurrences": 4,
+      "backend_refinement_status": "OPEN_PINNED_BACKEND_REFINEMENT",
+      "obligation_sha256": "1c924f61cadea1bd6c7006167941a9a5277c2189dc38e72d8ffefb56ba180dbf"
+    },
+    {
+      "index": 43,
+      "opcode": "ADD",
+      "universal_statement": "for all shape-valid related source/register states, relation is preserved",
+      "sequence_polymorphic": false,
+      "tensor_references": [],
+      "structural_status": "verified",
+      "semantic_status": "definitionally lowered; universal schema available",
+      "evidence_only": [],
+      "proof_artifact": null,
+      "backend_assumption": null,
+      "discharged_subobligations": [],
+      "proof_layer": "opcode composition under declared primitive relations",
+      "microcode_pc_span": [
+        316,
+        317
+      ],
+      "open_backend_micro_occurrences": 0,
+      "backend_refinement_status": "NO_OPEN_BACKEND_MICRO_OCCURRENCE_IN_THIS_MACRO",
+      "obligation_sha256": "9cfc40e5fc5eb1b3f6f9b40549d171c7b058de52ac276068bc7022ccd2ca70ef"
+    },
+    {
+      "index": 44,
+      "opcode": "RMSNORM",
+      "universal_statement": "for all shape-valid related source/register states, relation is preserved",
+      "sequence_polymorphic": false,
+      "tensor_references": [
+        "encoder.block.7.layer.0.layer_norm.weight"
+      ],
+      "structural_status": "verified",
+      "semantic_status": "machine-checked parametric RMSNorm lowering",
+      "evidence_only": [],
+      "proof_artifact": "RMSNormLowering.lean",
+      "backend_assumption": "source and target use identical ordered primitive semantics",
+      "discharged_subobligations": [],
+      "proof_layer": "opcode composition under declared primitive relations",
+      "microcode_pc_span": [
+        317,
+        324
+      ],
+      "open_backend_micro_occurrences": 2,
+      "backend_refinement_status": "OPEN_PINNED_BACKEND_REFINEMENT",
+      "obligation_sha256": "8e7979c99b1ac1ca14e4473a06b4424056daacab8df4db22258f1d572b529f8c"
+    },
+    {
+      "index": 45,
+      "opcode": "SELF_ATTENTION_SEQUENCE",
+      "universal_statement": "for all shape-valid related source/register states, relation is preserved",
+      "sequence_polymorphic": true,
+      "tensor_references": [
+        "encoder.block.7.layer.0.SelfAttention.q.weight",
+        "encoder.block.7.layer.0.SelfAttention.k.weight",
+        "encoder.block.7.layer.0.SelfAttention.v.weight",
+        "encoder.block.7.layer.0.SelfAttention.o.weight"
+      ],
+      "structural_status": "verified",
+      "semantic_status": "machine-checked parametric attention lowering",
+      "evidence_only": [],
+      "proof_artifact": "AttentionLowering.lean",
+      "backend_assumption": "source and target use identical ordered primitive semantics",
+      "discharged_subobligations": [],
+      "proof_layer": "opcode composition under declared primitive relations",
+      "microcode_pc_span": [
+        324,
+        341
+      ],
+      "open_backend_micro_occurrences": 8,
+      "backend_refinement_status": "OPEN_PINNED_BACKEND_REFINEMENT",
+      "obligation_sha256": "202d3bbee86f1e286669e29d5c346d6c3dada01d27efdb0e407da691881de89b"
+    },
+    {
+      "index": 46,
+      "opcode": "ADD",
+      "universal_statement": "for all shape-valid related source/register states, relation is preserved",
+      "sequence_polymorphic": false,
+      "tensor_references": [],
+      "structural_status": "verified",
+      "semantic_status": "definitionally lowered; universal schema available",
+      "evidence_only": [],
+      "proof_artifact": null,
+      "backend_assumption": null,
+      "discharged_subobligations": [],
+      "proof_layer": "opcode composition under declared primitive relations",
+      "microcode_pc_span": [
+        341,
+        342
+      ],
+      "open_backend_micro_occurrences": 0,
+      "backend_refinement_status": "NO_OPEN_BACKEND_MICRO_OCCURRENCE_IN_THIS_MACRO",
+      "obligation_sha256": "0430a32059e28344a3ad55cd6064f258c324410b368b8440f71859614cb4db35"
+    },
+    {
+      "index": 47,
+      "opcode": "RMSNORM",
+      "universal_statement": "for all shape-valid related source/register states, relation is preserved",
+      "sequence_polymorphic": false,
+      "tensor_references": [
+        "encoder.block.7.layer.1.layer_norm.weight"
+      ],
+      "structural_status": "verified",
+      "semantic_status": "machine-checked parametric RMSNorm lowering",
+      "evidence_only": [],
+      "proof_artifact": "RMSNormLowering.lean",
+      "backend_assumption": "source and target use identical ordered primitive semantics",
+      "discharged_subobligations": [],
+      "proof_layer": "opcode composition under declared primitive relations",
+      "microcode_pc_span": [
+        342,
+        349
+      ],
+      "open_backend_micro_occurrences": 2,
+      "backend_refinement_status": "OPEN_PINNED_BACKEND_REFINEMENT",
+      "obligation_sha256": "8342464c87d3a119a03b198583d166fb904ab6198fe42b706a7ab3d83679cea1"
+    },
+    {
+      "index": 48,
+      "opcode": "GATED_MLP",
+      "universal_statement": "for all shape-valid related source/register states, relation is preserved",
+      "sequence_polymorphic": false,
+      "tensor_references": [
+        "encoder.block.7.layer.1.DenseReluDense.wi_0.weight",
+        "encoder.block.7.layer.1.DenseReluDense.wi_1.weight",
+        "encoder.block.7.layer.1.DenseReluDense.wo.weight"
+      ],
+      "structural_status": "verified",
+      "semantic_status": "machine-checked parametric gated-MLP lowering",
+      "evidence_only": [],
+      "proof_artifact": "GatedMLPLowering.lean",
+      "backend_assumption": "source and target use identical ordered primitive semantics",
+      "discharged_subobligations": [],
+      "proof_layer": "opcode composition under declared primitive relations",
+      "microcode_pc_span": [
+        349,
+        361
+      ],
+      "open_backend_micro_occurrences": 4,
+      "backend_refinement_status": "OPEN_PINNED_BACKEND_REFINEMENT",
+      "obligation_sha256": "d7dc5fd50d681ad827e30cced626a4f578cbbb4ae1ae060f7fedb80c376c01f0"
+    },
+    {
+      "index": 49,
+      "opcode": "ADD",
+      "universal_statement": "for all shape-valid related source/register states, relation is preserved",
+      "sequence_polymorphic": false,
+      "tensor_references": [],
+      "structural_status": "verified",
+      "semantic_status": "definitionally lowered; universal schema available",
+      "evidence_only": [],
+      "proof_artifact": null,
+      "backend_assumption": null,
+      "discharged_subobligations": [],
+      "proof_layer": "opcode composition under declared primitive relations",
+      "microcode_pc_span": [
+        361,
+        362
+      ],
+      "open_backend_micro_occurrences": 0,
+      "backend_refinement_status": "NO_OPEN_BACKEND_MICRO_OCCURRENCE_IN_THIS_MACRO",
+      "obligation_sha256": "d30fb5b1ebd104897c2fb7c23757a1b873e29238719a6fd326b77c1c861365d1"
+    },
+    {
+      "index": 50,
+      "opcode": "RMSNORM",
+      "universal_statement": "for all shape-valid related source/register states, relation is preserved",
+      "sequence_polymorphic": false,
+      "tensor_references": [
+        "encoder.final_layer_norm.weight"
+      ],
+      "structural_status": "verified",
+      "semantic_status": "machine-checked parametric RMSNorm lowering",
+      "evidence_only": [],
+      "proof_artifact": "RMSNormLowering.lean",
+      "backend_assumption": "source and target use identical ordered primitive semantics",
+      "discharged_subobligations": [],
+      "proof_layer": "opcode composition under declared primitive relations",
+      "microcode_pc_span": [
+        362,
+        369
+      ],
+      "open_backend_micro_occurrences": 2,
+      "backend_refinement_status": "OPEN_PINNED_BACKEND_REFINEMENT",
+      "obligation_sha256": "ee738ac68a2025246f246a46abb5f057d8f64dca3f1e661903a5dfdcb4e18ec9"
+    },
+    {
+      "index": 51,
+      "opcode": "INPUT_DECODER_STACK",
+      "universal_statement": "for all shape-valid related source/register states, relation is preserved",
+      "sequence_polymorphic": false,
+      "tensor_references": [],
+      "structural_status": "verified",
+      "semantic_status": "definitionally lowered; universal schema available",
+      "evidence_only": [],
+      "proof_artifact": null,
+      "backend_assumption": null,
+      "discharged_subobligations": [],
+      "proof_layer": "opcode composition under declared primitive relations",
+      "microcode_pc_span": [
+        369,
+        370
+      ],
+      "open_backend_micro_occurrences": 0,
+      "backend_refinement_status": "NO_OPEN_BACKEND_MICRO_OCCURRENCE_IN_THIS_MACRO",
+      "obligation_sha256": "7f5567e8448409007ec89161c5eb16607f93a7d15323907f811c5bca9083decf"
+    },
+    {
+      "index": 52,
+      "opcode": "EMBED",
+      "universal_statement": "for all shape-valid related source/register states, relation is preserved",
+      "sequence_polymorphic": true,
+      "tensor_references": [
+        "shared.weight"
+      ],
+      "structural_status": "verified",
+      "semantic_status": "definitionally lowered; universal schema available",
+      "evidence_only": [],
+      "proof_artifact": null,
+      "backend_assumption": null,
+      "discharged_subobligations": [],
+      "proof_layer": "opcode composition under declared primitive relations",
+      "microcode_pc_span": [
+        370,
+        371
+      ],
+      "open_backend_micro_occurrences": 0,
+      "backend_refinement_status": "NO_OPEN_BACKEND_MICRO_OCCURRENCE_IN_THIS_MACRO",
+      "obligation_sha256": "f097d786a2be8747dab123a500351faadb88cea462d3d3ba3b1593e566ccb1a6"
+    },
+    {
+      "index": 53,
+      "opcode": "RMSNORM",
+      "universal_statement": "for all shape-valid related source/register states, relation is preserved",
+      "sequence_polymorphic": false,
+      "tensor_references": [
+        "decoder.block.0.layer.0.layer_norm.weight"
+      ],
+      "structural_status": "verified",
+      "semantic_status": "machine-checked parametric RMSNorm lowering",
+      "evidence_only": [],
+      "proof_artifact": "RMSNormLowering.lean",
+      "backend_assumption": "source and target use identical ordered primitive semantics",
+      "discharged_subobligations": [],
+      "proof_layer": "opcode composition under declared primitive relations",
+      "microcode_pc_span": [
+        371,
+        378
+      ],
+      "open_backend_micro_occurrences": 2,
+      "backend_refinement_status": "OPEN_PINNED_BACKEND_REFINEMENT",
+      "obligation_sha256": "ce71ec4a2c911884944e5d6a1da116d2da87917e514c8617c580ab827049235c"
+    },
+    {
+      "index": 54,
+      "opcode": "SELF_ATTENTION_KV",
+      "universal_statement": "for all shape-valid related source/register states, relation is preserved",
+      "sequence_polymorphic": true,
+      "tensor_references": [
+        "decoder.block.0.layer.0.SelfAttention.q.weight",
+        "decoder.block.0.layer.0.SelfAttention.k.weight",
+        "decoder.block.0.layer.0.SelfAttention.v.weight",
+        "decoder.block.0.layer.0.SelfAttention.o.weight"
+      ],
+      "structural_status": "verified",
+      "semantic_status": "machine-checked parametric attention lowering",
+      "evidence_only": [],
+      "proof_artifact": "AttentionLowering.lean",
+      "backend_assumption": "source and target use identical ordered primitive semantics",
+      "discharged_subobligations": [
+        "append order",
+        "token/key/value length synchronization"
+      ],
+      "proof_layer": "opcode composition under declared primitive relations",
+      "microcode_pc_span": [
+        378,
+        395
+      ],
+      "open_backend_micro_occurrences": 8,
+      "backend_refinement_status": "OPEN_PINNED_BACKEND_REFINEMENT",
+      "obligation_sha256": "b7b9213ff5713e6acdc4846aec89e721fe76b4be10eb36fa32865b26f241ee3d"
+    },
+    {
+      "index": 55,
+      "opcode": "ADD",
+      "universal_statement": "for all shape-valid related source/register states, relation is preserved",
+      "sequence_polymorphic": false,
+      "tensor_references": [],
+      "structural_status": "verified",
+      "semantic_status": "definitionally lowered; universal schema available",
+      "evidence_only": [],
+      "proof_artifact": null,
+      "backend_assumption": null,
+      "discharged_subobligations": [],
+      "proof_layer": "opcode composition under declared primitive relations",
+      "microcode_pc_span": [
+        395,
+        396
+      ],
+      "open_backend_micro_occurrences": 0,
+      "backend_refinement_status": "NO_OPEN_BACKEND_MICRO_OCCURRENCE_IN_THIS_MACRO",
+      "obligation_sha256": "ce31e18da52320bd5beecb61cf9e893310d864dddcc5047d69cf6b23d0bfa0a2"
+    },
+    {
+      "index": 56,
+      "opcode": "RMSNORM",
+      "universal_statement": "for all shape-valid related source/register states, relation is preserved",
+      "sequence_polymorphic": false,
+      "tensor_references": [
+        "decoder.block.0.layer.1.layer_norm.weight"
+      ],
+      "structural_status": "verified",
+      "semantic_status": "machine-checked parametric RMSNorm lowering",
+      "evidence_only": [],
+      "proof_artifact": "RMSNormLowering.lean",
+      "backend_assumption": "source and target use identical ordered primitive semantics",
+      "discharged_subobligations": [],
+      "proof_layer": "opcode composition under declared primitive relations",
+      "microcode_pc_span": [
+        396,
+        403
+      ],
+      "open_backend_micro_occurrences": 2,
+      "backend_refinement_status": "OPEN_PINNED_BACKEND_REFINEMENT",
+      "obligation_sha256": "09fb6183f5ddc55beaad43ff6fe780f9f7a8c740271baa0de2051f261fb1a14d"
+    },
+    {
+      "index": 57,
+      "opcode": "CROSS_ATTENTION",
+      "universal_statement": "for all shape-valid related source/register states, relation is preserved",
+      "sequence_polymorphic": true,
+      "tensor_references": [
+        "decoder.block.0.layer.1.EncDecAttention.q.weight",
+        "decoder.block.0.layer.1.EncDecAttention.k.weight",
+        "decoder.block.0.layer.1.EncDecAttention.v.weight",
+        "decoder.block.0.layer.1.EncDecAttention.o.weight"
+      ],
+      "structural_status": "verified",
+      "semantic_status": "machine-checked parametric attention lowering",
+      "evidence_only": [],
+      "proof_artifact": "AttentionLowering.lean",
+      "backend_assumption": "source and target use identical ordered primitive semantics",
+      "discharged_subobligations": [],
+      "proof_layer": "opcode composition under declared primitive relations",
+      "microcode_pc_span": [
+        403,
+        420
+      ],
+      "open_backend_micro_occurrences": 8,
+      "backend_refinement_status": "OPEN_PINNED_BACKEND_REFINEMENT",
+      "obligation_sha256": "021f4a371482958e60887541104d72058ef464029bfcee1ff8cdf1bfe44ab17f"
+    },
+    {
+      "index": 58,
+      "opcode": "ADD",
+      "universal_statement": "for all shape-valid related source/register states, relation is preserved",
+      "sequence_polymorphic": false,
+      "tensor_references": [],
+      "structural_status": "verified",
+      "semantic_status": "definitionally lowered; universal schema available",
+      "evidence_only": [],
+      "proof_artifact": null,
+      "backend_assumption": null,
+      "discharged_subobligations": [],
+      "proof_layer": "opcode composition under declared primitive relations",
+      "microcode_pc_span": [
+        420,
+        421
+      ],
+      "open_backend_micro_occurrences": 0,
+      "backend_refinement_status": "NO_OPEN_BACKEND_MICRO_OCCURRENCE_IN_THIS_MACRO",
+      "obligation_sha256": "28739ea8fbff365d38d001422d924899e1b78f1591e000b847fce477630b57d6"
+    },
+    {
+      "index": 59,
+      "opcode": "RMSNORM",
+      "universal_statement": "for all shape-valid related source/register states, relation is preserved",
+      "sequence_polymorphic": false,
+      "tensor_references": [
+        "decoder.block.0.layer.2.layer_norm.weight"
+      ],
+      "structural_status": "verified",
+      "semantic_status": "machine-checked parametric RMSNorm lowering",
+      "evidence_only": [],
+      "proof_artifact": "RMSNormLowering.lean",
+      "backend_assumption": "source and target use identical ordered primitive semantics",
+      "discharged_subobligations": [],
+      "proof_layer": "opcode composition under declared primitive relations",
+      "microcode_pc_span": [
+        421,
+        428
+      ],
+      "open_backend_micro_occurrences": 2,
+      "backend_refinement_status": "OPEN_PINNED_BACKEND_REFINEMENT",
+      "obligation_sha256": "0eae0e5fee65918ae8342169dab2046416d7db4d84febba794d6e1976854e445"
+    },
+    {
+      "index": 60,
+      "opcode": "GATED_MLP",
+      "universal_statement": "for all shape-valid related source/register states, relation is preserved",
+      "sequence_polymorphic": false,
+      "tensor_references": [
+        "decoder.block.0.layer.2.DenseReluDense.wi_0.weight",
+        "decoder.block.0.layer.2.DenseReluDense.wi_1.weight",
+        "decoder.block.0.layer.2.DenseReluDense.wo.weight"
+      ],
+      "structural_status": "verified",
+      "semantic_status": "machine-checked parametric gated-MLP lowering",
+      "evidence_only": [],
+      "proof_artifact": "GatedMLPLowering.lean",
+      "backend_assumption": "source and target use identical ordered primitive semantics",
+      "discharged_subobligations": [],
+      "proof_layer": "opcode composition under declared primitive relations",
+      "microcode_pc_span": [
+        428,
+        440
+      ],
+      "open_backend_micro_occurrences": 4,
+      "backend_refinement_status": "OPEN_PINNED_BACKEND_REFINEMENT",
+      "obligation_sha256": "c6747c238661e2f1bcabc9f5a168c36438b37a5c774f014a853927b0dc276ff2"
+    },
+    {
+      "index": 61,
+      "opcode": "ADD",
+      "universal_statement": "for all shape-valid related source/register states, relation is preserved",
+      "sequence_polymorphic": false,
+      "tensor_references": [],
+      "structural_status": "verified",
+      "semantic_status": "definitionally lowered; universal schema available",
+      "evidence_only": [],
+      "proof_artifact": null,
+      "backend_assumption": null,
+      "discharged_subobligations": [],
+      "proof_layer": "opcode composition under declared primitive relations",
+      "microcode_pc_span": [
+        440,
+        441
+      ],
+      "open_backend_micro_occurrences": 0,
+      "backend_refinement_status": "NO_OPEN_BACKEND_MICRO_OCCURRENCE_IN_THIS_MACRO",
+      "obligation_sha256": "8e0642fefe722acf93bb808f38f55038e7f02a4a9cac030c0d488d1889f5793e"
+    },
+    {
+      "index": 62,
+      "opcode": "RMSNORM",
+      "universal_statement": "for all shape-valid related source/register states, relation is preserved",
+      "sequence_polymorphic": false,
+      "tensor_references": [
+        "decoder.block.1.layer.0.layer_norm.weight"
+      ],
+      "structural_status": "verified",
+      "semantic_status": "machine-checked parametric RMSNorm lowering",
+      "evidence_only": [],
+      "proof_artifact": "RMSNormLowering.lean",
+      "backend_assumption": "source and target use identical ordered primitive semantics",
+      "discharged_subobligations": [],
+      "proof_layer": "opcode composition under declared primitive relations",
+      "microcode_pc_span": [
+        441,
+        448
+      ],
+      "open_backend_micro_occurrences": 2,
+      "backend_refinement_status": "OPEN_PINNED_BACKEND_REFINEMENT",
+      "obligation_sha256": "1b482e80b55e578932abdd76f74ccde21758ba75f75efd0bd648b92fc8b72592"
+    },
+    {
+      "index": 63,
+      "opcode": "SELF_ATTENTION_KV",
+      "universal_statement": "for all shape-valid related source/register states, relation is preserved",
+      "sequence_polymorphic": true,
+      "tensor_references": [
+        "decoder.block.1.layer.0.SelfAttention.q.weight",
+        "decoder.block.1.layer.0.SelfAttention.k.weight",
+        "decoder.block.1.layer.0.SelfAttention.v.weight",
+        "decoder.block.1.layer.0.SelfAttention.o.weight"
+      ],
+      "structural_status": "verified",
+      "semantic_status": "machine-checked parametric attention lowering",
+      "evidence_only": [],
+      "proof_artifact": "AttentionLowering.lean",
+      "backend_assumption": "source and target use identical ordered primitive semantics",
+      "discharged_subobligations": [
+        "append order",
+        "token/key/value length synchronization"
+      ],
+      "proof_layer": "opcode composition under declared primitive relations",
+      "microcode_pc_span": [
+        448,
+        465
+      ],
+      "open_backend_micro_occurrences": 8,
+      "backend_refinement_status": "OPEN_PINNED_BACKEND_REFINEMENT",
+      "obligation_sha256": "91a9647a6c98659cc860b6df31c38329d914ccd9ddcd3954ad59e09d52bcd5be"
+    },
+    {
+      "index": 64,
+      "opcode": "ADD",
+      "universal_statement": "for all shape-valid related source/register states, relation is preserved",
+      "sequence_polymorphic": false,
+      "tensor_references": [],
+      "structural_status": "verified",
+      "semantic_status": "definitionally lowered; universal schema available",
+      "evidence_only": [],
+      "proof_artifact": null,
+      "backend_assumption": null,
+      "discharged_subobligations": [],
+      "proof_layer": "opcode composition under declared primitive relations",
+      "microcode_pc_span": [
+        465,
+        466
+      ],
+      "open_backend_micro_occurrences": 0,
+      "backend_refinement_status": "NO_OPEN_BACKEND_MICRO_OCCURRENCE_IN_THIS_MACRO",
+      "obligation_sha256": "f134d7fd7864f7c206c714f6b8a04731c2c8bf56cff5613ce2c9e1e2d69ed746"
+    },
+    {
+      "index": 65,
+      "opcode": "RMSNORM",
+      "universal_statement": "for all shape-valid related source/register states, relation is preserved",
+      "sequence_polymorphic": false,
+      "tensor_references": [
+        "decoder.block.1.layer.1.layer_norm.weight"
+      ],
+      "structural_status": "verified",
+      "semantic_status": "machine-checked parametric RMSNorm lowering",
+      "evidence_only": [],
+      "proof_artifact": "RMSNormLowering.lean",
+      "backend_assumption": "source and target use identical ordered primitive semantics",
+      "discharged_subobligations": [],
+      "proof_layer": "opcode composition under declared primitive relations",
+      "microcode_pc_span": [
+        466,
+        473
+      ],
+      "open_backend_micro_occurrences": 2,
+      "backend_refinement_status": "OPEN_PINNED_BACKEND_REFINEMENT",
+      "obligation_sha256": "9639dfc73537f24a9acb02f36d66c457cc39ff4936693d4dc0606a75515bce21"
+    },
+    {
+      "index": 66,
+      "opcode": "CROSS_ATTENTION",
+      "universal_statement": "for all shape-valid related source/register states, relation is preserved",
+      "sequence_polymorphic": true,
+      "tensor_references": [
+        "decoder.block.1.layer.1.EncDecAttention.q.weight",
+        "decoder.block.1.layer.1.EncDecAttention.k.weight",
+        "decoder.block.1.layer.1.EncDecAttention.v.weight",
+        "decoder.block.1.layer.1.EncDecAttention.o.weight"
+      ],
+      "structural_status": "verified",
+      "semantic_status": "machine-checked parametric attention lowering",
+      "evidence_only": [],
+      "proof_artifact": "AttentionLowering.lean",
+      "backend_assumption": "source and target use identical ordered primitive semantics",
+      "discharged_subobligations": [],
+      "proof_layer": "opcode composition under declared primitive relations",
+      "microcode_pc_span": [
+        473,
+        490
+      ],
+      "open_backend_micro_occurrences": 8,
+      "backend_refinement_status": "OPEN_PINNED_BACKEND_REFINEMENT",
+      "obligation_sha256": "5519b3fe5bdc052fec9159d8893c1a982ff72104a47730eb53d394d5251b4ce1"
+    },
+    {
+      "index": 67,
+      "opcode": "ADD",
+      "universal_statement": "for all shape-valid related source/register states, relation is preserved",
+      "sequence_polymorphic": false,
+      "tensor_references": [],
+      "structural_status": "verified",
+      "semantic_status": "definitionally lowered; universal schema available",
+      "evidence_only": [],
+      "proof_artifact": null,
+      "backend_assumption": null,
+      "discharged_subobligations": [],
+      "proof_layer": "opcode composition under declared primitive relations",
+      "microcode_pc_span": [
+        490,
+        491
+      ],
+      "open_backend_micro_occurrences": 0,
+      "backend_refinement_status": "NO_OPEN_BACKEND_MICRO_OCCURRENCE_IN_THIS_MACRO",
+      "obligation_sha256": "bedfafff07036b063e50db895320b9c92b0a438b789d954feaf39341dba54bce"
+    },
+    {
+      "index": 68,
+      "opcode": "RMSNORM",
+      "universal_statement": "for all shape-valid related source/register states, relation is preserved",
+      "sequence_polymorphic": false,
+      "tensor_references": [
+        "decoder.block.1.layer.2.layer_norm.weight"
+      ],
+      "structural_status": "verified",
+      "semantic_status": "machine-checked parametric RMSNorm lowering",
+      "evidence_only": [],
+      "proof_artifact": "RMSNormLowering.lean",
+      "backend_assumption": "source and target use identical ordered primitive semantics",
+      "discharged_subobligations": [],
+      "proof_layer": "opcode composition under declared primitive relations",
+      "microcode_pc_span": [
+        491,
+        498
+      ],
+      "open_backend_micro_occurrences": 2,
+      "backend_refinement_status": "OPEN_PINNED_BACKEND_REFINEMENT",
+      "obligation_sha256": "5abba6840756be855297b3f5570bcf09d55d611741ddc123871ca51089123d15"
+    },
+    {
+      "index": 69,
+      "opcode": "GATED_MLP",
+      "universal_statement": "for all shape-valid related source/register states, relation is preserved",
+      "sequence_polymorphic": false,
+      "tensor_references": [
+        "decoder.block.1.layer.2.DenseReluDense.wi_0.weight",
+        "decoder.block.1.layer.2.DenseReluDense.wi_1.weight",
+        "decoder.block.1.layer.2.DenseReluDense.wo.weight"
+      ],
+      "structural_status": "verified",
+      "semantic_status": "machine-checked parametric gated-MLP lowering",
+      "evidence_only": [],
+      "proof_artifact": "GatedMLPLowering.lean",
+      "backend_assumption": "source and target use identical ordered primitive semantics",
+      "discharged_subobligations": [],
+      "proof_layer": "opcode composition under declared primitive relations",
+      "microcode_pc_span": [
+        498,
+        510
+      ],
+      "open_backend_micro_occurrences": 4,
+      "backend_refinement_status": "OPEN_PINNED_BACKEND_REFINEMENT",
+      "obligation_sha256": "18213a29a361a54bf3a23d4a5c0b9f525e2947d9fc53adf5a73f3bc720b0280d"
+    },
+    {
+      "index": 70,
+      "opcode": "ADD",
+      "universal_statement": "for all shape-valid related source/register states, relation is preserved",
+      "sequence_polymorphic": false,
+      "tensor_references": [],
+      "structural_status": "verified",
+      "semantic_status": "definitionally lowered; universal schema available",
+      "evidence_only": [],
+      "proof_artifact": null,
+      "backend_assumption": null,
+      "discharged_subobligations": [],
+      "proof_layer": "opcode composition under declared primitive relations",
+      "microcode_pc_span": [
+        510,
+        511
+      ],
+      "open_backend_micro_occurrences": 0,
+      "backend_refinement_status": "NO_OPEN_BACKEND_MICRO_OCCURRENCE_IN_THIS_MACRO",
+      "obligation_sha256": "821f2ee414418f171919bfa48c0adcade13f8bd91ded273f7b78ec7df37686e7"
+    },
+    {
+      "index": 71,
+      "opcode": "RMSNORM",
+      "universal_statement": "for all shape-valid related source/register states, relation is preserved",
+      "sequence_polymorphic": false,
+      "tensor_references": [
+        "decoder.block.2.layer.0.layer_norm.weight"
+      ],
+      "structural_status": "verified",
+      "semantic_status": "machine-checked parametric RMSNorm lowering",
+      "evidence_only": [],
+      "proof_artifact": "RMSNormLowering.lean",
+      "backend_assumption": "source and target use identical ordered primitive semantics",
+      "discharged_subobligations": [],
+      "proof_layer": "opcode composition under declared primitive relations",
+      "microcode_pc_span": [
+        511,
+        518
+      ],
+      "open_backend_micro_occurrences": 2,
+      "backend_refinement_status": "OPEN_PINNED_BACKEND_REFINEMENT",
+      "obligation_sha256": "de2fe459ad6f1b6c683d296e85fd380484fb5bf262383b5dfe7ac4ee5fb8b318"
+    },
+    {
+      "index": 72,
+      "opcode": "SELF_ATTENTION_KV",
+      "universal_statement": "for all shape-valid related source/register states, relation is preserved",
+      "sequence_polymorphic": true,
+      "tensor_references": [
+        "decoder.block.2.layer.0.SelfAttention.q.weight",
+        "decoder.block.2.layer.0.SelfAttention.k.weight",
+        "decoder.block.2.layer.0.SelfAttention.v.weight",
+        "decoder.block.2.layer.0.SelfAttention.o.weight"
+      ],
+      "structural_status": "verified",
+      "semantic_status": "machine-checked parametric attention lowering",
+      "evidence_only": [],
+      "proof_artifact": "AttentionLowering.lean",
+      "backend_assumption": "source and target use identical ordered primitive semantics",
+      "discharged_subobligations": [
+        "append order",
+        "token/key/value length synchronization"
+      ],
+      "proof_layer": "opcode composition under declared primitive relations",
+      "microcode_pc_span": [
+        518,
+        535
+      ],
+      "open_backend_micro_occurrences": 8,
+      "backend_refinement_status": "OPEN_PINNED_BACKEND_REFINEMENT",
+      "obligation_sha256": "a954ef36f1dced333345d490b66f65a2ebc0c5c77b7db1eba966c24f6e0aa90f"
+    },
+    {
+      "index": 73,
+      "opcode": "ADD",
+      "universal_statement": "for all shape-valid related source/register states, relation is preserved",
+      "sequence_polymorphic": false,
+      "tensor_references": [],
+      "structural_status": "verified",
+      "semantic_status": "definitionally lowered; universal schema available",
+      "evidence_only": [],
+      "proof_artifact": null,
+      "backend_assumption": null,
+      "discharged_subobligations": [],
+      "proof_layer": "opcode composition under declared primitive relations",
+      "microcode_pc_span": [
+        535,
+        536
+      ],
+      "open_backend_micro_occurrences": 0,
+      "backend_refinement_status": "NO_OPEN_BACKEND_MICRO_OCCURRENCE_IN_THIS_MACRO",
+      "obligation_sha256": "d9128339d37f7af7677aa456339306d2abbffcf498aa216b6e3291539805ccb6"
+    },
+    {
+      "index": 74,
+      "opcode": "RMSNORM",
+      "universal_statement": "for all shape-valid related source/register states, relation is preserved",
+      "sequence_polymorphic": false,
+      "tensor_references": [
+        "decoder.block.2.layer.1.layer_norm.weight"
+      ],
+      "structural_status": "verified",
+      "semantic_status": "machine-checked parametric RMSNorm lowering",
+      "evidence_only": [],
+      "proof_artifact": "RMSNormLowering.lean",
+      "backend_assumption": "source and target use identical ordered primitive semantics",
+      "discharged_subobligations": [],
+      "proof_layer": "opcode composition under declared primitive relations",
+      "microcode_pc_span": [
+        536,
+        543
+      ],
+      "open_backend_micro_occurrences": 2,
+      "backend_refinement_status": "OPEN_PINNED_BACKEND_REFINEMENT",
+      "obligation_sha256": "092154478e5f7615c06cded12f1d85b9d6b9a13dc8023e83947c96b2daeae83d"
+    },
+    {
+      "index": 75,
+      "opcode": "CROSS_ATTENTION",
+      "universal_statement": "for all shape-valid related source/register states, relation is preserved",
+      "sequence_polymorphic": true,
+      "tensor_references": [
+        "decoder.block.2.layer.1.EncDecAttention.q.weight",
+        "decoder.block.2.layer.1.EncDecAttention.k.weight",
+        "decoder.block.2.layer.1.EncDecAttention.v.weight",
+        "decoder.block.2.layer.1.EncDecAttention.o.weight"
+      ],
+      "structural_status": "verified",
+      "semantic_status": "machine-checked parametric attention lowering",
+      "evidence_only": [],
+      "proof_artifact": "AttentionLowering.lean",
+      "backend_assumption": "source and target use identical ordered primitive semantics",
+      "discharged_subobligations": [],
+      "proof_layer": "opcode composition under declared primitive relations",
+      "microcode_pc_span": [
+        543,
+        560
+      ],
+      "open_backend_micro_occurrences": 8,
+      "backend_refinement_status": "OPEN_PINNED_BACKEND_REFINEMENT",
+      "obligation_sha256": "e080de45b2a4ab528d52e91da4fe434bf886a7e481d1b0610e7926b8647e3ad6"
+    },
+    {
+      "index": 76,
+      "opcode": "ADD",
+      "universal_statement": "for all shape-valid related source/register states, relation is preserved",
+      "sequence_polymorphic": false,
+      "tensor_references": [],
+      "structural_status": "verified",
+      "semantic_status": "definitionally lowered; universal schema available",
+      "evidence_only": [],
+      "proof_artifact": null,
+      "backend_assumption": null,
+      "discharged_subobligations": [],
+      "proof_layer": "opcode composition under declared primitive relations",
+      "microcode_pc_span": [
+        560,
+        561
+      ],
+      "open_backend_micro_occurrences": 0,
+      "backend_refinement_status": "NO_OPEN_BACKEND_MICRO_OCCURRENCE_IN_THIS_MACRO",
+      "obligation_sha256": "9278ef6d1fc6e852508d56d4d71cfad20066c21fc04b5b74093a975e1401f027"
+    },
+    {
+      "index": 77,
+      "opcode": "RMSNORM",
+      "universal_statement": "for all shape-valid related source/register states, relation is preserved",
+      "sequence_polymorphic": false,
+      "tensor_references": [
+        "decoder.block.2.layer.2.layer_norm.weight"
+      ],
+      "structural_status": "verified",
+      "semantic_status": "machine-checked parametric RMSNorm lowering",
+      "evidence_only": [],
+      "proof_artifact": "RMSNormLowering.lean",
+      "backend_assumption": "source and target use identical ordered primitive semantics",
+      "discharged_subobligations": [],
+      "proof_layer": "opcode composition under declared primitive relations",
+      "microcode_pc_span": [
+        561,
+        568
+      ],
+      "open_backend_micro_occurrences": 2,
+      "backend_refinement_status": "OPEN_PINNED_BACKEND_REFINEMENT",
+      "obligation_sha256": "bcac8ea51fb32ed6664258605f6a487cdbcdf32f9d978e5f92ce964f53614a62"
+    },
+    {
+      "index": 78,
+      "opcode": "GATED_MLP",
+      "universal_statement": "for all shape-valid related source/register states, relation is preserved",
+      "sequence_polymorphic": false,
+      "tensor_references": [
+        "decoder.block.2.layer.2.DenseReluDense.wi_0.weight",
+        "decoder.block.2.layer.2.DenseReluDense.wi_1.weight",
+        "decoder.block.2.layer.2.DenseReluDense.wo.weight"
+      ],
+      "structural_status": "verified",
+      "semantic_status": "machine-checked parametric gated-MLP lowering",
+      "evidence_only": [],
+      "proof_artifact": "GatedMLPLowering.lean",
+      "backend_assumption": "source and target use identical ordered primitive semantics",
+      "discharged_subobligations": [],
+      "proof_layer": "opcode composition under declared primitive relations",
+      "microcode_pc_span": [
+        568,
+        580
+      ],
+      "open_backend_micro_occurrences": 4,
+      "backend_refinement_status": "OPEN_PINNED_BACKEND_REFINEMENT",
+      "obligation_sha256": "aff50bdcd0949f8c1b91dfa4d4ed37f1b196bfffbecc8374db65f17ee08d9cbe"
+    },
+    {
+      "index": 79,
+      "opcode": "ADD",
+      "universal_statement": "for all shape-valid related source/register states, relation is preserved",
+      "sequence_polymorphic": false,
+      "tensor_references": [],
+      "structural_status": "verified",
+      "semantic_status": "definitionally lowered; universal schema available",
+      "evidence_only": [],
+      "proof_artifact": null,
+      "backend_assumption": null,
+      "discharged_subobligations": [],
+      "proof_layer": "opcode composition under declared primitive relations",
+      "microcode_pc_span": [
+        580,
+        581
+      ],
+      "open_backend_micro_occurrences": 0,
+      "backend_refinement_status": "NO_OPEN_BACKEND_MICRO_OCCURRENCE_IN_THIS_MACRO",
+      "obligation_sha256": "33e2939e0fb149000d26cb6ea81cf9510bc09d0612601f040a8edc59a1bc6691"
+    },
+    {
+      "index": 80,
+      "opcode": "RMSNORM",
+      "universal_statement": "for all shape-valid related source/register states, relation is preserved",
+      "sequence_polymorphic": false,
+      "tensor_references": [
+        "decoder.block.3.layer.0.layer_norm.weight"
+      ],
+      "structural_status": "verified",
+      "semantic_status": "machine-checked parametric RMSNorm lowering",
+      "evidence_only": [],
+      "proof_artifact": "RMSNormLowering.lean",
+      "backend_assumption": "source and target use identical ordered primitive semantics",
+      "discharged_subobligations": [],
+      "proof_layer": "opcode composition under declared primitive relations",
+      "microcode_pc_span": [
+        581,
+        588
+      ],
+      "open_backend_micro_occurrences": 2,
+      "backend_refinement_status": "OPEN_PINNED_BACKEND_REFINEMENT",
+      "obligation_sha256": "5f9135d0869cc095c1ade8ab40f19bc35f7e1946597d76832dc557e7cd070b7b"
+    },
+    {
+      "index": 81,
+      "opcode": "SELF_ATTENTION_KV",
+      "universal_statement": "for all shape-valid related source/register states, relation is preserved",
+      "sequence_polymorphic": true,
+      "tensor_references": [
+        "decoder.block.3.layer.0.SelfAttention.q.weight",
+        "decoder.block.3.layer.0.SelfAttention.k.weight",
+        "decoder.block.3.layer.0.SelfAttention.v.weight",
+        "decoder.block.3.layer.0.SelfAttention.o.weight"
+      ],
+      "structural_status": "verified",
+      "semantic_status": "machine-checked parametric attention lowering",
+      "evidence_only": [],
+      "proof_artifact": "AttentionLowering.lean",
+      "backend_assumption": "source and target use identical ordered primitive semantics",
+      "discharged_subobligations": [
+        "append order",
+        "token/key/value length synchronization"
+      ],
+      "proof_layer": "opcode composition under declared primitive relations",
+      "microcode_pc_span": [
+        588,
+        605
+      ],
+      "open_backend_micro_occurrences": 8,
+      "backend_refinement_status": "OPEN_PINNED_BACKEND_REFINEMENT",
+      "obligation_sha256": "93a394fe8200d48b695803c4c0eb5fc79948e51186779abf1a7319764fdd3a40"
+    },
+    {
+      "index": 82,
+      "opcode": "ADD",
+      "universal_statement": "for all shape-valid related source/register states, relation is preserved",
+      "sequence_polymorphic": false,
+      "tensor_references": [],
+      "structural_status": "verified",
+      "semantic_status": "definitionally lowered; universal schema available",
+      "evidence_only": [],
+      "proof_artifact": null,
+      "backend_assumption": null,
+      "discharged_subobligations": [],
+      "proof_layer": "opcode composition under declared primitive relations",
+      "microcode_pc_span": [
+        605,
+        606
+      ],
+      "open_backend_micro_occurrences": 0,
+      "backend_refinement_status": "NO_OPEN_BACKEND_MICRO_OCCURRENCE_IN_THIS_MACRO",
+      "obligation_sha256": "9deadaf7f49af001b6546d833eaca5e231d4166781b034181347e2d40d395e54"
+    },
+    {
+      "index": 83,
+      "opcode": "RMSNORM",
+      "universal_statement": "for all shape-valid related source/register states, relation is preserved",
+      "sequence_polymorphic": false,
+      "tensor_references": [
+        "decoder.block.3.layer.1.layer_norm.weight"
+      ],
+      "structural_status": "verified",
+      "semantic_status": "machine-checked parametric RMSNorm lowering",
+      "evidence_only": [],
+      "proof_artifact": "RMSNormLowering.lean",
+      "backend_assumption": "source and target use identical ordered primitive semantics",
+      "discharged_subobligations": [],
+      "proof_layer": "opcode composition under declared primitive relations",
+      "microcode_pc_span": [
+        606,
+        613
+      ],
+      "open_backend_micro_occurrences": 2,
+      "backend_refinement_status": "OPEN_PINNED_BACKEND_REFINEMENT",
+      "obligation_sha256": "0a7240018140e023ff298b39b562e8f1700e80688a991df7f1ce6c3d19139f43"
+    },
+    {
+      "index": 84,
+      "opcode": "CROSS_ATTENTION",
+      "universal_statement": "for all shape-valid related source/register states, relation is preserved",
+      "sequence_polymorphic": true,
+      "tensor_references": [
+        "decoder.block.3.layer.1.EncDecAttention.q.weight",
+        "decoder.block.3.layer.1.EncDecAttention.k.weight",
+        "decoder.block.3.layer.1.EncDecAttention.v.weight",
+        "decoder.block.3.layer.1.EncDecAttention.o.weight"
+      ],
+      "structural_status": "verified",
+      "semantic_status": "machine-checked parametric attention lowering",
+      "evidence_only": [],
+      "proof_artifact": "AttentionLowering.lean",
+      "backend_assumption": "source and target use identical ordered primitive semantics",
+      "discharged_subobligations": [],
+      "proof_layer": "opcode composition under declared primitive relations",
+      "microcode_pc_span": [
+        613,
+        630
+      ],
+      "open_backend_micro_occurrences": 8,
+      "backend_refinement_status": "OPEN_PINNED_BACKEND_REFINEMENT",
+      "obligation_sha256": "1de3e65c80230b31505aa01ebb9a2143adce6b6de425f67eb531933e5871c810"
+    },
+    {
+      "index": 85,
+      "opcode": "ADD",
+      "universal_statement": "for all shape-valid related source/register states, relation is preserved",
+      "sequence_polymorphic": false,
+      "tensor_references": [],
+      "structural_status": "verified",
+      "semantic_status": "definitionally lowered; universal schema available",
+      "evidence_only": [],
+      "proof_artifact": null,
+      "backend_assumption": null,
+      "discharged_subobligations": [],
+      "proof_layer": "opcode composition under declared primitive relations",
+      "microcode_pc_span": [
+        630,
+        631
+      ],
+      "open_backend_micro_occurrences": 0,
+      "backend_refinement_status": "NO_OPEN_BACKEND_MICRO_OCCURRENCE_IN_THIS_MACRO",
+      "obligation_sha256": "66f04f51be5804fba2a15d93111ca6b45d759bafc7d4ed95159a58518a467253"
+    },
+    {
+      "index": 86,
+      "opcode": "RMSNORM",
+      "universal_statement": "for all shape-valid related source/register states, relation is preserved",
+      "sequence_polymorphic": false,
+      "tensor_references": [
+        "decoder.block.3.layer.2.layer_norm.weight"
+      ],
+      "structural_status": "verified",
+      "semantic_status": "machine-checked parametric RMSNorm lowering",
+      "evidence_only": [],
+      "proof_artifact": "RMSNormLowering.lean",
+      "backend_assumption": "source and target use identical ordered primitive semantics",
+      "discharged_subobligations": [],
+      "proof_layer": "opcode composition under declared primitive relations",
+      "microcode_pc_span": [
+        631,
+        638
+      ],
+      "open_backend_micro_occurrences": 2,
+      "backend_refinement_status": "OPEN_PINNED_BACKEND_REFINEMENT",
+      "obligation_sha256": "8683823ac4a698bb0ccd12f29d6ba76b9bc075c095c6a84d3e14cf84bb566bf6"
+    },
+    {
+      "index": 87,
+      "opcode": "GATED_MLP",
+      "universal_statement": "for all shape-valid related source/register states, relation is preserved",
+      "sequence_polymorphic": false,
+      "tensor_references": [
+        "decoder.block.3.layer.2.DenseReluDense.wi_0.weight",
+        "decoder.block.3.layer.2.DenseReluDense.wi_1.weight",
+        "decoder.block.3.layer.2.DenseReluDense.wo.weight"
+      ],
+      "structural_status": "verified",
+      "semantic_status": "machine-checked parametric gated-MLP lowering",
+      "evidence_only": [],
+      "proof_artifact": "GatedMLPLowering.lean",
+      "backend_assumption": "source and target use identical ordered primitive semantics",
+      "discharged_subobligations": [],
+      "proof_layer": "opcode composition under declared primitive relations",
+      "microcode_pc_span": [
+        638,
+        650
+      ],
+      "open_backend_micro_occurrences": 4,
+      "backend_refinement_status": "OPEN_PINNED_BACKEND_REFINEMENT",
+      "obligation_sha256": "ba326ba27ba171e8c906f0e81cacfb4ea5e9b1ee3511f61760da3467aae4f4ce"
+    },
+    {
+      "index": 88,
+      "opcode": "ADD",
+      "universal_statement": "for all shape-valid related source/register states, relation is preserved",
+      "sequence_polymorphic": false,
+      "tensor_references": [],
+      "structural_status": "verified",
+      "semantic_status": "definitionally lowered; universal schema available",
+      "evidence_only": [],
+      "proof_artifact": null,
+      "backend_assumption": null,
+      "discharged_subobligations": [],
+      "proof_layer": "opcode composition under declared primitive relations",
+      "microcode_pc_span": [
+        650,
+        651
+      ],
+      "open_backend_micro_occurrences": 0,
+      "backend_refinement_status": "NO_OPEN_BACKEND_MICRO_OCCURRENCE_IN_THIS_MACRO",
+      "obligation_sha256": "fd07abe273531d0e425e2bd97822832af63d0d541cdb6360f222b4d16781c826"
+    },
+    {
+      "index": 89,
+      "opcode": "RMSNORM",
+      "universal_statement": "for all shape-valid related source/register states, relation is preserved",
+      "sequence_polymorphic": false,
+      "tensor_references": [
+        "decoder.block.4.layer.0.layer_norm.weight"
+      ],
+      "structural_status": "verified",
+      "semantic_status": "machine-checked parametric RMSNorm lowering",
+      "evidence_only": [],
+      "proof_artifact": "RMSNormLowering.lean",
+      "backend_assumption": "source and target use identical ordered primitive semantics",
+      "discharged_subobligations": [],
+      "proof_layer": "opcode composition under declared primitive relations",
+      "microcode_pc_span": [
+        651,
+        658
+      ],
+      "open_backend_micro_occurrences": 2,
+      "backend_refinement_status": "OPEN_PINNED_BACKEND_REFINEMENT",
+      "obligation_sha256": "29503df5b4e9c23c9dd5af54177048082bdcde20c8fd2148b53b1fe16dc8f70e"
+    },
+    {
+      "index": 90,
+      "opcode": "SELF_ATTENTION_KV",
+      "universal_statement": "for all shape-valid related source/register states, relation is preserved",
+      "sequence_polymorphic": true,
+      "tensor_references": [
+        "decoder.block.4.layer.0.SelfAttention.q.weight",
+        "decoder.block.4.layer.0.SelfAttention.k.weight",
+        "decoder.block.4.layer.0.SelfAttention.v.weight",
+        "decoder.block.4.layer.0.SelfAttention.o.weight"
+      ],
+      "structural_status": "verified",
+      "semantic_status": "machine-checked parametric attention lowering",
+      "evidence_only": [],
+      "proof_artifact": "AttentionLowering.lean",
+      "backend_assumption": "source and target use identical ordered primitive semantics",
+      "discharged_subobligations": [
+        "append order",
+        "token/key/value length synchronization"
+      ],
+      "proof_layer": "opcode composition under declared primitive relations",
+      "microcode_pc_span": [
+        658,
+        675
+      ],
+      "open_backend_micro_occurrences": 8,
+      "backend_refinement_status": "OPEN_PINNED_BACKEND_REFINEMENT",
+      "obligation_sha256": "4f03408bfb3275fffd46040aa9c6f3bd069af3cfd318e0880685dacf1bb2f6dd"
+    },
+    {
+      "index": 91,
+      "opcode": "ADD",
+      "universal_statement": "for all shape-valid related source/register states, relation is preserved",
+      "sequence_polymorphic": false,
+      "tensor_references": [],
+      "structural_status": "verified",
+      "semantic_status": "definitionally lowered; universal schema available",
+      "evidence_only": [],
+      "proof_artifact": null,
+      "backend_assumption": null,
+      "discharged_subobligations": [],
+      "proof_layer": "opcode composition under declared primitive relations",
+      "microcode_pc_span": [
+        675,
+        676
+      ],
+      "open_backend_micro_occurrences": 0,
+      "backend_refinement_status": "NO_OPEN_BACKEND_MICRO_OCCURRENCE_IN_THIS_MACRO",
+      "obligation_sha256": "27b4eee42313318c0ac56a1f91c2ea1626a812e612bfe8a67095efb73fe2dd6e"
+    },
+    {
+      "index": 92,
+      "opcode": "RMSNORM",
+      "universal_statement": "for all shape-valid related source/register states, relation is preserved",
+      "sequence_polymorphic": false,
+      "tensor_references": [
+        "decoder.block.4.layer.1.layer_norm.weight"
+      ],
+      "structural_status": "verified",
+      "semantic_status": "machine-checked parametric RMSNorm lowering",
+      "evidence_only": [],
+      "proof_artifact": "RMSNormLowering.lean",
+      "backend_assumption": "source and target use identical ordered primitive semantics",
+      "discharged_subobligations": [],
+      "proof_layer": "opcode composition under declared primitive relations",
+      "microcode_pc_span": [
+        676,
+        683
+      ],
+      "open_backend_micro_occurrences": 2,
+      "backend_refinement_status": "OPEN_PINNED_BACKEND_REFINEMENT",
+      "obligation_sha256": "bfb1ad8a39d500d04cd0751445c0db343bbd2b248ce3b634521b5c52e7be5fc5"
+    },
+    {
+      "index": 93,
+      "opcode": "CROSS_ATTENTION",
+      "universal_statement": "for all shape-valid related source/register states, relation is preserved",
+      "sequence_polymorphic": true,
+      "tensor_references": [
+        "decoder.block.4.layer.1.EncDecAttention.q.weight",
+        "decoder.block.4.layer.1.EncDecAttention.k.weight",
+        "decoder.block.4.layer.1.EncDecAttention.v.weight",
+        "decoder.block.4.layer.1.EncDecAttention.o.weight"
+      ],
+      "structural_status": "verified",
+      "semantic_status": "machine-checked parametric attention lowering",
+      "evidence_only": [],
+      "proof_artifact": "AttentionLowering.lean",
+      "backend_assumption": "source and target use identical ordered primitive semantics",
+      "discharged_subobligations": [],
+      "proof_layer": "opcode composition under declared primitive relations",
+      "microcode_pc_span": [
+        683,
+        700
+      ],
+      "open_backend_micro_occurrences": 8,
+      "backend_refinement_status": "OPEN_PINNED_BACKEND_REFINEMENT",
+      "obligation_sha256": "7394441e7e0f32bfd6d22efb2da5d92a8e365e61d61ae5530ecb20033d7c6ec0"
+    },
+    {
+      "index": 94,
+      "opcode": "ADD",
+      "universal_statement": "for all shape-valid related source/register states, relation is preserved",
+      "sequence_polymorphic": false,
+      "tensor_references": [],
+      "structural_status": "verified",
+      "semantic_status": "definitionally lowered; universal schema available",
+      "evidence_only": [],
+      "proof_artifact": null,
+      "backend_assumption": null,
+      "discharged_subobligations": [],
+      "proof_layer": "opcode composition under declared primitive relations",
+      "microcode_pc_span": [
+        700,
+        701
+      ],
+      "open_backend_micro_occurrences": 0,
+      "backend_refinement_status": "NO_OPEN_BACKEND_MICRO_OCCURRENCE_IN_THIS_MACRO",
+      "obligation_sha256": "6b45c98747dc28c830862201594bbeda4cbe87107902862d6d21e8fd391e80a1"
+    },
+    {
+      "index": 95,
+      "opcode": "RMSNORM",
+      "universal_statement": "for all shape-valid related source/register states, relation is preserved",
+      "sequence_polymorphic": false,
+      "tensor_references": [
+        "decoder.block.4.layer.2.layer_norm.weight"
+      ],
+      "structural_status": "verified",
+      "semantic_status": "machine-checked parametric RMSNorm lowering",
+      "evidence_only": [],
+      "proof_artifact": "RMSNormLowering.lean",
+      "backend_assumption": "source and target use identical ordered primitive semantics",
+      "discharged_subobligations": [],
+      "proof_layer": "opcode composition under declared primitive relations",
+      "microcode_pc_span": [
+        701,
+        708
+      ],
+      "open_backend_micro_occurrences": 2,
+      "backend_refinement_status": "OPEN_PINNED_BACKEND_REFINEMENT",
+      "obligation_sha256": "bb2139ff012b6bdf3ddd6873b1ea7cdf5456d3bede9cbc021c32a69ae40ffabb"
+    },
+    {
+      "index": 96,
+      "opcode": "GATED_MLP",
+      "universal_statement": "for all shape-valid related source/register states, relation is preserved",
+      "sequence_polymorphic": false,
+      "tensor_references": [
+        "decoder.block.4.layer.2.DenseReluDense.wi_0.weight",
+        "decoder.block.4.layer.2.DenseReluDense.wi_1.weight",
+        "decoder.block.4.layer.2.DenseReluDense.wo.weight"
+      ],
+      "structural_status": "verified",
+      "semantic_status": "machine-checked parametric gated-MLP lowering",
+      "evidence_only": [],
+      "proof_artifact": "GatedMLPLowering.lean",
+      "backend_assumption": "source and target use identical ordered primitive semantics",
+      "discharged_subobligations": [],
+      "proof_layer": "opcode composition under declared primitive relations",
+      "microcode_pc_span": [
+        708,
+        720
+      ],
+      "open_backend_micro_occurrences": 4,
+      "backend_refinement_status": "OPEN_PINNED_BACKEND_REFINEMENT",
+      "obligation_sha256": "5190de7c1efd4be657e2a26552822ac4a585508e46dd7fc6823793ae56988899"
+    },
+    {
+      "index": 97,
+      "opcode": "ADD",
+      "universal_statement": "for all shape-valid related source/register states, relation is preserved",
+      "sequence_polymorphic": false,
+      "tensor_references": [],
+      "structural_status": "verified",
+      "semantic_status": "definitionally lowered; universal schema available",
+      "evidence_only": [],
+      "proof_artifact": null,
+      "backend_assumption": null,
+      "discharged_subobligations": [],
+      "proof_layer": "opcode composition under declared primitive relations",
+      "microcode_pc_span": [
+        720,
+        721
+      ],
+      "open_backend_micro_occurrences": 0,
+      "backend_refinement_status": "NO_OPEN_BACKEND_MICRO_OCCURRENCE_IN_THIS_MACRO",
+      "obligation_sha256": "6b979b7ab38332775a3d72938c7a267420e00a041aa276e062e7b80f16a2f424"
+    },
+    {
+      "index": 98,
+      "opcode": "RMSNORM",
+      "universal_statement": "for all shape-valid related source/register states, relation is preserved",
+      "sequence_polymorphic": false,
+      "tensor_references": [
+        "decoder.block.5.layer.0.layer_norm.weight"
+      ],
+      "structural_status": "verified",
+      "semantic_status": "machine-checked parametric RMSNorm lowering",
+      "evidence_only": [],
+      "proof_artifact": "RMSNormLowering.lean",
+      "backend_assumption": "source and target use identical ordered primitive semantics",
+      "discharged_subobligations": [],
+      "proof_layer": "opcode composition under declared primitive relations",
+      "microcode_pc_span": [
+        721,
+        728
+      ],
+      "open_backend_micro_occurrences": 2,
+      "backend_refinement_status": "OPEN_PINNED_BACKEND_REFINEMENT",
+      "obligation_sha256": "8d0e07e8066c2a581d7aefbfa2b78d79d98236b8d433d1e91f1f807a58a73732"
+    },
+    {
+      "index": 99,
+      "opcode": "SELF_ATTENTION_KV",
+      "universal_statement": "for all shape-valid related source/register states, relation is preserved",
+      "sequence_polymorphic": true,
+      "tensor_references": [
+        "decoder.block.5.layer.0.SelfAttention.q.weight",
+        "decoder.block.5.layer.0.SelfAttention.k.weight",
+        "decoder.block.5.layer.0.SelfAttention.v.weight",
+        "decoder.block.5.layer.0.SelfAttention.o.weight"
+      ],
+      "structural_status": "verified",
+      "semantic_status": "machine-checked parametric attention lowering",
+      "evidence_only": [],
+      "proof_artifact": "AttentionLowering.lean",
+      "backend_assumption": "source and target use identical ordered primitive semantics",
+      "discharged_subobligations": [
+        "append order",
+        "token/key/value length synchronization"
+      ],
+      "proof_layer": "opcode composition under declared primitive relations",
+      "microcode_pc_span": [
+        728,
+        745
+      ],
+      "open_backend_micro_occurrences": 8,
+      "backend_refinement_status": "OPEN_PINNED_BACKEND_REFINEMENT",
+      "obligation_sha256": "5900cc65d3dae304c08d00895953b04ba45516f3e7f0a027f59dd7f3df0c3f70"
+    },
+    {
+      "index": 100,
+      "opcode": "ADD",
+      "universal_statement": "for all shape-valid related source/register states, relation is preserved",
+      "sequence_polymorphic": false,
+      "tensor_references": [],
+      "structural_status": "verified",
+      "semantic_status": "definitionally lowered; universal schema available",
+      "evidence_only": [],
+      "proof_artifact": null,
+      "backend_assumption": null,
+      "discharged_subobligations": [],
+      "proof_layer": "opcode composition under declared primitive relations",
+      "microcode_pc_span": [
+        745,
+        746
+      ],
+      "open_backend_micro_occurrences": 0,
+      "backend_refinement_status": "NO_OPEN_BACKEND_MICRO_OCCURRENCE_IN_THIS_MACRO",
+      "obligation_sha256": "9ecea96f5cd107040df05dc212490ab7eeb55df30c9612ff5df0ac0215754ce1"
+    },
+    {
+      "index": 101,
+      "opcode": "RMSNORM",
+      "universal_statement": "for all shape-valid related source/register states, relation is preserved",
+      "sequence_polymorphic": false,
+      "tensor_references": [
+        "decoder.block.5.layer.1.layer_norm.weight"
+      ],
+      "structural_status": "verified",
+      "semantic_status": "machine-checked parametric RMSNorm lowering",
+      "evidence_only": [],
+      "proof_artifact": "RMSNormLowering.lean",
+      "backend_assumption": "source and target use identical ordered primitive semantics",
+      "discharged_subobligations": [],
+      "proof_layer": "opcode composition under declared primitive relations",
+      "microcode_pc_span": [
+        746,
+        753
+      ],
+      "open_backend_micro_occurrences": 2,
+      "backend_refinement_status": "OPEN_PINNED_BACKEND_REFINEMENT",
+      "obligation_sha256": "fc3460baee1b3504242b4c302803f601624b4ac603ce9c91261b9e5b3aaeae7b"
+    },
+    {
+      "index": 102,
+      "opcode": "CROSS_ATTENTION",
+      "universal_statement": "for all shape-valid related source/register states, relation is preserved",
+      "sequence_polymorphic": true,
+      "tensor_references": [
+        "decoder.block.5.layer.1.EncDecAttention.q.weight",
+        "decoder.block.5.layer.1.EncDecAttention.k.weight",
+        "decoder.block.5.layer.1.EncDecAttention.v.weight",
+        "decoder.block.5.layer.1.EncDecAttention.o.weight"
+      ],
+      "structural_status": "verified",
+      "semantic_status": "machine-checked parametric attention lowering",
+      "evidence_only": [],
+      "proof_artifact": "AttentionLowering.lean",
+      "backend_assumption": "source and target use identical ordered primitive semantics",
+      "discharged_subobligations": [],
+      "proof_layer": "opcode composition under declared primitive relations",
+      "microcode_pc_span": [
+        753,
+        770
+      ],
+      "open_backend_micro_occurrences": 8,
+      "backend_refinement_status": "OPEN_PINNED_BACKEND_REFINEMENT",
+      "obligation_sha256": "3efd5dc2c8cece4a4da50a9515ee960453e817a1649801ab4bcca8fe4bc85f6b"
+    },
+    {
+      "index": 103,
+      "opcode": "ADD",
+      "universal_statement": "for all shape-valid related source/register states, relation is preserved",
+      "sequence_polymorphic": false,
+      "tensor_references": [],
+      "structural_status": "verified",
+      "semantic_status": "definitionally lowered; universal schema available",
+      "evidence_only": [],
+      "proof_artifact": null,
+      "backend_assumption": null,
+      "discharged_subobligations": [],
+      "proof_layer": "opcode composition under declared primitive relations",
+      "microcode_pc_span": [
+        770,
+        771
+      ],
+      "open_backend_micro_occurrences": 0,
+      "backend_refinement_status": "NO_OPEN_BACKEND_MICRO_OCCURRENCE_IN_THIS_MACRO",
+      "obligation_sha256": "33117a1e593f59781732bca3302cb02e3930b214dfdd060d26adb587bcb55d4a"
+    },
+    {
+      "index": 104,
+      "opcode": "RMSNORM",
+      "universal_statement": "for all shape-valid related source/register states, relation is preserved",
+      "sequence_polymorphic": false,
+      "tensor_references": [
+        "decoder.block.5.layer.2.layer_norm.weight"
+      ],
+      "structural_status": "verified",
+      "semantic_status": "machine-checked parametric RMSNorm lowering",
+      "evidence_only": [],
+      "proof_artifact": "RMSNormLowering.lean",
+      "backend_assumption": "source and target use identical ordered primitive semantics",
+      "discharged_subobligations": [],
+      "proof_layer": "opcode composition under declared primitive relations",
+      "microcode_pc_span": [
+        771,
+        778
+      ],
+      "open_backend_micro_occurrences": 2,
+      "backend_refinement_status": "OPEN_PINNED_BACKEND_REFINEMENT",
+      "obligation_sha256": "363a9eb3196ee88b7136634df8951ec552e174234329cc1f4c4d68664b091ffd"
+    },
+    {
+      "index": 105,
+      "opcode": "GATED_MLP",
+      "universal_statement": "for all shape-valid related source/register states, relation is preserved",
+      "sequence_polymorphic": false,
+      "tensor_references": [
+        "decoder.block.5.layer.2.DenseReluDense.wi_0.weight",
+        "decoder.block.5.layer.2.DenseReluDense.wi_1.weight",
+        "decoder.block.5.layer.2.DenseReluDense.wo.weight"
+      ],
+      "structural_status": "verified",
+      "semantic_status": "machine-checked parametric gated-MLP lowering",
+      "evidence_only": [],
+      "proof_artifact": "GatedMLPLowering.lean",
+      "backend_assumption": "source and target use identical ordered primitive semantics",
+      "discharged_subobligations": [],
+      "proof_layer": "opcode composition under declared primitive relations",
+      "microcode_pc_span": [
+        778,
+        790
+      ],
+      "open_backend_micro_occurrences": 4,
+      "backend_refinement_status": "OPEN_PINNED_BACKEND_REFINEMENT",
+      "obligation_sha256": "6eaab29c8feecd2a7afd33ee0a6c7bb14fe20b4f3c7c85d260a7e832c546d7b7"
+    },
+    {
+      "index": 106,
+      "opcode": "ADD",
+      "universal_statement": "for all shape-valid related source/register states, relation is preserved",
+      "sequence_polymorphic": false,
+      "tensor_references": [],
+      "structural_status": "verified",
+      "semantic_status": "definitionally lowered; universal schema available",
+      "evidence_only": [],
+      "proof_artifact": null,
+      "backend_assumption": null,
+      "discharged_subobligations": [],
+      "proof_layer": "opcode composition under declared primitive relations",
+      "microcode_pc_span": [
+        790,
+        791
+      ],
+      "open_backend_micro_occurrences": 0,
+      "backend_refinement_status": "NO_OPEN_BACKEND_MICRO_OCCURRENCE_IN_THIS_MACRO",
+      "obligation_sha256": "53a47b5b1e8342cbb1141e8759b6c71d48a3db3732edfac9fd2e256c8148de6f"
+    },
+    {
+      "index": 107,
+      "opcode": "RMSNORM",
+      "universal_statement": "for all shape-valid related source/register states, relation is preserved",
+      "sequence_polymorphic": false,
+      "tensor_references": [
+        "decoder.block.6.layer.0.layer_norm.weight"
+      ],
+      "structural_status": "verified",
+      "semantic_status": "machine-checked parametric RMSNorm lowering",
+      "evidence_only": [],
+      "proof_artifact": "RMSNormLowering.lean",
+      "backend_assumption": "source and target use identical ordered primitive semantics",
+      "discharged_subobligations": [],
+      "proof_layer": "opcode composition under declared primitive relations",
+      "microcode_pc_span": [
+        791,
+        798
+      ],
+      "open_backend_micro_occurrences": 2,
+      "backend_refinement_status": "OPEN_PINNED_BACKEND_REFINEMENT",
+      "obligation_sha256": "0325ae325a69d857b9d569e17b33cf2c7eccadf78043c46ec6094e7204be6e7d"
+    },
+    {
+      "index": 108,
+      "opcode": "SELF_ATTENTION_KV",
+      "universal_statement": "for all shape-valid related source/register states, relation is preserved",
+      "sequence_polymorphic": true,
+      "tensor_references": [
+        "decoder.block.6.layer.0.SelfAttention.q.weight",
+        "decoder.block.6.layer.0.SelfAttention.k.weight",
+        "decoder.block.6.layer.0.SelfAttention.v.weight",
+        "decoder.block.6.layer.0.SelfAttention.o.weight"
+      ],
+      "structural_status": "verified",
+      "semantic_status": "machine-checked parametric attention lowering",
+      "evidence_only": [],
+      "proof_artifact": "AttentionLowering.lean",
+      "backend_assumption": "source and target use identical ordered primitive semantics",
+      "discharged_subobligations": [
+        "append order",
+        "token/key/value length synchronization"
+      ],
+      "proof_layer": "opcode composition under declared primitive relations",
+      "microcode_pc_span": [
+        798,
+        815
+      ],
+      "open_backend_micro_occurrences": 8,
+      "backend_refinement_status": "OPEN_PINNED_BACKEND_REFINEMENT",
+      "obligation_sha256": "d47fb8664a99afe6f53c0aa7b4aa7e17634dd45eb3ac5563f38933563e06a5ba"
+    },
+    {
+      "index": 109,
+      "opcode": "ADD",
+      "universal_statement": "for all shape-valid related source/register states, relation is preserved",
+      "sequence_polymorphic": false,
+      "tensor_references": [],
+      "structural_status": "verified",
+      "semantic_status": "definitionally lowered; universal schema available",
+      "evidence_only": [],
+      "proof_artifact": null,
+      "backend_assumption": null,
+      "discharged_subobligations": [],
+      "proof_layer": "opcode composition under declared primitive relations",
+      "microcode_pc_span": [
+        815,
+        816
+      ],
+      "open_backend_micro_occurrences": 0,
+      "backend_refinement_status": "NO_OPEN_BACKEND_MICRO_OCCURRENCE_IN_THIS_MACRO",
+      "obligation_sha256": "d6fc8a5fe3c53969d63a6a5727038ed3dfb1dbe48437bb2c2193b36a1dced8e8"
+    },
+    {
+      "index": 110,
+      "opcode": "RMSNORM",
+      "universal_statement": "for all shape-valid related source/register states, relation is preserved",
+      "sequence_polymorphic": false,
+      "tensor_references": [
+        "decoder.block.6.layer.1.layer_norm.weight"
+      ],
+      "structural_status": "verified",
+      "semantic_status": "machine-checked parametric RMSNorm lowering",
+      "evidence_only": [],
+      "proof_artifact": "RMSNormLowering.lean",
+      "backend_assumption": "source and target use identical ordered primitive semantics",
+      "discharged_subobligations": [],
+      "proof_layer": "opcode composition under declared primitive relations",
+      "microcode_pc_span": [
+        816,
+        823
+      ],
+      "open_backend_micro_occurrences": 2,
+      "backend_refinement_status": "OPEN_PINNED_BACKEND_REFINEMENT",
+      "obligation_sha256": "5a679c6814928c83c48da55034ef41b88f218fa2e080f272b053962ed35d17dc"
+    },
+    {
+      "index": 111,
+      "opcode": "CROSS_ATTENTION",
+      "universal_statement": "for all shape-valid related source/register states, relation is preserved",
+      "sequence_polymorphic": true,
+      "tensor_references": [
+        "decoder.block.6.layer.1.EncDecAttention.q.weight",
+        "decoder.block.6.layer.1.EncDecAttention.k.weight",
+        "decoder.block.6.layer.1.EncDecAttention.v.weight",
+        "decoder.block.6.layer.1.EncDecAttention.o.weight"
+      ],
+      "structural_status": "verified",
+      "semantic_status": "machine-checked parametric attention lowering",
+      "evidence_only": [],
+      "proof_artifact": "AttentionLowering.lean",
+      "backend_assumption": "source and target use identical ordered primitive semantics",
+      "discharged_subobligations": [],
+      "proof_layer": "opcode composition under declared primitive relations",
+      "microcode_pc_span": [
+        823,
+        840
+      ],
+      "open_backend_micro_occurrences": 8,
+      "backend_refinement_status": "OPEN_PINNED_BACKEND_REFINEMENT",
+      "obligation_sha256": "835dae5d5c52d8b41c107360f60dbb6866bab9ebb23b0b4df629c675305b3b5c"
+    },
+    {
+      "index": 112,
+      "opcode": "ADD",
+      "universal_statement": "for all shape-valid related source/register states, relation is preserved",
+      "sequence_polymorphic": false,
+      "tensor_references": [],
+      "structural_status": "verified",
+      "semantic_status": "definitionally lowered; universal schema available",
+      "evidence_only": [],
+      "proof_artifact": null,
+      "backend_assumption": null,
+      "discharged_subobligations": [],
+      "proof_layer": "opcode composition under declared primitive relations",
+      "microcode_pc_span": [
+        840,
+        841
+      ],
+      "open_backend_micro_occurrences": 0,
+      "backend_refinement_status": "NO_OPEN_BACKEND_MICRO_OCCURRENCE_IN_THIS_MACRO",
+      "obligation_sha256": "51749d9cff290421e28ef9279261f28f5b7cd5b39a7c63321d3a2c0de74c9e39"
+    },
+    {
+      "index": 113,
+      "opcode": "RMSNORM",
+      "universal_statement": "for all shape-valid related source/register states, relation is preserved",
+      "sequence_polymorphic": false,
+      "tensor_references": [
+        "decoder.block.6.layer.2.layer_norm.weight"
+      ],
+      "structural_status": "verified",
+      "semantic_status": "machine-checked parametric RMSNorm lowering",
+      "evidence_only": [],
+      "proof_artifact": "RMSNormLowering.lean",
+      "backend_assumption": "source and target use identical ordered primitive semantics",
+      "discharged_subobligations": [],
+      "proof_layer": "opcode composition under declared primitive relations",
+      "microcode_pc_span": [
+        841,
+        848
+      ],
+      "open_backend_micro_occurrences": 2,
+      "backend_refinement_status": "OPEN_PINNED_BACKEND_REFINEMENT",
+      "obligation_sha256": "f0559b5ad3ac3d8d2f7a9c556d4bd93d48d564a4382b9d81f7f3b74a64ae6441"
+    },
+    {
+      "index": 114,
+      "opcode": "GATED_MLP",
+      "universal_statement": "for all shape-valid related source/register states, relation is preserved",
+      "sequence_polymorphic": false,
+      "tensor_references": [
+        "decoder.block.6.layer.2.DenseReluDense.wi_0.weight",
+        "decoder.block.6.layer.2.DenseReluDense.wi_1.weight",
+        "decoder.block.6.layer.2.DenseReluDense.wo.weight"
+      ],
+      "structural_status": "verified",
+      "semantic_status": "machine-checked parametric gated-MLP lowering",
+      "evidence_only": [],
+      "proof_artifact": "GatedMLPLowering.lean",
+      "backend_assumption": "source and target use identical ordered primitive semantics",
+      "discharged_subobligations": [],
+      "proof_layer": "opcode composition under declared primitive relations",
+      "microcode_pc_span": [
+        848,
+        860
+      ],
+      "open_backend_micro_occurrences": 4,
+      "backend_refinement_status": "OPEN_PINNED_BACKEND_REFINEMENT",
+      "obligation_sha256": "5a14ee1f43eae11c835870a46d1d0025b09ab9cee482e60b14dcc61ff8dd5f0f"
+    },
+    {
+      "index": 115,
+      "opcode": "ADD",
+      "universal_statement": "for all shape-valid related source/register states, relation is preserved",
+      "sequence_polymorphic": false,
+      "tensor_references": [],
+      "structural_status": "verified",
+      "semantic_status": "definitionally lowered; universal schema available",
+      "evidence_only": [],
+      "proof_artifact": null,
+      "backend_assumption": null,
+      "discharged_subobligations": [],
+      "proof_layer": "opcode composition under declared primitive relations",
+      "microcode_pc_span": [
+        860,
+        861
+      ],
+      "open_backend_micro_occurrences": 0,
+      "backend_refinement_status": "NO_OPEN_BACKEND_MICRO_OCCURRENCE_IN_THIS_MACRO",
+      "obligation_sha256": "801cb55e2c0a1ef2b0ec5ff2e3ffa1adf4c734e89b645fc314e9aa9c3b688431"
+    },
+    {
+      "index": 116,
+      "opcode": "RMSNORM",
+      "universal_statement": "for all shape-valid related source/register states, relation is preserved",
+      "sequence_polymorphic": false,
+      "tensor_references": [
+        "decoder.block.7.layer.0.layer_norm.weight"
+      ],
+      "structural_status": "verified",
+      "semantic_status": "machine-checked parametric RMSNorm lowering",
+      "evidence_only": [],
+      "proof_artifact": "RMSNormLowering.lean",
+      "backend_assumption": "source and target use identical ordered primitive semantics",
+      "discharged_subobligations": [],
+      "proof_layer": "opcode composition under declared primitive relations",
+      "microcode_pc_span": [
+        861,
+        868
+      ],
+      "open_backend_micro_occurrences": 2,
+      "backend_refinement_status": "OPEN_PINNED_BACKEND_REFINEMENT",
+      "obligation_sha256": "2f1baabe1f9a356e242a3c1bf044c899c5f00f2a25982a21795bae777e929f6a"
+    },
+    {
+      "index": 117,
+      "opcode": "SELF_ATTENTION_KV",
+      "universal_statement": "for all shape-valid related source/register states, relation is preserved",
+      "sequence_polymorphic": true,
+      "tensor_references": [
+        "decoder.block.7.layer.0.SelfAttention.q.weight",
+        "decoder.block.7.layer.0.SelfAttention.k.weight",
+        "decoder.block.7.layer.0.SelfAttention.v.weight",
+        "decoder.block.7.layer.0.SelfAttention.o.weight"
+      ],
+      "structural_status": "verified",
+      "semantic_status": "machine-checked parametric attention lowering",
+      "evidence_only": [],
+      "proof_artifact": "AttentionLowering.lean",
+      "backend_assumption": "source and target use identical ordered primitive semantics",
+      "discharged_subobligations": [
+        "append order",
+        "token/key/value length synchronization"
+      ],
+      "proof_layer": "opcode composition under declared primitive relations",
+      "microcode_pc_span": [
+        868,
+        885
+      ],
+      "open_backend_micro_occurrences": 8,
+      "backend_refinement_status": "OPEN_PINNED_BACKEND_REFINEMENT",
+      "obligation_sha256": "de7c7b4a6086b2b337aa763d455d3c76a018f993218ce040daa50e0fb5f8af02"
+    },
+    {
+      "index": 118,
+      "opcode": "ADD",
+      "universal_statement": "for all shape-valid related source/register states, relation is preserved",
+      "sequence_polymorphic": false,
+      "tensor_references": [],
+      "structural_status": "verified",
+      "semantic_status": "definitionally lowered; universal schema available",
+      "evidence_only": [],
+      "proof_artifact": null,
+      "backend_assumption": null,
+      "discharged_subobligations": [],
+      "proof_layer": "opcode composition under declared primitive relations",
+      "microcode_pc_span": [
+        885,
+        886
+      ],
+      "open_backend_micro_occurrences": 0,
+      "backend_refinement_status": "NO_OPEN_BACKEND_MICRO_OCCURRENCE_IN_THIS_MACRO",
+      "obligation_sha256": "bc1d6c61ab8e30351dd0608d87357f8fe26f0a639a9c815149affb8b3b8f1c5d"
+    },
+    {
+      "index": 119,
+      "opcode": "RMSNORM",
+      "universal_statement": "for all shape-valid related source/register states, relation is preserved",
+      "sequence_polymorphic": false,
+      "tensor_references": [
+        "decoder.block.7.layer.1.layer_norm.weight"
+      ],
+      "structural_status": "verified",
+      "semantic_status": "machine-checked parametric RMSNorm lowering",
+      "evidence_only": [],
+      "proof_artifact": "RMSNormLowering.lean",
+      "backend_assumption": "source and target use identical ordered primitive semantics",
+      "discharged_subobligations": [],
+      "proof_layer": "opcode composition under declared primitive relations",
+      "microcode_pc_span": [
+        886,
+        893
+      ],
+      "open_backend_micro_occurrences": 2,
+      "backend_refinement_status": "OPEN_PINNED_BACKEND_REFINEMENT",
+      "obligation_sha256": "b78788f584bde491d969b3d957333b9953fe0c0d7ffc4b917b600a5269d67aad"
+    },
+    {
+      "index": 120,
+      "opcode": "CROSS_ATTENTION",
+      "universal_statement": "for all shape-valid related source/register states, relation is preserved",
+      "sequence_polymorphic": true,
+      "tensor_references": [
+        "decoder.block.7.layer.1.EncDecAttention.q.weight",
+        "decoder.block.7.layer.1.EncDecAttention.k.weight",
+        "decoder.block.7.layer.1.EncDecAttention.v.weight",
+        "decoder.block.7.layer.1.EncDecAttention.o.weight"
+      ],
+      "structural_status": "verified",
+      "semantic_status": "machine-checked parametric attention lowering",
+      "evidence_only": [],
+      "proof_artifact": "AttentionLowering.lean",
+      "backend_assumption": "source and target use identical ordered primitive semantics",
+      "discharged_subobligations": [],
+      "proof_layer": "opcode composition under declared primitive relations",
+      "microcode_pc_span": [
+        893,
+        910
+      ],
+      "open_backend_micro_occurrences": 8,
+      "backend_refinement_status": "OPEN_PINNED_BACKEND_REFINEMENT",
+      "obligation_sha256": "2ed37e609b9f953661759a47c196b955449614daa7dbec8e8795c22dc0068fa4"
+    },
+    {
+      "index": 121,
+      "opcode": "ADD",
+      "universal_statement": "for all shape-valid related source/register states, relation is preserved",
+      "sequence_polymorphic": false,
+      "tensor_references": [],
+      "structural_status": "verified",
+      "semantic_status": "definitionally lowered; universal schema available",
+      "evidence_only": [],
+      "proof_artifact": null,
+      "backend_assumption": null,
+      "discharged_subobligations": [],
+      "proof_layer": "opcode composition under declared primitive relations",
+      "microcode_pc_span": [
+        910,
+        911
+      ],
+      "open_backend_micro_occurrences": 0,
+      "backend_refinement_status": "NO_OPEN_BACKEND_MICRO_OCCURRENCE_IN_THIS_MACRO",
+      "obligation_sha256": "38e998d33c8bd31037c8b7f51ec93eee08f8e9cfc365ba3e08a6e7f857784568"
+    },
+    {
+      "index": 122,
+      "opcode": "RMSNORM",
+      "universal_statement": "for all shape-valid related source/register states, relation is preserved",
+      "sequence_polymorphic": false,
+      "tensor_references": [
+        "decoder.block.7.layer.2.layer_norm.weight"
+      ],
+      "structural_status": "verified",
+      "semantic_status": "machine-checked parametric RMSNorm lowering",
+      "evidence_only": [],
+      "proof_artifact": "RMSNormLowering.lean",
+      "backend_assumption": "source and target use identical ordered primitive semantics",
+      "discharged_subobligations": [],
+      "proof_layer": "opcode composition under declared primitive relations",
+      "microcode_pc_span": [
+        911,
+        918
+      ],
+      "open_backend_micro_occurrences": 2,
+      "backend_refinement_status": "OPEN_PINNED_BACKEND_REFINEMENT",
+      "obligation_sha256": "53e4dd476671c123131392c4d96899fd6367e4c89172fe7f167d0a85bd78a164"
+    },
+    {
+      "index": 123,
+      "opcode": "GATED_MLP",
+      "universal_statement": "for all shape-valid related source/register states, relation is preserved",
+      "sequence_polymorphic": false,
+      "tensor_references": [
+        "decoder.block.7.layer.2.DenseReluDense.wi_0.weight",
+        "decoder.block.7.layer.2.DenseReluDense.wi_1.weight",
+        "decoder.block.7.layer.2.DenseReluDense.wo.weight"
+      ],
+      "structural_status": "verified",
+      "semantic_status": "machine-checked parametric gated-MLP lowering",
+      "evidence_only": [],
+      "proof_artifact": "GatedMLPLowering.lean",
+      "backend_assumption": "source and target use identical ordered primitive semantics",
+      "discharged_subobligations": [],
+      "proof_layer": "opcode composition under declared primitive relations",
+      "microcode_pc_span": [
+        918,
+        930
+      ],
+      "open_backend_micro_occurrences": 4,
+      "backend_refinement_status": "OPEN_PINNED_BACKEND_REFINEMENT",
+      "obligation_sha256": "798902193e3af780d5d986a682840a18a51aea464039634638645f803dc4bef0"
+    },
+    {
+      "index": 124,
+      "opcode": "ADD",
+      "universal_statement": "for all shape-valid related source/register states, relation is preserved",
+      "sequence_polymorphic": false,
+      "tensor_references": [],
+      "structural_status": "verified",
+      "semantic_status": "definitionally lowered; universal schema available",
+      "evidence_only": [],
+      "proof_artifact": null,
+      "backend_assumption": null,
+      "discharged_subobligations": [],
+      "proof_layer": "opcode composition under declared primitive relations",
+      "microcode_pc_span": [
+        930,
+        931
+      ],
+      "open_backend_micro_occurrences": 0,
+      "backend_refinement_status": "NO_OPEN_BACKEND_MICRO_OCCURRENCE_IN_THIS_MACRO",
+      "obligation_sha256": "7d9b78c60ebea510d37dd4a37c4169225bd76c5a4848d957328683ae4182d661"
+    },
+    {
+      "index": 125,
+      "opcode": "RMSNORM",
+      "universal_statement": "for all shape-valid related source/register states, relation is preserved",
+      "sequence_polymorphic": false,
+      "tensor_references": [
+        "decoder.final_layer_norm.weight"
+      ],
+      "structural_status": "verified",
+      "semantic_status": "machine-checked parametric RMSNorm lowering",
+      "evidence_only": [],
+      "proof_artifact": "RMSNormLowering.lean",
+      "backend_assumption": "source and target use identical ordered primitive semantics",
+      "discharged_subobligations": [],
+      "proof_layer": "opcode composition under declared primitive relations",
+      "microcode_pc_span": [
+        931,
+        938
+      ],
+      "open_backend_micro_occurrences": 2,
+      "backend_refinement_status": "OPEN_PINNED_BACKEND_REFINEMENT",
+      "obligation_sha256": "3f1e0242265967b8e36dcaf560ee07000d83a2efe4bb3e9a01f306986e3f3989"
+    },
+    {
+      "index": 126,
+      "opcode": "MATMUL",
+      "universal_statement": "for all shape-valid related source/register states, relation is preserved",
+      "sequence_polymorphic": false,
+      "tensor_references": [
+        "lm_head.weight"
+      ],
+      "structural_status": "verified",
+      "semantic_status": "definitionally lowered; universal schema available",
+      "evidence_only": [],
+      "proof_artifact": null,
+      "backend_assumption": null,
+      "discharged_subobligations": [],
+      "proof_layer": "opcode composition under declared primitive relations",
+      "microcode_pc_span": [
+        938,
+        939
+      ],
+      "open_backend_micro_occurrences": 1,
+      "backend_refinement_status": "OPEN_PINNED_BACKEND_REFINEMENT",
+      "obligation_sha256": "fd68558b37e56d7d6125dc974eb06f672f1554f11689cb4c5b751a1220f69f81"
+    },
+    {
+      "index": 127,
+      "opcode": "SOFTMAX",
+      "universal_statement": "for all shape-valid related source/register states, relation is preserved",
+      "sequence_polymorphic": false,
+      "tensor_references": [],
+      "structural_status": "verified",
+      "semantic_status": "machine-checked parametric softmax lowering",
+      "evidence_only": [],
+      "proof_artifact": "SoftmaxLowering.lean",
+      "backend_assumption": "source and target use identical ordered primitive semantics",
+      "discharged_subobligations": [],
+      "proof_layer": "opcode composition under declared primitive relations",
+      "microcode_pc_span": [
+        939,
+        944
+      ],
+      "open_backend_micro_occurrences": 2,
+      "backend_refinement_status": "OPEN_PINNED_BACKEND_REFINEMENT",
+      "obligation_sha256": "98b2aacced85677689b352e3ad574ccdb04e106002742e32dd9b848d6de10e19"
+    },
+    {
+      "index": 128,
+      "opcode": "SAMPLE_PUSH_UPDATE_CACHE",
+      "universal_statement": "for all shape-valid related source/register states, relation is preserved",
+      "sequence_polymorphic": true,
+      "tensor_references": [],
+      "structural_status": "verified",
+      "semantic_status": "machine-checked structural cache proof",
+      "evidence_only": [],
+      "proof_artifact": "CacheSemantics.lean",
+      "backend_assumption": null,
+      "discharged_subobligations": [
+        "append order",
+        "token/key/value length synchronization"
+      ],
+      "proof_layer": "opcode composition under declared primitive relations",
+      "microcode_pc_span": [
+        944,
+        947
+      ],
+      "open_backend_micro_occurrences": 0,
+      "backend_refinement_status": "NO_OPEN_BACKEND_MICRO_OCCURRENCE_IN_THIS_MACRO",
+      "obligation_sha256": "84be1c0993ba2e53a169607dc0ff590a3f207ec3d6291a34428f5fe71d14fc70"
+    }
+  ],
+  "schema_composition_complete": true,
+  "pinned_backend_refinement_complete": false,
+  "open_backend_micro_occurrences": 343,
+  "layering_note": "machine-checked opcode lowering is conditional on primitive relations; the kernel ledger separately audits those relations against the pinned backend",
+  "status": "opcode schemas and concrete 129-opcode assembly discharged under primitive relations; pinned backend refinement remains"
+}

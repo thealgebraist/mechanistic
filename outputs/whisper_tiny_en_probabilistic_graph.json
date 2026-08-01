@@ -1,0 +1,2344 @@
+{
+  "language": "WHISPER-PROBABILISTIC-REGISTER-GRAPH-1",
+  "model": "openai/whisper-tiny.en",
+  "checkpoint_sha256": "db59695928ded6043adaef491a53ef4e12da9611184d77c53baa691a60b958ad",
+  "config_sha256": "b5366317df280f79e6cc366f259f379674f81a8721d458acf2e00680ccb10b1d",
+  "generation_config_sha256": "38744c19d5cede6ff4dab5079c6d6ddc02ca726960bbef208fb602ad5a030eab",
+  "preprocessor_config_sha256": "9b5cd03a36fbb8a627c64d98a5b5b126ead95a77720723944487311f0110b666",
+  "audio_input_type": "arbitrary finite mono 16 kHz waveform padded/truncated to the configured 30-second window",
+  "state_adt": {
+    "AudioFrontEnd": [
+      "PCM",
+      "LogMel80x3000"
+    ],
+    "EncoderState": [
+      "ConvRegisters",
+      "FourEncoderBlocks",
+      "EncoderMemory1500x384"
+    ],
+    "DecoderState": [
+      "FiniteTokenStack",
+      "PositionBelow448",
+      "FourLayerKVCache",
+      "GenerationPolicy"
+    ],
+    "Readout": "CategoricalMass over Fin 51864"
+  },
+  "config": {
+    "d_model": 384,
+    "encoder_layers": 4,
+    "decoder_layers": 4,
+    "encoder_attention_heads": 6,
+    "decoder_attention_heads": 6,
+    "encoder_ffn_dim": 1536,
+    "decoder_ffn_dim": 1536,
+    "vocab_size": 51864,
+    "max_source_positions": 1500,
+    "max_target_positions": 448,
+    "num_mel_bins": 80
+  },
+  "tensor_count": 167,
+  "tensor_metadata": {
+    "model.decoder.embed_positions.weight": {
+      "shape": [
+        448,
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.decoder.embed_tokens.weight": {
+      "shape": [
+        51864,
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.decoder.layer_norm.bias": {
+      "shape": [
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.decoder.layer_norm.weight": {
+      "shape": [
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.decoder.layers.0.encoder_attn.k_proj.weight": {
+      "shape": [
+        384,
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.decoder.layers.0.encoder_attn.out_proj.bias": {
+      "shape": [
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.decoder.layers.0.encoder_attn.out_proj.weight": {
+      "shape": [
+        384,
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.decoder.layers.0.encoder_attn.q_proj.bias": {
+      "shape": [
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.decoder.layers.0.encoder_attn.q_proj.weight": {
+      "shape": [
+        384,
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.decoder.layers.0.encoder_attn.v_proj.bias": {
+      "shape": [
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.decoder.layers.0.encoder_attn.v_proj.weight": {
+      "shape": [
+        384,
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.decoder.layers.0.encoder_attn_layer_norm.bias": {
+      "shape": [
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.decoder.layers.0.encoder_attn_layer_norm.weight": {
+      "shape": [
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.decoder.layers.0.fc1.bias": {
+      "shape": [
+        1536
+      ],
+      "dtype": "F32"
+    },
+    "model.decoder.layers.0.fc1.weight": {
+      "shape": [
+        1536,
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.decoder.layers.0.fc2.bias": {
+      "shape": [
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.decoder.layers.0.fc2.weight": {
+      "shape": [
+        384,
+        1536
+      ],
+      "dtype": "F32"
+    },
+    "model.decoder.layers.0.final_layer_norm.bias": {
+      "shape": [
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.decoder.layers.0.final_layer_norm.weight": {
+      "shape": [
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.decoder.layers.0.self_attn.k_proj.weight": {
+      "shape": [
+        384,
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.decoder.layers.0.self_attn.out_proj.bias": {
+      "shape": [
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.decoder.layers.0.self_attn.out_proj.weight": {
+      "shape": [
+        384,
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.decoder.layers.0.self_attn.q_proj.bias": {
+      "shape": [
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.decoder.layers.0.self_attn.q_proj.weight": {
+      "shape": [
+        384,
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.decoder.layers.0.self_attn.v_proj.bias": {
+      "shape": [
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.decoder.layers.0.self_attn.v_proj.weight": {
+      "shape": [
+        384,
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.decoder.layers.0.self_attn_layer_norm.bias": {
+      "shape": [
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.decoder.layers.0.self_attn_layer_norm.weight": {
+      "shape": [
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.decoder.layers.1.encoder_attn.k_proj.weight": {
+      "shape": [
+        384,
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.decoder.layers.1.encoder_attn.out_proj.bias": {
+      "shape": [
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.decoder.layers.1.encoder_attn.out_proj.weight": {
+      "shape": [
+        384,
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.decoder.layers.1.encoder_attn.q_proj.bias": {
+      "shape": [
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.decoder.layers.1.encoder_attn.q_proj.weight": {
+      "shape": [
+        384,
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.decoder.layers.1.encoder_attn.v_proj.bias": {
+      "shape": [
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.decoder.layers.1.encoder_attn.v_proj.weight": {
+      "shape": [
+        384,
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.decoder.layers.1.encoder_attn_layer_norm.bias": {
+      "shape": [
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.decoder.layers.1.encoder_attn_layer_norm.weight": {
+      "shape": [
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.decoder.layers.1.fc1.bias": {
+      "shape": [
+        1536
+      ],
+      "dtype": "F32"
+    },
+    "model.decoder.layers.1.fc1.weight": {
+      "shape": [
+        1536,
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.decoder.layers.1.fc2.bias": {
+      "shape": [
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.decoder.layers.1.fc2.weight": {
+      "shape": [
+        384,
+        1536
+      ],
+      "dtype": "F32"
+    },
+    "model.decoder.layers.1.final_layer_norm.bias": {
+      "shape": [
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.decoder.layers.1.final_layer_norm.weight": {
+      "shape": [
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.decoder.layers.1.self_attn.k_proj.weight": {
+      "shape": [
+        384,
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.decoder.layers.1.self_attn.out_proj.bias": {
+      "shape": [
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.decoder.layers.1.self_attn.out_proj.weight": {
+      "shape": [
+        384,
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.decoder.layers.1.self_attn.q_proj.bias": {
+      "shape": [
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.decoder.layers.1.self_attn.q_proj.weight": {
+      "shape": [
+        384,
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.decoder.layers.1.self_attn.v_proj.bias": {
+      "shape": [
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.decoder.layers.1.self_attn.v_proj.weight": {
+      "shape": [
+        384,
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.decoder.layers.1.self_attn_layer_norm.bias": {
+      "shape": [
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.decoder.layers.1.self_attn_layer_norm.weight": {
+      "shape": [
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.decoder.layers.2.encoder_attn.k_proj.weight": {
+      "shape": [
+        384,
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.decoder.layers.2.encoder_attn.out_proj.bias": {
+      "shape": [
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.decoder.layers.2.encoder_attn.out_proj.weight": {
+      "shape": [
+        384,
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.decoder.layers.2.encoder_attn.q_proj.bias": {
+      "shape": [
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.decoder.layers.2.encoder_attn.q_proj.weight": {
+      "shape": [
+        384,
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.decoder.layers.2.encoder_attn.v_proj.bias": {
+      "shape": [
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.decoder.layers.2.encoder_attn.v_proj.weight": {
+      "shape": [
+        384,
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.decoder.layers.2.encoder_attn_layer_norm.bias": {
+      "shape": [
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.decoder.layers.2.encoder_attn_layer_norm.weight": {
+      "shape": [
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.decoder.layers.2.fc1.bias": {
+      "shape": [
+        1536
+      ],
+      "dtype": "F32"
+    },
+    "model.decoder.layers.2.fc1.weight": {
+      "shape": [
+        1536,
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.decoder.layers.2.fc2.bias": {
+      "shape": [
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.decoder.layers.2.fc2.weight": {
+      "shape": [
+        384,
+        1536
+      ],
+      "dtype": "F32"
+    },
+    "model.decoder.layers.2.final_layer_norm.bias": {
+      "shape": [
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.decoder.layers.2.final_layer_norm.weight": {
+      "shape": [
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.decoder.layers.2.self_attn.k_proj.weight": {
+      "shape": [
+        384,
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.decoder.layers.2.self_attn.out_proj.bias": {
+      "shape": [
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.decoder.layers.2.self_attn.out_proj.weight": {
+      "shape": [
+        384,
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.decoder.layers.2.self_attn.q_proj.bias": {
+      "shape": [
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.decoder.layers.2.self_attn.q_proj.weight": {
+      "shape": [
+        384,
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.decoder.layers.2.self_attn.v_proj.bias": {
+      "shape": [
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.decoder.layers.2.self_attn.v_proj.weight": {
+      "shape": [
+        384,
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.decoder.layers.2.self_attn_layer_norm.bias": {
+      "shape": [
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.decoder.layers.2.self_attn_layer_norm.weight": {
+      "shape": [
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.decoder.layers.3.encoder_attn.k_proj.weight": {
+      "shape": [
+        384,
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.decoder.layers.3.encoder_attn.out_proj.bias": {
+      "shape": [
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.decoder.layers.3.encoder_attn.out_proj.weight": {
+      "shape": [
+        384,
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.decoder.layers.3.encoder_attn.q_proj.bias": {
+      "shape": [
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.decoder.layers.3.encoder_attn.q_proj.weight": {
+      "shape": [
+        384,
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.decoder.layers.3.encoder_attn.v_proj.bias": {
+      "shape": [
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.decoder.layers.3.encoder_attn.v_proj.weight": {
+      "shape": [
+        384,
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.decoder.layers.3.encoder_attn_layer_norm.bias": {
+      "shape": [
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.decoder.layers.3.encoder_attn_layer_norm.weight": {
+      "shape": [
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.decoder.layers.3.fc1.bias": {
+      "shape": [
+        1536
+      ],
+      "dtype": "F32"
+    },
+    "model.decoder.layers.3.fc1.weight": {
+      "shape": [
+        1536,
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.decoder.layers.3.fc2.bias": {
+      "shape": [
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.decoder.layers.3.fc2.weight": {
+      "shape": [
+        384,
+        1536
+      ],
+      "dtype": "F32"
+    },
+    "model.decoder.layers.3.final_layer_norm.bias": {
+      "shape": [
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.decoder.layers.3.final_layer_norm.weight": {
+      "shape": [
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.decoder.layers.3.self_attn.k_proj.weight": {
+      "shape": [
+        384,
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.decoder.layers.3.self_attn.out_proj.bias": {
+      "shape": [
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.decoder.layers.3.self_attn.out_proj.weight": {
+      "shape": [
+        384,
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.decoder.layers.3.self_attn.q_proj.bias": {
+      "shape": [
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.decoder.layers.3.self_attn.q_proj.weight": {
+      "shape": [
+        384,
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.decoder.layers.3.self_attn.v_proj.bias": {
+      "shape": [
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.decoder.layers.3.self_attn.v_proj.weight": {
+      "shape": [
+        384,
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.decoder.layers.3.self_attn_layer_norm.bias": {
+      "shape": [
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.decoder.layers.3.self_attn_layer_norm.weight": {
+      "shape": [
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.encoder.conv1.bias": {
+      "shape": [
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.encoder.conv1.weight": {
+      "shape": [
+        384,
+        80,
+        3
+      ],
+      "dtype": "F32"
+    },
+    "model.encoder.conv2.bias": {
+      "shape": [
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.encoder.conv2.weight": {
+      "shape": [
+        384,
+        384,
+        3
+      ],
+      "dtype": "F32"
+    },
+    "model.encoder.embed_positions.weight": {
+      "shape": [
+        1500,
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.encoder.layer_norm.bias": {
+      "shape": [
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.encoder.layer_norm.weight": {
+      "shape": [
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.encoder.layers.0.fc1.bias": {
+      "shape": [
+        1536
+      ],
+      "dtype": "F32"
+    },
+    "model.encoder.layers.0.fc1.weight": {
+      "shape": [
+        1536,
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.encoder.layers.0.fc2.bias": {
+      "shape": [
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.encoder.layers.0.fc2.weight": {
+      "shape": [
+        384,
+        1536
+      ],
+      "dtype": "F32"
+    },
+    "model.encoder.layers.0.final_layer_norm.bias": {
+      "shape": [
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.encoder.layers.0.final_layer_norm.weight": {
+      "shape": [
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.encoder.layers.0.self_attn.k_proj.weight": {
+      "shape": [
+        384,
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.encoder.layers.0.self_attn.out_proj.bias": {
+      "shape": [
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.encoder.layers.0.self_attn.out_proj.weight": {
+      "shape": [
+        384,
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.encoder.layers.0.self_attn.q_proj.bias": {
+      "shape": [
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.encoder.layers.0.self_attn.q_proj.weight": {
+      "shape": [
+        384,
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.encoder.layers.0.self_attn.v_proj.bias": {
+      "shape": [
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.encoder.layers.0.self_attn.v_proj.weight": {
+      "shape": [
+        384,
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.encoder.layers.0.self_attn_layer_norm.bias": {
+      "shape": [
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.encoder.layers.0.self_attn_layer_norm.weight": {
+      "shape": [
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.encoder.layers.1.fc1.bias": {
+      "shape": [
+        1536
+      ],
+      "dtype": "F32"
+    },
+    "model.encoder.layers.1.fc1.weight": {
+      "shape": [
+        1536,
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.encoder.layers.1.fc2.bias": {
+      "shape": [
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.encoder.layers.1.fc2.weight": {
+      "shape": [
+        384,
+        1536
+      ],
+      "dtype": "F32"
+    },
+    "model.encoder.layers.1.final_layer_norm.bias": {
+      "shape": [
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.encoder.layers.1.final_layer_norm.weight": {
+      "shape": [
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.encoder.layers.1.self_attn.k_proj.weight": {
+      "shape": [
+        384,
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.encoder.layers.1.self_attn.out_proj.bias": {
+      "shape": [
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.encoder.layers.1.self_attn.out_proj.weight": {
+      "shape": [
+        384,
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.encoder.layers.1.self_attn.q_proj.bias": {
+      "shape": [
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.encoder.layers.1.self_attn.q_proj.weight": {
+      "shape": [
+        384,
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.encoder.layers.1.self_attn.v_proj.bias": {
+      "shape": [
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.encoder.layers.1.self_attn.v_proj.weight": {
+      "shape": [
+        384,
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.encoder.layers.1.self_attn_layer_norm.bias": {
+      "shape": [
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.encoder.layers.1.self_attn_layer_norm.weight": {
+      "shape": [
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.encoder.layers.2.fc1.bias": {
+      "shape": [
+        1536
+      ],
+      "dtype": "F32"
+    },
+    "model.encoder.layers.2.fc1.weight": {
+      "shape": [
+        1536,
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.encoder.layers.2.fc2.bias": {
+      "shape": [
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.encoder.layers.2.fc2.weight": {
+      "shape": [
+        384,
+        1536
+      ],
+      "dtype": "F32"
+    },
+    "model.encoder.layers.2.final_layer_norm.bias": {
+      "shape": [
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.encoder.layers.2.final_layer_norm.weight": {
+      "shape": [
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.encoder.layers.2.self_attn.k_proj.weight": {
+      "shape": [
+        384,
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.encoder.layers.2.self_attn.out_proj.bias": {
+      "shape": [
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.encoder.layers.2.self_attn.out_proj.weight": {
+      "shape": [
+        384,
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.encoder.layers.2.self_attn.q_proj.bias": {
+      "shape": [
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.encoder.layers.2.self_attn.q_proj.weight": {
+      "shape": [
+        384,
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.encoder.layers.2.self_attn.v_proj.bias": {
+      "shape": [
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.encoder.layers.2.self_attn.v_proj.weight": {
+      "shape": [
+        384,
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.encoder.layers.2.self_attn_layer_norm.bias": {
+      "shape": [
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.encoder.layers.2.self_attn_layer_norm.weight": {
+      "shape": [
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.encoder.layers.3.fc1.bias": {
+      "shape": [
+        1536
+      ],
+      "dtype": "F32"
+    },
+    "model.encoder.layers.3.fc1.weight": {
+      "shape": [
+        1536,
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.encoder.layers.3.fc2.bias": {
+      "shape": [
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.encoder.layers.3.fc2.weight": {
+      "shape": [
+        384,
+        1536
+      ],
+      "dtype": "F32"
+    },
+    "model.encoder.layers.3.final_layer_norm.bias": {
+      "shape": [
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.encoder.layers.3.final_layer_norm.weight": {
+      "shape": [
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.encoder.layers.3.self_attn.k_proj.weight": {
+      "shape": [
+        384,
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.encoder.layers.3.self_attn.out_proj.bias": {
+      "shape": [
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.encoder.layers.3.self_attn.out_proj.weight": {
+      "shape": [
+        384,
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.encoder.layers.3.self_attn.q_proj.bias": {
+      "shape": [
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.encoder.layers.3.self_attn.q_proj.weight": {
+      "shape": [
+        384,
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.encoder.layers.3.self_attn.v_proj.bias": {
+      "shape": [
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.encoder.layers.3.self_attn.v_proj.weight": {
+      "shape": [
+        384,
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.encoder.layers.3.self_attn_layer_norm.bias": {
+      "shape": [
+        384
+      ],
+      "dtype": "F32"
+    },
+    "model.encoder.layers.3.self_attn_layer_norm.weight": {
+      "shape": [
+        384
+      ],
+      "dtype": "F32"
+    }
+  },
+  "opcode_count": 74,
+  "ops": [
+    {
+      "index": 0,
+      "opcode": "PCM_AUDIO_INPUT",
+      "stage": "frontend",
+      "inputs": [
+        "audio_file"
+      ],
+      "outputs": [
+        "pcm_f32"
+      ],
+      "weights": [],
+      "semantics": "mono 16 kHz samples in [-1,1]"
+    },
+    {
+      "index": 1,
+      "opcode": "LOG_MEL_STFT",
+      "stage": "frontend",
+      "inputs": [
+        "pcm_f32"
+      ],
+      "outputs": [
+        "mel_80x3000"
+      ],
+      "weights": [],
+      "semantics": "WhisperFeatureExtractor: padded 30 s log-Mel spectrogram"
+    },
+    {
+      "index": 2,
+      "opcode": "CONV1_GELU",
+      "stage": "encoder",
+      "inputs": [
+        "mel_80x3000"
+      ],
+      "outputs": [
+        "enc_conv1"
+      ],
+      "weights": [
+        "model.encoder.conv1.bias",
+        "model.encoder.conv1.weight"
+      ],
+      "semantics": "Conv1d 80->384, kernel 3, padding 1, GELU"
+    },
+    {
+      "index": 3,
+      "opcode": "CONV2_GELU",
+      "stage": "encoder",
+      "inputs": [
+        "enc_conv1"
+      ],
+      "outputs": [
+        "enc_hidden"
+      ],
+      "weights": [
+        "model.encoder.conv2.bias",
+        "model.encoder.conv2.weight"
+      ],
+      "semantics": "Conv1d 384->384, kernel 3, stride 2, GELU"
+    },
+    {
+      "index": 4,
+      "opcode": "POSITIONAL_ADD",
+      "stage": "encoder",
+      "inputs": [
+        "enc_hidden"
+      ],
+      "outputs": [
+        "enc_hidden"
+      ],
+      "weights": [
+        "model.encoder.embed_positions.weight"
+      ],
+      "semantics": "add fixed 1500-position embedding"
+    },
+    {
+      "index": 5,
+      "opcode": "LAYER_NORM",
+      "stage": "encoder.0",
+      "inputs": [
+        "enc_hidden"
+      ],
+      "outputs": [
+        "enc_norm"
+      ],
+      "weights": [
+        "model.encoder.layers.0.self_attn_layer_norm.bias",
+        "model.encoder.layers.0.self_attn_layer_norm.weight"
+      ],
+      "semantics": ""
+    },
+    {
+      "index": 6,
+      "opcode": "SELF_ATTENTION",
+      "stage": "encoder.0",
+      "inputs": [
+        "enc_norm"
+      ],
+      "outputs": [
+        "enc_attn"
+      ],
+      "weights": [
+        "model.encoder.layers.0.self_attn.k_proj.weight",
+        "model.encoder.layers.0.self_attn.out_proj.bias",
+        "model.encoder.layers.0.self_attn.out_proj.weight",
+        "model.encoder.layers.0.self_attn.q_proj.bias",
+        "model.encoder.layers.0.self_attn.q_proj.weight",
+        "model.encoder.layers.0.self_attn.v_proj.bias",
+        "model.encoder.layers.0.self_attn.v_proj.weight"
+      ],
+      "semantics": "six-head scaled dot-product attention"
+    },
+    {
+      "index": 7,
+      "opcode": "RESIDUAL_ADD",
+      "stage": "encoder.0",
+      "inputs": [
+        "enc_hidden",
+        "enc_attn"
+      ],
+      "outputs": [
+        "enc_hidden"
+      ],
+      "weights": [],
+      "semantics": ""
+    },
+    {
+      "index": 8,
+      "opcode": "LAYER_NORM",
+      "stage": "encoder.0",
+      "inputs": [
+        "enc_hidden"
+      ],
+      "outputs": [
+        "enc_norm"
+      ],
+      "weights": [
+        "model.encoder.layers.0.final_layer_norm.bias",
+        "model.encoder.layers.0.final_layer_norm.weight"
+      ],
+      "semantics": ""
+    },
+    {
+      "index": 9,
+      "opcode": "MLP_GELU",
+      "stage": "encoder.0",
+      "inputs": [
+        "enc_norm"
+      ],
+      "outputs": [
+        "enc_mlp"
+      ],
+      "weights": [
+        "model.encoder.layers.0.fc1.bias",
+        "model.encoder.layers.0.fc1.weight",
+        "model.encoder.layers.0.fc2.bias",
+        "model.encoder.layers.0.fc2.weight"
+      ],
+      "semantics": "384->1536 GELU ->384"
+    },
+    {
+      "index": 10,
+      "opcode": "RESIDUAL_ADD",
+      "stage": "encoder.0",
+      "inputs": [
+        "enc_hidden",
+        "enc_mlp"
+      ],
+      "outputs": [
+        "enc_hidden"
+      ],
+      "weights": [],
+      "semantics": ""
+    },
+    {
+      "index": 11,
+      "opcode": "LAYER_NORM",
+      "stage": "encoder.1",
+      "inputs": [
+        "enc_hidden"
+      ],
+      "outputs": [
+        "enc_norm"
+      ],
+      "weights": [
+        "model.encoder.layers.1.self_attn_layer_norm.bias",
+        "model.encoder.layers.1.self_attn_layer_norm.weight"
+      ],
+      "semantics": ""
+    },
+    {
+      "index": 12,
+      "opcode": "SELF_ATTENTION",
+      "stage": "encoder.1",
+      "inputs": [
+        "enc_norm"
+      ],
+      "outputs": [
+        "enc_attn"
+      ],
+      "weights": [
+        "model.encoder.layers.1.self_attn.k_proj.weight",
+        "model.encoder.layers.1.self_attn.out_proj.bias",
+        "model.encoder.layers.1.self_attn.out_proj.weight",
+        "model.encoder.layers.1.self_attn.q_proj.bias",
+        "model.encoder.layers.1.self_attn.q_proj.weight",
+        "model.encoder.layers.1.self_attn.v_proj.bias",
+        "model.encoder.layers.1.self_attn.v_proj.weight"
+      ],
+      "semantics": "six-head scaled dot-product attention"
+    },
+    {
+      "index": 13,
+      "opcode": "RESIDUAL_ADD",
+      "stage": "encoder.1",
+      "inputs": [
+        "enc_hidden",
+        "enc_attn"
+      ],
+      "outputs": [
+        "enc_hidden"
+      ],
+      "weights": [],
+      "semantics": ""
+    },
+    {
+      "index": 14,
+      "opcode": "LAYER_NORM",
+      "stage": "encoder.1",
+      "inputs": [
+        "enc_hidden"
+      ],
+      "outputs": [
+        "enc_norm"
+      ],
+      "weights": [
+        "model.encoder.layers.1.final_layer_norm.bias",
+        "model.encoder.layers.1.final_layer_norm.weight"
+      ],
+      "semantics": ""
+    },
+    {
+      "index": 15,
+      "opcode": "MLP_GELU",
+      "stage": "encoder.1",
+      "inputs": [
+        "enc_norm"
+      ],
+      "outputs": [
+        "enc_mlp"
+      ],
+      "weights": [
+        "model.encoder.layers.1.fc1.bias",
+        "model.encoder.layers.1.fc1.weight",
+        "model.encoder.layers.1.fc2.bias",
+        "model.encoder.layers.1.fc2.weight"
+      ],
+      "semantics": "384->1536 GELU ->384"
+    },
+    {
+      "index": 16,
+      "opcode": "RESIDUAL_ADD",
+      "stage": "encoder.1",
+      "inputs": [
+        "enc_hidden",
+        "enc_mlp"
+      ],
+      "outputs": [
+        "enc_hidden"
+      ],
+      "weights": [],
+      "semantics": ""
+    },
+    {
+      "index": 17,
+      "opcode": "LAYER_NORM",
+      "stage": "encoder.2",
+      "inputs": [
+        "enc_hidden"
+      ],
+      "outputs": [
+        "enc_norm"
+      ],
+      "weights": [
+        "model.encoder.layers.2.self_attn_layer_norm.bias",
+        "model.encoder.layers.2.self_attn_layer_norm.weight"
+      ],
+      "semantics": ""
+    },
+    {
+      "index": 18,
+      "opcode": "SELF_ATTENTION",
+      "stage": "encoder.2",
+      "inputs": [
+        "enc_norm"
+      ],
+      "outputs": [
+        "enc_attn"
+      ],
+      "weights": [
+        "model.encoder.layers.2.self_attn.k_proj.weight",
+        "model.encoder.layers.2.self_attn.out_proj.bias",
+        "model.encoder.layers.2.self_attn.out_proj.weight",
+        "model.encoder.layers.2.self_attn.q_proj.bias",
+        "model.encoder.layers.2.self_attn.q_proj.weight",
+        "model.encoder.layers.2.self_attn.v_proj.bias",
+        "model.encoder.layers.2.self_attn.v_proj.weight"
+      ],
+      "semantics": "six-head scaled dot-product attention"
+    },
+    {
+      "index": 19,
+      "opcode": "RESIDUAL_ADD",
+      "stage": "encoder.2",
+      "inputs": [
+        "enc_hidden",
+        "enc_attn"
+      ],
+      "outputs": [
+        "enc_hidden"
+      ],
+      "weights": [],
+      "semantics": ""
+    },
+    {
+      "index": 20,
+      "opcode": "LAYER_NORM",
+      "stage": "encoder.2",
+      "inputs": [
+        "enc_hidden"
+      ],
+      "outputs": [
+        "enc_norm"
+      ],
+      "weights": [
+        "model.encoder.layers.2.final_layer_norm.bias",
+        "model.encoder.layers.2.final_layer_norm.weight"
+      ],
+      "semantics": ""
+    },
+    {
+      "index": 21,
+      "opcode": "MLP_GELU",
+      "stage": "encoder.2",
+      "inputs": [
+        "enc_norm"
+      ],
+      "outputs": [
+        "enc_mlp"
+      ],
+      "weights": [
+        "model.encoder.layers.2.fc1.bias",
+        "model.encoder.layers.2.fc1.weight",
+        "model.encoder.layers.2.fc2.bias",
+        "model.encoder.layers.2.fc2.weight"
+      ],
+      "semantics": "384->1536 GELU ->384"
+    },
+    {
+      "index": 22,
+      "opcode": "RESIDUAL_ADD",
+      "stage": "encoder.2",
+      "inputs": [
+        "enc_hidden",
+        "enc_mlp"
+      ],
+      "outputs": [
+        "enc_hidden"
+      ],
+      "weights": [],
+      "semantics": ""
+    },
+    {
+      "index": 23,
+      "opcode": "LAYER_NORM",
+      "stage": "encoder.3",
+      "inputs": [
+        "enc_hidden"
+      ],
+      "outputs": [
+        "enc_norm"
+      ],
+      "weights": [
+        "model.encoder.layers.3.self_attn_layer_norm.bias",
+        "model.encoder.layers.3.self_attn_layer_norm.weight"
+      ],
+      "semantics": ""
+    },
+    {
+      "index": 24,
+      "opcode": "SELF_ATTENTION",
+      "stage": "encoder.3",
+      "inputs": [
+        "enc_norm"
+      ],
+      "outputs": [
+        "enc_attn"
+      ],
+      "weights": [
+        "model.encoder.layers.3.self_attn.k_proj.weight",
+        "model.encoder.layers.3.self_attn.out_proj.bias",
+        "model.encoder.layers.3.self_attn.out_proj.weight",
+        "model.encoder.layers.3.self_attn.q_proj.bias",
+        "model.encoder.layers.3.self_attn.q_proj.weight",
+        "model.encoder.layers.3.self_attn.v_proj.bias",
+        "model.encoder.layers.3.self_attn.v_proj.weight"
+      ],
+      "semantics": "six-head scaled dot-product attention"
+    },
+    {
+      "index": 25,
+      "opcode": "RESIDUAL_ADD",
+      "stage": "encoder.3",
+      "inputs": [
+        "enc_hidden",
+        "enc_attn"
+      ],
+      "outputs": [
+        "enc_hidden"
+      ],
+      "weights": [],
+      "semantics": ""
+    },
+    {
+      "index": 26,
+      "opcode": "LAYER_NORM",
+      "stage": "encoder.3",
+      "inputs": [
+        "enc_hidden"
+      ],
+      "outputs": [
+        "enc_norm"
+      ],
+      "weights": [
+        "model.encoder.layers.3.final_layer_norm.bias",
+        "model.encoder.layers.3.final_layer_norm.weight"
+      ],
+      "semantics": ""
+    },
+    {
+      "index": 27,
+      "opcode": "MLP_GELU",
+      "stage": "encoder.3",
+      "inputs": [
+        "enc_norm"
+      ],
+      "outputs": [
+        "enc_mlp"
+      ],
+      "weights": [
+        "model.encoder.layers.3.fc1.bias",
+        "model.encoder.layers.3.fc1.weight",
+        "model.encoder.layers.3.fc2.bias",
+        "model.encoder.layers.3.fc2.weight"
+      ],
+      "semantics": "384->1536 GELU ->384"
+    },
+    {
+      "index": 28,
+      "opcode": "RESIDUAL_ADD",
+      "stage": "encoder.3",
+      "inputs": [
+        "enc_hidden",
+        "enc_mlp"
+      ],
+      "outputs": [
+        "enc_hidden"
+      ],
+      "weights": [],
+      "semantics": ""
+    },
+    {
+      "index": 29,
+      "opcode": "LAYER_NORM",
+      "stage": "encoder.final",
+      "inputs": [
+        "enc_hidden"
+      ],
+      "outputs": [
+        "encoder_memory"
+      ],
+      "weights": [
+        "model.encoder.layer_norm.bias",
+        "model.encoder.layer_norm.weight"
+      ],
+      "semantics": ""
+    },
+    {
+      "index": 30,
+      "opcode": "TOKEN_STACK_INPUT",
+      "stage": "decoder",
+      "inputs": [
+        "decoder_token_stack"
+      ],
+      "outputs": [
+        "decoder_ids"
+      ],
+      "weights": [],
+      "semantics": ""
+    },
+    {
+      "index": 31,
+      "opcode": "TOKEN_POSITION_EMBED",
+      "stage": "decoder",
+      "inputs": [
+        "decoder_ids"
+      ],
+      "outputs": [
+        "dec_hidden"
+      ],
+      "weights": [
+        "model.decoder.embed_tokens.weight",
+        "model.decoder.embed_positions.weight"
+      ],
+      "semantics": ""
+    },
+    {
+      "index": 32,
+      "opcode": "LAYER_NORM",
+      "stage": "decoder.0",
+      "inputs": [
+        "dec_hidden"
+      ],
+      "outputs": [
+        "dec_norm"
+      ],
+      "weights": [
+        "model.decoder.layers.0.self_attn_layer_norm.bias",
+        "model.decoder.layers.0.self_attn_layer_norm.weight"
+      ],
+      "semantics": ""
+    },
+    {
+      "index": 33,
+      "opcode": "CACHED_SELF_ATTENTION",
+      "stage": "decoder.0",
+      "inputs": [
+        "dec_norm",
+        "kv_cache_0"
+      ],
+      "outputs": [
+        "dec_attn",
+        "kv_cache_0"
+      ],
+      "weights": [
+        "model.decoder.layers.0.self_attn.k_proj.weight",
+        "model.decoder.layers.0.self_attn.out_proj.bias",
+        "model.decoder.layers.0.self_attn.out_proj.weight",
+        "model.decoder.layers.0.self_attn.q_proj.bias",
+        "model.decoder.layers.0.self_attn.q_proj.weight",
+        "model.decoder.layers.0.self_attn.v_proj.bias",
+        "model.decoder.layers.0.self_attn.v_proj.weight"
+      ],
+      "semantics": "causal six-head attention with typed K/V append"
+    },
+    {
+      "index": 34,
+      "opcode": "RESIDUAL_ADD",
+      "stage": "decoder.0",
+      "inputs": [
+        "dec_hidden",
+        "dec_attn"
+      ],
+      "outputs": [
+        "dec_hidden"
+      ],
+      "weights": [],
+      "semantics": ""
+    },
+    {
+      "index": 35,
+      "opcode": "LAYER_NORM",
+      "stage": "decoder.0",
+      "inputs": [
+        "dec_hidden"
+      ],
+      "outputs": [
+        "dec_norm"
+      ],
+      "weights": [
+        "model.decoder.layers.0.encoder_attn_layer_norm.bias",
+        "model.decoder.layers.0.encoder_attn_layer_norm.weight"
+      ],
+      "semantics": ""
+    },
+    {
+      "index": 36,
+      "opcode": "CROSS_ATTENTION",
+      "stage": "decoder.0",
+      "inputs": [
+        "dec_norm",
+        "encoder_memory"
+      ],
+      "outputs": [
+        "dec_cross"
+      ],
+      "weights": [
+        "model.decoder.layers.0.encoder_attn.k_proj.weight",
+        "model.decoder.layers.0.encoder_attn.out_proj.bias",
+        "model.decoder.layers.0.encoder_attn.out_proj.weight",
+        "model.decoder.layers.0.encoder_attn.q_proj.bias",
+        "model.decoder.layers.0.encoder_attn.q_proj.weight",
+        "model.decoder.layers.0.encoder_attn.v_proj.bias",
+        "model.decoder.layers.0.encoder_attn.v_proj.weight"
+      ],
+      "semantics": "six-head attention over fixed encoder memory"
+    },
+    {
+      "index": 37,
+      "opcode": "RESIDUAL_ADD",
+      "stage": "decoder.0",
+      "inputs": [
+        "dec_hidden",
+        "dec_cross"
+      ],
+      "outputs": [
+        "dec_hidden"
+      ],
+      "weights": [],
+      "semantics": ""
+    },
+    {
+      "index": 38,
+      "opcode": "LAYER_NORM",
+      "stage": "decoder.0",
+      "inputs": [
+        "dec_hidden"
+      ],
+      "outputs": [
+        "dec_norm"
+      ],
+      "weights": [
+        "model.decoder.layers.0.final_layer_norm.bias",
+        "model.decoder.layers.0.final_layer_norm.weight"
+      ],
+      "semantics": ""
+    },
+    {
+      "index": 39,
+      "opcode": "MLP_GELU",
+      "stage": "decoder.0",
+      "inputs": [
+        "dec_norm"
+      ],
+      "outputs": [
+        "dec_mlp"
+      ],
+      "weights": [
+        "model.decoder.layers.0.fc1.bias",
+        "model.decoder.layers.0.fc1.weight",
+        "model.decoder.layers.0.fc2.bias",
+        "model.decoder.layers.0.fc2.weight"
+      ],
+      "semantics": "384->1536 GELU ->384"
+    },
+    {
+      "index": 40,
+      "opcode": "RESIDUAL_ADD",
+      "stage": "decoder.0",
+      "inputs": [
+        "dec_hidden",
+        "dec_mlp"
+      ],
+      "outputs": [
+        "dec_hidden"
+      ],
+      "weights": [],
+      "semantics": ""
+    },
+    {
+      "index": 41,
+      "opcode": "LAYER_NORM",
+      "stage": "decoder.1",
+      "inputs": [
+        "dec_hidden"
+      ],
+      "outputs": [
+        "dec_norm"
+      ],
+      "weights": [
+        "model.decoder.layers.1.self_attn_layer_norm.bias",
+        "model.decoder.layers.1.self_attn_layer_norm.weight"
+      ],
+      "semantics": ""
+    },
+    {
+      "index": 42,
+      "opcode": "CACHED_SELF_ATTENTION",
+      "stage": "decoder.1",
+      "inputs": [
+        "dec_norm",
+        "kv_cache_1"
+      ],
+      "outputs": [
+        "dec_attn",
+        "kv_cache_1"
+      ],
+      "weights": [
+        "model.decoder.layers.1.self_attn.k_proj.weight",
+        "model.decoder.layers.1.self_attn.out_proj.bias",
+        "model.decoder.layers.1.self_attn.out_proj.weight",
+        "model.decoder.layers.1.self_attn.q_proj.bias",
+        "model.decoder.layers.1.self_attn.q_proj.weight",
+        "model.decoder.layers.1.self_attn.v_proj.bias",
+        "model.decoder.layers.1.self_attn.v_proj.weight"
+      ],
+      "semantics": "causal six-head attention with typed K/V append"
+    },
+    {
+      "index": 43,
+      "opcode": "RESIDUAL_ADD",
+      "stage": "decoder.1",
+      "inputs": [
+        "dec_hidden",
+        "dec_attn"
+      ],
+      "outputs": [
+        "dec_hidden"
+      ],
+      "weights": [],
+      "semantics": ""
+    },
+    {
+      "index": 44,
+      "opcode": "LAYER_NORM",
+      "stage": "decoder.1",
+      "inputs": [
+        "dec_hidden"
+      ],
+      "outputs": [
+        "dec_norm"
+      ],
+      "weights": [
+        "model.decoder.layers.1.encoder_attn_layer_norm.bias",
+        "model.decoder.layers.1.encoder_attn_layer_norm.weight"
+      ],
+      "semantics": ""
+    },
+    {
+      "index": 45,
+      "opcode": "CROSS_ATTENTION",
+      "stage": "decoder.1",
+      "inputs": [
+        "dec_norm",
+        "encoder_memory"
+      ],
+      "outputs": [
+        "dec_cross"
+      ],
+      "weights": [
+        "model.decoder.layers.1.encoder_attn.k_proj.weight",
+        "model.decoder.layers.1.encoder_attn.out_proj.bias",
+        "model.decoder.layers.1.encoder_attn.out_proj.weight",
+        "model.decoder.layers.1.encoder_attn.q_proj.bias",
+        "model.decoder.layers.1.encoder_attn.q_proj.weight",
+        "model.decoder.layers.1.encoder_attn.v_proj.bias",
+        "model.decoder.layers.1.encoder_attn.v_proj.weight"
+      ],
+      "semantics": "six-head attention over fixed encoder memory"
+    },
+    {
+      "index": 46,
+      "opcode": "RESIDUAL_ADD",
+      "stage": "decoder.1",
+      "inputs": [
+        "dec_hidden",
+        "dec_cross"
+      ],
+      "outputs": [
+        "dec_hidden"
+      ],
+      "weights": [],
+      "semantics": ""
+    },
+    {
+      "index": 47,
+      "opcode": "LAYER_NORM",
+      "stage": "decoder.1",
+      "inputs": [
+        "dec_hidden"
+      ],
+      "outputs": [
+        "dec_norm"
+      ],
+      "weights": [
+        "model.decoder.layers.1.final_layer_norm.bias",
+        "model.decoder.layers.1.final_layer_norm.weight"
+      ],
+      "semantics": ""
+    },
+    {
+      "index": 48,
+      "opcode": "MLP_GELU",
+      "stage": "decoder.1",
+      "inputs": [
+        "dec_norm"
+      ],
+      "outputs": [
+        "dec_mlp"
+      ],
+      "weights": [
+        "model.decoder.layers.1.fc1.bias",
+        "model.decoder.layers.1.fc1.weight",
+        "model.decoder.layers.1.fc2.bias",
+        "model.decoder.layers.1.fc2.weight"
+      ],
+      "semantics": "384->1536 GELU ->384"
+    },
+    {
+      "index": 49,
+      "opcode": "RESIDUAL_ADD",
+      "stage": "decoder.1",
+      "inputs": [
+        "dec_hidden",
+        "dec_mlp"
+      ],
+      "outputs": [
+        "dec_hidden"
+      ],
+      "weights": [],
+      "semantics": ""
+    },
+    {
+      "index": 50,
+      "opcode": "LAYER_NORM",
+      "stage": "decoder.2",
+      "inputs": [
+        "dec_hidden"
+      ],
+      "outputs": [
+        "dec_norm"
+      ],
+      "weights": [
+        "model.decoder.layers.2.self_attn_layer_norm.bias",
+        "model.decoder.layers.2.self_attn_layer_norm.weight"
+      ],
+      "semantics": ""
+    },
+    {
+      "index": 51,
+      "opcode": "CACHED_SELF_ATTENTION",
+      "stage": "decoder.2",
+      "inputs": [
+        "dec_norm",
+        "kv_cache_2"
+      ],
+      "outputs": [
+        "dec_attn",
+        "kv_cache_2"
+      ],
+      "weights": [
+        "model.decoder.layers.2.self_attn.k_proj.weight",
+        "model.decoder.layers.2.self_attn.out_proj.bias",
+        "model.decoder.layers.2.self_attn.out_proj.weight",
+        "model.decoder.layers.2.self_attn.q_proj.bias",
+        "model.decoder.layers.2.self_attn.q_proj.weight",
+        "model.decoder.layers.2.self_attn.v_proj.bias",
+        "model.decoder.layers.2.self_attn.v_proj.weight"
+      ],
+      "semantics": "causal six-head attention with typed K/V append"
+    },
+    {
+      "index": 52,
+      "opcode": "RESIDUAL_ADD",
+      "stage": "decoder.2",
+      "inputs": [
+        "dec_hidden",
+        "dec_attn"
+      ],
+      "outputs": [
+        "dec_hidden"
+      ],
+      "weights": [],
+      "semantics": ""
+    },
+    {
+      "index": 53,
+      "opcode": "LAYER_NORM",
+      "stage": "decoder.2",
+      "inputs": [
+        "dec_hidden"
+      ],
+      "outputs": [
+        "dec_norm"
+      ],
+      "weights": [
+        "model.decoder.layers.2.encoder_attn_layer_norm.bias",
+        "model.decoder.layers.2.encoder_attn_layer_norm.weight"
+      ],
+      "semantics": ""
+    },
+    {
+      "index": 54,
+      "opcode": "CROSS_ATTENTION",
+      "stage": "decoder.2",
+      "inputs": [
+        "dec_norm",
+        "encoder_memory"
+      ],
+      "outputs": [
+        "dec_cross"
+      ],
+      "weights": [
+        "model.decoder.layers.2.encoder_attn.k_proj.weight",
+        "model.decoder.layers.2.encoder_attn.out_proj.bias",
+        "model.decoder.layers.2.encoder_attn.out_proj.weight",
+        "model.decoder.layers.2.encoder_attn.q_proj.bias",
+        "model.decoder.layers.2.encoder_attn.q_proj.weight",
+        "model.decoder.layers.2.encoder_attn.v_proj.bias",
+        "model.decoder.layers.2.encoder_attn.v_proj.weight"
+      ],
+      "semantics": "six-head attention over fixed encoder memory"
+    },
+    {
+      "index": 55,
+      "opcode": "RESIDUAL_ADD",
+      "stage": "decoder.2",
+      "inputs": [
+        "dec_hidden",
+        "dec_cross"
+      ],
+      "outputs": [
+        "dec_hidden"
+      ],
+      "weights": [],
+      "semantics": ""
+    },
+    {
+      "index": 56,
+      "opcode": "LAYER_NORM",
+      "stage": "decoder.2",
+      "inputs": [
+        "dec_hidden"
+      ],
+      "outputs": [
+        "dec_norm"
+      ],
+      "weights": [
+        "model.decoder.layers.2.final_layer_norm.bias",
+        "model.decoder.layers.2.final_layer_norm.weight"
+      ],
+      "semantics": ""
+    },
+    {
+      "index": 57,
+      "opcode": "MLP_GELU",
+      "stage": "decoder.2",
+      "inputs": [
+        "dec_norm"
+      ],
+      "outputs": [
+        "dec_mlp"
+      ],
+      "weights": [
+        "model.decoder.layers.2.fc1.bias",
+        "model.decoder.layers.2.fc1.weight",
+        "model.decoder.layers.2.fc2.bias",
+        "model.decoder.layers.2.fc2.weight"
+      ],
+      "semantics": "384->1536 GELU ->384"
+    },
+    {
+      "index": 58,
+      "opcode": "RESIDUAL_ADD",
+      "stage": "decoder.2",
+      "inputs": [
+        "dec_hidden",
+        "dec_mlp"
+      ],
+      "outputs": [
+        "dec_hidden"
+      ],
+      "weights": [],
+      "semantics": ""
+    },
+    {
+      "index": 59,
+      "opcode": "LAYER_NORM",
+      "stage": "decoder.3",
+      "inputs": [
+        "dec_hidden"
+      ],
+      "outputs": [
+        "dec_norm"
+      ],
+      "weights": [
+        "model.decoder.layers.3.self_attn_layer_norm.bias",
+        "model.decoder.layers.3.self_attn_layer_norm.weight"
+      ],
+      "semantics": ""
+    },
+    {
+      "index": 60,
+      "opcode": "CACHED_SELF_ATTENTION",
+      "stage": "decoder.3",
+      "inputs": [
+        "dec_norm",
+        "kv_cache_3"
+      ],
+      "outputs": [
+        "dec_attn",
+        "kv_cache_3"
+      ],
+      "weights": [
+        "model.decoder.layers.3.self_attn.k_proj.weight",
+        "model.decoder.layers.3.self_attn.out_proj.bias",
+        "model.decoder.layers.3.self_attn.out_proj.weight",
+        "model.decoder.layers.3.self_attn.q_proj.bias",
+        "model.decoder.layers.3.self_attn.q_proj.weight",
+        "model.decoder.layers.3.self_attn.v_proj.bias",
+        "model.decoder.layers.3.self_attn.v_proj.weight"
+      ],
+      "semantics": "causal six-head attention with typed K/V append"
+    },
+    {
+      "index": 61,
+      "opcode": "RESIDUAL_ADD",
+      "stage": "decoder.3",
+      "inputs": [
+        "dec_hidden",
+        "dec_attn"
+      ],
+      "outputs": [
+        "dec_hidden"
+      ],
+      "weights": [],
+      "semantics": ""
+    },
+    {
+      "index": 62,
+      "opcode": "LAYER_NORM",
+      "stage": "decoder.3",
+      "inputs": [
+        "dec_hidden"
+      ],
+      "outputs": [
+        "dec_norm"
+      ],
+      "weights": [
+        "model.decoder.layers.3.encoder_attn_layer_norm.bias",
+        "model.decoder.layers.3.encoder_attn_layer_norm.weight"
+      ],
+      "semantics": ""
+    },
+    {
+      "index": 63,
+      "opcode": "CROSS_ATTENTION",
+      "stage": "decoder.3",
+      "inputs": [
+        "dec_norm",
+        "encoder_memory"
+      ],
+      "outputs": [
+        "dec_cross"
+      ],
+      "weights": [
+        "model.decoder.layers.3.encoder_attn.k_proj.weight",
+        "model.decoder.layers.3.encoder_attn.out_proj.bias",
+        "model.decoder.layers.3.encoder_attn.out_proj.weight",
+        "model.decoder.layers.3.encoder_attn.q_proj.bias",
+        "model.decoder.layers.3.encoder_attn.q_proj.weight",
+        "model.decoder.layers.3.encoder_attn.v_proj.bias",
+        "model.decoder.layers.3.encoder_attn.v_proj.weight"
+      ],
+      "semantics": "six-head attention over fixed encoder memory"
+    },
+    {
+      "index": 64,
+      "opcode": "RESIDUAL_ADD",
+      "stage": "decoder.3",
+      "inputs": [
+        "dec_hidden",
+        "dec_cross"
+      ],
+      "outputs": [
+        "dec_hidden"
+      ],
+      "weights": [],
+      "semantics": ""
+    },
+    {
+      "index": 65,
+      "opcode": "LAYER_NORM",
+      "stage": "decoder.3",
+      "inputs": [
+        "dec_hidden"
+      ],
+      "outputs": [
+        "dec_norm"
+      ],
+      "weights": [
+        "model.decoder.layers.3.final_layer_norm.bias",
+        "model.decoder.layers.3.final_layer_norm.weight"
+      ],
+      "semantics": ""
+    },
+    {
+      "index": 66,
+      "opcode": "MLP_GELU",
+      "stage": "decoder.3",
+      "inputs": [
+        "dec_norm"
+      ],
+      "outputs": [
+        "dec_mlp"
+      ],
+      "weights": [
+        "model.decoder.layers.3.fc1.bias",
+        "model.decoder.layers.3.fc1.weight",
+        "model.decoder.layers.3.fc2.bias",
+        "model.decoder.layers.3.fc2.weight"
+      ],
+      "semantics": "384->1536 GELU ->384"
+    },
+    {
+      "index": 67,
+      "opcode": "RESIDUAL_ADD",
+      "stage": "decoder.3",
+      "inputs": [
+        "dec_hidden",
+        "dec_mlp"
+      ],
+      "outputs": [
+        "dec_hidden"
+      ],
+      "weights": [],
+      "semantics": ""
+    },
+    {
+      "index": 68,
+      "opcode": "LAYER_NORM",
+      "stage": "decoder.final",
+      "inputs": [
+        "dec_hidden"
+      ],
+      "outputs": [
+        "decoder_readout"
+      ],
+      "weights": [
+        "model.decoder.layer_norm.bias",
+        "model.decoder.layer_norm.weight"
+      ],
+      "semantics": ""
+    },
+    {
+      "index": 69,
+      "opcode": "TIED_LM_HEAD",
+      "stage": "readout",
+      "inputs": [
+        "decoder_readout"
+      ],
+      "outputs": [
+        "logits_51864"
+      ],
+      "weights": [
+        "model.decoder.embed_tokens.weight"
+      ],
+      "semantics": "matrix readout tied to token embedding"
+    },
+    {
+      "index": 70,
+      "opcode": "GENERATION_POLICY",
+      "stage": "readout",
+      "inputs": [
+        "logits_51864",
+        "decoder_position"
+      ],
+      "outputs": [
+        "policy_logits"
+      ],
+      "weights": [],
+      "semantics": "forced no-timestamps prefix plus suppression masks"
+    },
+    {
+      "index": 71,
+      "opcode": "SOFTMAX",
+      "stage": "readout",
+      "inputs": [
+        "policy_logits"
+      ],
+      "outputs": [
+        "categorical_mass_51864"
+      ],
+      "weights": [],
+      "semantics": "normalized next-token probability law"
+    },
+    {
+      "index": 72,
+      "opcode": "SAMPLE_OR_ARGMAX",
+      "stage": "transition",
+      "inputs": [
+        "categorical_mass_51864",
+        "random_bits_or_greedy_mode"
+      ],
+      "outputs": [
+        "next_token"
+      ],
+      "weights": [],
+      "semantics": ""
+    },
+    {
+      "index": 73,
+      "opcode": "TOKEN_AND_CACHE_APPEND",
+      "stage": "transition",
+      "inputs": [
+        "next_token",
+        "decoder_token_stack",
+        "kv_cache_0..3"
+      ],
+      "outputs": [
+        "next_decoder_state"
+      ],
+      "weights": [],
+      "semantics": "probabilistic transducer transition"
+    }
+  ],
+  "probabilistic_semantics": {
+    "mass": "softmax after generation-policy masks",
+    "transition": "append sampled token and its decoder K/V entries",
+    "trace_law": "product of conditional token masses",
+    "greedy_transcription": "argmax specialization of SAMPLE_OR_ARGMAX"
+  },
+  "pdf_intertwining_obligations": {
+    "observation": "target.mass(encode(state), token) = source.mass(state, token)",
+    "transition": "target.step(encode(state), token) = encode(source.step(state, token))",
+    "scope": "every valid audio value and every finite decoder continuation below max_target_positions"
+  },
+  "semantic_status": "EXACT_GRAPH_STRUCTURE_AND_CHECKPOINT_BINDING; ALL_INPUT_EQUIVALENCE_CONDITIONAL_ON_SHARED_PRIMITIVE_ABI"
+}

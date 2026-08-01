@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="760" viewBox="0 0 1500 760">
+<rect width="100%" height="100%" fill="#fbfcfe"/>
+<defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#526274"/></marker></defs>
+<style>text{font-family:Menlo,monospace;fill:#17212b}.title{font-size:20px;font-weight:bold}.sub{font-size:13px;fill:#526274}.node{fill:#eaf2ff;stroke:#285c9e;stroke-width:2}.prob{fill:#ecf8ef;stroke:#287a42;stroke-width:2}.edge{stroke:#526274;stroke-width:2;fill:none;marker-end:url(#a)}.loop{stroke:#287a42;stroke-width:3;fill:none;marker-end:url(#a)}.label{font-size:12px;paint-order:stroke;stroke:#fbfcfe;stroke-width:6px}</style>
+<text x="30" y="35" class="title">Whisper Tiny English decompiled as a probabilistic audio-to-token register graph</text>
+<text x="30" y="61" class="sub">167 checkpoint tensors | 74 macro opcodes | 4 encoder + 4 decoder layers | 51,864-token categorical readout</text>
+<rect class="node" x="45" y="180" width="190" height="100" rx="16"/>
+<text x="140.0" y="222" text-anchor="middle">PCM audio</text>
+<text x="140.0" y="250" text-anchor="middle" class="sub">93,680 samples</text>
+<rect class="node" x="285" y="180" width="210" height="100" rx="16"/>
+<text x="390.0" y="222" text-anchor="middle">log-Mel frontend</text>
+<text x="390.0" y="250" text-anchor="middle" class="sub">80 x 3000</text>
+<rect class="node" x="545" y="130" width="235" height="100" rx="16"/>
+<text x="662.5" y="172" text-anchor="middle">conv encoder</text>
+<text x="662.5" y="200" text-anchor="middle" class="sub">2 convolutions</text>
+<rect class="node" x="545" y="300" width="235" height="125" rx="16"/>
+<text x="662.5" y="342" text-anchor="middle">encoder tower</text>
+<text x="662.5" y="370" text-anchor="middle" class="sub">4 self-attn + MLP</text>
+<rect class="node" x="840" y="300" width="220" height="125" rx="16"/>
+<text x="950.0" y="342" text-anchor="middle">encoder memory</text>
+<text x="950.0" y="370" text-anchor="middle" class="sub">1500 x 384</text>
+<rect class="prob" x="1090" y="260" width="230" height="170" rx="16"/>
+<text x="1205.0" y="302" text-anchor="middle">decoder state</text>
+<text x="1205.0" y="330" text-anchor="middle" class="sub">token stack + position</text>
+<rect class="prob" x="1090" y="500" width="230" height="120" rx="16"/>
+<text x="1205.0" y="542" text-anchor="middle">4-layer K/V cache</text>
+<text x="1205.0" y="570" text-anchor="middle" class="sub">grows per token</text>
+<rect class="prob" x="1360" y="300" width="110" height="125" rx="16"/>
+<text x="1415.0" y="342" text-anchor="middle">softmax</text>
+<text x="1415.0" y="370" text-anchor="middle" class="sub">P(token)</text>
+<path class="edge" d="M235 230 L285 230"/>
+<text class="label" x="260.0" y="221.0" text-anchor="middle">STFT + Mel</text>
+<path class="edge" d="M495 230 L545 180"/>
+<text class="label" x="520.0" y="196.0" text-anchor="middle">binary32 conv</text>
+<path class="edge" d="M662 230 L662 300"/>
+<text class="label" x="662.0" y="256.0" text-anchor="middle">positions</text>
+<path class="edge" d="M780 362 L840 362"/>
+<text class="label" x="810.0" y="353.0" text-anchor="middle">memory</text>
+<path class="edge" d="M1060 362 L1090 345"/>
+<text class="label" x="1075.0" y="344.5" text-anchor="middle">cross-attend</text>
+<path class="edge" d="M1320 345 L1360 362"/>
+<text class="label" x="1340.0" y="344.5" text-anchor="middle">LM head</text>
+<path class="loop" d="M1415 425 C1450 560 1300 650 1205 430"/>
+<text class="label" x="1370" y="585" text-anchor="middle">sample/argmax token</text>
+<path class="loop" d="M1205 430 L1205 500"/>
+<text class="label" x="1240" y="470">append K/V</text>
+<text x="30" y="695" class="sub">Concrete audio: Mr. Quilter is the apostle of the middle classes, and we are glad to welcome his gospel.</text>
+<text x="30" y="724" class="sub">The graph is finite in program size, not finite in state count: continuous encoder memory and finite-but-growing token/cache registers remain explicit.</text>
+</svg>

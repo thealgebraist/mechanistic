@@ -1,0 +1,106 @@
+{
+  "certificate": "WHISPER_CPP23_MODEL_APPLICABILITY_1",
+  "reference_repository": "transformers-community/dola",
+  "reference_revision": "af6cdc351e7e0bd28a86ce32aac461494a09a9c1",
+  "reference_generate_sha256": "ea3651c5b87a1a67443d8ed349a4f57fdbdc75bcabf43ae5d15354cca46b5d4e",
+  "case_count": 9,
+  "rejected_case_count": 5,
+  "ignored_case_count": 4,
+  "all_behaviors_exact": true,
+  "cases": [
+    {
+      "case": "dola_low",
+      "field": "dola_layers",
+      "value": "low",
+      "transformers_behavior": "ValueError: decoder-only models required",
+      "cpp23_status": "MODEL_REJECTED",
+      "cpp23_reason": "encoder_decoder_model",
+      "behavior_exact": true,
+      "constructor": "RejectDolaForEncoderDecoder"
+    },
+    {
+      "case": "dola_high",
+      "field": "dola_layers",
+      "value": "high",
+      "transformers_behavior": "ValueError: decoder-only models required",
+      "cpp23_status": "MODEL_REJECTED",
+      "cpp23_reason": "encoder_decoder_model",
+      "behavior_exact": true,
+      "constructor": "RejectDolaForEncoderDecoder"
+    },
+    {
+      "case": "dola_explicit",
+      "field": "dola_layers",
+      "value": [
+        0,
+        2
+      ],
+      "transformers_behavior": "ValueError: decoder-only models required",
+      "cpp23_status": "MODEL_REJECTED",
+      "cpp23_reason": "encoder_decoder_model",
+      "behavior_exact": true,
+      "constructor": "RejectDolaForEncoderDecoder"
+    },
+    {
+      "case": "guidance_0.5",
+      "field": "guidance_scale",
+      "value": 0.5,
+      "transformers_behavior": "ValueError: unconditional token IDs are invalid Mel features",
+      "cpp23_status": "MODEL_REJECTED",
+      "cpp23_reason": "unconditional_branch_requires_mel_features",
+      "behavior_exact": true,
+      "constructor": "RejectUnbatchedGuidanceForMelEncoder"
+    },
+    {
+      "case": "guidance_1.5",
+      "field": "guidance_scale",
+      "value": 1.5,
+      "transformers_behavior": "ValueError: unconditional token IDs are invalid Mel features",
+      "cpp23_status": "MODEL_REJECTED",
+      "cpp23_reason": "unconditional_branch_requires_mel_features",
+      "behavior_exact": true,
+      "constructor": "RejectUnbatchedGuidanceForMelEncoder"
+    },
+    {
+      "case": "encoder_repetition_penalty_0.8",
+      "field": "encoder_repetition_penalty",
+      "value": 0.8,
+      "transformers_behavior": "warning then ignored; output equals baseline",
+      "cpp23_status": "MODEL_IGNORED",
+      "cpp23_reason": "continuous_encoder_has_no_input_ids",
+      "behavior_exact": true,
+      "constructor": "IgnoreEncoderTokenPenaltyWithoutEncoderTokenIds"
+    },
+    {
+      "case": "encoder_repetition_penalty_1.2",
+      "field": "encoder_repetition_penalty",
+      "value": 1.2,
+      "transformers_behavior": "warning then ignored; output equals baseline",
+      "cpp23_status": "MODEL_IGNORED",
+      "cpp23_reason": "continuous_encoder_has_no_input_ids",
+      "behavior_exact": true,
+      "constructor": "IgnoreEncoderTokenPenaltyWithoutEncoderTokenIds"
+    },
+    {
+      "case": "encoder_no_repeat_ngram_size_1",
+      "field": "encoder_no_repeat_ngram_size",
+      "value": 1,
+      "transformers_behavior": "warning then ignored; output equals baseline",
+      "cpp23_status": "MODEL_IGNORED",
+      "cpp23_reason": "continuous_encoder_has_no_input_ids",
+      "behavior_exact": true,
+      "constructor": "IgnoreEncoderTokenPenaltyWithoutEncoderTokenIds"
+    },
+    {
+      "case": "encoder_no_repeat_ngram_size_3",
+      "field": "encoder_no_repeat_ngram_size",
+      "value": 3,
+      "transformers_behavior": "warning then ignored; output equals baseline",
+      "cpp23_status": "MODEL_IGNORED",
+      "cpp23_reason": "continuous_encoder_has_no_input_ids",
+      "behavior_exact": true,
+      "constructor": "IgnoreEncoderTokenPenaltyWithoutEncoderTokenIds"
+    }
+  ],
+  "scope": "Whisper-specific behavior for DoLa, unbatched classifier-free guidance, and encoder-token repetition processors under Transformers 4.57.3."
+}

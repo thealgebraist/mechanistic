@@ -1,0 +1,4534 @@
+{
+  "language": "AUDIO-FREQUENCY-QUOTIENT-DAG-1",
+  "audio_sha256": "b0c046b68368226b725c2ae364b03a709e983d9749c7157ded6b7af582814747",
+  "checkpoint_sha256": "db59695928ded6043adaef491a53ef4e12da9611184d77c53baa691a60b958ad",
+  "sample_rate": 16000,
+  "window_samples": 400,
+  "hop_samples": 160,
+  "active_frames": 586,
+  "reference_transcript": "Mr. Quilter is the apostle of the middle classes, and we are glad to welcome his gospel.",
+  "methods": [
+    {
+      "id": "mel-triangular",
+      "name": "Triangular Mel FIR bank",
+      "theory": "overlapping weighted STFT-bin sets",
+      "nodes": [
+        {
+          "id": 0,
+          "low_hz": 20.0,
+          "high_hz": 60.0,
+          "member_kind": "fft_bin",
+          "members": [
+            1
+          ]
+        },
+        {
+          "id": 1,
+          "low_hz": 20.0,
+          "high_hz": 100.0,
+          "member_kind": "fft_bin",
+          "members": [
+            1,
+            2
+          ]
+        },
+        {
+          "id": 2,
+          "low_hz": 60.0,
+          "high_hz": 140.0,
+          "member_kind": "fft_bin",
+          "members": [
+            2,
+            3
+          ]
+        },
+        {
+          "id": 3,
+          "low_hz": 100.0,
+          "high_hz": 180.0,
+          "member_kind": "fft_bin",
+          "members": [
+            3,
+            4
+          ]
+        },
+        {
+          "id": 4,
+          "low_hz": 140.0,
+          "high_hz": 220.0,
+          "member_kind": "fft_bin",
+          "members": [
+            4,
+            5
+          ]
+        },
+        {
+          "id": 5,
+          "low_hz": 180.0,
+          "high_hz": 260.0,
+          "member_kind": "fft_bin",
+          "members": [
+            5,
+            6
+          ]
+        },
+        {
+          "id": 6,
+          "low_hz": 220.0,
+          "high_hz": 300.0,
+          "member_kind": "fft_bin",
+          "members": [
+            6,
+            7
+          ]
+        },
+        {
+          "id": 7,
+          "low_hz": 260.0,
+          "high_hz": 340.0,
+          "member_kind": "fft_bin",
+          "members": [
+            7,
+            8
+          ]
+        },
+        {
+          "id": 8,
+          "low_hz": 300.0,
+          "high_hz": 380.0,
+          "member_kind": "fft_bin",
+          "members": [
+            8,
+            9
+          ]
+        },
+        {
+          "id": 9,
+          "low_hz": 340.0,
+          "high_hz": 420.0,
+          "member_kind": "fft_bin",
+          "members": [
+            9,
+            10
+          ]
+        },
+        {
+          "id": 10,
+          "low_hz": 380.0,
+          "high_hz": 460.0,
+          "member_kind": "fft_bin",
+          "members": [
+            10,
+            11
+          ]
+        },
+        {
+          "id": 11,
+          "low_hz": 420.0,
+          "high_hz": 500.0,
+          "member_kind": "fft_bin",
+          "members": [
+            11,
+            12
+          ]
+        },
+        {
+          "id": 12,
+          "low_hz": 460.0,
+          "high_hz": 540.0,
+          "member_kind": "fft_bin",
+          "members": [
+            12,
+            13
+          ]
+        },
+        {
+          "id": 13,
+          "low_hz": 500.0,
+          "high_hz": 540.0,
+          "member_kind": "fft_bin",
+          "members": [
+            13
+          ]
+        },
+        {
+          "id": 14,
+          "low_hz": 540.0,
+          "high_hz": 580.0,
+          "member_kind": "fft_bin",
+          "members": [
+            14
+          ]
+        },
+        {
+          "id": 15,
+          "low_hz": 540.0,
+          "high_hz": 620.0,
+          "member_kind": "fft_bin",
+          "members": [
+            14,
+            15
+          ]
+        },
+        {
+          "id": 16,
+          "low_hz": 580.0,
+          "high_hz": 660.0,
+          "member_kind": "fft_bin",
+          "members": [
+            15,
+            16
+          ]
+        },
+        {
+          "id": 17,
+          "low_hz": 620.0,
+          "high_hz": 700.0,
+          "member_kind": "fft_bin",
+          "members": [
+            16,
+            17
+          ]
+        },
+        {
+          "id": 18,
+          "low_hz": 660.0,
+          "high_hz": 740.0,
+          "member_kind": "fft_bin",
+          "members": [
+            17,
+            18
+          ]
+        },
+        {
+          "id": 19,
+          "low_hz": 700.0,
+          "high_hz": 780.0,
+          "member_kind": "fft_bin",
+          "members": [
+            18,
+            19
+          ]
+        },
+        {
+          "id": 20,
+          "low_hz": 740.0,
+          "high_hz": 820.0,
+          "member_kind": "fft_bin",
+          "members": [
+            19,
+            20
+          ]
+        },
+        {
+          "id": 21,
+          "low_hz": 780.0,
+          "high_hz": 860.0,
+          "member_kind": "fft_bin",
+          "members": [
+            20,
+            21
+          ]
+        },
+        {
+          "id": 22,
+          "low_hz": 820.0,
+          "high_hz": 900.0,
+          "member_kind": "fft_bin",
+          "members": [
+            21,
+            22
+          ]
+        },
+        {
+          "id": 23,
+          "low_hz": 860.0,
+          "high_hz": 940.0,
+          "member_kind": "fft_bin",
+          "members": [
+            22,
+            23
+          ]
+        },
+        {
+          "id": 24,
+          "low_hz": 900.0,
+          "high_hz": 980.0,
+          "member_kind": "fft_bin",
+          "members": [
+            23,
+            24
+          ]
+        },
+        {
+          "id": 25,
+          "low_hz": 940.0,
+          "high_hz": 1020.0,
+          "member_kind": "fft_bin",
+          "members": [
+            24,
+            25
+          ]
+        },
+        {
+          "id": 26,
+          "low_hz": 980.0,
+          "high_hz": 1060.0,
+          "member_kind": "fft_bin",
+          "members": [
+            25,
+            26
+          ]
+        },
+        {
+          "id": 27,
+          "low_hz": 1020.0,
+          "high_hz": 1100.0,
+          "member_kind": "fft_bin",
+          "members": [
+            26,
+            27
+          ]
+        },
+        {
+          "id": 28,
+          "low_hz": 1060.0,
+          "high_hz": 1140.0,
+          "member_kind": "fft_bin",
+          "members": [
+            27,
+            28
+          ]
+        },
+        {
+          "id": 29,
+          "low_hz": 1100.0,
+          "high_hz": 1180.0,
+          "member_kind": "fft_bin",
+          "members": [
+            28,
+            29
+          ]
+        },
+        {
+          "id": 30,
+          "low_hz": 1140.0,
+          "high_hz": 1220.0,
+          "member_kind": "fft_bin",
+          "members": [
+            29,
+            30
+          ]
+        },
+        {
+          "id": 31,
+          "low_hz": 1180.0,
+          "high_hz": 1260.0,
+          "member_kind": "fft_bin",
+          "members": [
+            30,
+            31
+          ]
+        },
+        {
+          "id": 32,
+          "low_hz": 1220.0,
+          "high_hz": 1300.0,
+          "member_kind": "fft_bin",
+          "members": [
+            31,
+            32
+          ]
+        },
+        {
+          "id": 33,
+          "low_hz": 1260.0,
+          "high_hz": 1380.0,
+          "member_kind": "fft_bin",
+          "members": [
+            32,
+            33,
+            34
+          ]
+        },
+        {
+          "id": 34,
+          "low_hz": 1300.0,
+          "high_hz": 1420.0,
+          "member_kind": "fft_bin",
+          "members": [
+            33,
+            34,
+            35
+          ]
+        },
+        {
+          "id": 35,
+          "low_hz": 1380.0,
+          "high_hz": 1460.0,
+          "member_kind": "fft_bin",
+          "members": [
+            35,
+            36
+          ]
+        },
+        {
+          "id": 36,
+          "low_hz": 1420.0,
+          "high_hz": 1540.0,
+          "member_kind": "fft_bin",
+          "members": [
+            36,
+            37,
+            38
+          ]
+        },
+        {
+          "id": 37,
+          "low_hz": 1460.0,
+          "high_hz": 1580.0,
+          "member_kind": "fft_bin",
+          "members": [
+            37,
+            38,
+            39
+          ]
+        },
+        {
+          "id": 38,
+          "low_hz": 1540.0,
+          "high_hz": 1660.0,
+          "member_kind": "fft_bin",
+          "members": [
+            39,
+            40,
+            41
+          ]
+        },
+        {
+          "id": 39,
+          "low_hz": 1580.0,
+          "high_hz": 1740.0,
+          "member_kind": "fft_bin",
+          "members": [
+            40,
+            41,
+            42,
+            43
+          ]
+        },
+        {
+          "id": 40,
+          "low_hz": 1660.0,
+          "high_hz": 1780.0,
+          "member_kind": "fft_bin",
+          "members": [
+            42,
+            43,
+            44
+          ]
+        },
+        {
+          "id": 41,
+          "low_hz": 1740.0,
+          "high_hz": 1860.0,
+          "member_kind": "fft_bin",
+          "members": [
+            44,
+            45,
+            46
+          ]
+        },
+        {
+          "id": 42,
+          "low_hz": 1780.0,
+          "high_hz": 1940.0,
+          "member_kind": "fft_bin",
+          "members": [
+            45,
+            46,
+            47,
+            48
+          ]
+        },
+        {
+          "id": 43,
+          "low_hz": 1860.0,
+          "high_hz": 2020.0,
+          "member_kind": "fft_bin",
+          "members": [
+            47,
+            48,
+            49,
+            50
+          ]
+        },
+        {
+          "id": 44,
+          "low_hz": 1940.0,
+          "high_hz": 2100.0,
+          "member_kind": "fft_bin",
+          "members": [
+            49,
+            50,
+            51,
+            52
+          ]
+        },
+        {
+          "id": 45,
+          "low_hz": 2020.0,
+          "high_hz": 2180.0,
+          "member_kind": "fft_bin",
+          "members": [
+            51,
+            52,
+            53,
+            54
+          ]
+        },
+        {
+          "id": 46,
+          "low_hz": 2100.0,
+          "high_hz": 2260.0,
+          "member_kind": "fft_bin",
+          "members": [
+            53,
+            54,
+            55,
+            56
+          ]
+        },
+        {
+          "id": 47,
+          "low_hz": 2180.0,
+          "high_hz": 2340.0,
+          "member_kind": "fft_bin",
+          "members": [
+            55,
+            56,
+            57,
+            58
+          ]
+        },
+        {
+          "id": 48,
+          "low_hz": 2260.0,
+          "high_hz": 2420.0,
+          "member_kind": "fft_bin",
+          "members": [
+            57,
+            58,
+            59,
+            60
+          ]
+        },
+        {
+          "id": 49,
+          "low_hz": 2340.0,
+          "high_hz": 2540.0,
+          "member_kind": "fft_bin",
+          "members": [
+            59,
+            60,
+            61,
+            62,
+            63
+          ]
+        },
+        {
+          "id": 50,
+          "low_hz": 2420.0,
+          "high_hz": 2620.0,
+          "member_kind": "fft_bin",
+          "members": [
+            61,
+            62,
+            63,
+            64,
+            65
+          ]
+        },
+        {
+          "id": 51,
+          "low_hz": 2540.0,
+          "high_hz": 2740.0,
+          "member_kind": "fft_bin",
+          "members": [
+            64,
+            65,
+            66,
+            67,
+            68
+          ]
+        },
+        {
+          "id": 52,
+          "low_hz": 2620.0,
+          "high_hz": 2820.0,
+          "member_kind": "fft_bin",
+          "members": [
+            66,
+            67,
+            68,
+            69,
+            70
+          ]
+        },
+        {
+          "id": 53,
+          "low_hz": 2740.0,
+          "high_hz": 2940.0,
+          "member_kind": "fft_bin",
+          "members": [
+            69,
+            70,
+            71,
+            72,
+            73
+          ]
+        },
+        {
+          "id": 54,
+          "low_hz": 2820.0,
+          "high_hz": 3060.0,
+          "member_kind": "fft_bin",
+          "members": [
+            71,
+            72,
+            73,
+            74,
+            75,
+            76
+          ]
+        },
+        {
+          "id": 55,
+          "low_hz": 2940.0,
+          "high_hz": 3180.0,
+          "member_kind": "fft_bin",
+          "members": [
+            74,
+            75,
+            76,
+            77,
+            78,
+            79
+          ]
+        },
+        {
+          "id": 56,
+          "low_hz": 3060.0,
+          "high_hz": 3300.0,
+          "member_kind": "fft_bin",
+          "members": [
+            77,
+            78,
+            79,
+            80,
+            81,
+            82
+          ]
+        },
+        {
+          "id": 57,
+          "low_hz": 3180.0,
+          "high_hz": 3420.0,
+          "member_kind": "fft_bin",
+          "members": [
+            80,
+            81,
+            82,
+            83,
+            84,
+            85
+          ]
+        },
+        {
+          "id": 58,
+          "low_hz": 3300.0,
+          "high_hz": 3580.0,
+          "member_kind": "fft_bin",
+          "members": [
+            83,
+            84,
+            85,
+            86,
+            87,
+            88,
+            89
+          ]
+        },
+        {
+          "id": 59,
+          "low_hz": 3420.0,
+          "high_hz": 3700.0,
+          "member_kind": "fft_bin",
+          "members": [
+            86,
+            87,
+            88,
+            89,
+            90,
+            91,
+            92
+          ]
+        },
+        {
+          "id": 60,
+          "low_hz": 3580.0,
+          "high_hz": 3860.0,
+          "member_kind": "fft_bin",
+          "members": [
+            90,
+            91,
+            92,
+            93,
+            94,
+            95,
+            96
+          ]
+        },
+        {
+          "id": 61,
+          "low_hz": 3700.0,
+          "high_hz": 4020.0,
+          "member_kind": "fft_bin",
+          "members": [
+            93,
+            94,
+            95,
+            96,
+            97,
+            98,
+            99,
+            100
+          ]
+        },
+        {
+          "id": 62,
+          "low_hz": 3860.0,
+          "high_hz": 4180.0,
+          "member_kind": "fft_bin",
+          "members": [
+            97,
+            98,
+            99,
+            100,
+            101,
+            102,
+            103,
+            104
+          ]
+        },
+        {
+          "id": 63,
+          "low_hz": 4020.0,
+          "high_hz": 4340.0,
+          "member_kind": "fft_bin",
+          "members": [
+            101,
+            102,
+            103,
+            104,
+            105,
+            106,
+            107,
+            108
+          ]
+        },
+        {
+          "id": 64,
+          "low_hz": 4180.0,
+          "high_hz": 4500.0,
+          "member_kind": "fft_bin",
+          "members": [
+            105,
+            106,
+            107,
+            108,
+            109,
+            110,
+            111,
+            112
+          ]
+        },
+        {
+          "id": 65,
+          "low_hz": 4340.0,
+          "high_hz": 4660.0,
+          "member_kind": "fft_bin",
+          "members": [
+            109,
+            110,
+            111,
+            112,
+            113,
+            114,
+            115,
+            116
+          ]
+        },
+        {
+          "id": 66,
+          "low_hz": 4500.0,
+          "high_hz": 4860.0,
+          "member_kind": "fft_bin",
+          "members": [
+            113,
+            114,
+            115,
+            116,
+            117,
+            118,
+            119,
+            120,
+            121
+          ]
+        },
+        {
+          "id": 67,
+          "low_hz": 4660.0,
+          "high_hz": 5060.0,
+          "member_kind": "fft_bin",
+          "members": [
+            117,
+            118,
+            119,
+            120,
+            121,
+            122,
+            123,
+            124,
+            125,
+            126
+          ]
+        },
+        {
+          "id": 68,
+          "low_hz": 4860.0,
+          "high_hz": 5260.0,
+          "member_kind": "fft_bin",
+          "members": [
+            122,
+            123,
+            124,
+            125,
+            126,
+            127,
+            128,
+            129,
+            130,
+            131
+          ]
+        },
+        {
+          "id": 69,
+          "low_hz": 5060.0,
+          "high_hz": 5460.0,
+          "member_kind": "fft_bin",
+          "members": [
+            127,
+            128,
+            129,
+            130,
+            131,
+            132,
+            133,
+            134,
+            135,
+            136
+          ]
+        },
+        {
+          "id": 70,
+          "low_hz": 5260.0,
+          "high_hz": 5660.0,
+          "member_kind": "fft_bin",
+          "members": [
+            132,
+            133,
+            134,
+            135,
+            136,
+            137,
+            138,
+            139,
+            140,
+            141
+          ]
+        },
+        {
+          "id": 71,
+          "low_hz": 5460.0,
+          "high_hz": 5900.0,
+          "member_kind": "fft_bin",
+          "members": [
+            137,
+            138,
+            139,
+            140,
+            141,
+            142,
+            143,
+            144,
+            145,
+            146,
+            147
+          ]
+        },
+        {
+          "id": 72,
+          "low_hz": 5660.0,
+          "high_hz": 6100.0,
+          "member_kind": "fft_bin",
+          "members": [
+            142,
+            143,
+            144,
+            145,
+            146,
+            147,
+            148,
+            149,
+            150,
+            151,
+            152
+          ]
+        },
+        {
+          "id": 73,
+          "low_hz": 5900.0,
+          "high_hz": 6340.0,
+          "member_kind": "fft_bin",
+          "members": [
+            148,
+            149,
+            150,
+            151,
+            152,
+            153,
+            154,
+            155,
+            156,
+            157,
+            158
+          ]
+        },
+        {
+          "id": 74,
+          "low_hz": 6100.0,
+          "high_hz": 6620.0,
+          "member_kind": "fft_bin",
+          "members": [
+            153,
+            154,
+            155,
+            156,
+            157,
+            158,
+            159,
+            160,
+            161,
+            162,
+            163,
+            164,
+            165
+          ]
+        },
+        {
+          "id": 75,
+          "low_hz": 6340.0,
+          "high_hz": 6860.0,
+          "member_kind": "fft_bin",
+          "members": [
+            159,
+            160,
+            161,
+            162,
+            163,
+            164,
+            165,
+            166,
+            167,
+            168,
+            169,
+            170,
+            171
+          ]
+        },
+        {
+          "id": 76,
+          "low_hz": 6620.0,
+          "high_hz": 7140.0,
+          "member_kind": "fft_bin",
+          "members": [
+            166,
+            167,
+            168,
+            169,
+            170,
+            171,
+            172,
+            173,
+            174,
+            175,
+            176,
+            177,
+            178
+          ]
+        },
+        {
+          "id": 77,
+          "low_hz": 6860.0,
+          "high_hz": 7420.0,
+          "member_kind": "fft_bin",
+          "members": [
+            172,
+            173,
+            174,
+            175,
+            176,
+            177,
+            178,
+            179,
+            180,
+            181,
+            182,
+            183,
+            184,
+            185
+          ]
+        },
+        {
+          "id": 78,
+          "low_hz": 7140.0,
+          "high_hz": 7700.0,
+          "member_kind": "fft_bin",
+          "members": [
+            179,
+            180,
+            181,
+            182,
+            183,
+            184,
+            185,
+            186,
+            187,
+            188,
+            189,
+            190,
+            191,
+            192
+          ]
+        },
+        {
+          "id": 79,
+          "low_hz": 7420.0,
+          "high_hz": 7980.0,
+          "member_kind": "fft_bin",
+          "members": [
+            186,
+            187,
+            188,
+            189,
+            190,
+            191,
+            192,
+            193,
+            194,
+            195,
+            196,
+            197,
+            198,
+            199
+          ]
+        }
+      ],
+      "frames": 586,
+      "frequency_node_count": 80,
+      "energy_levels": 16,
+      "quantizer_thresholds": [
+        -0.8060266971588135,
+        -0.6390513181686401,
+        -0.5109061151742935,
+        -0.4078769385814667,
+        -0.30989039689302444,
+        -0.21564269065856934,
+        -0.12782393395900726,
+        -0.04697835445404053,
+        0.026370856910943985,
+        0.10472948849201202,
+        0.18814843893051147,
+        0.2868591547012329,
+        0.4082666262984276,
+        0.5665338188409805,
+        0.7505028508603573
+      ],
+      "unique_quantized_frame_states": 586,
+      "float_feature_bytes_per_frame": 320,
+      "quotient_bytes_per_frame": 40,
+      "compression_ratio": 8.0,
+      "probability_mass_max_normalization_error": 8.344650268554688e-07,
+      "mean_js_bits_vs_mel": 0.0,
+      "feature_rmse_vs_mel": 1.6051875384448522e-09,
+      "feature_cosine_vs_mel": 1.000000238418579,
+      "transcript": "Mr. Quilter is the apostle of the middle classes, and we are glad to welcome his gospel.",
+      "token_ids": [
+        1770,
+        13,
+        2264,
+        346,
+        353,
+        318,
+        262,
+        46329,
+        286,
+        262,
+        3504,
+        6097,
+        11,
+        290,
+        356,
+        389,
+        9675,
+        284,
+        7062,
+        465,
+        21443,
+        13
+      ],
+      "packed_state_block": {
+        "offset": 0,
+        "bytes": 23440,
+        "layout": "frame-major; low nibble first",
+        "sha256": "60d1c67d6ff254df30154d4d1a763f24fb6c8b9eaf8d1c6bf7bae53862aee507"
+      },
+      "word_edit_distance_vs_reference": 0,
+      "word_error_rate_vs_reference": 0.0,
+      "transcript_exact": true
+    },
+    {
+      "id": "linear-subband",
+      "name": "Uniform ideal subbands",
+      "theory": "disjoint 100 Hz frequency-set quotient",
+      "nodes": [
+        {
+          "id": 0,
+          "low_hz": 0.0,
+          "high_hz": 100.0,
+          "member_kind": "fft_bin",
+          "members": [
+            0,
+            1,
+            2
+          ]
+        },
+        {
+          "id": 1,
+          "low_hz": 100.0,
+          "high_hz": 220.0,
+          "member_kind": "fft_bin",
+          "members": [
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "id": 2,
+          "low_hz": 220.0,
+          "high_hz": 340.0,
+          "member_kind": "fft_bin",
+          "members": [
+            6,
+            7,
+            8
+          ]
+        },
+        {
+          "id": 3,
+          "low_hz": 340.0,
+          "high_hz": 460.0,
+          "member_kind": "fft_bin",
+          "members": [
+            9,
+            10,
+            11
+          ]
+        },
+        {
+          "id": 4,
+          "low_hz": 460.0,
+          "high_hz": 580.0,
+          "member_kind": "fft_bin",
+          "members": [
+            12,
+            13,
+            14
+          ]
+        },
+        {
+          "id": 5,
+          "low_hz": 580.0,
+          "high_hz": 700.0,
+          "member_kind": "fft_bin",
+          "members": [
+            15,
+            16,
+            17
+          ]
+        },
+        {
+          "id": 6,
+          "low_hz": 700.0,
+          "high_hz": 820.0,
+          "member_kind": "fft_bin",
+          "members": [
+            18,
+            19,
+            20
+          ]
+        },
+        {
+          "id": 7,
+          "low_hz": 820.0,
+          "high_hz": 940.0,
+          "member_kind": "fft_bin",
+          "members": [
+            21,
+            22,
+            23
+          ]
+        },
+        {
+          "id": 8,
+          "low_hz": 940.0,
+          "high_hz": 1060.0,
+          "member_kind": "fft_bin",
+          "members": [
+            24,
+            25,
+            26
+          ]
+        },
+        {
+          "id": 9,
+          "low_hz": 1060.0,
+          "high_hz": 1180.0,
+          "member_kind": "fft_bin",
+          "members": [
+            27,
+            28,
+            29
+          ]
+        },
+        {
+          "id": 10,
+          "low_hz": 1180.0,
+          "high_hz": 1300.0,
+          "member_kind": "fft_bin",
+          "members": [
+            30,
+            31,
+            32
+          ]
+        },
+        {
+          "id": 11,
+          "low_hz": 1300.0,
+          "high_hz": 1420.0,
+          "member_kind": "fft_bin",
+          "members": [
+            33,
+            34,
+            35
+          ]
+        },
+        {
+          "id": 12,
+          "low_hz": 1420.0,
+          "high_hz": 1540.0,
+          "member_kind": "fft_bin",
+          "members": [
+            36,
+            37,
+            38
+          ]
+        },
+        {
+          "id": 13,
+          "low_hz": 1540.0,
+          "high_hz": 1660.0,
+          "member_kind": "fft_bin",
+          "members": [
+            39,
+            40,
+            41
+          ]
+        },
+        {
+          "id": 14,
+          "low_hz": 1660.0,
+          "high_hz": 1780.0,
+          "member_kind": "fft_bin",
+          "members": [
+            42,
+            43,
+            44
+          ]
+        },
+        {
+          "id": 15,
+          "low_hz": 1780.0,
+          "high_hz": 1900.0,
+          "member_kind": "fft_bin",
+          "members": [
+            45,
+            46,
+            47
+          ]
+        },
+        {
+          "id": 16,
+          "low_hz": 1900.0,
+          "high_hz": 2020.0,
+          "member_kind": "fft_bin",
+          "members": [
+            48,
+            49,
+            50
+          ]
+        },
+        {
+          "id": 17,
+          "low_hz": 2020.0,
+          "high_hz": 2140.0,
+          "member_kind": "fft_bin",
+          "members": [
+            51,
+            52,
+            53
+          ]
+        },
+        {
+          "id": 18,
+          "low_hz": 2140.0,
+          "high_hz": 2260.0,
+          "member_kind": "fft_bin",
+          "members": [
+            54,
+            55,
+            56
+          ]
+        },
+        {
+          "id": 19,
+          "low_hz": 2260.0,
+          "high_hz": 2380.0,
+          "member_kind": "fft_bin",
+          "members": [
+            57,
+            58,
+            59
+          ]
+        },
+        {
+          "id": 20,
+          "low_hz": 2380.0,
+          "high_hz": 2500.0,
+          "member_kind": "fft_bin",
+          "members": [
+            60,
+            61,
+            62
+          ]
+        },
+        {
+          "id": 21,
+          "low_hz": 2500.0,
+          "high_hz": 2620.0,
+          "member_kind": "fft_bin",
+          "members": [
+            63,
+            64,
+            65
+          ]
+        },
+        {
+          "id": 22,
+          "low_hz": 2620.0,
+          "high_hz": 2740.0,
+          "member_kind": "fft_bin",
+          "members": [
+            66,
+            67,
+            68
+          ]
+        },
+        {
+          "id": 23,
+          "low_hz": 2740.0,
+          "high_hz": 2860.0,
+          "member_kind": "fft_bin",
+          "members": [
+            69,
+            70,
+            71
+          ]
+        },
+        {
+          "id": 24,
+          "low_hz": 2860.0,
+          "high_hz": 2980.0,
+          "member_kind": "fft_bin",
+          "members": [
+            72,
+            73,
+            74
+          ]
+        },
+        {
+          "id": 25,
+          "low_hz": 2980.0,
+          "high_hz": 3100.0,
+          "member_kind": "fft_bin",
+          "members": [
+            75,
+            76,
+            77
+          ]
+        },
+        {
+          "id": 26,
+          "low_hz": 3100.0,
+          "high_hz": 3220.0,
+          "member_kind": "fft_bin",
+          "members": [
+            78,
+            79,
+            80
+          ]
+        },
+        {
+          "id": 27,
+          "low_hz": 3220.0,
+          "high_hz": 3340.0,
+          "member_kind": "fft_bin",
+          "members": [
+            81,
+            82,
+            83
+          ]
+        },
+        {
+          "id": 28,
+          "low_hz": 3340.0,
+          "high_hz": 3460.0,
+          "member_kind": "fft_bin",
+          "members": [
+            84,
+            85,
+            86
+          ]
+        },
+        {
+          "id": 29,
+          "low_hz": 3460.0,
+          "high_hz": 3580.0,
+          "member_kind": "fft_bin",
+          "members": [
+            87,
+            88,
+            89
+          ]
+        },
+        {
+          "id": 30,
+          "low_hz": 3580.0,
+          "high_hz": 3700.0,
+          "member_kind": "fft_bin",
+          "members": [
+            90,
+            91,
+            92
+          ]
+        },
+        {
+          "id": 31,
+          "low_hz": 3700.0,
+          "high_hz": 3820.0,
+          "member_kind": "fft_bin",
+          "members": [
+            93,
+            94,
+            95
+          ]
+        },
+        {
+          "id": 32,
+          "low_hz": 3820.0,
+          "high_hz": 3940.0,
+          "member_kind": "fft_bin",
+          "members": [
+            96,
+            97,
+            98
+          ]
+        },
+        {
+          "id": 33,
+          "low_hz": 3940.0,
+          "high_hz": 4060.0,
+          "member_kind": "fft_bin",
+          "members": [
+            99,
+            100,
+            101
+          ]
+        },
+        {
+          "id": 34,
+          "low_hz": 4060.0,
+          "high_hz": 4180.0,
+          "member_kind": "fft_bin",
+          "members": [
+            102,
+            103,
+            104
+          ]
+        },
+        {
+          "id": 35,
+          "low_hz": 4180.0,
+          "high_hz": 4300.0,
+          "member_kind": "fft_bin",
+          "members": [
+            105,
+            106,
+            107
+          ]
+        },
+        {
+          "id": 36,
+          "low_hz": 4300.0,
+          "high_hz": 4420.0,
+          "member_kind": "fft_bin",
+          "members": [
+            108,
+            109,
+            110
+          ]
+        },
+        {
+          "id": 37,
+          "low_hz": 4420.0,
+          "high_hz": 4540.0,
+          "member_kind": "fft_bin",
+          "members": [
+            111,
+            112,
+            113
+          ]
+        },
+        {
+          "id": 38,
+          "low_hz": 4540.0,
+          "high_hz": 4660.0,
+          "member_kind": "fft_bin",
+          "members": [
+            114,
+            115,
+            116
+          ]
+        },
+        {
+          "id": 39,
+          "low_hz": 4660.0,
+          "high_hz": 4780.0,
+          "member_kind": "fft_bin",
+          "members": [
+            117,
+            118,
+            119
+          ]
+        },
+        {
+          "id": 40,
+          "low_hz": 4780.0,
+          "high_hz": 4900.0,
+          "member_kind": "fft_bin",
+          "members": [
+            120,
+            121,
+            122
+          ]
+        },
+        {
+          "id": 41,
+          "low_hz": 4900.0,
+          "high_hz": 4980.0,
+          "member_kind": "fft_bin",
+          "members": [
+            123,
+            124
+          ]
+        },
+        {
+          "id": 42,
+          "low_hz": 4980.0,
+          "high_hz": 5060.0,
+          "member_kind": "fft_bin",
+          "members": [
+            125,
+            126
+          ]
+        },
+        {
+          "id": 43,
+          "low_hz": 5060.0,
+          "high_hz": 5140.0,
+          "member_kind": "fft_bin",
+          "members": [
+            127,
+            128
+          ]
+        },
+        {
+          "id": 44,
+          "low_hz": 5140.0,
+          "high_hz": 5220.0,
+          "member_kind": "fft_bin",
+          "members": [
+            129,
+            130
+          ]
+        },
+        {
+          "id": 45,
+          "low_hz": 5220.0,
+          "high_hz": 5300.0,
+          "member_kind": "fft_bin",
+          "members": [
+            131,
+            132
+          ]
+        },
+        {
+          "id": 46,
+          "low_hz": 5300.0,
+          "high_hz": 5380.0,
+          "member_kind": "fft_bin",
+          "members": [
+            133,
+            134
+          ]
+        },
+        {
+          "id": 47,
+          "low_hz": 5380.0,
+          "high_hz": 5460.0,
+          "member_kind": "fft_bin",
+          "members": [
+            135,
+            136
+          ]
+        },
+        {
+          "id": 48,
+          "low_hz": 5460.0,
+          "high_hz": 5540.0,
+          "member_kind": "fft_bin",
+          "members": [
+            137,
+            138
+          ]
+        },
+        {
+          "id": 49,
+          "low_hz": 5540.0,
+          "high_hz": 5620.0,
+          "member_kind": "fft_bin",
+          "members": [
+            139,
+            140
+          ]
+        },
+        {
+          "id": 50,
+          "low_hz": 5620.0,
+          "high_hz": 5700.0,
+          "member_kind": "fft_bin",
+          "members": [
+            141,
+            142
+          ]
+        },
+        {
+          "id": 51,
+          "low_hz": 5700.0,
+          "high_hz": 5780.0,
+          "member_kind": "fft_bin",
+          "members": [
+            143,
+            144
+          ]
+        },
+        {
+          "id": 52,
+          "low_hz": 5780.0,
+          "high_hz": 5860.0,
+          "member_kind": "fft_bin",
+          "members": [
+            145,
+            146
+          ]
+        },
+        {
+          "id": 53,
+          "low_hz": 5860.0,
+          "high_hz": 5940.0,
+          "member_kind": "fft_bin",
+          "members": [
+            147,
+            148
+          ]
+        },
+        {
+          "id": 54,
+          "low_hz": 5940.0,
+          "high_hz": 6020.0,
+          "member_kind": "fft_bin",
+          "members": [
+            149,
+            150
+          ]
+        },
+        {
+          "id": 55,
+          "low_hz": 6020.0,
+          "high_hz": 6100.0,
+          "member_kind": "fft_bin",
+          "members": [
+            151,
+            152
+          ]
+        },
+        {
+          "id": 56,
+          "low_hz": 6100.0,
+          "high_hz": 6180.0,
+          "member_kind": "fft_bin",
+          "members": [
+            153,
+            154
+          ]
+        },
+        {
+          "id": 57,
+          "low_hz": 6180.0,
+          "high_hz": 6260.0,
+          "member_kind": "fft_bin",
+          "members": [
+            155,
+            156
+          ]
+        },
+        {
+          "id": 58,
+          "low_hz": 6260.0,
+          "high_hz": 6340.0,
+          "member_kind": "fft_bin",
+          "members": [
+            157,
+            158
+          ]
+        },
+        {
+          "id": 59,
+          "low_hz": 6340.0,
+          "high_hz": 6420.0,
+          "member_kind": "fft_bin",
+          "members": [
+            159,
+            160
+          ]
+        },
+        {
+          "id": 60,
+          "low_hz": 6420.0,
+          "high_hz": 6500.0,
+          "member_kind": "fft_bin",
+          "members": [
+            161,
+            162
+          ]
+        },
+        {
+          "id": 61,
+          "low_hz": 6500.0,
+          "high_hz": 6580.0,
+          "member_kind": "fft_bin",
+          "members": [
+            163,
+            164
+          ]
+        },
+        {
+          "id": 62,
+          "low_hz": 6580.0,
+          "high_hz": 6660.0,
+          "member_kind": "fft_bin",
+          "members": [
+            165,
+            166
+          ]
+        },
+        {
+          "id": 63,
+          "low_hz": 6660.0,
+          "high_hz": 6740.0,
+          "member_kind": "fft_bin",
+          "members": [
+            167,
+            168
+          ]
+        },
+        {
+          "id": 64,
+          "low_hz": 6740.0,
+          "high_hz": 6820.0,
+          "member_kind": "fft_bin",
+          "members": [
+            169,
+            170
+          ]
+        },
+        {
+          "id": 65,
+          "low_hz": 6820.0,
+          "high_hz": 6900.0,
+          "member_kind": "fft_bin",
+          "members": [
+            171,
+            172
+          ]
+        },
+        {
+          "id": 66,
+          "low_hz": 6900.0,
+          "high_hz": 6980.0,
+          "member_kind": "fft_bin",
+          "members": [
+            173,
+            174
+          ]
+        },
+        {
+          "id": 67,
+          "low_hz": 6980.0,
+          "high_hz": 7060.0,
+          "member_kind": "fft_bin",
+          "members": [
+            175,
+            176
+          ]
+        },
+        {
+          "id": 68,
+          "low_hz": 7060.0,
+          "high_hz": 7140.0,
+          "member_kind": "fft_bin",
+          "members": [
+            177,
+            178
+          ]
+        },
+        {
+          "id": 69,
+          "low_hz": 7140.0,
+          "high_hz": 7220.0,
+          "member_kind": "fft_bin",
+          "members": [
+            179,
+            180
+          ]
+        },
+        {
+          "id": 70,
+          "low_hz": 7220.0,
+          "high_hz": 7300.0,
+          "member_kind": "fft_bin",
+          "members": [
+            181,
+            182
+          ]
+        },
+        {
+          "id": 71,
+          "low_hz": 7300.0,
+          "high_hz": 7380.0,
+          "member_kind": "fft_bin",
+          "members": [
+            183,
+            184
+          ]
+        },
+        {
+          "id": 72,
+          "low_hz": 7380.0,
+          "high_hz": 7460.0,
+          "member_kind": "fft_bin",
+          "members": [
+            185,
+            186
+          ]
+        },
+        {
+          "id": 73,
+          "low_hz": 7460.0,
+          "high_hz": 7540.0,
+          "member_kind": "fft_bin",
+          "members": [
+            187,
+            188
+          ]
+        },
+        {
+          "id": 74,
+          "low_hz": 7540.0,
+          "high_hz": 7620.0,
+          "member_kind": "fft_bin",
+          "members": [
+            189,
+            190
+          ]
+        },
+        {
+          "id": 75,
+          "low_hz": 7620.0,
+          "high_hz": 7700.0,
+          "member_kind": "fft_bin",
+          "members": [
+            191,
+            192
+          ]
+        },
+        {
+          "id": 76,
+          "low_hz": 7700.0,
+          "high_hz": 7780.0,
+          "member_kind": "fft_bin",
+          "members": [
+            193,
+            194
+          ]
+        },
+        {
+          "id": 77,
+          "low_hz": 7780.0,
+          "high_hz": 7860.0,
+          "member_kind": "fft_bin",
+          "members": [
+            195,
+            196
+          ]
+        },
+        {
+          "id": 78,
+          "low_hz": 7860.0,
+          "high_hz": 7940.0,
+          "member_kind": "fft_bin",
+          "members": [
+            197,
+            198
+          ]
+        },
+        {
+          "id": 79,
+          "low_hz": 7940.0,
+          "high_hz": 8000.0,
+          "member_kind": "fft_bin",
+          "members": [
+            199,
+            200
+          ]
+        }
+      ],
+      "frames": 586,
+      "frequency_node_count": 80,
+      "energy_levels": 16,
+      "quantizer_thresholds": [
+        -0.36772894859313965,
+        -0.28323836624622345,
+        -0.12685124576091766,
+        -0.008039653301239014,
+        0.09320269525051117,
+        0.18127986043691635,
+        0.26819097623229027,
+        0.35221099853515625,
+        0.4284472428262234,
+        0.5030915960669518,
+        0.5770311877131462,
+        0.6611491441726685,
+        0.759621873497963,
+        0.8857531100511551,
+        1.0704999193549156
+      ],
+      "unique_quantized_frame_states": 586,
+      "float_feature_bytes_per_frame": 320,
+      "quotient_bytes_per_frame": 40,
+      "compression_ratio": 8.0,
+      "probability_mass_max_normalization_error": 8.344650268554688e-07,
+      "mean_js_bits_vs_mel": 0.45953068137168884,
+      "feature_rmse_vs_mel": 0.5059646964073181,
+      "feature_cosine_vs_mel": 0.5439664721488953,
+      "transcript": "I think I'll stop this and leave for a bit more. Yes, I'll get it there. I think I'll stop this.",
+      "token_ids": [
+        314,
+        892,
+        314,
+        1183,
+        2245,
+        428,
+        290,
+        2666,
+        329,
+        257,
+        1643,
+        517,
+        13,
+        3363,
+        11,
+        314,
+        1183,
+        651,
+        340,
+        612,
+        13,
+        314,
+        892,
+        314,
+        1183,
+        2245,
+        428,
+        13
+      ],
+      "packed_state_block": {
+        "offset": 23440,
+        "bytes": 23440,
+        "layout": "frame-major; low nibble first",
+        "sha256": "2f781befb51fe3d8e9da302f68d2d924db463894d55d7f85e8d7a35ff19c7772"
+      },
+      "word_edit_distance_vs_reference": 24,
+      "word_error_rate_vs_reference": 1.411764705882353,
+      "transcript_exact": false
+    },
+    {
+      "id": "goertzel-resonator",
+      "name": "Sparse Goertzel resonators",
+      "theory": "one discrete DFT frequency per Mel center",
+      "nodes": [
+        {
+          "id": 0,
+          "low_hz": 20.0,
+          "high_hz": 60.0,
+          "member_kind": "fft_bin",
+          "members": [
+            1
+          ]
+        },
+        {
+          "id": 1,
+          "low_hz": 60.0,
+          "high_hz": 100.0,
+          "member_kind": "fft_bin",
+          "members": [
+            2
+          ]
+        },
+        {
+          "id": 2,
+          "low_hz": 100.0,
+          "high_hz": 140.0,
+          "member_kind": "fft_bin",
+          "members": [
+            3
+          ]
+        },
+        {
+          "id": 3,
+          "low_hz": 140.0,
+          "high_hz": 180.0,
+          "member_kind": "fft_bin",
+          "members": [
+            4
+          ]
+        },
+        {
+          "id": 4,
+          "low_hz": 180.0,
+          "high_hz": 220.0,
+          "member_kind": "fft_bin",
+          "members": [
+            5
+          ]
+        },
+        {
+          "id": 5,
+          "low_hz": 220.0,
+          "high_hz": 260.0,
+          "member_kind": "fft_bin",
+          "members": [
+            6
+          ]
+        },
+        {
+          "id": 6,
+          "low_hz": 260.0,
+          "high_hz": 300.0,
+          "member_kind": "fft_bin",
+          "members": [
+            7
+          ]
+        },
+        {
+          "id": 7,
+          "low_hz": 260.0,
+          "high_hz": 300.0,
+          "member_kind": "fft_bin",
+          "members": [
+            7
+          ]
+        },
+        {
+          "id": 8,
+          "low_hz": 300.0,
+          "high_hz": 340.0,
+          "member_kind": "fft_bin",
+          "members": [
+            8
+          ]
+        },
+        {
+          "id": 9,
+          "low_hz": 340.0,
+          "high_hz": 380.0,
+          "member_kind": "fft_bin",
+          "members": [
+            9
+          ]
+        },
+        {
+          "id": 10,
+          "low_hz": 380.0,
+          "high_hz": 420.0,
+          "member_kind": "fft_bin",
+          "members": [
+            10
+          ]
+        },
+        {
+          "id": 11,
+          "low_hz": 420.0,
+          "high_hz": 460.0,
+          "member_kind": "fft_bin",
+          "members": [
+            11
+          ]
+        },
+        {
+          "id": 12,
+          "low_hz": 460.0,
+          "high_hz": 500.0,
+          "member_kind": "fft_bin",
+          "members": [
+            12
+          ]
+        },
+        {
+          "id": 13,
+          "low_hz": 500.0,
+          "high_hz": 540.0,
+          "member_kind": "fft_bin",
+          "members": [
+            13
+          ]
+        },
+        {
+          "id": 14,
+          "low_hz": 540.0,
+          "high_hz": 580.0,
+          "member_kind": "fft_bin",
+          "members": [
+            14
+          ]
+        },
+        {
+          "id": 15,
+          "low_hz": 580.0,
+          "high_hz": 620.0,
+          "member_kind": "fft_bin",
+          "members": [
+            15
+          ]
+        },
+        {
+          "id": 16,
+          "low_hz": 620.0,
+          "high_hz": 660.0,
+          "member_kind": "fft_bin",
+          "members": [
+            16
+          ]
+        },
+        {
+          "id": 17,
+          "low_hz": 660.0,
+          "high_hz": 700.0,
+          "member_kind": "fft_bin",
+          "members": [
+            17
+          ]
+        },
+        {
+          "id": 18,
+          "low_hz": 700.0,
+          "high_hz": 740.0,
+          "member_kind": "fft_bin",
+          "members": [
+            18
+          ]
+        },
+        {
+          "id": 19,
+          "low_hz": 740.0,
+          "high_hz": 780.0,
+          "member_kind": "fft_bin",
+          "members": [
+            19
+          ]
+        },
+        {
+          "id": 20,
+          "low_hz": 780.0,
+          "high_hz": 820.0,
+          "member_kind": "fft_bin",
+          "members": [
+            20
+          ]
+        },
+        {
+          "id": 21,
+          "low_hz": 780.0,
+          "high_hz": 820.0,
+          "member_kind": "fft_bin",
+          "members": [
+            20
+          ]
+        },
+        {
+          "id": 22,
+          "low_hz": 820.0,
+          "high_hz": 860.0,
+          "member_kind": "fft_bin",
+          "members": [
+            21
+          ]
+        },
+        {
+          "id": 23,
+          "low_hz": 860.0,
+          "high_hz": 900.0,
+          "member_kind": "fft_bin",
+          "members": [
+            22
+          ]
+        },
+        {
+          "id": 24,
+          "low_hz": 900.0,
+          "high_hz": 940.0,
+          "member_kind": "fft_bin",
+          "members": [
+            23
+          ]
+        },
+        {
+          "id": 25,
+          "low_hz": 940.0,
+          "high_hz": 980.0,
+          "member_kind": "fft_bin",
+          "members": [
+            24
+          ]
+        },
+        {
+          "id": 26,
+          "low_hz": 980.0,
+          "high_hz": 1020.0,
+          "member_kind": "fft_bin",
+          "members": [
+            25
+          ]
+        },
+        {
+          "id": 27,
+          "low_hz": 1020.0,
+          "high_hz": 1060.0,
+          "member_kind": "fft_bin",
+          "members": [
+            26
+          ]
+        },
+        {
+          "id": 28,
+          "low_hz": 1060.0,
+          "high_hz": 1100.0,
+          "member_kind": "fft_bin",
+          "members": [
+            27
+          ]
+        },
+        {
+          "id": 29,
+          "low_hz": 1100.0,
+          "high_hz": 1140.0,
+          "member_kind": "fft_bin",
+          "members": [
+            28
+          ]
+        },
+        {
+          "id": 30,
+          "low_hz": 1140.0,
+          "high_hz": 1180.0,
+          "member_kind": "fft_bin",
+          "members": [
+            29
+          ]
+        },
+        {
+          "id": 31,
+          "low_hz": 1180.0,
+          "high_hz": 1220.0,
+          "member_kind": "fft_bin",
+          "members": [
+            30
+          ]
+        },
+        {
+          "id": 32,
+          "low_hz": 1260.0,
+          "high_hz": 1300.0,
+          "member_kind": "fft_bin",
+          "members": [
+            32
+          ]
+        },
+        {
+          "id": 33,
+          "low_hz": 1300.0,
+          "high_hz": 1340.0,
+          "member_kind": "fft_bin",
+          "members": [
+            33
+          ]
+        },
+        {
+          "id": 34,
+          "low_hz": 1340.0,
+          "high_hz": 1380.0,
+          "member_kind": "fft_bin",
+          "members": [
+            34
+          ]
+        },
+        {
+          "id": 35,
+          "low_hz": 1420.0,
+          "high_hz": 1460.0,
+          "member_kind": "fft_bin",
+          "members": [
+            36
+          ]
+        },
+        {
+          "id": 36,
+          "low_hz": 1460.0,
+          "high_hz": 1500.0,
+          "member_kind": "fft_bin",
+          "members": [
+            37
+          ]
+        },
+        {
+          "id": 37,
+          "low_hz": 1500.0,
+          "high_hz": 1540.0,
+          "member_kind": "fft_bin",
+          "members": [
+            38
+          ]
+        },
+        {
+          "id": 38,
+          "low_hz": 1580.0,
+          "high_hz": 1620.0,
+          "member_kind": "fft_bin",
+          "members": [
+            40
+          ]
+        },
+        {
+          "id": 39,
+          "low_hz": 1620.0,
+          "high_hz": 1660.0,
+          "member_kind": "fft_bin",
+          "members": [
+            41
+          ]
+        },
+        {
+          "id": 40,
+          "low_hz": 1700.0,
+          "high_hz": 1740.0,
+          "member_kind": "fft_bin",
+          "members": [
+            43
+          ]
+        },
+        {
+          "id": 41,
+          "low_hz": 1780.0,
+          "high_hz": 1820.0,
+          "member_kind": "fft_bin",
+          "members": [
+            45
+          ]
+        },
+        {
+          "id": 42,
+          "low_hz": 1860.0,
+          "high_hz": 1900.0,
+          "member_kind": "fft_bin",
+          "members": [
+            47
+          ]
+        },
+        {
+          "id": 43,
+          "low_hz": 1900.0,
+          "high_hz": 1940.0,
+          "member_kind": "fft_bin",
+          "members": [
+            48
+          ]
+        },
+        {
+          "id": 44,
+          "low_hz": 1980.0,
+          "high_hz": 2020.0,
+          "member_kind": "fft_bin",
+          "members": [
+            50
+          ]
+        },
+        {
+          "id": 45,
+          "low_hz": 2060.0,
+          "high_hz": 2100.0,
+          "member_kind": "fft_bin",
+          "members": [
+            52
+          ]
+        },
+        {
+          "id": 46,
+          "low_hz": 2140.0,
+          "high_hz": 2180.0,
+          "member_kind": "fft_bin",
+          "members": [
+            54
+          ]
+        },
+        {
+          "id": 47,
+          "low_hz": 2220.0,
+          "high_hz": 2260.0,
+          "member_kind": "fft_bin",
+          "members": [
+            56
+          ]
+        },
+        {
+          "id": 48,
+          "low_hz": 2340.0,
+          "high_hz": 2380.0,
+          "member_kind": "fft_bin",
+          "members": [
+            59
+          ]
+        },
+        {
+          "id": 49,
+          "low_hz": 2420.0,
+          "high_hz": 2460.0,
+          "member_kind": "fft_bin",
+          "members": [
+            61
+          ]
+        },
+        {
+          "id": 50,
+          "low_hz": 2500.0,
+          "high_hz": 2540.0,
+          "member_kind": "fft_bin",
+          "members": [
+            63
+          ]
+        },
+        {
+          "id": 51,
+          "low_hz": 2620.0,
+          "high_hz": 2660.0,
+          "member_kind": "fft_bin",
+          "members": [
+            66
+          ]
+        },
+        {
+          "id": 52,
+          "low_hz": 2700.0,
+          "high_hz": 2740.0,
+          "member_kind": "fft_bin",
+          "members": [
+            68
+          ]
+        },
+        {
+          "id": 53,
+          "low_hz": 2820.0,
+          "high_hz": 2860.0,
+          "member_kind": "fft_bin",
+          "members": [
+            71
+          ]
+        },
+        {
+          "id": 54,
+          "low_hz": 2940.0,
+          "high_hz": 2980.0,
+          "member_kind": "fft_bin",
+          "members": [
+            74
+          ]
+        },
+        {
+          "id": 55,
+          "low_hz": 3060.0,
+          "high_hz": 3100.0,
+          "member_kind": "fft_bin",
+          "members": [
+            77
+          ]
+        },
+        {
+          "id": 56,
+          "low_hz": 3180.0,
+          "high_hz": 3220.0,
+          "member_kind": "fft_bin",
+          "members": [
+            80
+          ]
+        },
+        {
+          "id": 57,
+          "low_hz": 3300.0,
+          "high_hz": 3340.0,
+          "member_kind": "fft_bin",
+          "members": [
+            83
+          ]
+        },
+        {
+          "id": 58,
+          "low_hz": 3420.0,
+          "high_hz": 3460.0,
+          "member_kind": "fft_bin",
+          "members": [
+            86
+          ]
+        },
+        {
+          "id": 59,
+          "low_hz": 3540.0,
+          "high_hz": 3580.0,
+          "member_kind": "fft_bin",
+          "members": [
+            89
+          ]
+        },
+        {
+          "id": 60,
+          "low_hz": 3700.0,
+          "high_hz": 3740.0,
+          "member_kind": "fft_bin",
+          "members": [
+            93
+          ]
+        },
+        {
+          "id": 61,
+          "low_hz": 3820.0,
+          "high_hz": 3860.0,
+          "member_kind": "fft_bin",
+          "members": [
+            96
+          ]
+        },
+        {
+          "id": 62,
+          "low_hz": 3980.0,
+          "high_hz": 4020.0,
+          "member_kind": "fft_bin",
+          "members": [
+            100
+          ]
+        },
+        {
+          "id": 63,
+          "low_hz": 4140.0,
+          "high_hz": 4180.0,
+          "member_kind": "fft_bin",
+          "members": [
+            104
+          ]
+        },
+        {
+          "id": 64,
+          "low_hz": 4300.0,
+          "high_hz": 4340.0,
+          "member_kind": "fft_bin",
+          "members": [
+            108
+          ]
+        },
+        {
+          "id": 65,
+          "low_hz": 4460.0,
+          "high_hz": 4500.0,
+          "member_kind": "fft_bin",
+          "members": [
+            112
+          ]
+        },
+        {
+          "id": 66,
+          "low_hz": 4660.0,
+          "high_hz": 4700.0,
+          "member_kind": "fft_bin",
+          "members": [
+            117
+          ]
+        },
+        {
+          "id": 67,
+          "low_hz": 4820.0,
+          "high_hz": 4860.0,
+          "member_kind": "fft_bin",
+          "members": [
+            121
+          ]
+        },
+        {
+          "id": 68,
+          "low_hz": 5020.0,
+          "high_hz": 5060.0,
+          "member_kind": "fft_bin",
+          "members": [
+            126
+          ]
+        },
+        {
+          "id": 69,
+          "low_hz": 5220.0,
+          "high_hz": 5260.0,
+          "member_kind": "fft_bin",
+          "members": [
+            131
+          ]
+        },
+        {
+          "id": 70,
+          "low_hz": 5420.0,
+          "high_hz": 5460.0,
+          "member_kind": "fft_bin",
+          "members": [
+            136
+          ]
+        },
+        {
+          "id": 71,
+          "low_hz": 5660.0,
+          "high_hz": 5700.0,
+          "member_kind": "fft_bin",
+          "members": [
+            142
+          ]
+        },
+        {
+          "id": 72,
+          "low_hz": 5860.0,
+          "high_hz": 5900.0,
+          "member_kind": "fft_bin",
+          "members": [
+            147
+          ]
+        },
+        {
+          "id": 73,
+          "low_hz": 6100.0,
+          "high_hz": 6140.0,
+          "member_kind": "fft_bin",
+          "members": [
+            153
+          ]
+        },
+        {
+          "id": 74,
+          "low_hz": 6340.0,
+          "high_hz": 6380.0,
+          "member_kind": "fft_bin",
+          "members": [
+            159
+          ]
+        },
+        {
+          "id": 75,
+          "low_hz": 6580.0,
+          "high_hz": 6620.0,
+          "member_kind": "fft_bin",
+          "members": [
+            165
+          ]
+        },
+        {
+          "id": 76,
+          "low_hz": 6860.0,
+          "high_hz": 6900.0,
+          "member_kind": "fft_bin",
+          "members": [
+            172
+          ]
+        },
+        {
+          "id": 77,
+          "low_hz": 7100.0,
+          "high_hz": 7140.0,
+          "member_kind": "fft_bin",
+          "members": [
+            178
+          ]
+        },
+        {
+          "id": 78,
+          "low_hz": 7380.0,
+          "high_hz": 7420.0,
+          "member_kind": "fft_bin",
+          "members": [
+            185
+          ]
+        },
+        {
+          "id": 79,
+          "low_hz": 7700.0,
+          "high_hz": 7740.0,
+          "member_kind": "fft_bin",
+          "members": [
+            193
+          ]
+        }
+      ],
+      "frames": 586,
+      "frequency_node_count": 80,
+      "energy_levels": 16,
+      "quantizer_thresholds": [
+        -0.3967472314834595,
+        -0.28989987075328827,
+        -0.154910109937191,
+        -0.046891093254089355,
+        0.051208481192588806,
+        0.14322250336408615,
+        0.2321554608643055,
+        0.31805282831192017,
+        0.39722907170653343,
+        0.4782145470380783,
+        0.5630871206521988,
+        0.665173351764679,
+        0.7872200757265091,
+        0.9393772557377815,
+        1.129417322576046
+      ],
+      "unique_quantized_frame_states": 586,
+      "float_feature_bytes_per_frame": 320,
+      "quotient_bytes_per_frame": 40,
+      "compression_ratio": 8.0,
+      "probability_mass_max_normalization_error": 8.940696716308594e-07,
+      "mean_js_bits_vs_mel": 0.030182093381881714,
+      "feature_rmse_vs_mel": 0.38114094734191895,
+      "feature_cosine_vs_mel": 0.7568623423576355,
+      "transcript": "Mr. Quilter is the apostle of the middle classes, and we are glad to welcome his gospel.",
+      "token_ids": [
+        1770,
+        13,
+        2264,
+        346,
+        353,
+        318,
+        262,
+        46329,
+        286,
+        262,
+        3504,
+        6097,
+        11,
+        290,
+        356,
+        389,
+        9675,
+        284,
+        7062,
+        465,
+        21443,
+        13
+      ],
+      "packed_state_block": {
+        "offset": 46880,
+        "bytes": 23440,
+        "layout": "frame-major; low nibble first",
+        "sha256": "951d16283dff3a2fe795be5fd22a9b78901063b2747719b42f470ff36f48db32"
+      },
+      "word_edit_distance_vs_reference": 0,
+      "word_error_rate_vs_reference": 0.0,
+      "transcript_exact": true
+    },
+    {
+      "id": "wavelet-packet",
+      "name": "db4 wavelet packet",
+      "theory": "128 dyadic packets to 80 disjoint sets",
+      "nodes": [
+        {
+          "id": 0,
+          "low_hz": 0.0,
+          "high_hz": 125.0,
+          "member_kind": "wavelet_packet",
+          "members": [
+            0,
+            1
+          ]
+        },
+        {
+          "id": 1,
+          "low_hz": 125.0,
+          "high_hz": 250.0,
+          "member_kind": "wavelet_packet",
+          "members": [
+            2,
+            3
+          ]
+        },
+        {
+          "id": 2,
+          "low_hz": 250.0,
+          "high_hz": 375.0,
+          "member_kind": "wavelet_packet",
+          "members": [
+            4,
+            5
+          ]
+        },
+        {
+          "id": 3,
+          "low_hz": 375.0,
+          "high_hz": 500.0,
+          "member_kind": "wavelet_packet",
+          "members": [
+            6,
+            7
+          ]
+        },
+        {
+          "id": 4,
+          "low_hz": 500.0,
+          "high_hz": 625.0,
+          "member_kind": "wavelet_packet",
+          "members": [
+            8,
+            9
+          ]
+        },
+        {
+          "id": 5,
+          "low_hz": 625.0,
+          "high_hz": 750.0,
+          "member_kind": "wavelet_packet",
+          "members": [
+            10,
+            11
+          ]
+        },
+        {
+          "id": 6,
+          "low_hz": 750.0,
+          "high_hz": 875.0,
+          "member_kind": "wavelet_packet",
+          "members": [
+            12,
+            13
+          ]
+        },
+        {
+          "id": 7,
+          "low_hz": 875.0,
+          "high_hz": 1000.0,
+          "member_kind": "wavelet_packet",
+          "members": [
+            14,
+            15
+          ]
+        },
+        {
+          "id": 8,
+          "low_hz": 1000.0,
+          "high_hz": 1125.0,
+          "member_kind": "wavelet_packet",
+          "members": [
+            16,
+            17
+          ]
+        },
+        {
+          "id": 9,
+          "low_hz": 1125.0,
+          "high_hz": 1250.0,
+          "member_kind": "wavelet_packet",
+          "members": [
+            18,
+            19
+          ]
+        },
+        {
+          "id": 10,
+          "low_hz": 1250.0,
+          "high_hz": 1375.0,
+          "member_kind": "wavelet_packet",
+          "members": [
+            20,
+            21
+          ]
+        },
+        {
+          "id": 11,
+          "low_hz": 1375.0,
+          "high_hz": 1500.0,
+          "member_kind": "wavelet_packet",
+          "members": [
+            22,
+            23
+          ]
+        },
+        {
+          "id": 12,
+          "low_hz": 1500.0,
+          "high_hz": 1625.0,
+          "member_kind": "wavelet_packet",
+          "members": [
+            24,
+            25
+          ]
+        },
+        {
+          "id": 13,
+          "low_hz": 1625.0,
+          "high_hz": 1750.0,
+          "member_kind": "wavelet_packet",
+          "members": [
+            26,
+            27
+          ]
+        },
+        {
+          "id": 14,
+          "low_hz": 1750.0,
+          "high_hz": 1875.0,
+          "member_kind": "wavelet_packet",
+          "members": [
+            28,
+            29
+          ]
+        },
+        {
+          "id": 15,
+          "low_hz": 1875.0,
+          "high_hz": 2000.0,
+          "member_kind": "wavelet_packet",
+          "members": [
+            30,
+            31
+          ]
+        },
+        {
+          "id": 16,
+          "low_hz": 2000.0,
+          "high_hz": 2125.0,
+          "member_kind": "wavelet_packet",
+          "members": [
+            32,
+            33
+          ]
+        },
+        {
+          "id": 17,
+          "low_hz": 2125.0,
+          "high_hz": 2250.0,
+          "member_kind": "wavelet_packet",
+          "members": [
+            34,
+            35
+          ]
+        },
+        {
+          "id": 18,
+          "low_hz": 2250.0,
+          "high_hz": 2375.0,
+          "member_kind": "wavelet_packet",
+          "members": [
+            36,
+            37
+          ]
+        },
+        {
+          "id": 19,
+          "low_hz": 2375.0,
+          "high_hz": 2500.0,
+          "member_kind": "wavelet_packet",
+          "members": [
+            38,
+            39
+          ]
+        },
+        {
+          "id": 20,
+          "low_hz": 2500.0,
+          "high_hz": 2625.0,
+          "member_kind": "wavelet_packet",
+          "members": [
+            40,
+            41
+          ]
+        },
+        {
+          "id": 21,
+          "low_hz": 2625.0,
+          "high_hz": 2750.0,
+          "member_kind": "wavelet_packet",
+          "members": [
+            42,
+            43
+          ]
+        },
+        {
+          "id": 22,
+          "low_hz": 2750.0,
+          "high_hz": 2875.0,
+          "member_kind": "wavelet_packet",
+          "members": [
+            44,
+            45
+          ]
+        },
+        {
+          "id": 23,
+          "low_hz": 2875.0,
+          "high_hz": 3000.0,
+          "member_kind": "wavelet_packet",
+          "members": [
+            46,
+            47
+          ]
+        },
+        {
+          "id": 24,
+          "low_hz": 3000.0,
+          "high_hz": 3125.0,
+          "member_kind": "wavelet_packet",
+          "members": [
+            48,
+            49
+          ]
+        },
+        {
+          "id": 25,
+          "low_hz": 3125.0,
+          "high_hz": 3250.0,
+          "member_kind": "wavelet_packet",
+          "members": [
+            50,
+            51
+          ]
+        },
+        {
+          "id": 26,
+          "low_hz": 3250.0,
+          "high_hz": 3375.0,
+          "member_kind": "wavelet_packet",
+          "members": [
+            52,
+            53
+          ]
+        },
+        {
+          "id": 27,
+          "low_hz": 3375.0,
+          "high_hz": 3500.0,
+          "member_kind": "wavelet_packet",
+          "members": [
+            54,
+            55
+          ]
+        },
+        {
+          "id": 28,
+          "low_hz": 3500.0,
+          "high_hz": 3625.0,
+          "member_kind": "wavelet_packet",
+          "members": [
+            56,
+            57
+          ]
+        },
+        {
+          "id": 29,
+          "low_hz": 3625.0,
+          "high_hz": 3750.0,
+          "member_kind": "wavelet_packet",
+          "members": [
+            58,
+            59
+          ]
+        },
+        {
+          "id": 30,
+          "low_hz": 3750.0,
+          "high_hz": 3875.0,
+          "member_kind": "wavelet_packet",
+          "members": [
+            60,
+            61
+          ]
+        },
+        {
+          "id": 31,
+          "low_hz": 3875.0,
+          "high_hz": 4000.0,
+          "member_kind": "wavelet_packet",
+          "members": [
+            62,
+            63
+          ]
+        },
+        {
+          "id": 32,
+          "low_hz": 4000.0,
+          "high_hz": 4125.0,
+          "member_kind": "wavelet_packet",
+          "members": [
+            64,
+            65
+          ]
+        },
+        {
+          "id": 33,
+          "low_hz": 4125.0,
+          "high_hz": 4250.0,
+          "member_kind": "wavelet_packet",
+          "members": [
+            66,
+            67
+          ]
+        },
+        {
+          "id": 34,
+          "low_hz": 4250.0,
+          "high_hz": 4375.0,
+          "member_kind": "wavelet_packet",
+          "members": [
+            68,
+            69
+          ]
+        },
+        {
+          "id": 35,
+          "low_hz": 4375.0,
+          "high_hz": 4500.0,
+          "member_kind": "wavelet_packet",
+          "members": [
+            70,
+            71
+          ]
+        },
+        {
+          "id": 36,
+          "low_hz": 4500.0,
+          "high_hz": 4625.0,
+          "member_kind": "wavelet_packet",
+          "members": [
+            72,
+            73
+          ]
+        },
+        {
+          "id": 37,
+          "low_hz": 4625.0,
+          "high_hz": 4750.0,
+          "member_kind": "wavelet_packet",
+          "members": [
+            74,
+            75
+          ]
+        },
+        {
+          "id": 38,
+          "low_hz": 4750.0,
+          "high_hz": 4875.0,
+          "member_kind": "wavelet_packet",
+          "members": [
+            76,
+            77
+          ]
+        },
+        {
+          "id": 39,
+          "low_hz": 4875.0,
+          "high_hz": 5000.0,
+          "member_kind": "wavelet_packet",
+          "members": [
+            78,
+            79
+          ]
+        },
+        {
+          "id": 40,
+          "low_hz": 5000.0,
+          "high_hz": 5125.0,
+          "member_kind": "wavelet_packet",
+          "members": [
+            80,
+            81
+          ]
+        },
+        {
+          "id": 41,
+          "low_hz": 5125.0,
+          "high_hz": 5250.0,
+          "member_kind": "wavelet_packet",
+          "members": [
+            82,
+            83
+          ]
+        },
+        {
+          "id": 42,
+          "low_hz": 5250.0,
+          "high_hz": 5375.0,
+          "member_kind": "wavelet_packet",
+          "members": [
+            84,
+            85
+          ]
+        },
+        {
+          "id": 43,
+          "low_hz": 5375.0,
+          "high_hz": 5500.0,
+          "member_kind": "wavelet_packet",
+          "members": [
+            86,
+            87
+          ]
+        },
+        {
+          "id": 44,
+          "low_hz": 5500.0,
+          "high_hz": 5625.0,
+          "member_kind": "wavelet_packet",
+          "members": [
+            88,
+            89
+          ]
+        },
+        {
+          "id": 45,
+          "low_hz": 5625.0,
+          "high_hz": 5750.0,
+          "member_kind": "wavelet_packet",
+          "members": [
+            90,
+            91
+          ]
+        },
+        {
+          "id": 46,
+          "low_hz": 5750.0,
+          "high_hz": 5875.0,
+          "member_kind": "wavelet_packet",
+          "members": [
+            92,
+            93
+          ]
+        },
+        {
+          "id": 47,
+          "low_hz": 5875.0,
+          "high_hz": 6000.0,
+          "member_kind": "wavelet_packet",
+          "members": [
+            94,
+            95
+          ]
+        },
+        {
+          "id": 48,
+          "low_hz": 6000.0,
+          "high_hz": 6062.5,
+          "member_kind": "wavelet_packet",
+          "members": [
+            96
+          ]
+        },
+        {
+          "id": 49,
+          "low_hz": 6062.5,
+          "high_hz": 6125.0,
+          "member_kind": "wavelet_packet",
+          "members": [
+            97
+          ]
+        },
+        {
+          "id": 50,
+          "low_hz": 6125.0,
+          "high_hz": 6187.5,
+          "member_kind": "wavelet_packet",
+          "members": [
+            98
+          ]
+        },
+        {
+          "id": 51,
+          "low_hz": 6187.5,
+          "high_hz": 6250.0,
+          "member_kind": "wavelet_packet",
+          "members": [
+            99
+          ]
+        },
+        {
+          "id": 52,
+          "low_hz": 6250.0,
+          "high_hz": 6312.5,
+          "member_kind": "wavelet_packet",
+          "members": [
+            100
+          ]
+        },
+        {
+          "id": 53,
+          "low_hz": 6312.5,
+          "high_hz": 6375.0,
+          "member_kind": "wavelet_packet",
+          "members": [
+            101
+          ]
+        },
+        {
+          "id": 54,
+          "low_hz": 6375.0,
+          "high_hz": 6437.5,
+          "member_kind": "wavelet_packet",
+          "members": [
+            102
+          ]
+        },
+        {
+          "id": 55,
+          "low_hz": 6437.5,
+          "high_hz": 6500.0,
+          "member_kind": "wavelet_packet",
+          "members": [
+            103
+          ]
+        },
+        {
+          "id": 56,
+          "low_hz": 6500.0,
+          "high_hz": 6562.5,
+          "member_kind": "wavelet_packet",
+          "members": [
+            104
+          ]
+        },
+        {
+          "id": 57,
+          "low_hz": 6562.5,
+          "high_hz": 6625.0,
+          "member_kind": "wavelet_packet",
+          "members": [
+            105
+          ]
+        },
+        {
+          "id": 58,
+          "low_hz": 6625.0,
+          "high_hz": 6687.5,
+          "member_kind": "wavelet_packet",
+          "members": [
+            106
+          ]
+        },
+        {
+          "id": 59,
+          "low_hz": 6687.5,
+          "high_hz": 6750.0,
+          "member_kind": "wavelet_packet",
+          "members": [
+            107
+          ]
+        },
+        {
+          "id": 60,
+          "low_hz": 6750.0,
+          "high_hz": 6812.5,
+          "member_kind": "wavelet_packet",
+          "members": [
+            108
+          ]
+        },
+        {
+          "id": 61,
+          "low_hz": 6812.5,
+          "high_hz": 6875.0,
+          "member_kind": "wavelet_packet",
+          "members": [
+            109
+          ]
+        },
+        {
+          "id": 62,
+          "low_hz": 6875.0,
+          "high_hz": 6937.5,
+          "member_kind": "wavelet_packet",
+          "members": [
+            110
+          ]
+        },
+        {
+          "id": 63,
+          "low_hz": 6937.5,
+          "high_hz": 7000.0,
+          "member_kind": "wavelet_packet",
+          "members": [
+            111
+          ]
+        },
+        {
+          "id": 64,
+          "low_hz": 7000.0,
+          "high_hz": 7062.5,
+          "member_kind": "wavelet_packet",
+          "members": [
+            112
+          ]
+        },
+        {
+          "id": 65,
+          "low_hz": 7062.5,
+          "high_hz": 7125.0,
+          "member_kind": "wavelet_packet",
+          "members": [
+            113
+          ]
+        },
+        {
+          "id": 66,
+          "low_hz": 7125.0,
+          "high_hz": 7187.5,
+          "member_kind": "wavelet_packet",
+          "members": [
+            114
+          ]
+        },
+        {
+          "id": 67,
+          "low_hz": 7187.5,
+          "high_hz": 7250.0,
+          "member_kind": "wavelet_packet",
+          "members": [
+            115
+          ]
+        },
+        {
+          "id": 68,
+          "low_hz": 7250.0,
+          "high_hz": 7312.5,
+          "member_kind": "wavelet_packet",
+          "members": [
+            116
+          ]
+        },
+        {
+          "id": 69,
+          "low_hz": 7312.5,
+          "high_hz": 7375.0,
+          "member_kind": "wavelet_packet",
+          "members": [
+            117
+          ]
+        },
+        {
+          "id": 70,
+          "low_hz": 7375.0,
+          "high_hz": 7437.5,
+          "member_kind": "wavelet_packet",
+          "members": [
+            118
+          ]
+        },
+        {
+          "id": 71,
+          "low_hz": 7437.5,
+          "high_hz": 7500.0,
+          "member_kind": "wavelet_packet",
+          "members": [
+            119
+          ]
+        },
+        {
+          "id": 72,
+          "low_hz": 7500.0,
+          "high_hz": 7562.5,
+          "member_kind": "wavelet_packet",
+          "members": [
+            120
+          ]
+        },
+        {
+          "id": 73,
+          "low_hz": 7562.5,
+          "high_hz": 7625.0,
+          "member_kind": "wavelet_packet",
+          "members": [
+            121
+          ]
+        },
+        {
+          "id": 74,
+          "low_hz": 7625.0,
+          "high_hz": 7687.5,
+          "member_kind": "wavelet_packet",
+          "members": [
+            122
+          ]
+        },
+        {
+          "id": 75,
+          "low_hz": 7687.5,
+          "high_hz": 7750.0,
+          "member_kind": "wavelet_packet",
+          "members": [
+            123
+          ]
+        },
+        {
+          "id": 76,
+          "low_hz": 7750.0,
+          "high_hz": 7812.5,
+          "member_kind": "wavelet_packet",
+          "members": [
+            124
+          ]
+        },
+        {
+          "id": 77,
+          "low_hz": 7812.5,
+          "high_hz": 7875.0,
+          "member_kind": "wavelet_packet",
+          "members": [
+            125
+          ]
+        },
+        {
+          "id": 78,
+          "low_hz": 7875.0,
+          "high_hz": 7937.5,
+          "member_kind": "wavelet_packet",
+          "members": [
+            126
+          ]
+        },
+        {
+          "id": 79,
+          "low_hz": 7937.5,
+          "high_hz": 8000.0,
+          "member_kind": "wavelet_packet",
+          "members": [
+            127
+          ]
+        }
+      ],
+      "frames": 586,
+      "frequency_node_count": 80,
+      "energy_levels": 16,
+      "quantizer_thresholds": [
+        -0.8685431480407715,
+        -0.7967927753925323,
+        -0.6296688318252563,
+        -0.5058092474937439,
+        -0.4037090837955475,
+        -0.31028346717357635,
+        -0.22302114963531494,
+        -0.14137792587280273,
+        -0.06747688353061676,
+        0.005882866680622101,
+        0.08282336592674255,
+        0.16390763223171234,
+        0.25265616551041603,
+        0.3675655797123909,
+        0.5392375439405441
+      ],
+      "unique_quantized_frame_states": 586,
+      "float_feature_bytes_per_frame": 320,
+      "quotient_bytes_per_frame": 40,
+      "compression_ratio": 8.0,
+      "probability_mass_max_normalization_error": 8.344650268554688e-07,
+      "mean_js_bits_vs_mel": 0.47861093282699585,
+      "feature_rmse_vs_mel": 0.331020325422287,
+      "feature_cosine_vs_mel": 0.7580803632736206,
+      "transcript": "I think I was happy to meet my teachers. I know that I'm happy to meet my students.",
+      "token_ids": [
+        314,
+        892,
+        314,
+        373,
+        3772,
+        284,
+        1826,
+        616,
+        7799,
+        13,
+        314,
+        760,
+        326,
+        314,
+        1101,
+        3772,
+        284,
+        1826,
+        616,
+        2444,
+        13
+      ],
+      "packed_state_block": {
+        "offset": 70320,
+        "bytes": 23440,
+        "layout": "frame-major; low nibble first",
+        "sha256": "7a9a7c4eaef02f2cecd52d69941717534887171a4b07628420e5a5be8bbc36eb"
+      },
+      "word_edit_distance_vs_reference": 18,
+      "word_error_rate_vs_reference": 1.0588235294117647,
+      "transcript_exact": false
+    },
+    {
+      "id": "carfac-cochlea",
+      "name": "Lyon CAR-FAC cochlea",
+      "theory": "81 nonlinear cochlear sections to 80 place sets",
+      "nodes": [
+        {
+          "id": 0,
+          "low_hz": 0.0,
+          "high_hz": 43.24932289123535,
+          "member_kind": "carfac_section",
+          "members": [
+            80
+          ],
+          "center_hz": 38.647865295410156
+        },
+        {
+          "id": 1,
+          "low_hz": 43.24932289123535,
+          "high_hz": 52.65987205505371,
+          "member_kind": "carfac_section",
+          "members": [
+            79
+          ],
+          "center_hz": 47.85078048706055
+        },
+        {
+          "id": 2,
+          "low_hz": 52.65987205505371,
+          "high_hz": 62.495059967041016,
+          "member_kind": "carfac_section",
+          "members": [
+            78
+          ],
+          "center_hz": 57.468963623046875
+        },
+        {
+          "id": 3,
+          "low_hz": 62.495059967041016,
+          "high_hz": 72.7740478515625,
+          "member_kind": "carfac_section",
+          "members": [
+            77
+          ],
+          "center_hz": 67.52115631103516
+        },
+        {
+          "id": 4,
+          "low_hz": 72.7740478515625,
+          "high_hz": 83.51686477661133,
+          "member_kind": "carfac_section",
+          "members": [
+            76
+          ],
+          "center_hz": 78.02693939208984
+        },
+        {
+          "id": 5,
+          "low_hz": 83.51686477661133,
+          "high_hz": 94.74444198608398,
+          "member_kind": "carfac_section",
+          "members": [
+            75
+          ],
+          "center_hz": 89.00679016113281
+        },
+        {
+          "id": 6,
+          "low_hz": 94.74444198608398,
+          "high_hz": 106.4786491394043,
+          "member_kind": "carfac_section",
+          "members": [
+            74
+          ],
+          "center_hz": 100.48209381103516
+        },
+        {
+          "id": 7,
+          "low_hz": 106.4786491394043,
+          "high_hz": 118.74234771728516,
+          "member_kind": "carfac_section",
+          "members": [
+            73
+          ],
+          "center_hz": 112.47520446777344
+        },
+        {
+          "id": 8,
+          "low_hz": 118.74234771728516,
+          "high_hz": 131.55943298339844,
+          "member_kind": "carfac_section",
+          "members": [
+            72
+          ],
+          "center_hz": 125.00949096679688
+        },
+        {
+          "id": 9,
+          "low_hz": 131.55943298339844,
+          "high_hz": 144.95487213134766,
+          "member_kind": "carfac_section",
+          "members": [
+            71
+          ],
+          "center_hz": 138.109375
+        },
+        {
+          "id": 10,
+          "low_hz": 144.95487213134766,
+          "high_hz": 158.95476531982422,
+          "member_kind": "carfac_section",
+          "members": [
+            70
+          ],
+          "center_hz": 151.8003692626953
+        },
+        {
+          "id": 11,
+          "low_hz": 158.95476531982422,
+          "high_hz": 173.58638763427734,
+          "member_kind": "carfac_section",
+          "members": [
+            69
+          ],
+          "center_hz": 166.10916137695312
+        },
+        {
+          "id": 12,
+          "low_hz": 173.58638763427734,
+          "high_hz": 188.87824249267578,
+          "member_kind": "carfac_section",
+          "members": [
+            68
+          ],
+          "center_hz": 181.06361389160156
+        },
+        {
+          "id": 13,
+          "low_hz": 188.87824249267578,
+          "high_hz": 204.8601303100586,
+          "member_kind": "carfac_section",
+          "members": [
+            67
+          ],
+          "center_hz": 196.69287109375
+        },
+        {
+          "id": 14,
+          "low_hz": 204.8601303100586,
+          "high_hz": 221.56317901611328,
+          "member_kind": "carfac_section",
+          "members": [
+            66
+          ],
+          "center_hz": 213.0273895263672
+        },
+        {
+          "id": 15,
+          "low_hz": 221.56317901611328,
+          "high_hz": 239.01993560791016,
+          "member_kind": "carfac_section",
+          "members": [
+            65
+          ],
+          "center_hz": 230.09896850585938
+        },
+        {
+          "id": 16,
+          "low_hz": 239.01993560791016,
+          "high_hz": 257.26441192626953,
+          "member_kind": "carfac_section",
+          "members": [
+            64
+          ],
+          "center_hz": 247.94090270996094
+        },
+        {
+          "id": 17,
+          "low_hz": 257.26441192626953,
+          "high_hz": 276.33213806152344,
+          "member_kind": "carfac_section",
+          "members": [
+            63
+          ],
+          "center_hz": 266.5879211425781
+        },
+        {
+          "id": 18,
+          "low_hz": 276.33213806152344,
+          "high_hz": 296.2602844238281,
+          "member_kind": "carfac_section",
+          "members": [
+            62
+          ],
+          "center_hz": 286.07635498046875
+        },
+        {
+          "id": 19,
+          "low_hz": 296.2602844238281,
+          "high_hz": 317.08766174316406,
+          "member_kind": "carfac_section",
+          "members": [
+            61
+          ],
+          "center_hz": 306.4442138671875
+        },
+        {
+          "id": 20,
+          "low_hz": 317.08766174316406,
+          "high_hz": 338.85484313964844,
+          "member_kind": "carfac_section",
+          "members": [
+            60
+          ],
+          "center_hz": 327.7311096191406
+        },
+        {
+          "id": 21,
+          "low_hz": 338.85484313964844,
+          "high_hz": 361.604248046875,
+          "member_kind": "carfac_section",
+          "members": [
+            59
+          ],
+          "center_hz": 349.97857666015625
+        },
+        {
+          "id": 22,
+          "low_hz": 361.604248046875,
+          "high_hz": 385.3802032470703,
+          "member_kind": "carfac_section",
+          "members": [
+            58
+          ],
+          "center_hz": 373.22991943359375
+        },
+        {
+          "id": 23,
+          "low_hz": 385.3802032470703,
+          "high_hz": 410.22901916503906,
+          "member_kind": "carfac_section",
+          "members": [
+            57
+          ],
+          "center_hz": 397.5304870605469
+        },
+        {
+          "id": 24,
+          "low_hz": 410.22901916503906,
+          "high_hz": 436.1990966796875,
+          "member_kind": "carfac_section",
+          "members": [
+            56
+          ],
+          "center_hz": 422.92755126953125
+        },
+        {
+          "id": 25,
+          "low_hz": 436.1990966796875,
+          "high_hz": 463.34104919433594,
+          "member_kind": "carfac_section",
+          "members": [
+            55
+          ],
+          "center_hz": 449.47064208984375
+        },
+        {
+          "id": 26,
+          "low_hz": 463.34104919433594,
+          "high_hz": 491.70774841308594,
+          "member_kind": "carfac_section",
+          "members": [
+            54
+          ],
+          "center_hz": 477.2114562988281
+        },
+        {
+          "id": 27,
+          "low_hz": 491.70774841308594,
+          "high_hz": 521.3544616699219,
+          "member_kind": "carfac_section",
+          "members": [
+            53
+          ],
+          "center_hz": 506.20404052734375
+        },
+        {
+          "id": 28,
+          "low_hz": 521.3544616699219,
+          "high_hz": 552.3389587402344,
+          "member_kind": "carfac_section",
+          "members": [
+            52
+          ],
+          "center_hz": 536.5048828125
+        },
+        {
+          "id": 29,
+          "low_hz": 552.3389587402344,
+          "high_hz": 584.7215881347656,
+          "member_kind": "carfac_section",
+          "members": [
+            51
+          ],
+          "center_hz": 568.1730346679688
+        },
+        {
+          "id": 30,
+          "low_hz": 584.7215881347656,
+          "high_hz": 618.5654602050781,
+          "member_kind": "carfac_section",
+          "members": [
+            50
+          ],
+          "center_hz": 601.2701416015625
+        },
+        {
+          "id": 31,
+          "low_hz": 618.5654602050781,
+          "high_hz": 653.9364929199219,
+          "member_kind": "carfac_section",
+          "members": [
+            49
+          ],
+          "center_hz": 635.8607788085938
+        },
+        {
+          "id": 32,
+          "low_hz": 653.9364929199219,
+          "high_hz": 690.9035949707031,
+          "member_kind": "carfac_section",
+          "members": [
+            48
+          ],
+          "center_hz": 672.01220703125
+        },
+        {
+          "id": 33,
+          "low_hz": 690.9035949707031,
+          "high_hz": 729.538818359375,
+          "member_kind": "carfac_section",
+          "members": [
+            47
+          ],
+          "center_hz": 709.7949829101562
+        },
+        {
+          "id": 34,
+          "low_hz": 729.538818359375,
+          "high_hz": 769.9173889160156,
+          "member_kind": "carfac_section",
+          "members": [
+            46
+          ],
+          "center_hz": 749.2826538085938
+        },
+        {
+          "id": 35,
+          "low_hz": 769.9173889160156,
+          "high_hz": 812.1179809570312,
+          "member_kind": "carfac_section",
+          "members": [
+            45
+          ],
+          "center_hz": 790.5521240234375
+        },
+        {
+          "id": 36,
+          "low_hz": 812.1179809570312,
+          "high_hz": 856.2228393554688,
+          "member_kind": "carfac_section",
+          "members": [
+            44
+          ],
+          "center_hz": 833.683837890625
+        },
+        {
+          "id": 37,
+          "low_hz": 856.2228393554688,
+          "high_hz": 902.31787109375,
+          "member_kind": "carfac_section",
+          "members": [
+            43
+          ],
+          "center_hz": 878.7618408203125
+        },
+        {
+          "id": 38,
+          "low_hz": 902.31787109375,
+          "high_hz": 950.4928894042969,
+          "member_kind": "carfac_section",
+          "members": [
+            42
+          ],
+          "center_hz": 925.8739013671875
+        },
+        {
+          "id": 39,
+          "low_hz": 950.4928894042969,
+          "high_hz": 1000.8417663574219,
+          "member_kind": "carfac_section",
+          "members": [
+            41
+          ],
+          "center_hz": 975.1118774414062
+        },
+        {
+          "id": 40,
+          "low_hz": 1000.8417663574219,
+          "high_hz": 1053.4625854492188,
+          "member_kind": "carfac_section",
+          "members": [
+            40
+          ],
+          "center_hz": 1026.5716552734375
+        },
+        {
+          "id": 41,
+          "low_hz": 1053.4625854492188,
+          "high_hz": 1108.4578247070312,
+          "member_kind": "carfac_section",
+          "members": [
+            39
+          ],
+          "center_hz": 1080.353515625
+        },
+        {
+          "id": 42,
+          "low_hz": 1108.4578247070312,
+          "high_hz": 1165.9346923828125,
+          "member_kind": "carfac_section",
+          "members": [
+            38
+          ],
+          "center_hz": 1136.5621337890625
+        },
+        {
+          "id": 43,
+          "low_hz": 1165.9346923828125,
+          "high_hz": 1226.005126953125,
+          "member_kind": "carfac_section",
+          "members": [
+            37
+          ],
+          "center_hz": 1195.3072509765625
+        },
+        {
+          "id": 44,
+          "low_hz": 1226.005126953125,
+          "high_hz": 1288.7861328125,
+          "member_kind": "carfac_section",
+          "members": [
+            36
+          ],
+          "center_hz": 1256.7030029296875
+        },
+        {
+          "id": 45,
+          "low_hz": 1288.7861328125,
+          "high_hz": 1354.400146484375,
+          "member_kind": "carfac_section",
+          "members": [
+            35
+          ],
+          "center_hz": 1320.8692626953125
+        },
+        {
+          "id": 46,
+          "low_hz": 1354.400146484375,
+          "high_hz": 1422.9749145507812,
+          "member_kind": "carfac_section",
+          "members": [
+            34
+          ],
+          "center_hz": 1387.9310302734375
+        },
+        {
+          "id": 47,
+          "low_hz": 1422.9749145507812,
+          "high_hz": 1494.6439819335938,
+          "member_kind": "carfac_section",
+          "members": [
+            33
+          ],
+          "center_hz": 1458.018798828125
+        },
+        {
+          "id": 48,
+          "low_hz": 1494.6439819335938,
+          "high_hz": 1569.5469970703125,
+          "member_kind": "carfac_section",
+          "members": [
+            32
+          ],
+          "center_hz": 1531.2691650390625
+        },
+        {
+          "id": 49,
+          "low_hz": 1569.5469970703125,
+          "high_hz": 1647.8299560546875,
+          "member_kind": "carfac_section",
+          "members": [
+            31
+          ],
+          "center_hz": 1607.8248291015625
+        },
+        {
+          "id": 50,
+          "low_hz": 1647.8299560546875,
+          "high_hz": 1729.6453857421875,
+          "member_kind": "carfac_section",
+          "members": [
+            30
+          ],
+          "center_hz": 1687.8350830078125
+        },
+        {
+          "id": 51,
+          "low_hz": 1729.6453857421875,
+          "high_hz": 1815.152587890625,
+          "member_kind": "carfac_section",
+          "members": [
+            29
+          ],
+          "center_hz": 1771.4556884765625
+        },
+        {
+          "id": 52,
+          "low_hz": 1815.152587890625,
+          "high_hz": 1904.5182495117188,
+          "member_kind": "carfac_section",
+          "members": [
+            28
+          ],
+          "center_hz": 1858.8494873046875
+        },
+        {
+          "id": 53,
+          "low_hz": 1904.5182495117188,
+          "high_hz": 1997.9164428710938,
+          "member_kind": "carfac_section",
+          "members": [
+            27
+          ],
+          "center_hz": 1950.18701171875
+        },
+        {
+          "id": 54,
+          "low_hz": 1997.9164428710938,
+          "high_hz": 2095.5291137695312,
+          "member_kind": "carfac_section",
+          "members": [
+            26
+          ],
+          "center_hz": 2045.6458740234375
+        },
+        {
+          "id": 55,
+          "low_hz": 2095.5291137695312,
+          "high_hz": 2197.54638671875,
+          "member_kind": "carfac_section",
+          "members": [
+            25
+          ],
+          "center_hz": 2145.412353515625
+        },
+        {
+          "id": 56,
+          "low_hz": 2197.54638671875,
+          "high_hz": 2304.1671142578125,
+          "member_kind": "carfac_section",
+          "members": [
+            24
+          ],
+          "center_hz": 2249.680419921875
+        },
+        {
+          "id": 57,
+          "low_hz": 2304.1671142578125,
+          "high_hz": 2415.5989990234375,
+          "member_kind": "carfac_section",
+          "members": [
+            23
+          ],
+          "center_hz": 2358.65380859375
+        },
+        {
+          "id": 58,
+          "low_hz": 2415.5989990234375,
+          "high_hz": 2532.05908203125,
+          "member_kind": "carfac_section",
+          "members": [
+            22
+          ],
+          "center_hz": 2472.544189453125
+        },
+        {
+          "id": 59,
+          "low_hz": 2532.05908203125,
+          "high_hz": 2653.7742919921875,
+          "member_kind": "carfac_section",
+          "members": [
+            21
+          ],
+          "center_hz": 2591.573974609375
+        },
+        {
+          "id": 60,
+          "low_hz": 2653.7742919921875,
+          "high_hz": 2780.981689453125,
+          "member_kind": "carfac_section",
+          "members": [
+            20
+          ],
+          "center_hz": 2715.974609375
+        },
+        {
+          "id": 61,
+          "low_hz": 2780.981689453125,
+          "high_hz": 2913.9293212890625,
+          "member_kind": "carfac_section",
+          "members": [
+            19
+          ],
+          "center_hz": 2845.98876953125
+        },
+        {
+          "id": 62,
+          "low_hz": 2913.9293212890625,
+          "high_hz": 3052.8760986328125,
+          "member_kind": "carfac_section",
+          "members": [
+            18
+          ],
+          "center_hz": 2981.869873046875
+        },
+        {
+          "id": 63,
+          "low_hz": 3052.8760986328125,
+          "high_hz": 3198.092529296875,
+          "member_kind": "carfac_section",
+          "members": [
+            17
+          ],
+          "center_hz": 3123.88232421875
+        },
+        {
+          "id": 64,
+          "low_hz": 3198.092529296875,
+          "high_hz": 3349.8616943359375,
+          "member_kind": "carfac_section",
+          "members": [
+            16
+          ],
+          "center_hz": 3272.302734375
+        },
+        {
+          "id": 65,
+          "low_hz": 3349.8616943359375,
+          "high_hz": 3508.4793701171875,
+          "member_kind": "carfac_section",
+          "members": [
+            15
+          ],
+          "center_hz": 3427.420654296875
+        },
+        {
+          "id": 66,
+          "low_hz": 3508.4793701171875,
+          "high_hz": 3674.25439453125,
+          "member_kind": "carfac_section",
+          "members": [
+            14
+          ],
+          "center_hz": 3589.5380859375
+        },
+        {
+          "id": 67,
+          "low_hz": 3674.25439453125,
+          "high_hz": 3847.5098876953125,
+          "member_kind": "carfac_section",
+          "members": [
+            13
+          ],
+          "center_hz": 3758.970703125
+        },
+        {
+          "id": 68,
+          "low_hz": 3847.5098876953125,
+          "high_hz": 4028.5833740234375,
+          "member_kind": "carfac_section",
+          "members": [
+            12
+          ],
+          "center_hz": 3936.049072265625
+        },
+        {
+          "id": 69,
+          "low_hz": 4028.5833740234375,
+          "high_hz": 4217.827392578125,
+          "member_kind": "carfac_section",
+          "members": [
+            11
+          ],
+          "center_hz": 4121.11767578125
+        },
+        {
+          "id": 70,
+          "low_hz": 4217.827392578125,
+          "high_hz": 4415.611083984375,
+          "member_kind": "carfac_section",
+          "members": [
+            10
+          ],
+          "center_hz": 4314.537109375
+        },
+        {
+          "id": 71,
+          "low_hz": 4415.611083984375,
+          "high_hz": 4622.319580078125,
+          "member_kind": "carfac_section",
+          "members": [
+            9
+          ],
+          "center_hz": 4516.68505859375
+        },
+        {
+          "id": 72,
+          "low_hz": 4622.319580078125,
+          "high_hz": 4838.355224609375,
+          "member_kind": "carfac_section",
+          "members": [
+            8
+          ],
+          "center_hz": 4727.9541015625
+        },
+        {
+          "id": 73,
+          "low_hz": 4838.355224609375,
+          "high_hz": 5064.139404296875,
+          "member_kind": "carfac_section",
+          "members": [
+            7
+          ],
+          "center_hz": 4948.75634765625
+        },
+        {
+          "id": 74,
+          "low_hz": 5064.139404296875,
+          "high_hz": 5300.11181640625,
+          "member_kind": "carfac_section",
+          "members": [
+            6
+          ],
+          "center_hz": 5179.5224609375
+        },
+        {
+          "id": 75,
+          "low_hz": 5300.11181640625,
+          "high_hz": 5546.732177734375,
+          "member_kind": "carfac_section",
+          "members": [
+            5
+          ],
+          "center_hz": 5420.701171875
+        },
+        {
+          "id": 76,
+          "low_hz": 5546.732177734375,
+          "high_hz": 5804.481201171875,
+          "member_kind": "carfac_section",
+          "members": [
+            4
+          ],
+          "center_hz": 5672.76318359375
+        },
+        {
+          "id": 77,
+          "low_hz": 5804.481201171875,
+          "high_hz": 6073.86083984375,
+          "member_kind": "carfac_section",
+          "members": [
+            3
+          ],
+          "center_hz": 5936.19921875
+        },
+        {
+          "id": 78,
+          "low_hz": 6073.86083984375,
+          "high_hz": 6430.5784912109375,
+          "member_kind": "carfac_section",
+          "members": [
+            2
+          ],
+          "center_hz": 6211.5224609375
+        },
+        {
+          "id": 79,
+          "low_hz": 6430.5784912109375,
+          "high_hz": 8000.0,
+          "member_kind": "carfac_section",
+          "members": [
+            0,
+            1
+          ],
+          "center_hz": 6649.634521484375
+        }
+      ],
+      "frames": 586,
+      "frequency_node_count": 80,
+      "energy_levels": 16,
+      "quantizer_thresholds": [
+        0.30641667544841766,
+        0.5357666611671448,
+        0.6572160199284554,
+        0.7392797470092773,
+        0.798378761857748,
+        0.8413706719875336,
+        0.8836436122655869,
+        0.9172123074531555,
+        0.9446412846446037,
+        0.9753452017903328,
+        1.0073191821575165,
+        1.0404398441314697,
+        1.0734175220131874,
+        1.1004781424999237,
+        1.1207474619150162
+      ],
+      "unique_quantized_frame_states": 586,
+      "float_feature_bytes_per_frame": 320,
+      "quotient_bytes_per_frame": 40,
+      "compression_ratio": 8.0,
+      "probability_mass_max_normalization_error": 5.960464477539062e-07,
+      "mean_js_bits_vs_mel": 0.6437191367149353,
+      "feature_rmse_vs_mel": 0.9713219404220581,
+      "feature_cosine_vs_mel": 0.07911954075098038,
+      "transcript": "I'm gonna go to the next one.",
+      "token_ids": [
+        314,
+        1101,
+        8066,
+        467,
+        284,
+        262,
+        1306,
+        530,
+        13
+      ],
+      "packed_state_block": {
+        "offset": 93760,
+        "bytes": 23440,
+        "layout": "frame-major; low nibble first",
+        "sha256": "edc51592cb7d21e9635b3c5055db889a51ea58ba285eb72917f2a6b0b9a25386"
+      },
+      "word_edit_distance_vs_reference": 16,
+      "word_error_rate_vs_reference": 0.9411764705882353,
+      "transcript_exact": false
+    }
+  ],
+  "packed_state_blob": {
+    "path": "audio_frequency_quotient_states.bin",
+    "bytes": 117200,
+    "sha256": "a39be54ce4f2a916dffdf35c16fdb9cc198a6d4b79eb3b820eb77b22713afb97"
+  },
+  "carfac_provenance": {
+    "repository": "https://github.com/google/carfac",
+    "commit": "c74663cc7d05713ae2f2308765eb040530a81c7f",
+    "implementation": "python/src/carfac/np/carfac.py",
+    "parameters": {
+      "erb_per_step": 0.4,
+      "ihc_style": "two_cap",
+      "agc": "default closed loop"
+    },
+    "physical_sections": 81
+  },
+  "dag_semantics": {
+    "frame_edge": "deterministic time t to t+1",
+    "frequency_nodes": "each node denotes an explicit finite set of DFT bins, wavelet packets, or cochlear sections",
+    "node_mass": "positive band energy divided by total frame energy",
+    "quotient_state": "80 four-bit energy classes",
+    "readout": "80-channel adapter into the fixed Whisper encoder"
+  },
+  "proof_boundary": "frequency partitions, quantization and mass normalization are explicit; alternate frontend to Whisper semantic equivalence is empirical on this waveform, not universal"
+}

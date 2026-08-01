@@ -1,0 +1,901 @@
+{
+  "language": "WHISPER-AUDIO-TOKEN-INTERTWINING-1",
+  "model": "openai/whisper-tiny.en",
+  "graph_sha256": "2adbb1fb4d6d14993772e13d596d7f77981ca7c5be27c0a1088a338927a5fe3c",
+  "trace_sha256": "76e7d26049dbbbbf95071129f8736e56970b5635fd9943470c4e8cd0e2f56f25",
+  "checkpoint_sha256": "db59695928ded6043adaef491a53ef4e12da9611184d77c53baa691a60b958ad",
+  "lean_source_sha256": "bcb1e4408fdbbfdf6a1aaaa9736dcc1f238cb7bdb4ef8e1c9086b451e3ea1fc2",
+  "theorem": "WhisperAudioTokenEquivalence.every_audio_every_finite_transcript_mass_equal",
+  "quantification": "every valid Audio value and every finite List Token continuation below configured positional capacity",
+  "opcode_count": 74,
+  "obligations": [
+    {
+      "index": 0,
+      "opcode": "PCM_AUDIO_INPUT",
+      "stage": "frontend",
+      "weights": [],
+      "status": "EXACT_STRUCTURAL",
+      "commuting_obligation": "target initial register equals Q(source audio state)",
+      "obligation_sha256": "63c084d5eb63ee6acb816b0d58e44a37d21374f26667a1d2761274c75794a5f7"
+    },
+    {
+      "index": 1,
+      "opcode": "LOG_MEL_STFT",
+      "stage": "frontend",
+      "weights": [],
+      "status": "CONDITIONAL_ON_IDENTICAL_SHARED_PRIMITIVE_ABI",
+      "commuting_obligation": "target initial register equals Q(source audio state)",
+      "obligation_sha256": "5537ad00da8047f323018ba7ced72fc1806f143665a745b10a0a7a0a7c93871d"
+    },
+    {
+      "index": 2,
+      "opcode": "CONV1_GELU",
+      "stage": "encoder",
+      "weights": [
+        "model.encoder.conv1.bias",
+        "model.encoder.conv1.weight"
+      ],
+      "status": "CONDITIONAL_ON_IDENTICAL_SHARED_PRIMITIVE_ABI",
+      "commuting_obligation": "target initial register equals Q(source audio state)",
+      "obligation_sha256": "70d78f4ec1e77a01df2f0542d1e6866e3c1811079979ebd8fb2218a7bd4c869f"
+    },
+    {
+      "index": 3,
+      "opcode": "CONV2_GELU",
+      "stage": "encoder",
+      "weights": [
+        "model.encoder.conv2.bias",
+        "model.encoder.conv2.weight"
+      ],
+      "status": "CONDITIONAL_ON_IDENTICAL_SHARED_PRIMITIVE_ABI",
+      "commuting_obligation": "target initial register equals Q(source audio state)",
+      "obligation_sha256": "3e3559b470f9f0e0e206261198901f5fcdc0dae086640dac7fdab765dec46b26"
+    },
+    {
+      "index": 4,
+      "opcode": "POSITIONAL_ADD",
+      "stage": "encoder",
+      "weights": [
+        "model.encoder.embed_positions.weight"
+      ],
+      "status": "CONDITIONAL_ON_IDENTICAL_SHARED_PRIMITIVE_ABI",
+      "commuting_obligation": "target initial register equals Q(source audio state)",
+      "obligation_sha256": "979f6ebd83ea647464a18a3bc5b9b9ccd786c7bffd3cefb72661c44f5fa3960b"
+    },
+    {
+      "index": 5,
+      "opcode": "LAYER_NORM",
+      "stage": "encoder.0",
+      "weights": [
+        "model.encoder.layers.0.self_attn_layer_norm.bias",
+        "model.encoder.layers.0.self_attn_layer_norm.weight"
+      ],
+      "status": "CONDITIONAL_ON_IDENTICAL_SHARED_PRIMITIVE_ABI",
+      "commuting_obligation": "target mass and token-conditioned transition commute with Q",
+      "obligation_sha256": "6b86aa59fa9c01f7f2ae701a5e2b6927e1dba405fd8e3ca0f1e72a72b2b8c71a"
+    },
+    {
+      "index": 6,
+      "opcode": "SELF_ATTENTION",
+      "stage": "encoder.0",
+      "weights": [
+        "model.encoder.layers.0.self_attn.k_proj.weight",
+        "model.encoder.layers.0.self_attn.out_proj.bias",
+        "model.encoder.layers.0.self_attn.out_proj.weight",
+        "model.encoder.layers.0.self_attn.q_proj.bias",
+        "model.encoder.layers.0.self_attn.q_proj.weight",
+        "model.encoder.layers.0.self_attn.v_proj.bias",
+        "model.encoder.layers.0.self_attn.v_proj.weight"
+      ],
+      "status": "CONDITIONAL_ON_IDENTICAL_SHARED_PRIMITIVE_ABI",
+      "commuting_obligation": "target mass and token-conditioned transition commute with Q",
+      "obligation_sha256": "12a41096a2bdd450f469e8d8b697fc1d4a2e0de90915d4342cbe97ab4c3e4a83"
+    },
+    {
+      "index": 7,
+      "opcode": "RESIDUAL_ADD",
+      "stage": "encoder.0",
+      "weights": [],
+      "status": "CONDITIONAL_ON_IDENTICAL_SHARED_PRIMITIVE_ABI",
+      "commuting_obligation": "target mass and token-conditioned transition commute with Q",
+      "obligation_sha256": "afb6aaee12ba5d20eb346e13c3fd7168391f659a74c30f8ace2d9413df1f657e"
+    },
+    {
+      "index": 8,
+      "opcode": "LAYER_NORM",
+      "stage": "encoder.0",
+      "weights": [
+        "model.encoder.layers.0.final_layer_norm.bias",
+        "model.encoder.layers.0.final_layer_norm.weight"
+      ],
+      "status": "CONDITIONAL_ON_IDENTICAL_SHARED_PRIMITIVE_ABI",
+      "commuting_obligation": "target mass and token-conditioned transition commute with Q",
+      "obligation_sha256": "d2b1868364d2acbaa5ef432ddd74dc6504ee68f6869d7be1575939f1d3d97692"
+    },
+    {
+      "index": 9,
+      "opcode": "MLP_GELU",
+      "stage": "encoder.0",
+      "weights": [
+        "model.encoder.layers.0.fc1.bias",
+        "model.encoder.layers.0.fc1.weight",
+        "model.encoder.layers.0.fc2.bias",
+        "model.encoder.layers.0.fc2.weight"
+      ],
+      "status": "CONDITIONAL_ON_IDENTICAL_SHARED_PRIMITIVE_ABI",
+      "commuting_obligation": "target mass and token-conditioned transition commute with Q",
+      "obligation_sha256": "c4b3129c26857ad0131f6aabdc9ab7ab8408158d77c72cd5fb1a99d0b75f58dd"
+    },
+    {
+      "index": 10,
+      "opcode": "RESIDUAL_ADD",
+      "stage": "encoder.0",
+      "weights": [],
+      "status": "CONDITIONAL_ON_IDENTICAL_SHARED_PRIMITIVE_ABI",
+      "commuting_obligation": "target mass and token-conditioned transition commute with Q",
+      "obligation_sha256": "a80dc86209cc1382da77648525741bfec70d2d4e38c359500d8bf6ae4da27306"
+    },
+    {
+      "index": 11,
+      "opcode": "LAYER_NORM",
+      "stage": "encoder.1",
+      "weights": [
+        "model.encoder.layers.1.self_attn_layer_norm.bias",
+        "model.encoder.layers.1.self_attn_layer_norm.weight"
+      ],
+      "status": "CONDITIONAL_ON_IDENTICAL_SHARED_PRIMITIVE_ABI",
+      "commuting_obligation": "target mass and token-conditioned transition commute with Q",
+      "obligation_sha256": "779a80010657a9b920f4443fb2290db13806f36672d26bed42b6e90ceb02d3c6"
+    },
+    {
+      "index": 12,
+      "opcode": "SELF_ATTENTION",
+      "stage": "encoder.1",
+      "weights": [
+        "model.encoder.layers.1.self_attn.k_proj.weight",
+        "model.encoder.layers.1.self_attn.out_proj.bias",
+        "model.encoder.layers.1.self_attn.out_proj.weight",
+        "model.encoder.layers.1.self_attn.q_proj.bias",
+        "model.encoder.layers.1.self_attn.q_proj.weight",
+        "model.encoder.layers.1.self_attn.v_proj.bias",
+        "model.encoder.layers.1.self_attn.v_proj.weight"
+      ],
+      "status": "CONDITIONAL_ON_IDENTICAL_SHARED_PRIMITIVE_ABI",
+      "commuting_obligation": "target mass and token-conditioned transition commute with Q",
+      "obligation_sha256": "86e46ef7820226affd80d7230d25177a4010f6fd5d5369b085a50cc55f6537c1"
+    },
+    {
+      "index": 13,
+      "opcode": "RESIDUAL_ADD",
+      "stage": "encoder.1",
+      "weights": [],
+      "status": "CONDITIONAL_ON_IDENTICAL_SHARED_PRIMITIVE_ABI",
+      "commuting_obligation": "target mass and token-conditioned transition commute with Q",
+      "obligation_sha256": "9e1157d4653e5222519005532c982ff16f0685fc48ec27eb01e00d0bdb16528d"
+    },
+    {
+      "index": 14,
+      "opcode": "LAYER_NORM",
+      "stage": "encoder.1",
+      "weights": [
+        "model.encoder.layers.1.final_layer_norm.bias",
+        "model.encoder.layers.1.final_layer_norm.weight"
+      ],
+      "status": "CONDITIONAL_ON_IDENTICAL_SHARED_PRIMITIVE_ABI",
+      "commuting_obligation": "target mass and token-conditioned transition commute with Q",
+      "obligation_sha256": "312e40f667e46509c164c3da863898a053bab60ca1e68f3c2867a28f3d60ac7f"
+    },
+    {
+      "index": 15,
+      "opcode": "MLP_GELU",
+      "stage": "encoder.1",
+      "weights": [
+        "model.encoder.layers.1.fc1.bias",
+        "model.encoder.layers.1.fc1.weight",
+        "model.encoder.layers.1.fc2.bias",
+        "model.encoder.layers.1.fc2.weight"
+      ],
+      "status": "CONDITIONAL_ON_IDENTICAL_SHARED_PRIMITIVE_ABI",
+      "commuting_obligation": "target mass and token-conditioned transition commute with Q",
+      "obligation_sha256": "48e23595437e7cf89c90541ecf175dfe658671ffd4c1fcf778e2f63d32169d75"
+    },
+    {
+      "index": 16,
+      "opcode": "RESIDUAL_ADD",
+      "stage": "encoder.1",
+      "weights": [],
+      "status": "CONDITIONAL_ON_IDENTICAL_SHARED_PRIMITIVE_ABI",
+      "commuting_obligation": "target mass and token-conditioned transition commute with Q",
+      "obligation_sha256": "13ad7954ba875c795e5c3abb79e7aab9d0101d9d80f234f8f949efc11b4e2ea8"
+    },
+    {
+      "index": 17,
+      "opcode": "LAYER_NORM",
+      "stage": "encoder.2",
+      "weights": [
+        "model.encoder.layers.2.self_attn_layer_norm.bias",
+        "model.encoder.layers.2.self_attn_layer_norm.weight"
+      ],
+      "status": "CONDITIONAL_ON_IDENTICAL_SHARED_PRIMITIVE_ABI",
+      "commuting_obligation": "target mass and token-conditioned transition commute with Q",
+      "obligation_sha256": "a07e636dd417e16a2095d41ed482de02d6b490d1a896892960c29b15177c39b8"
+    },
+    {
+      "index": 18,
+      "opcode": "SELF_ATTENTION",
+      "stage": "encoder.2",
+      "weights": [
+        "model.encoder.layers.2.self_attn.k_proj.weight",
+        "model.encoder.layers.2.self_attn.out_proj.bias",
+        "model.encoder.layers.2.self_attn.out_proj.weight",
+        "model.encoder.layers.2.self_attn.q_proj.bias",
+        "model.encoder.layers.2.self_attn.q_proj.weight",
+        "model.encoder.layers.2.self_attn.v_proj.bias",
+        "model.encoder.layers.2.self_attn.v_proj.weight"
+      ],
+      "status": "CONDITIONAL_ON_IDENTICAL_SHARED_PRIMITIVE_ABI",
+      "commuting_obligation": "target mass and token-conditioned transition commute with Q",
+      "obligation_sha256": "fdc18cd681d08c24f96bf46e671746660bef80720493f56b7495a6f6ca1a8e39"
+    },
+    {
+      "index": 19,
+      "opcode": "RESIDUAL_ADD",
+      "stage": "encoder.2",
+      "weights": [],
+      "status": "CONDITIONAL_ON_IDENTICAL_SHARED_PRIMITIVE_ABI",
+      "commuting_obligation": "target mass and token-conditioned transition commute with Q",
+      "obligation_sha256": "c5af19419b0c7b7ad9437dfe442ff03920d648cd8a617b102febf62f5bbd4555"
+    },
+    {
+      "index": 20,
+      "opcode": "LAYER_NORM",
+      "stage": "encoder.2",
+      "weights": [
+        "model.encoder.layers.2.final_layer_norm.bias",
+        "model.encoder.layers.2.final_layer_norm.weight"
+      ],
+      "status": "CONDITIONAL_ON_IDENTICAL_SHARED_PRIMITIVE_ABI",
+      "commuting_obligation": "target mass and token-conditioned transition commute with Q",
+      "obligation_sha256": "81997fb3bf1bb91c230940c36b1d82def32f3f25b13a506ad8b1590608adb24c"
+    },
+    {
+      "index": 21,
+      "opcode": "MLP_GELU",
+      "stage": "encoder.2",
+      "weights": [
+        "model.encoder.layers.2.fc1.bias",
+        "model.encoder.layers.2.fc1.weight",
+        "model.encoder.layers.2.fc2.bias",
+        "model.encoder.layers.2.fc2.weight"
+      ],
+      "status": "CONDITIONAL_ON_IDENTICAL_SHARED_PRIMITIVE_ABI",
+      "commuting_obligation": "target mass and token-conditioned transition commute with Q",
+      "obligation_sha256": "7d64192363098a68ace04fd11008c363419dfde3714f797caf6469ae4fda97e3"
+    },
+    {
+      "index": 22,
+      "opcode": "RESIDUAL_ADD",
+      "stage": "encoder.2",
+      "weights": [],
+      "status": "CONDITIONAL_ON_IDENTICAL_SHARED_PRIMITIVE_ABI",
+      "commuting_obligation": "target mass and token-conditioned transition commute with Q",
+      "obligation_sha256": "968d15fc5af493d291308cd16806c628013cb92a807774543f47718ff86da85f"
+    },
+    {
+      "index": 23,
+      "opcode": "LAYER_NORM",
+      "stage": "encoder.3",
+      "weights": [
+        "model.encoder.layers.3.self_attn_layer_norm.bias",
+        "model.encoder.layers.3.self_attn_layer_norm.weight"
+      ],
+      "status": "CONDITIONAL_ON_IDENTICAL_SHARED_PRIMITIVE_ABI",
+      "commuting_obligation": "target mass and token-conditioned transition commute with Q",
+      "obligation_sha256": "ea4861652e154a11564ed1e3a1dd8b03d37188c96c1f66e15629a60f70d366d4"
+    },
+    {
+      "index": 24,
+      "opcode": "SELF_ATTENTION",
+      "stage": "encoder.3",
+      "weights": [
+        "model.encoder.layers.3.self_attn.k_proj.weight",
+        "model.encoder.layers.3.self_attn.out_proj.bias",
+        "model.encoder.layers.3.self_attn.out_proj.weight",
+        "model.encoder.layers.3.self_attn.q_proj.bias",
+        "model.encoder.layers.3.self_attn.q_proj.weight",
+        "model.encoder.layers.3.self_attn.v_proj.bias",
+        "model.encoder.layers.3.self_attn.v_proj.weight"
+      ],
+      "status": "CONDITIONAL_ON_IDENTICAL_SHARED_PRIMITIVE_ABI",
+      "commuting_obligation": "target mass and token-conditioned transition commute with Q",
+      "obligation_sha256": "6fa72489257d75d5026f8472c55461413233bf288c059c5d7359235e6223af36"
+    },
+    {
+      "index": 25,
+      "opcode": "RESIDUAL_ADD",
+      "stage": "encoder.3",
+      "weights": [],
+      "status": "CONDITIONAL_ON_IDENTICAL_SHARED_PRIMITIVE_ABI",
+      "commuting_obligation": "target mass and token-conditioned transition commute with Q",
+      "obligation_sha256": "054e56ac65c21a634fa30aed4299d0d8932613bbfc8247672bd0c79e92efeaf0"
+    },
+    {
+      "index": 26,
+      "opcode": "LAYER_NORM",
+      "stage": "encoder.3",
+      "weights": [
+        "model.encoder.layers.3.final_layer_norm.bias",
+        "model.encoder.layers.3.final_layer_norm.weight"
+      ],
+      "status": "CONDITIONAL_ON_IDENTICAL_SHARED_PRIMITIVE_ABI",
+      "commuting_obligation": "target mass and token-conditioned transition commute with Q",
+      "obligation_sha256": "25ec916b8645032dac7b42834ce68b6fec1fd715ef6d27442f46d58359038d56"
+    },
+    {
+      "index": 27,
+      "opcode": "MLP_GELU",
+      "stage": "encoder.3",
+      "weights": [
+        "model.encoder.layers.3.fc1.bias",
+        "model.encoder.layers.3.fc1.weight",
+        "model.encoder.layers.3.fc2.bias",
+        "model.encoder.layers.3.fc2.weight"
+      ],
+      "status": "CONDITIONAL_ON_IDENTICAL_SHARED_PRIMITIVE_ABI",
+      "commuting_obligation": "target mass and token-conditioned transition commute with Q",
+      "obligation_sha256": "bdf875dfab3b5639d8de2fc2eddc05840c52cc1895e19fb8e4f1a4613fe069f3"
+    },
+    {
+      "index": 28,
+      "opcode": "RESIDUAL_ADD",
+      "stage": "encoder.3",
+      "weights": [],
+      "status": "CONDITIONAL_ON_IDENTICAL_SHARED_PRIMITIVE_ABI",
+      "commuting_obligation": "target mass and token-conditioned transition commute with Q",
+      "obligation_sha256": "5a9f806d53890f0a3ee3ca73c3970eb0a4870a0dd14e716a6cdf65962f5809a3"
+    },
+    {
+      "index": 29,
+      "opcode": "LAYER_NORM",
+      "stage": "encoder.final",
+      "weights": [
+        "model.encoder.layer_norm.bias",
+        "model.encoder.layer_norm.weight"
+      ],
+      "status": "CONDITIONAL_ON_IDENTICAL_SHARED_PRIMITIVE_ABI",
+      "commuting_obligation": "target mass and token-conditioned transition commute with Q",
+      "obligation_sha256": "603c48718ce2c06991857a65f358ef4ddae0511dae6ddc9f39a426a83f14947f"
+    },
+    {
+      "index": 30,
+      "opcode": "TOKEN_STACK_INPUT",
+      "stage": "decoder",
+      "weights": [],
+      "status": "EXACT_STRUCTURAL",
+      "commuting_obligation": "target mass and token-conditioned transition commute with Q",
+      "obligation_sha256": "c0c819000a10dfc8b44d1c55b8d6d5b8cab4312145f7cce3c51332260108adcf"
+    },
+    {
+      "index": 31,
+      "opcode": "TOKEN_POSITION_EMBED",
+      "stage": "decoder",
+      "weights": [
+        "model.decoder.embed_tokens.weight",
+        "model.decoder.embed_positions.weight"
+      ],
+      "status": "CONDITIONAL_ON_IDENTICAL_SHARED_PRIMITIVE_ABI",
+      "commuting_obligation": "target mass and token-conditioned transition commute with Q",
+      "obligation_sha256": "17598bf9023908978527ad661db63b5a9ccfc83ccbbababbde63721d1f6e6820"
+    },
+    {
+      "index": 32,
+      "opcode": "LAYER_NORM",
+      "stage": "decoder.0",
+      "weights": [
+        "model.decoder.layers.0.self_attn_layer_norm.bias",
+        "model.decoder.layers.0.self_attn_layer_norm.weight"
+      ],
+      "status": "CONDITIONAL_ON_IDENTICAL_SHARED_PRIMITIVE_ABI",
+      "commuting_obligation": "target mass and token-conditioned transition commute with Q",
+      "obligation_sha256": "d704bc5d1b937c3fa33557bee1fc41ad1adea47f97da366f595cf9439dc9bf01"
+    },
+    {
+      "index": 33,
+      "opcode": "CACHED_SELF_ATTENTION",
+      "stage": "decoder.0",
+      "weights": [
+        "model.decoder.layers.0.self_attn.k_proj.weight",
+        "model.decoder.layers.0.self_attn.out_proj.bias",
+        "model.decoder.layers.0.self_attn.out_proj.weight",
+        "model.decoder.layers.0.self_attn.q_proj.bias",
+        "model.decoder.layers.0.self_attn.q_proj.weight",
+        "model.decoder.layers.0.self_attn.v_proj.bias",
+        "model.decoder.layers.0.self_attn.v_proj.weight"
+      ],
+      "status": "CONDITIONAL_ON_IDENTICAL_SHARED_PRIMITIVE_ABI",
+      "commuting_obligation": "target mass and token-conditioned transition commute with Q",
+      "obligation_sha256": "bcbeb1d4fe75c5c75c6b862e412713378bb938be6ade1b1164e630f485c282f0"
+    },
+    {
+      "index": 34,
+      "opcode": "RESIDUAL_ADD",
+      "stage": "decoder.0",
+      "weights": [],
+      "status": "CONDITIONAL_ON_IDENTICAL_SHARED_PRIMITIVE_ABI",
+      "commuting_obligation": "target mass and token-conditioned transition commute with Q",
+      "obligation_sha256": "9cf6977a3b101063eacf91f3e80dadddb868411bb8a2de9c7d7cf119954d90a9"
+    },
+    {
+      "index": 35,
+      "opcode": "LAYER_NORM",
+      "stage": "decoder.0",
+      "weights": [
+        "model.decoder.layers.0.encoder_attn_layer_norm.bias",
+        "model.decoder.layers.0.encoder_attn_layer_norm.weight"
+      ],
+      "status": "CONDITIONAL_ON_IDENTICAL_SHARED_PRIMITIVE_ABI",
+      "commuting_obligation": "target mass and token-conditioned transition commute with Q",
+      "obligation_sha256": "e74c2316d66d7b02ef5b75593f95a6d09cca45b386a22139286dc582c34a1e00"
+    },
+    {
+      "index": 36,
+      "opcode": "CROSS_ATTENTION",
+      "stage": "decoder.0",
+      "weights": [
+        "model.decoder.layers.0.encoder_attn.k_proj.weight",
+        "model.decoder.layers.0.encoder_attn.out_proj.bias",
+        "model.decoder.layers.0.encoder_attn.out_proj.weight",
+        "model.decoder.layers.0.encoder_attn.q_proj.bias",
+        "model.decoder.layers.0.encoder_attn.q_proj.weight",
+        "model.decoder.layers.0.encoder_attn.v_proj.bias",
+        "model.decoder.layers.0.encoder_attn.v_proj.weight"
+      ],
+      "status": "CONDITIONAL_ON_IDENTICAL_SHARED_PRIMITIVE_ABI",
+      "commuting_obligation": "target mass and token-conditioned transition commute with Q",
+      "obligation_sha256": "4eee558a68a86cb68f60e45f684b0e6be9650da6d059b89e7383864fb7f1b9c9"
+    },
+    {
+      "index": 37,
+      "opcode": "RESIDUAL_ADD",
+      "stage": "decoder.0",
+      "weights": [],
+      "status": "CONDITIONAL_ON_IDENTICAL_SHARED_PRIMITIVE_ABI",
+      "commuting_obligation": "target mass and token-conditioned transition commute with Q",
+      "obligation_sha256": "65fbbdb328ffdd2a87f5a1199ccae99d69558a94f3ef8d8fc3b1ac8713f60e63"
+    },
+    {
+      "index": 38,
+      "opcode": "LAYER_NORM",
+      "stage": "decoder.0",
+      "weights": [
+        "model.decoder.layers.0.final_layer_norm.bias",
+        "model.decoder.layers.0.final_layer_norm.weight"
+      ],
+      "status": "CONDITIONAL_ON_IDENTICAL_SHARED_PRIMITIVE_ABI",
+      "commuting_obligation": "target mass and token-conditioned transition commute with Q",
+      "obligation_sha256": "ac553903aabe7b71de63e1368a5ba828f5ecde9fe5795e9e1b0e14f7033046d6"
+    },
+    {
+      "index": 39,
+      "opcode": "MLP_GELU",
+      "stage": "decoder.0",
+      "weights": [
+        "model.decoder.layers.0.fc1.bias",
+        "model.decoder.layers.0.fc1.weight",
+        "model.decoder.layers.0.fc2.bias",
+        "model.decoder.layers.0.fc2.weight"
+      ],
+      "status": "CONDITIONAL_ON_IDENTICAL_SHARED_PRIMITIVE_ABI",
+      "commuting_obligation": "target mass and token-conditioned transition commute with Q",
+      "obligation_sha256": "540db92c5f905f24ad26e93d5520e7fe3f567109dc894ab81ecb5f3ab0402ba3"
+    },
+    {
+      "index": 40,
+      "opcode": "RESIDUAL_ADD",
+      "stage": "decoder.0",
+      "weights": [],
+      "status": "CONDITIONAL_ON_IDENTICAL_SHARED_PRIMITIVE_ABI",
+      "commuting_obligation": "target mass and token-conditioned transition commute with Q",
+      "obligation_sha256": "48664acd1e700ef4bc5788ea058bd2e1777498808084a2df8c404efaaa20f188"
+    },
+    {
+      "index": 41,
+      "opcode": "LAYER_NORM",
+      "stage": "decoder.1",
+      "weights": [
+        "model.decoder.layers.1.self_attn_layer_norm.bias",
+        "model.decoder.layers.1.self_attn_layer_norm.weight"
+      ],
+      "status": "CONDITIONAL_ON_IDENTICAL_SHARED_PRIMITIVE_ABI",
+      "commuting_obligation": "target mass and token-conditioned transition commute with Q",
+      "obligation_sha256": "a71ca7ac53253cb95625e5f8e3bbc3b1db65af422c08b17dbff1f9205c6ccbf6"
+    },
+    {
+      "index": 42,
+      "opcode": "CACHED_SELF_ATTENTION",
+      "stage": "decoder.1",
+      "weights": [
+        "model.decoder.layers.1.self_attn.k_proj.weight",
+        "model.decoder.layers.1.self_attn.out_proj.bias",
+        "model.decoder.layers.1.self_attn.out_proj.weight",
+        "model.decoder.layers.1.self_attn.q_proj.bias",
+        "model.decoder.layers.1.self_attn.q_proj.weight",
+        "model.decoder.layers.1.self_attn.v_proj.bias",
+        "model.decoder.layers.1.self_attn.v_proj.weight"
+      ],
+      "status": "CONDITIONAL_ON_IDENTICAL_SHARED_PRIMITIVE_ABI",
+      "commuting_obligation": "target mass and token-conditioned transition commute with Q",
+      "obligation_sha256": "af46e3c0134962a48ff8cf30d468e49ed13952bf55a7c7c9aecfd11eb5ab6d6c"
+    },
+    {
+      "index": 43,
+      "opcode": "RESIDUAL_ADD",
+      "stage": "decoder.1",
+      "weights": [],
+      "status": "CONDITIONAL_ON_IDENTICAL_SHARED_PRIMITIVE_ABI",
+      "commuting_obligation": "target mass and token-conditioned transition commute with Q",
+      "obligation_sha256": "b9b33309c608d19784f6b82c9200e4def039085dea8a23eea38bbb28bc8f8738"
+    },
+    {
+      "index": 44,
+      "opcode": "LAYER_NORM",
+      "stage": "decoder.1",
+      "weights": [
+        "model.decoder.layers.1.encoder_attn_layer_norm.bias",
+        "model.decoder.layers.1.encoder_attn_layer_norm.weight"
+      ],
+      "status": "CONDITIONAL_ON_IDENTICAL_SHARED_PRIMITIVE_ABI",
+      "commuting_obligation": "target mass and token-conditioned transition commute with Q",
+      "obligation_sha256": "d9885a2b7c92ea134435d8830287da0ca62644990552e71ac1277c95e496d068"
+    },
+    {
+      "index": 45,
+      "opcode": "CROSS_ATTENTION",
+      "stage": "decoder.1",
+      "weights": [
+        "model.decoder.layers.1.encoder_attn.k_proj.weight",
+        "model.decoder.layers.1.encoder_attn.out_proj.bias",
+        "model.decoder.layers.1.encoder_attn.out_proj.weight",
+        "model.decoder.layers.1.encoder_attn.q_proj.bias",
+        "model.decoder.layers.1.encoder_attn.q_proj.weight",
+        "model.decoder.layers.1.encoder_attn.v_proj.bias",
+        "model.decoder.layers.1.encoder_attn.v_proj.weight"
+      ],
+      "status": "CONDITIONAL_ON_IDENTICAL_SHARED_PRIMITIVE_ABI",
+      "commuting_obligation": "target mass and token-conditioned transition commute with Q",
+      "obligation_sha256": "95afc143a99f1855da5bd736e74385a82861f4ba126c0e89e81021c7792bc358"
+    },
+    {
+      "index": 46,
+      "opcode": "RESIDUAL_ADD",
+      "stage": "decoder.1",
+      "weights": [],
+      "status": "CONDITIONAL_ON_IDENTICAL_SHARED_PRIMITIVE_ABI",
+      "commuting_obligation": "target mass and token-conditioned transition commute with Q",
+      "obligation_sha256": "baaff44810ef6a0f9c8df5d7557b0b0f10ea40071c83397194af11b3f94d0529"
+    },
+    {
+      "index": 47,
+      "opcode": "LAYER_NORM",
+      "stage": "decoder.1",
+      "weights": [
+        "model.decoder.layers.1.final_layer_norm.bias",
+        "model.decoder.layers.1.final_layer_norm.weight"
+      ],
+      "status": "CONDITIONAL_ON_IDENTICAL_SHARED_PRIMITIVE_ABI",
+      "commuting_obligation": "target mass and token-conditioned transition commute with Q",
+      "obligation_sha256": "36990d538a5d215721af303296adb595aed22f1847c22413c0f84f1156b15254"
+    },
+    {
+      "index": 48,
+      "opcode": "MLP_GELU",
+      "stage": "decoder.1",
+      "weights": [
+        "model.decoder.layers.1.fc1.bias",
+        "model.decoder.layers.1.fc1.weight",
+        "model.decoder.layers.1.fc2.bias",
+        "model.decoder.layers.1.fc2.weight"
+      ],
+      "status": "CONDITIONAL_ON_IDENTICAL_SHARED_PRIMITIVE_ABI",
+      "commuting_obligation": "target mass and token-conditioned transition commute with Q",
+      "obligation_sha256": "a3092592d72b229e927a5ac30e9ca648ec6f3219e75e73351087e0cee252b064"
+    },
+    {
+      "index": 49,
+      "opcode": "RESIDUAL_ADD",
+      "stage": "decoder.1",
+      "weights": [],
+      "status": "CONDITIONAL_ON_IDENTICAL_SHARED_PRIMITIVE_ABI",
+      "commuting_obligation": "target mass and token-conditioned transition commute with Q",
+      "obligation_sha256": "15042b3f8c54c973af31508a285f06eef086136343031cfccf0183331266313e"
+    },
+    {
+      "index": 50,
+      "opcode": "LAYER_NORM",
+      "stage": "decoder.2",
+      "weights": [
+        "model.decoder.layers.2.self_attn_layer_norm.bias",
+        "model.decoder.layers.2.self_attn_layer_norm.weight"
+      ],
+      "status": "CONDITIONAL_ON_IDENTICAL_SHARED_PRIMITIVE_ABI",
+      "commuting_obligation": "target mass and token-conditioned transition commute with Q",
+      "obligation_sha256": "3bee83005e20b8db49c73253a59f76ea737722518deb0a799aedded3a3146cb5"
+    },
+    {
+      "index": 51,
+      "opcode": "CACHED_SELF_ATTENTION",
+      "stage": "decoder.2",
+      "weights": [
+        "model.decoder.layers.2.self_attn.k_proj.weight",
+        "model.decoder.layers.2.self_attn.out_proj.bias",
+        "model.decoder.layers.2.self_attn.out_proj.weight",
+        "model.decoder.layers.2.self_attn.q_proj.bias",
+        "model.decoder.layers.2.self_attn.q_proj.weight",
+        "model.decoder.layers.2.self_attn.v_proj.bias",
+        "model.decoder.layers.2.self_attn.v_proj.weight"
+      ],
+      "status": "CONDITIONAL_ON_IDENTICAL_SHARED_PRIMITIVE_ABI",
+      "commuting_obligation": "target mass and token-conditioned transition commute with Q",
+      "obligation_sha256": "b9361695884f8daec4aff4a0fbe95a707d9d121c36be45ae3b0a527d911a9faa"
+    },
+    {
+      "index": 52,
+      "opcode": "RESIDUAL_ADD",
+      "stage": "decoder.2",
+      "weights": [],
+      "status": "CONDITIONAL_ON_IDENTICAL_SHARED_PRIMITIVE_ABI",
+      "commuting_obligation": "target mass and token-conditioned transition commute with Q",
+      "obligation_sha256": "9c035620e608e6144c261bdf7b79a38d103a1b5f024d041ff1d3ad8dd7fe19e2"
+    },
+    {
+      "index": 53,
+      "opcode": "LAYER_NORM",
+      "stage": "decoder.2",
+      "weights": [
+        "model.decoder.layers.2.encoder_attn_layer_norm.bias",
+        "model.decoder.layers.2.encoder_attn_layer_norm.weight"
+      ],
+      "status": "CONDITIONAL_ON_IDENTICAL_SHARED_PRIMITIVE_ABI",
+      "commuting_obligation": "target mass and token-conditioned transition commute with Q",
+      "obligation_sha256": "c8fc8f57d6391e5d4deb5f12703eee31b011f5b0485fa9c181880de7380e26bb"
+    },
+    {
+      "index": 54,
+      "opcode": "CROSS_ATTENTION",
+      "stage": "decoder.2",
+      "weights": [
+        "model.decoder.layers.2.encoder_attn.k_proj.weight",
+        "model.decoder.layers.2.encoder_attn.out_proj.bias",
+        "model.decoder.layers.2.encoder_attn.out_proj.weight",
+        "model.decoder.layers.2.encoder_attn.q_proj.bias",
+        "model.decoder.layers.2.encoder_attn.q_proj.weight",
+        "model.decoder.layers.2.encoder_attn.v_proj.bias",
+        "model.decoder.layers.2.encoder_attn.v_proj.weight"
+      ],
+      "status": "CONDITIONAL_ON_IDENTICAL_SHARED_PRIMITIVE_ABI",
+      "commuting_obligation": "target mass and token-conditioned transition commute with Q",
+      "obligation_sha256": "7b1ff1ec4794f906f06a9d738762dcc0f6a1bf3196b8bac3483932048b58f2d4"
+    },
+    {
+      "index": 55,
+      "opcode": "RESIDUAL_ADD",
+      "stage": "decoder.2",
+      "weights": [],
+      "status": "CONDITIONAL_ON_IDENTICAL_SHARED_PRIMITIVE_ABI",
+      "commuting_obligation": "target mass and token-conditioned transition commute with Q",
+      "obligation_sha256": "9a6c84667a6d208c13e15be8aa83e6cbd1d130e2d100508c6ca3a955edf7e198"
+    },
+    {
+      "index": 56,
+      "opcode": "LAYER_NORM",
+      "stage": "decoder.2",
+      "weights": [
+        "model.decoder.layers.2.final_layer_norm.bias",
+        "model.decoder.layers.2.final_layer_norm.weight"
+      ],
+      "status": "CONDITIONAL_ON_IDENTICAL_SHARED_PRIMITIVE_ABI",
+      "commuting_obligation": "target mass and token-conditioned transition commute with Q",
+      "obligation_sha256": "ab28787ed3145903a48364249672adef4679f5dcb1ee8c16165c664139c76b46"
+    },
+    {
+      "index": 57,
+      "opcode": "MLP_GELU",
+      "stage": "decoder.2",
+      "weights": [
+        "model.decoder.layers.2.fc1.bias",
+        "model.decoder.layers.2.fc1.weight",
+        "model.decoder.layers.2.fc2.bias",
+        "model.decoder.layers.2.fc2.weight"
+      ],
+      "status": "CONDITIONAL_ON_IDENTICAL_SHARED_PRIMITIVE_ABI",
+      "commuting_obligation": "target mass and token-conditioned transition commute with Q",
+      "obligation_sha256": "495e57b5298ac996bc156a1c30155279a471ea70df9dca975333c202be6aec05"
+    },
+    {
+      "index": 58,
+      "opcode": "RESIDUAL_ADD",
+      "stage": "decoder.2",
+      "weights": [],
+      "status": "CONDITIONAL_ON_IDENTICAL_SHARED_PRIMITIVE_ABI",
+      "commuting_obligation": "target mass and token-conditioned transition commute with Q",
+      "obligation_sha256": "4c7786506d5f8e1b216660e25eaa7406cecd378fcf748cbf699c1b453f8cd92b"
+    },
+    {
+      "index": 59,
+      "opcode": "LAYER_NORM",
+      "stage": "decoder.3",
+      "weights": [
+        "model.decoder.layers.3.self_attn_layer_norm.bias",
+        "model.decoder.layers.3.self_attn_layer_norm.weight"
+      ],
+      "status": "CONDITIONAL_ON_IDENTICAL_SHARED_PRIMITIVE_ABI",
+      "commuting_obligation": "target mass and token-conditioned transition commute with Q",
+      "obligation_sha256": "466a330be26b517eca07b1c45547742feb047683aa516da229cb338ff3aa880f"
+    },
+    {
+      "index": 60,
+      "opcode": "CACHED_SELF_ATTENTION",
+      "stage": "decoder.3",
+      "weights": [
+        "model.decoder.layers.3.self_attn.k_proj.weight",
+        "model.decoder.layers.3.self_attn.out_proj.bias",
+        "model.decoder.layers.3.self_attn.out_proj.weight",
+        "model.decoder.layers.3.self_attn.q_proj.bias",
+        "model.decoder.layers.3.self_attn.q_proj.weight",
+        "model.decoder.layers.3.self_attn.v_proj.bias",
+        "model.decoder.layers.3.self_attn.v_proj.weight"
+      ],
+      "status": "CONDITIONAL_ON_IDENTICAL_SHARED_PRIMITIVE_ABI",
+      "commuting_obligation": "target mass and token-conditioned transition commute with Q",
+      "obligation_sha256": "a81a0ea485560eb4d79a7829e5d590f77e4330e1e75416d191fa9e2493b5b9c2"
+    },
+    {
+      "index": 61,
+      "opcode": "RESIDUAL_ADD",
+      "stage": "decoder.3",
+      "weights": [],
+      "status": "CONDITIONAL_ON_IDENTICAL_SHARED_PRIMITIVE_ABI",
+      "commuting_obligation": "target mass and token-conditioned transition commute with Q",
+      "obligation_sha256": "0a8583bc67af33b1b73a735fd14e29924986795c021d3dc01b598554fbf3ac56"
+    },
+    {
+      "index": 62,
+      "opcode": "LAYER_NORM",
+      "stage": "decoder.3",
+      "weights": [
+        "model.decoder.layers.3.encoder_attn_layer_norm.bias",
+        "model.decoder.layers.3.encoder_attn_layer_norm.weight"
+      ],
+      "status": "CONDITIONAL_ON_IDENTICAL_SHARED_PRIMITIVE_ABI",
+      "commuting_obligation": "target mass and token-conditioned transition commute with Q",
+      "obligation_sha256": "b312c32cf3019936edc9434be429a8f10dd289816607670c0bfeb348a71b9422"
+    },
+    {
+      "index": 63,
+      "opcode": "CROSS_ATTENTION",
+      "stage": "decoder.3",
+      "weights": [
+        "model.decoder.layers.3.encoder_attn.k_proj.weight",
+        "model.decoder.layers.3.encoder_attn.out_proj.bias",
+        "model.decoder.layers.3.encoder_attn.out_proj.weight",
+        "model.decoder.layers.3.encoder_attn.q_proj.bias",
+        "model.decoder.layers.3.encoder_attn.q_proj.weight",
+        "model.decoder.layers.3.encoder_attn.v_proj.bias",
+        "model.decoder.layers.3.encoder_attn.v_proj.weight"
+      ],
+      "status": "CONDITIONAL_ON_IDENTICAL_SHARED_PRIMITIVE_ABI",
+      "commuting_obligation": "target mass and token-conditioned transition commute with Q",
+      "obligation_sha256": "0b928268612ef119dbe67c9d1c1cc84b22d35e7247bbcc97c5874eaf5b5053dc"
+    },
+    {
+      "index": 64,
+      "opcode": "RESIDUAL_ADD",
+      "stage": "decoder.3",
+      "weights": [],
+      "status": "CONDITIONAL_ON_IDENTICAL_SHARED_PRIMITIVE_ABI",
+      "commuting_obligation": "target mass and token-conditioned transition commute with Q",
+      "obligation_sha256": "c42072e31798d87049027cc689e15e60c68d740ef0d26933855f1efd22553e10"
+    },
+    {
+      "index": 65,
+      "opcode": "LAYER_NORM",
+      "stage": "decoder.3",
+      "weights": [
+        "model.decoder.layers.3.final_layer_norm.bias",
+        "model.decoder.layers.3.final_layer_norm.weight"
+      ],
+      "status": "CONDITIONAL_ON_IDENTICAL_SHARED_PRIMITIVE_ABI",
+      "commuting_obligation": "target mass and token-conditioned transition commute with Q",
+      "obligation_sha256": "6fa97a12117cec883e0e43489dec4a2a6299b3e5871060c3636ea55e373c299c"
+    },
+    {
+      "index": 66,
+      "opcode": "MLP_GELU",
+      "stage": "decoder.3",
+      "weights": [
+        "model.decoder.layers.3.fc1.bias",
+        "model.decoder.layers.3.fc1.weight",
+        "model.decoder.layers.3.fc2.bias",
+        "model.decoder.layers.3.fc2.weight"
+      ],
+      "status": "CONDITIONAL_ON_IDENTICAL_SHARED_PRIMITIVE_ABI",
+      "commuting_obligation": "target mass and token-conditioned transition commute with Q",
+      "obligation_sha256": "6396e48d5b6142bd31eb8e33e755213ba93185d1610232dcc70aed7b2e5a10ff"
+    },
+    {
+      "index": 67,
+      "opcode": "RESIDUAL_ADD",
+      "stage": "decoder.3",
+      "weights": [],
+      "status": "CONDITIONAL_ON_IDENTICAL_SHARED_PRIMITIVE_ABI",
+      "commuting_obligation": "target mass and token-conditioned transition commute with Q",
+      "obligation_sha256": "c58417c1e12ac2cc8bda5f8cceba1154cdb9bd03e6dc66c404a669102beaf114"
+    },
+    {
+      "index": 68,
+      "opcode": "LAYER_NORM",
+      "stage": "decoder.final",
+      "weights": [
+        "model.decoder.layer_norm.bias",
+        "model.decoder.layer_norm.weight"
+      ],
+      "status": "CONDITIONAL_ON_IDENTICAL_SHARED_PRIMITIVE_ABI",
+      "commuting_obligation": "target mass and token-conditioned transition commute with Q",
+      "obligation_sha256": "9cb6bf89c6abdba1c7dd4d0a5b59fc307335ee278f50e7a56f874531502bbf40"
+    },
+    {
+      "index": 69,
+      "opcode": "TIED_LM_HEAD",
+      "stage": "readout",
+      "weights": [
+        "model.decoder.embed_tokens.weight"
+      ],
+      "status": "CONDITIONAL_ON_IDENTICAL_SHARED_PRIMITIVE_ABI",
+      "commuting_obligation": "target mass and token-conditioned transition commute with Q",
+      "obligation_sha256": "11e23951b7517197ada0edef9c70e3c0aecd0dc51b1e5b60d59c683496ff7178"
+    },
+    {
+      "index": 70,
+      "opcode": "GENERATION_POLICY",
+      "stage": "readout",
+      "weights": [],
+      "status": "CONDITIONAL_ON_IDENTICAL_SHARED_PRIMITIVE_ABI",
+      "commuting_obligation": "target mass and token-conditioned transition commute with Q",
+      "obligation_sha256": "9216573f8385c811321266c432db5eb6758ed3e66436bb8973a4b9ba4115a4a9"
+    },
+    {
+      "index": 71,
+      "opcode": "SOFTMAX",
+      "stage": "readout",
+      "weights": [],
+      "status": "CONDITIONAL_ON_IDENTICAL_SHARED_PRIMITIVE_ABI",
+      "commuting_obligation": "target mass and token-conditioned transition commute with Q",
+      "obligation_sha256": "fb7193926a2b8e8aaf6abb9cbf0ade224ef2783446a2a9e665a8a8c39890f39b"
+    },
+    {
+      "index": 72,
+      "opcode": "SAMPLE_OR_ARGMAX",
+      "stage": "transition",
+      "weights": [],
+      "status": "EXACT_AT_PROBABILITY_LAW_LEVEL",
+      "commuting_obligation": "target mass and token-conditioned transition commute with Q",
+      "obligation_sha256": "802a1e0e96d9b93ac0a7e4dc9522b46f5111b6bf0fdbf4c2229368ed06a04b5a"
+    },
+    {
+      "index": 73,
+      "opcode": "TOKEN_AND_CACHE_APPEND",
+      "stage": "transition",
+      "weights": [],
+      "status": "EXACT_STRUCTURAL",
+      "commuting_obligation": "target mass and token-conditioned transition commute with Q",
+      "obligation_sha256": "c70028895d860c751c3e0e044d604982be65af3e65ed6f4b299c71f00984a4d2"
+    }
+  ],
+  "finite_state_quotient": false,
+  "probabilistic_register_graph": true,
+  "graph_structure_and_checkpoint_binding_complete": true,
+  "shared_abi_equivalence_complete_under_assumptions": true,
+  "portable_backend_independent_equivalence_complete": false,
+  "result": "MACHINE_CHECKED_ALL_AUDIO_ALL_FINITE_TRANSCRIPTS_FROM_74_COMMUTING_ASSUMPTIONS",
+  "trust_boundary": "Python/Transformers frontend and numerical primitive correspondence to the extracted schedule is hash-bound and tested, not formalized in Lean"
+}

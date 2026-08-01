@@ -1,0 +1,2215 @@
+{
+  "language": "HIERARCHICAL-DISCRETE-AUDIO-PROBABILISTIC-GRAPH-1",
+  "value_types": {
+    "SampleQ15": "Fin 65536",
+    "F32Bits": "BitVec 32",
+    "EnergyClass": "Fin 16",
+    "FrequencyNode": "Fin 80",
+    "CochlearPlace": "Fin 81",
+    "Token": "Fin 51864"
+  },
+  "edge_kinds": {
+    "SAMPLE_FLOW": "same-time audio sample propagation",
+    "STATE_DELAY": "state from time t to t+1",
+    "PARAMETER_BITS": "immutable finite coefficient bit vector",
+    "GRAPH_INSTANCE": "invoke a nested graph template",
+    "CASCADE_PLACE": "same-time propagation from basal section j to apical section j+1",
+    "NEIGHBOR_PLACE": "spatial coupling between adjacent cochlear places",
+    "OHC_FEEDBACK": "fast local outer-hair-cell feedback",
+    "AGC_FEEDBACK": "delayed spatial/temporal gain-control feedback",
+    "QUOTIENT_MEMBERSHIP": "fine detector belongs to an explicit quotient set",
+    "POSITIVE_MEASURE": "convert detector activity to nonnegative energy",
+    "PROBABILITY_NORMALIZE": "divide node energy by frame total",
+    "MODEL_INTERFACE": "feed the fixed 80-channel neural suffix",
+    "ORDERED_REDUCE": "fixed left-to-right binary32 reduction",
+    "TAP_PRODUCT": "coefficient-weighted sample or bin",
+    "DISCRETE_CAST": "finite Q15 code to binary32 bit pattern",
+    "NONLINEAR": "named deterministic finite-bit operation",
+    "FRAME_GLOBAL": "operation depending on all values in a frame",
+    "AFFINE": "fixed finite-bit affine map",
+    "SQUARE_ADD": "squared magnitude",
+    "DATA": "ordinary deterministic data edge",
+    "PARAMETER_MODULATION": "state-dependent coefficient selection",
+    "QUANTIZE": "map to Fin16",
+    "REFLECT_PAD": "center padding by reflected samples",
+    "FRAME_SLICE": "select 400 samples at a 160-sample hop",
+    "DROP_LAST": "remove centered STFT frame 3000",
+    "UTTERANCE_GLOBAL": "dependency on all 80x3000 values",
+    "SQUARE": "finite-bit activity square",
+    "PAD_FRAMES": "zero-pad active frame energies to 3000",
+    "MODEL_INTERFACE_CANDIDATE_UNPROVED": "alternate unproved 80-channel interface"
+  },
+  "templates": {
+    "OrderedF32Sum": {
+      "parameters": [
+        "length:Nat"
+      ],
+      "nodes": [
+        "input:F32Bits[length]",
+        "accumulator:F32Bits",
+        "output:F32Bits"
+      ],
+      "edges": [
+        [
+          "input",
+          "accumulator",
+          "ORDERED_REDUCE"
+        ],
+        [
+          "accumulator",
+          "accumulator",
+          "STATE_DELAY"
+        ],
+        [
+          "accumulator",
+          "output",
+          "DATA"
+        ]
+      ]
+    },
+    "DFTBinDetector": {
+      "parameters": [
+        "bin:Fin201"
+      ],
+      "nodes": [
+        "windowed:F32Bits[400]",
+        "cos:F32Bits[400]",
+        "minus_sin:F32Bits[400]",
+        "real_products",
+        "imag_products",
+        "real_sum",
+        "imag_sum",
+        "power"
+      ],
+      "contains": [
+        {
+          "template": "OrderedF32Sum",
+          "instances": 2,
+          "length": 400
+        }
+      ],
+      "edges": [
+        [
+          "windowed",
+          "real_products",
+          "TAP_PRODUCT"
+        ],
+        [
+          "cos",
+          "real_products",
+          "PARAMETER_BITS"
+        ],
+        [
+          "windowed",
+          "imag_products",
+          "TAP_PRODUCT"
+        ],
+        [
+          "minus_sin",
+          "imag_products",
+          "PARAMETER_BITS"
+        ],
+        [
+          "real_products",
+          "real_sum",
+          "GRAPH_INSTANCE"
+        ],
+        [
+          "imag_products",
+          "imag_sum",
+          "GRAPH_INSTANCE"
+        ],
+        [
+          "real_sum",
+          "power",
+          "SQUARE_ADD"
+        ],
+        [
+          "imag_sum",
+          "power",
+          "SQUARE_ADD"
+        ]
+      ]
+    },
+    "MelBandDetector": {
+      "parameters": [
+        "band:Fin80"
+      ],
+      "nodes": [
+        "dft_power:F32Bits[201]",
+        "mel_row:F32Bits[201]",
+        "weighted_bins",
+        "band_energy"
+      ],
+      "contains": [
+        {
+          "template": "OrderedF32Sum",
+          "instances": 1,
+          "length": "nonzero(mel_row)"
+        }
+      ],
+      "edges": [
+        [
+          "dft_power",
+          "weighted_bins",
+          "TAP_PRODUCT"
+        ],
+        [
+          "mel_row",
+          "weighted_bins",
+          "PARAMETER_BITS"
+        ],
+        [
+          "weighted_bins",
+          "band_energy",
+          "GRAPH_INSTANCE"
+        ]
+      ]
+    },
+    "WhisperFrameFrontend": {
+      "parameters": [
+        "frame:Fin3001"
+      ],
+      "nodes": [
+        "center_reflect_pad",
+        "frame_slice:Fin65536[400]",
+        "f32_samples",
+        "windowed",
+        "dft_bank",
+        "mel_energy80"
+      ],
+      "contains": [
+        {
+          "template": "DFTBinDetector",
+          "instances": 201
+        },
+        {
+          "template": "MelBandDetector",
+          "instances": 80
+        }
+      ],
+      "edges": [
+        [
+          "center_reflect_pad",
+          "frame_slice",
+          "FRAME_SLICE"
+        ],
+        [
+          "frame_slice",
+          "f32_samples",
+          "DISCRETE_CAST"
+        ],
+        [
+          "f32_samples",
+          "windowed",
+          "TAP_PRODUCT"
+        ],
+        [
+          "windowed",
+          "dft_bank",
+          "GRAPH_INSTANCE"
+        ],
+        [
+          "dft_bank",
+          "mel_energy80",
+          "GRAPH_INSTANCE"
+        ]
+      ]
+    },
+    "WhisperWindowFrontend": {
+      "parameters": [
+        "window:480000 samples"
+      ],
+      "nodes": [
+        "pcm_q15",
+        "center_reflect_pad",
+        "mel_energy80x3001",
+        "drop_last_frame",
+        "log10",
+        "utterance_global_max",
+        "eight_decibel_floor",
+        "affine_normalize",
+        "LogMel80x3000"
+      ],
+      "contains": [
+        {
+          "template": "WhisperFrameFrontend",
+          "instances": 3001
+        }
+      ],
+      "edges": [
+        [
+          "pcm_q15",
+          "center_reflect_pad",
+          "REFLECT_PAD"
+        ],
+        [
+          "center_reflect_pad",
+          "mel_energy80x3001",
+          "GRAPH_INSTANCE"
+        ],
+        [
+          "mel_energy80x3001",
+          "drop_last_frame",
+          "DROP_LAST"
+        ],
+        [
+          "drop_last_frame",
+          "log10",
+          "NONLINEAR"
+        ],
+        [
+          "log10",
+          "utterance_global_max",
+          "UTTERANCE_GLOBAL"
+        ],
+        [
+          "utterance_global_max",
+          "eight_decibel_floor",
+          "UTTERANCE_GLOBAL"
+        ],
+        [
+          "log10",
+          "eight_decibel_floor",
+          "DATA"
+        ],
+        [
+          "eight_decibel_floor",
+          "affine_normalize",
+          "AFFINE"
+        ],
+        [
+          "affine_normalize",
+          "LogMel80x3000",
+          "MODEL_INTERFACE"
+        ]
+      ]
+    },
+    "CARFACSection": {
+      "parameters": [
+        "place:Fin81"
+      ],
+      "state": [
+        "z1:F32Bits",
+        "z2:F32Bits",
+        "za:F32Bits",
+        "zb:F32Bits",
+        "g:F32Bits"
+      ],
+      "nodes": [
+        "cascade_in",
+        "interpolate_g_zb",
+        "velocity",
+        "ohc_nonlinearity",
+        "radius",
+        "rotate_state",
+        "asymmetric_zero",
+        "cascade_out"
+      ],
+      "edges": [
+        [
+          "cascade_in",
+          "rotate_state",
+          "CASCADE_PLACE"
+        ],
+        [
+          "z1",
+          "rotate_state",
+          "STATE_DELAY"
+        ],
+        [
+          "z2",
+          "velocity",
+          "STATE_DELAY"
+        ],
+        [
+          "za",
+          "velocity",
+          "STATE_DELAY"
+        ],
+        [
+          "velocity",
+          "ohc_nonlinearity",
+          "NONLINEAR"
+        ],
+        [
+          "ohc_nonlinearity",
+          "radius",
+          "OHC_FEEDBACK"
+        ],
+        [
+          "radius",
+          "rotate_state",
+          "PARAMETER_MODULATION"
+        ],
+        [
+          "rotate_state",
+          "asymmetric_zero",
+          "DATA"
+        ],
+        [
+          "asymmetric_zero",
+          "cascade_out",
+          "CASCADE_PLACE"
+        ]
+      ]
+    },
+    "InnerHairCell": {
+      "parameters": [
+        "place:Fin81"
+      ],
+      "state": [
+        "ac_coupler",
+        "cap1",
+        "cap2",
+        "lpf1",
+        "lpf2"
+      ],
+      "nodes": [
+        "basilar_motion",
+        "ac_difference",
+        "conductance_detector",
+        "capacitor_update",
+        "lowpass",
+        "neural_activity"
+      ],
+      "edges": [
+        [
+          "basilar_motion",
+          "ac_difference",
+          "DATA"
+        ],
+        [
+          "ac_coupler",
+          "ac_difference",
+          "STATE_DELAY"
+        ],
+        [
+          "ac_difference",
+          "conductance_detector",
+          "NONLINEAR"
+        ],
+        [
+          "conductance_detector",
+          "capacitor_update",
+          "STATE_DELAY"
+        ],
+        [
+          "capacitor_update",
+          "lowpass",
+          "STATE_DELAY"
+        ],
+        [
+          "lowpass",
+          "neural_activity",
+          "DATA"
+        ]
+      ]
+    },
+    "AGCStage": {
+      "parameters": [
+        "stage:Fin4",
+        "place:Fin81"
+      ],
+      "state": [
+        "decimation_phase",
+        "input_accum",
+        "agc_memory"
+      ],
+      "nodes": [
+        "neural_activity",
+        "decimate",
+        "temporal_iir",
+        "spatial_fir",
+        "damping_feedback"
+      ],
+      "edges": [
+        [
+          "neural_activity",
+          "decimate",
+          "AGC_FEEDBACK"
+        ],
+        [
+          "decimate",
+          "temporal_iir",
+          "STATE_DELAY"
+        ],
+        [
+          "temporal_iir",
+          "spatial_fir",
+          "NEIGHBOR_PLACE"
+        ],
+        [
+          "spatial_fir",
+          "damping_feedback",
+          "AGC_FEEDBACK"
+        ]
+      ]
+    },
+    "CARFACSampleFrontend": {
+      "parameters": [
+        "sample:Nat"
+      ],
+      "nodes": [
+        "pcm_sample",
+        "car_cascade",
+        "ihc_bank",
+        "agc_bank",
+        "NAP81"
+      ],
+      "contains": [
+        {
+          "template": "CARFACSection",
+          "instances": 81
+        },
+        {
+          "template": "InnerHairCell",
+          "instances": 81
+        },
+        {
+          "template": "AGCStage",
+          "instances": 324
+        }
+      ],
+      "edges": [
+        [
+          "pcm_sample",
+          "car_cascade",
+          "SAMPLE_FLOW"
+        ],
+        [
+          "car_cascade",
+          "ihc_bank",
+          "GRAPH_INSTANCE"
+        ],
+        [
+          "ihc_bank",
+          "agc_bank",
+          "GRAPH_INSTANCE"
+        ],
+        [
+          "agc_bank",
+          "car_cascade",
+          "AGC_FEEDBACK"
+        ],
+        [
+          "ihc_bank",
+          "NAP81",
+          "DATA"
+        ]
+      ]
+    },
+    "CARFACFrameEnergy": {
+      "parameters": [
+        "frame:Nat",
+        "place:Fin81"
+      ],
+      "nodes": [
+        "NAP160",
+        "squared_activity",
+        "ordered_sum",
+        "mean_energy"
+      ],
+      "contains": [
+        {
+          "template": "OrderedF32Sum",
+          "instances": 1,
+          "length": 160
+        }
+      ],
+      "edges": [
+        [
+          "NAP160",
+          "squared_activity",
+          "SQUARE"
+        ],
+        [
+          "squared_activity",
+          "ordered_sum",
+          "GRAPH_INSTANCE"
+        ],
+        [
+          "ordered_sum",
+          "mean_energy",
+          "AFFINE"
+        ]
+      ]
+    },
+    "CARFACWindowFrontend": {
+      "parameters": [
+        "samples:Nat"
+      ],
+      "nodes": [
+        "pcm_q15",
+        "NAP_stream81",
+        "frame_energy81",
+        "zero_pad_to_3000"
+      ],
+      "contains": [
+        {
+          "template": "CARFACSampleFrontend",
+          "instances": "samples"
+        },
+        {
+          "template": "CARFACFrameEnergy",
+          "instances": "ceil(samples/160) x 81"
+        }
+      ],
+      "edges": [
+        [
+          "pcm_q15",
+          "NAP_stream81",
+          "GRAPH_INSTANCE"
+        ],
+        [
+          "NAP_stream81",
+          "frame_energy81",
+          "GRAPH_INSTANCE"
+        ],
+        [
+          "frame_energy81",
+          "zero_pad_to_3000",
+          "PAD_FRAMES"
+        ]
+      ]
+    },
+    "ProbabilityQuotient": {
+      "parameters": [
+        "frame:Nat",
+        "method:Fin5"
+      ],
+      "nodes": [
+        "fine_activity",
+        "membership_relation",
+        "positive_energy",
+        "total_energy",
+        "mass80",
+        "class80"
+      ],
+      "edges": [
+        [
+          "fine_activity",
+          "positive_energy",
+          "POSITIVE_MEASURE"
+        ],
+        [
+          "membership_relation",
+          "positive_energy",
+          "QUOTIENT_MEMBERSHIP"
+        ],
+        [
+          "positive_energy",
+          "total_energy",
+          "ORDERED_REDUCE"
+        ],
+        [
+          "total_energy",
+          "mass80",
+          "PROBABILITY_NORMALIZE"
+        ],
+        [
+          "mass80",
+          "class80",
+          "QUANTIZE"
+        ]
+      ]
+    }
+  },
+  "coefficient_blob": {
+    "path": "audio_filter_coefficients.bin",
+    "bytes": 712684,
+    "sha256": "c4959bc9d8cc966bf2ca2941cd126e45c40f4ac4c6829be8ee81d1f1dd9c98d0",
+    "blocks": [
+      {
+        "name": "whisper.hann_window",
+        "offset": 0,
+        "bytes": 1600,
+        "dtype": "F32BitsLE",
+        "shape": [
+          400
+        ],
+        "sha256": "c692d19f0b2bd745f0dfc967261c3e3d21a2473e485a677d219e9b4a73e0218e",
+        "semantic": "periodic 400-sample analysis window used by torch.stft",
+        "finite": true
+      },
+      {
+        "name": "whisper.dft_cos",
+        "offset": 1600,
+        "bytes": 321600,
+        "dtype": "F32BitsLE",
+        "shape": [
+          201,
+          400
+        ],
+        "sha256": "38ab9745a4bc773335a4781dee5561c95af851a00893e16ceb64e6f33e8b9352",
+        "semantic": "direct real DFT detector coefficients for bins 0..200",
+        "finite": true
+      },
+      {
+        "name": "whisper.dft_minus_sin",
+        "offset": 323200,
+        "bytes": 321600,
+        "dtype": "F32BitsLE",
+        "shape": [
+          201,
+          400
+        ],
+        "sha256": "c8dbfb361b553908fa54adc0ce8054550b534a05f7b0f1378cb8c89a3ffa754e",
+        "semantic": "direct imaginary DFT detector coefficients for bins 0..200",
+        "finite": true
+      },
+      {
+        "name": "whisper.mel_weights",
+        "offset": 644800,
+        "bytes": 64320,
+        "dtype": "F32BitsLE",
+        "shape": [
+          80,
+          201
+        ],
+        "sha256": "88df35e6c6d720d89b2d59b410cf386081a6ad04ccc6daaa732ca9b481575137",
+        "semantic": "actual 80 by 201 Whisper feature-extractor Mel matrix",
+        "finite": true
+      },
+      {
+        "name": "carfac.pole_freqs",
+        "offset": 709120,
+        "bytes": 324,
+        "dtype": "F32BitsLE",
+        "shape": [
+          81
+        ],
+        "sha256": "bd78c423ebb3bf7bd6fa9d32919b557d037814fa232be4660a5f6abe45564853",
+        "semantic": "81 physical cochlear-section pole frequencies",
+        "finite": true
+      },
+      {
+        "name": "carfac.car.r1_coeffs",
+        "offset": 709444,
+        "bytes": 324,
+        "dtype": "F32BitsLE",
+        "shape": [
+          81
+        ],
+        "sha256": "f0e3aab5881788c3fbcbadb022f511648e6cb3d8beb517b9c0bccaf6a640efaa",
+        "semantic": "official CAR-FAC designed coefficient/state-independent array carfac.car.r1_coeffs",
+        "finite": true
+      },
+      {
+        "name": "carfac.car.a0_coeffs",
+        "offset": 709768,
+        "bytes": 324,
+        "dtype": "F32BitsLE",
+        "shape": [
+          81
+        ],
+        "sha256": "a0c3b029b11aec93d9d02593d42c814092f6b76f0537bcce9ad8e54a04df8ce2",
+        "semantic": "official CAR-FAC designed coefficient/state-independent array carfac.car.a0_coeffs",
+        "finite": true
+      },
+      {
+        "name": "carfac.car.c0_coeffs",
+        "offset": 710092,
+        "bytes": 324,
+        "dtype": "F32BitsLE",
+        "shape": [
+          81
+        ],
+        "sha256": "61f65a8399cf187b37eb4cb1c6e64ca5de87adc410efeac7d75f58b138a763fc",
+        "semantic": "official CAR-FAC designed coefficient/state-independent array carfac.car.c0_coeffs",
+        "finite": true
+      },
+      {
+        "name": "carfac.car.h_coeffs",
+        "offset": 710416,
+        "bytes": 324,
+        "dtype": "F32BitsLE",
+        "shape": [
+          81
+        ],
+        "sha256": "61f65a8399cf187b37eb4cb1c6e64ca5de87adc410efeac7d75f58b138a763fc",
+        "semantic": "official CAR-FAC designed coefficient/state-independent array carfac.car.h_coeffs",
+        "finite": true
+      },
+      {
+        "name": "carfac.car.g0_coeffs",
+        "offset": 710740,
+        "bytes": 324,
+        "dtype": "F32BitsLE",
+        "shape": [
+          81
+        ],
+        "sha256": "6fb680e50966fc63503eb5fad89ec6b5f71472d7b7ee1f7f4dc40df36f2c330e",
+        "semantic": "official CAR-FAC designed coefficient/state-independent array carfac.car.g0_coeffs",
+        "finite": true
+      },
+      {
+        "name": "carfac.car.ga_coeffs",
+        "offset": 711064,
+        "bytes": 324,
+        "dtype": "F32BitsLE",
+        "shape": [
+          81
+        ],
+        "sha256": "d0d51382e483ab2e62f0f6707bd88d579e25349648ba9d295e4a1d1dad1ae1ca",
+        "semantic": "official CAR-FAC designed coefficient/state-independent array carfac.car.ga_coeffs",
+        "finite": true
+      },
+      {
+        "name": "carfac.car.gb_coeffs",
+        "offset": 711388,
+        "bytes": 324,
+        "dtype": "F32BitsLE",
+        "shape": [
+          81
+        ],
+        "sha256": "1230d2b54605f391fe8e9495e96b11a40c0beb50727d6a5fc9501b9e4092dd53",
+        "semantic": "official CAR-FAC designed coefficient/state-independent array carfac.car.gb_coeffs",
+        "finite": true
+      },
+      {
+        "name": "carfac.car.gc_coeffs",
+        "offset": 711712,
+        "bytes": 324,
+        "dtype": "F32BitsLE",
+        "shape": [
+          81
+        ],
+        "sha256": "a831931687c4b6e027603c984e3b65e7e0b0356df0b46178ab61c43699978647",
+        "semantic": "official CAR-FAC designed coefficient/state-independent array carfac.car.gc_coeffs",
+        "finite": true
+      },
+      {
+        "name": "carfac.car.zr_coeffs",
+        "offset": 712036,
+        "bytes": 324,
+        "dtype": "F32BitsLE",
+        "shape": [
+          81
+        ],
+        "sha256": "f3fe43d34287059845917ab9776c432add9a253f67c14baa2b9a92880c1132f3",
+        "semantic": "official CAR-FAC designed coefficient/state-independent array carfac.car.zr_coeffs",
+        "finite": true
+      },
+      {
+        "name": "carfac.car.ohc_health",
+        "offset": 712360,
+        "bytes": 324,
+        "dtype": "F32BitsLE",
+        "shape": [
+          81
+        ],
+        "sha256": "18eff6d9e4f7aa03df4937cfc2ec1afeb7850a7e76f59889ab8343471799d9ae",
+        "semantic": "official CAR-FAC designed coefficient/state-independent array carfac.car.ohc_health",
+        "finite": true
+      }
+    ],
+    "scalar_parameters": {
+      "carfac.car.n_ch": 81,
+      "carfac.car.velocity_scale": 0.1,
+      "carfac.car.v_offset": 0.04,
+      "carfac.car.ac_coeff": 0.007853981633974483,
+      "carfac.car.use_delay_buffer": false,
+      "carfac.ihc.n_ch": 81,
+      "carfac.ihc.lpf_coeff": 0.5421666382283857,
+      "carfac.ihc.out1_rate": 0.13729687835100485,
+      "carfac.ihc.in1_rate": 0.3125,
+      "carfac.ihc.out2_rate": 0.21874999999999997,
+      "carfac.ihc.in2_rate": 0.00625,
+      "carfac.ihc.output_gain": 76.0858850233572,
+      "carfac.ihc.rest_output": 0.8115686910323144,
+      "carfac.ihc.rest_cap2": 0.626673144730969,
+      "carfac.ihc.rest_cap1": 0.9829791947065255,
+      "carfac.ihc.rest_cap": 0,
+      "carfac.ihc.out_rate": 0,
+      "carfac.ihc.in_rate": 0,
+      "carfac.ihc.ihc_style": 2,
+      "carfac.agc.0.n_ch": 81,
+      "carfac.agc.0.n_agc_stages": 4,
+      "carfac.agc.0.agc_stage_gain": 2,
+      "carfac.agc.0.agc_epsilon": 0.22119921692859512,
+      "carfac.agc.0.decimation": 8,
+      "carfac.agc.0.agc_spatial_iterations": 1,
+      "carfac.agc.0.agc_spatial_fir.0": 0.06861979166666665,
+      "carfac.agc.0.agc_spatial_fir.1": 0.6171875,
+      "carfac.agc.0.agc_spatial_fir.2": 0.12278645833333332,
+      "carfac.agc.0.agc_spatial_n_taps": 5,
+      "carfac.agc.0.detect_scale": 0.06666666666666667,
+      "carfac.agc.0.agc_mix_coeffs": 0,
+      "carfac.agc.1.n_ch": 81,
+      "carfac.agc.1.n_agc_stages": 4,
+      "carfac.agc.1.agc_stage_gain": 2,
+      "carfac.agc.1.agc_epsilon": 0.11750309741540454,
+      "carfac.agc.1.decimation": 2,
+      "carfac.agc.1.agc_spatial_iterations": 1,
+      "carfac.agc.1.agc_spatial_fir.0": 0.07523200384286434,
+      "carfac.agc.1.agc_spatial_fir.1": 0.62246875,
+      "carfac.agc.1.agc_spatial_fir.2": 0.11353362115713565,
+      "carfac.agc.1.agc_spatial_n_taps": 5,
+      "carfac.agc.1.detect_scale": 1,
+      "carfac.agc.1.agc_mix_coeffs": 0.0625,
+      "carfac.agc.2.n_ch": 81,
+      "carfac.agc.2.n_agc_stages": 4,
+      "carfac.agc.2.agc_stage_gain": 2,
+      "carfac.agc.2.agc_epsilon": 0.06058693718652419,
+      "carfac.agc.2.decimation": 2,
+      "carfac.agc.2.agc_spatial_iterations": 1,
+      "carfac.agc.2.agc_spatial_fir.0": 0.08018098958333336,
+      "carfac.agc.2.agc_spatial_fir.1": 0.6251093749999999,
+      "carfac.agc.2.agc_spatial_fir.2": 0.10726432291666671,
+      "carfac.agc.2.agc_spatial_n_taps": 5,
+      "carfac.agc.2.detect_scale": 1,
+      "carfac.agc.2.agc_mix_coeffs": 0.03125,
+      "carfac.agc.3.n_ch": 81,
+      "carfac.agc.3.n_agc_stages": 4,
+      "carfac.agc.3.agc_stage_gain": 2,
+      "carfac.agc.3.agc_epsilon": 0.03076676552365587,
+      "carfac.agc.3.decimation": 2,
+      "carfac.agc.3.agc_spatial_iterations": 1,
+      "carfac.agc.3.agc_spatial_fir.0": 0.08381717379643219,
+      "carfac.agc.3.agc_spatial_fir.1": 0.6264296874999999,
+      "carfac.agc.3.agc_spatial_fir.2": 0.10296798245356786,
+      "carfac.agc.3.agc_spatial_n_taps": 5,
+      "carfac.agc.3.detect_scale": 1,
+      "carfac.agc.3.agc_mix_coeffs": 0.015625
+    }
+  },
+  "sample_state_blob": {
+    "path": "audio_frequency_quotient_states.bin",
+    "bytes": 117200,
+    "sha256": "a39be54ce4f2a916dffdf35c16fdb9cc198a6d4b79eb3b820eb77b22713afb97",
+    "layout": {
+      "path": "audio_frequency_quotient_states.bin",
+      "bytes": 117200,
+      "sha256": "a39be54ce4f2a916dffdf35c16fdb9cc198a6d4b79eb3b820eb77b22713afb97"
+    }
+  },
+  "outer_graph": {
+    "nodes": [
+      {
+        "id": "PCM",
+        "type": "Stream SampleQ15"
+      },
+      {
+        "id": "WhisperMel",
+        "type": "HyperNode",
+        "contains_graph": "WhisperWindowFrontend",
+        "instances": 1
+      },
+      {
+        "id": "CARFAC",
+        "type": "HyperNode",
+        "contains_graph": "CARFACWindowFrontend",
+        "instances": 1
+      },
+      {
+        "id": "MelQuotient",
+        "type": "HyperNode",
+        "contains_graph": "ProbabilityQuotient",
+        "instances": "frames"
+      },
+      {
+        "id": "CochlearQuotient",
+        "type": "HyperNode",
+        "contains_graph": "ProbabilityQuotient",
+        "instances": "frames"
+      },
+      {
+        "id": "WhisperNeuralSuffix",
+        "type": "HyperNode",
+        "contains_graph": "BaseWhisper74Ops",
+        "instances": 1
+      },
+      {
+        "id": "TokenLaw",
+        "type": "Categorical Token"
+      }
+    ],
+    "edges": [
+      [
+        "PCM",
+        "WhisperMel",
+        "SAMPLE_FLOW"
+      ],
+      [
+        "PCM",
+        "CARFAC",
+        "SAMPLE_FLOW"
+      ],
+      [
+        "WhisperMel",
+        "MelQuotient",
+        "GRAPH_INSTANCE"
+      ],
+      [
+        "CARFAC",
+        "CochlearQuotient",
+        "GRAPH_INSTANCE"
+      ],
+      [
+        "MelQuotient",
+        "WhisperNeuralSuffix",
+        "MODEL_INTERFACE"
+      ],
+      [
+        "CochlearQuotient",
+        "WhisperNeuralSuffix",
+        "MODEL_INTERFACE_CANDIDATE_UNPROVED"
+      ],
+      [
+        "WhisperNeuralSuffix",
+        "TokenLaw",
+        "PROBABILITY_NORMALIZE"
+      ]
+    ]
+  },
+  "base_whisper": {
+    "path": "whisper_tiny_en_probabilistic_graph.json",
+    "sha256": "2adbb1fb4d6d14993772e13d596d7f77981ca7c5be27c0a1088a338927a5fe3c",
+    "checkpoint_sha256": "db59695928ded6043adaef491a53ef4e12da9611184d77c53baa691a60b958ad",
+    "opcode_count": 74,
+    "tensor_count": 167,
+    "ops": [
+      {
+        "index": 0,
+        "opcode": "PCM_AUDIO_INPUT",
+        "stage": "frontend",
+        "inputs": [
+          "audio_file"
+        ],
+        "outputs": [
+          "pcm_f32"
+        ],
+        "weights": [],
+        "semantics": "mono 16 kHz samples in [-1,1]"
+      },
+      {
+        "index": 1,
+        "opcode": "LOG_MEL_STFT",
+        "stage": "frontend",
+        "inputs": [
+          "pcm_f32"
+        ],
+        "outputs": [
+          "mel_80x3000"
+        ],
+        "weights": [],
+        "semantics": "WhisperFeatureExtractor: padded 30 s log-Mel spectrogram"
+      },
+      {
+        "index": 2,
+        "opcode": "CONV1_GELU",
+        "stage": "encoder",
+        "inputs": [
+          "mel_80x3000"
+        ],
+        "outputs": [
+          "enc_conv1"
+        ],
+        "weights": [
+          "model.encoder.conv1.bias",
+          "model.encoder.conv1.weight"
+        ],
+        "semantics": "Conv1d 80->384, kernel 3, padding 1, GELU"
+      },
+      {
+        "index": 3,
+        "opcode": "CONV2_GELU",
+        "stage": "encoder",
+        "inputs": [
+          "enc_conv1"
+        ],
+        "outputs": [
+          "enc_hidden"
+        ],
+        "weights": [
+          "model.encoder.conv2.bias",
+          "model.encoder.conv2.weight"
+        ],
+        "semantics": "Conv1d 384->384, kernel 3, stride 2, GELU"
+      },
+      {
+        "index": 4,
+        "opcode": "POSITIONAL_ADD",
+        "stage": "encoder",
+        "inputs": [
+          "enc_hidden"
+        ],
+        "outputs": [
+          "enc_hidden"
+        ],
+        "weights": [
+          "model.encoder.embed_positions.weight"
+        ],
+        "semantics": "add fixed 1500-position embedding"
+      },
+      {
+        "index": 5,
+        "opcode": "LAYER_NORM",
+        "stage": "encoder.0",
+        "inputs": [
+          "enc_hidden"
+        ],
+        "outputs": [
+          "enc_norm"
+        ],
+        "weights": [
+          "model.encoder.layers.0.self_attn_layer_norm.bias",
+          "model.encoder.layers.0.self_attn_layer_norm.weight"
+        ],
+        "semantics": ""
+      },
+      {
+        "index": 6,
+        "opcode": "SELF_ATTENTION",
+        "stage": "encoder.0",
+        "inputs": [
+          "enc_norm"
+        ],
+        "outputs": [
+          "enc_attn"
+        ],
+        "weights": [
+          "model.encoder.layers.0.self_attn.k_proj.weight",
+          "model.encoder.layers.0.self_attn.out_proj.bias",
+          "model.encoder.layers.0.self_attn.out_proj.weight",
+          "model.encoder.layers.0.self_attn.q_proj.bias",
+          "model.encoder.layers.0.self_attn.q_proj.weight",
+          "model.encoder.layers.0.self_attn.v_proj.bias",
+          "model.encoder.layers.0.self_attn.v_proj.weight"
+        ],
+        "semantics": "six-head scaled dot-product attention"
+      },
+      {
+        "index": 7,
+        "opcode": "RESIDUAL_ADD",
+        "stage": "encoder.0",
+        "inputs": [
+          "enc_hidden",
+          "enc_attn"
+        ],
+        "outputs": [
+          "enc_hidden"
+        ],
+        "weights": [],
+        "semantics": ""
+      },
+      {
+        "index": 8,
+        "opcode": "LAYER_NORM",
+        "stage": "encoder.0",
+        "inputs": [
+          "enc_hidden"
+        ],
+        "outputs": [
+          "enc_norm"
+        ],
+        "weights": [
+          "model.encoder.layers.0.final_layer_norm.bias",
+          "model.encoder.layers.0.final_layer_norm.weight"
+        ],
+        "semantics": ""
+      },
+      {
+        "index": 9,
+        "opcode": "MLP_GELU",
+        "stage": "encoder.0",
+        "inputs": [
+          "enc_norm"
+        ],
+        "outputs": [
+          "enc_mlp"
+        ],
+        "weights": [
+          "model.encoder.layers.0.fc1.bias",
+          "model.encoder.layers.0.fc1.weight",
+          "model.encoder.layers.0.fc2.bias",
+          "model.encoder.layers.0.fc2.weight"
+        ],
+        "semantics": "384->1536 GELU ->384"
+      },
+      {
+        "index": 10,
+        "opcode": "RESIDUAL_ADD",
+        "stage": "encoder.0",
+        "inputs": [
+          "enc_hidden",
+          "enc_mlp"
+        ],
+        "outputs": [
+          "enc_hidden"
+        ],
+        "weights": [],
+        "semantics": ""
+      },
+      {
+        "index": 11,
+        "opcode": "LAYER_NORM",
+        "stage": "encoder.1",
+        "inputs": [
+          "enc_hidden"
+        ],
+        "outputs": [
+          "enc_norm"
+        ],
+        "weights": [
+          "model.encoder.layers.1.self_attn_layer_norm.bias",
+          "model.encoder.layers.1.self_attn_layer_norm.weight"
+        ],
+        "semantics": ""
+      },
+      {
+        "index": 12,
+        "opcode": "SELF_ATTENTION",
+        "stage": "encoder.1",
+        "inputs": [
+          "enc_norm"
+        ],
+        "outputs": [
+          "enc_attn"
+        ],
+        "weights": [
+          "model.encoder.layers.1.self_attn.k_proj.weight",
+          "model.encoder.layers.1.self_attn.out_proj.bias",
+          "model.encoder.layers.1.self_attn.out_proj.weight",
+          "model.encoder.layers.1.self_attn.q_proj.bias",
+          "model.encoder.layers.1.self_attn.q_proj.weight",
+          "model.encoder.layers.1.self_attn.v_proj.bias",
+          "model.encoder.layers.1.self_attn.v_proj.weight"
+        ],
+        "semantics": "six-head scaled dot-product attention"
+      },
+      {
+        "index": 13,
+        "opcode": "RESIDUAL_ADD",
+        "stage": "encoder.1",
+        "inputs": [
+          "enc_hidden",
+          "enc_attn"
+        ],
+        "outputs": [
+          "enc_hidden"
+        ],
+        "weights": [],
+        "semantics": ""
+      },
+      {
+        "index": 14,
+        "opcode": "LAYER_NORM",
+        "stage": "encoder.1",
+        "inputs": [
+          "enc_hidden"
+        ],
+        "outputs": [
+          "enc_norm"
+        ],
+        "weights": [
+          "model.encoder.layers.1.final_layer_norm.bias",
+          "model.encoder.layers.1.final_layer_norm.weight"
+        ],
+        "semantics": ""
+      },
+      {
+        "index": 15,
+        "opcode": "MLP_GELU",
+        "stage": "encoder.1",
+        "inputs": [
+          "enc_norm"
+        ],
+        "outputs": [
+          "enc_mlp"
+        ],
+        "weights": [
+          "model.encoder.layers.1.fc1.bias",
+          "model.encoder.layers.1.fc1.weight",
+          "model.encoder.layers.1.fc2.bias",
+          "model.encoder.layers.1.fc2.weight"
+        ],
+        "semantics": "384->1536 GELU ->384"
+      },
+      {
+        "index": 16,
+        "opcode": "RESIDUAL_ADD",
+        "stage": "encoder.1",
+        "inputs": [
+          "enc_hidden",
+          "enc_mlp"
+        ],
+        "outputs": [
+          "enc_hidden"
+        ],
+        "weights": [],
+        "semantics": ""
+      },
+      {
+        "index": 17,
+        "opcode": "LAYER_NORM",
+        "stage": "encoder.2",
+        "inputs": [
+          "enc_hidden"
+        ],
+        "outputs": [
+          "enc_norm"
+        ],
+        "weights": [
+          "model.encoder.layers.2.self_attn_layer_norm.bias",
+          "model.encoder.layers.2.self_attn_layer_norm.weight"
+        ],
+        "semantics": ""
+      },
+      {
+        "index": 18,
+        "opcode": "SELF_ATTENTION",
+        "stage": "encoder.2",
+        "inputs": [
+          "enc_norm"
+        ],
+        "outputs": [
+          "enc_attn"
+        ],
+        "weights": [
+          "model.encoder.layers.2.self_attn.k_proj.weight",
+          "model.encoder.layers.2.self_attn.out_proj.bias",
+          "model.encoder.layers.2.self_attn.out_proj.weight",
+          "model.encoder.layers.2.self_attn.q_proj.bias",
+          "model.encoder.layers.2.self_attn.q_proj.weight",
+          "model.encoder.layers.2.self_attn.v_proj.bias",
+          "model.encoder.layers.2.self_attn.v_proj.weight"
+        ],
+        "semantics": "six-head scaled dot-product attention"
+      },
+      {
+        "index": 19,
+        "opcode": "RESIDUAL_ADD",
+        "stage": "encoder.2",
+        "inputs": [
+          "enc_hidden",
+          "enc_attn"
+        ],
+        "outputs": [
+          "enc_hidden"
+        ],
+        "weights": [],
+        "semantics": ""
+      },
+      {
+        "index": 20,
+        "opcode": "LAYER_NORM",
+        "stage": "encoder.2",
+        "inputs": [
+          "enc_hidden"
+        ],
+        "outputs": [
+          "enc_norm"
+        ],
+        "weights": [
+          "model.encoder.layers.2.final_layer_norm.bias",
+          "model.encoder.layers.2.final_layer_norm.weight"
+        ],
+        "semantics": ""
+      },
+      {
+        "index": 21,
+        "opcode": "MLP_GELU",
+        "stage": "encoder.2",
+        "inputs": [
+          "enc_norm"
+        ],
+        "outputs": [
+          "enc_mlp"
+        ],
+        "weights": [
+          "model.encoder.layers.2.fc1.bias",
+          "model.encoder.layers.2.fc1.weight",
+          "model.encoder.layers.2.fc2.bias",
+          "model.encoder.layers.2.fc2.weight"
+        ],
+        "semantics": "384->1536 GELU ->384"
+      },
+      {
+        "index": 22,
+        "opcode": "RESIDUAL_ADD",
+        "stage": "encoder.2",
+        "inputs": [
+          "enc_hidden",
+          "enc_mlp"
+        ],
+        "outputs": [
+          "enc_hidden"
+        ],
+        "weights": [],
+        "semantics": ""
+      },
+      {
+        "index": 23,
+        "opcode": "LAYER_NORM",
+        "stage": "encoder.3",
+        "inputs": [
+          "enc_hidden"
+        ],
+        "outputs": [
+          "enc_norm"
+        ],
+        "weights": [
+          "model.encoder.layers.3.self_attn_layer_norm.bias",
+          "model.encoder.layers.3.self_attn_layer_norm.weight"
+        ],
+        "semantics": ""
+      },
+      {
+        "index": 24,
+        "opcode": "SELF_ATTENTION",
+        "stage": "encoder.3",
+        "inputs": [
+          "enc_norm"
+        ],
+        "outputs": [
+          "enc_attn"
+        ],
+        "weights": [
+          "model.encoder.layers.3.self_attn.k_proj.weight",
+          "model.encoder.layers.3.self_attn.out_proj.bias",
+          "model.encoder.layers.3.self_attn.out_proj.weight",
+          "model.encoder.layers.3.self_attn.q_proj.bias",
+          "model.encoder.layers.3.self_attn.q_proj.weight",
+          "model.encoder.layers.3.self_attn.v_proj.bias",
+          "model.encoder.layers.3.self_attn.v_proj.weight"
+        ],
+        "semantics": "six-head scaled dot-product attention"
+      },
+      {
+        "index": 25,
+        "opcode": "RESIDUAL_ADD",
+        "stage": "encoder.3",
+        "inputs": [
+          "enc_hidden",
+          "enc_attn"
+        ],
+        "outputs": [
+          "enc_hidden"
+        ],
+        "weights": [],
+        "semantics": ""
+      },
+      {
+        "index": 26,
+        "opcode": "LAYER_NORM",
+        "stage": "encoder.3",
+        "inputs": [
+          "enc_hidden"
+        ],
+        "outputs": [
+          "enc_norm"
+        ],
+        "weights": [
+          "model.encoder.layers.3.final_layer_norm.bias",
+          "model.encoder.layers.3.final_layer_norm.weight"
+        ],
+        "semantics": ""
+      },
+      {
+        "index": 27,
+        "opcode": "MLP_GELU",
+        "stage": "encoder.3",
+        "inputs": [
+          "enc_norm"
+        ],
+        "outputs": [
+          "enc_mlp"
+        ],
+        "weights": [
+          "model.encoder.layers.3.fc1.bias",
+          "model.encoder.layers.3.fc1.weight",
+          "model.encoder.layers.3.fc2.bias",
+          "model.encoder.layers.3.fc2.weight"
+        ],
+        "semantics": "384->1536 GELU ->384"
+      },
+      {
+        "index": 28,
+        "opcode": "RESIDUAL_ADD",
+        "stage": "encoder.3",
+        "inputs": [
+          "enc_hidden",
+          "enc_mlp"
+        ],
+        "outputs": [
+          "enc_hidden"
+        ],
+        "weights": [],
+        "semantics": ""
+      },
+      {
+        "index": 29,
+        "opcode": "LAYER_NORM",
+        "stage": "encoder.final",
+        "inputs": [
+          "enc_hidden"
+        ],
+        "outputs": [
+          "encoder_memory"
+        ],
+        "weights": [
+          "model.encoder.layer_norm.bias",
+          "model.encoder.layer_norm.weight"
+        ],
+        "semantics": ""
+      },
+      {
+        "index": 30,
+        "opcode": "TOKEN_STACK_INPUT",
+        "stage": "decoder",
+        "inputs": [
+          "decoder_token_stack"
+        ],
+        "outputs": [
+          "decoder_ids"
+        ],
+        "weights": [],
+        "semantics": ""
+      },
+      {
+        "index": 31,
+        "opcode": "TOKEN_POSITION_EMBED",
+        "stage": "decoder",
+        "inputs": [
+          "decoder_ids"
+        ],
+        "outputs": [
+          "dec_hidden"
+        ],
+        "weights": [
+          "model.decoder.embed_tokens.weight",
+          "model.decoder.embed_positions.weight"
+        ],
+        "semantics": ""
+      },
+      {
+        "index": 32,
+        "opcode": "LAYER_NORM",
+        "stage": "decoder.0",
+        "inputs": [
+          "dec_hidden"
+        ],
+        "outputs": [
+          "dec_norm"
+        ],
+        "weights": [
+          "model.decoder.layers.0.self_attn_layer_norm.bias",
+          "model.decoder.layers.0.self_attn_layer_norm.weight"
+        ],
+        "semantics": ""
+      },
+      {
+        "index": 33,
+        "opcode": "CACHED_SELF_ATTENTION",
+        "stage": "decoder.0",
+        "inputs": [
+          "dec_norm",
+          "kv_cache_0"
+        ],
+        "outputs": [
+          "dec_attn",
+          "kv_cache_0"
+        ],
+        "weights": [
+          "model.decoder.layers.0.self_attn.k_proj.weight",
+          "model.decoder.layers.0.self_attn.out_proj.bias",
+          "model.decoder.layers.0.self_attn.out_proj.weight",
+          "model.decoder.layers.0.self_attn.q_proj.bias",
+          "model.decoder.layers.0.self_attn.q_proj.weight",
+          "model.decoder.layers.0.self_attn.v_proj.bias",
+          "model.decoder.layers.0.self_attn.v_proj.weight"
+        ],
+        "semantics": "causal six-head attention with typed K/V append"
+      },
+      {
+        "index": 34,
+        "opcode": "RESIDUAL_ADD",
+        "stage": "decoder.0",
+        "inputs": [
+          "dec_hidden",
+          "dec_attn"
+        ],
+        "outputs": [
+          "dec_hidden"
+        ],
+        "weights": [],
+        "semantics": ""
+      },
+      {
+        "index": 35,
+        "opcode": "LAYER_NORM",
+        "stage": "decoder.0",
+        "inputs": [
+          "dec_hidden"
+        ],
+        "outputs": [
+          "dec_norm"
+        ],
+        "weights": [
+          "model.decoder.layers.0.encoder_attn_layer_norm.bias",
+          "model.decoder.layers.0.encoder_attn_layer_norm.weight"
+        ],
+        "semantics": ""
+      },
+      {
+        "index": 36,
+        "opcode": "CROSS_ATTENTION",
+        "stage": "decoder.0",
+        "inputs": [
+          "dec_norm",
+          "encoder_memory"
+        ],
+        "outputs": [
+          "dec_cross"
+        ],
+        "weights": [
+          "model.decoder.layers.0.encoder_attn.k_proj.weight",
+          "model.decoder.layers.0.encoder_attn.out_proj.bias",
+          "model.decoder.layers.0.encoder_attn.out_proj.weight",
+          "model.decoder.layers.0.encoder_attn.q_proj.bias",
+          "model.decoder.layers.0.encoder_attn.q_proj.weight",
+          "model.decoder.layers.0.encoder_attn.v_proj.bias",
+          "model.decoder.layers.0.encoder_attn.v_proj.weight"
+        ],
+        "semantics": "six-head attention over fixed encoder memory"
+      },
+      {
+        "index": 37,
+        "opcode": "RESIDUAL_ADD",
+        "stage": "decoder.0",
+        "inputs": [
+          "dec_hidden",
+          "dec_cross"
+        ],
+        "outputs": [
+          "dec_hidden"
+        ],
+        "weights": [],
+        "semantics": ""
+      },
+      {
+        "index": 38,
+        "opcode": "LAYER_NORM",
+        "stage": "decoder.0",
+        "inputs": [
+          "dec_hidden"
+        ],
+        "outputs": [
+          "dec_norm"
+        ],
+        "weights": [
+          "model.decoder.layers.0.final_layer_norm.bias",
+          "model.decoder.layers.0.final_layer_norm.weight"
+        ],
+        "semantics": ""
+      },
+      {
+        "index": 39,
+        "opcode": "MLP_GELU",
+        "stage": "decoder.0",
+        "inputs": [
+          "dec_norm"
+        ],
+        "outputs": [
+          "dec_mlp"
+        ],
+        "weights": [
+          "model.decoder.layers.0.fc1.bias",
+          "model.decoder.layers.0.fc1.weight",
+          "model.decoder.layers.0.fc2.bias",
+          "model.decoder.layers.0.fc2.weight"
+        ],
+        "semantics": "384->1536 GELU ->384"
+      },
+      {
+        "index": 40,
+        "opcode": "RESIDUAL_ADD",
+        "stage": "decoder.0",
+        "inputs": [
+          "dec_hidden",
+          "dec_mlp"
+        ],
+        "outputs": [
+          "dec_hidden"
+        ],
+        "weights": [],
+        "semantics": ""
+      },
+      {
+        "index": 41,
+        "opcode": "LAYER_NORM",
+        "stage": "decoder.1",
+        "inputs": [
+          "dec_hidden"
+        ],
+        "outputs": [
+          "dec_norm"
+        ],
+        "weights": [
+          "model.decoder.layers.1.self_attn_layer_norm.bias",
+          "model.decoder.layers.1.self_attn_layer_norm.weight"
+        ],
+        "semantics": ""
+      },
+      {
+        "index": 42,
+        "opcode": "CACHED_SELF_ATTENTION",
+        "stage": "decoder.1",
+        "inputs": [
+          "dec_norm",
+          "kv_cache_1"
+        ],
+        "outputs": [
+          "dec_attn",
+          "kv_cache_1"
+        ],
+        "weights": [
+          "model.decoder.layers.1.self_attn.k_proj.weight",
+          "model.decoder.layers.1.self_attn.out_proj.bias",
+          "model.decoder.layers.1.self_attn.out_proj.weight",
+          "model.decoder.layers.1.self_attn.q_proj.bias",
+          "model.decoder.layers.1.self_attn.q_proj.weight",
+          "model.decoder.layers.1.self_attn.v_proj.bias",
+          "model.decoder.layers.1.self_attn.v_proj.weight"
+        ],
+        "semantics": "causal six-head attention with typed K/V append"
+      },
+      {
+        "index": 43,
+        "opcode": "RESIDUAL_ADD",
+        "stage": "decoder.1",
+        "inputs": [
+          "dec_hidden",
+          "dec_attn"
+        ],
+        "outputs": [
+          "dec_hidden"
+        ],
+        "weights": [],
+        "semantics": ""
+      },
+      {
+        "index": 44,
+        "opcode": "LAYER_NORM",
+        "stage": "decoder.1",
+        "inputs": [
+          "dec_hidden"
+        ],
+        "outputs": [
+          "dec_norm"
+        ],
+        "weights": [
+          "model.decoder.layers.1.encoder_attn_layer_norm.bias",
+          "model.decoder.layers.1.encoder_attn_layer_norm.weight"
+        ],
+        "semantics": ""
+      },
+      {
+        "index": 45,
+        "opcode": "CROSS_ATTENTION",
+        "stage": "decoder.1",
+        "inputs": [
+          "dec_norm",
+          "encoder_memory"
+        ],
+        "outputs": [
+          "dec_cross"
+        ],
+        "weights": [
+          "model.decoder.layers.1.encoder_attn.k_proj.weight",
+          "model.decoder.layers.1.encoder_attn.out_proj.bias",
+          "model.decoder.layers.1.encoder_attn.out_proj.weight",
+          "model.decoder.layers.1.encoder_attn.q_proj.bias",
+          "model.decoder.layers.1.encoder_attn.q_proj.weight",
+          "model.decoder.layers.1.encoder_attn.v_proj.bias",
+          "model.decoder.layers.1.encoder_attn.v_proj.weight"
+        ],
+        "semantics": "six-head attention over fixed encoder memory"
+      },
+      {
+        "index": 46,
+        "opcode": "RESIDUAL_ADD",
+        "stage": "decoder.1",
+        "inputs": [
+          "dec_hidden",
+          "dec_cross"
+        ],
+        "outputs": [
+          "dec_hidden"
+        ],
+        "weights": [],
+        "semantics": ""
+      },
+      {
+        "index": 47,
+        "opcode": "LAYER_NORM",
+        "stage": "decoder.1",
+        "inputs": [
+          "dec_hidden"
+        ],
+        "outputs": [
+          "dec_norm"
+        ],
+        "weights": [
+          "model.decoder.layers.1.final_layer_norm.bias",
+          "model.decoder.layers.1.final_layer_norm.weight"
+        ],
+        "semantics": ""
+      },
+      {
+        "index": 48,
+        "opcode": "MLP_GELU",
+        "stage": "decoder.1",
+        "inputs": [
+          "dec_norm"
+        ],
+        "outputs": [
+          "dec_mlp"
+        ],
+        "weights": [
+          "model.decoder.layers.1.fc1.bias",
+          "model.decoder.layers.1.fc1.weight",
+          "model.decoder.layers.1.fc2.bias",
+          "model.decoder.layers.1.fc2.weight"
+        ],
+        "semantics": "384->1536 GELU ->384"
+      },
+      {
+        "index": 49,
+        "opcode": "RESIDUAL_ADD",
+        "stage": "decoder.1",
+        "inputs": [
+          "dec_hidden",
+          "dec_mlp"
+        ],
+        "outputs": [
+          "dec_hidden"
+        ],
+        "weights": [],
+        "semantics": ""
+      },
+      {
+        "index": 50,
+        "opcode": "LAYER_NORM",
+        "stage": "decoder.2",
+        "inputs": [
+          "dec_hidden"
+        ],
+        "outputs": [
+          "dec_norm"
+        ],
+        "weights": [
+          "model.decoder.layers.2.self_attn_layer_norm.bias",
+          "model.decoder.layers.2.self_attn_layer_norm.weight"
+        ],
+        "semantics": ""
+      },
+      {
+        "index": 51,
+        "opcode": "CACHED_SELF_ATTENTION",
+        "stage": "decoder.2",
+        "inputs": [
+          "dec_norm",
+          "kv_cache_2"
+        ],
+        "outputs": [
+          "dec_attn",
+          "kv_cache_2"
+        ],
+        "weights": [
+          "model.decoder.layers.2.self_attn.k_proj.weight",
+          "model.decoder.layers.2.self_attn.out_proj.bias",
+          "model.decoder.layers.2.self_attn.out_proj.weight",
+          "model.decoder.layers.2.self_attn.q_proj.bias",
+          "model.decoder.layers.2.self_attn.q_proj.weight",
+          "model.decoder.layers.2.self_attn.v_proj.bias",
+          "model.decoder.layers.2.self_attn.v_proj.weight"
+        ],
+        "semantics": "causal six-head attention with typed K/V append"
+      },
+      {
+        "index": 52,
+        "opcode": "RESIDUAL_ADD",
+        "stage": "decoder.2",
+        "inputs": [
+          "dec_hidden",
+          "dec_attn"
+        ],
+        "outputs": [
+          "dec_hidden"
+        ],
+        "weights": [],
+        "semantics": ""
+      },
+      {
+        "index": 53,
+        "opcode": "LAYER_NORM",
+        "stage": "decoder.2",
+        "inputs": [
+          "dec_hidden"
+        ],
+        "outputs": [
+          "dec_norm"
+        ],
+        "weights": [
+          "model.decoder.layers.2.encoder_attn_layer_norm.bias",
+          "model.decoder.layers.2.encoder_attn_layer_norm.weight"
+        ],
+        "semantics": ""
+      },
+      {
+        "index": 54,
+        "opcode": "CROSS_ATTENTION",
+        "stage": "decoder.2",
+        "inputs": [
+          "dec_norm",
+          "encoder_memory"
+        ],
+        "outputs": [
+          "dec_cross"
+        ],
+        "weights": [
+          "model.decoder.layers.2.encoder_attn.k_proj.weight",
+          "model.decoder.layers.2.encoder_attn.out_proj.bias",
+          "model.decoder.layers.2.encoder_attn.out_proj.weight",
+          "model.decoder.layers.2.encoder_attn.q_proj.bias",
+          "model.decoder.layers.2.encoder_attn.q_proj.weight",
+          "model.decoder.layers.2.encoder_attn.v_proj.bias",
+          "model.decoder.layers.2.encoder_attn.v_proj.weight"
+        ],
+        "semantics": "six-head attention over fixed encoder memory"
+      },
+      {
+        "index": 55,
+        "opcode": "RESIDUAL_ADD",
+        "stage": "decoder.2",
+        "inputs": [
+          "dec_hidden",
+          "dec_cross"
+        ],
+        "outputs": [
+          "dec_hidden"
+        ],
+        "weights": [],
+        "semantics": ""
+      },
+      {
+        "index": 56,
+        "opcode": "LAYER_NORM",
+        "stage": "decoder.2",
+        "inputs": [
+          "dec_hidden"
+        ],
+        "outputs": [
+          "dec_norm"
+        ],
+        "weights": [
+          "model.decoder.layers.2.final_layer_norm.bias",
+          "model.decoder.layers.2.final_layer_norm.weight"
+        ],
+        "semantics": ""
+      },
+      {
+        "index": 57,
+        "opcode": "MLP_GELU",
+        "stage": "decoder.2",
+        "inputs": [
+          "dec_norm"
+        ],
+        "outputs": [
+          "dec_mlp"
+        ],
+        "weights": [
+          "model.decoder.layers.2.fc1.bias",
+          "model.decoder.layers.2.fc1.weight",
+          "model.decoder.layers.2.fc2.bias",
+          "model.decoder.layers.2.fc2.weight"
+        ],
+        "semantics": "384->1536 GELU ->384"
+      },
+      {
+        "index": 58,
+        "opcode": "RESIDUAL_ADD",
+        "stage": "decoder.2",
+        "inputs": [
+          "dec_hidden",
+          "dec_mlp"
+        ],
+        "outputs": [
+          "dec_hidden"
+        ],
+        "weights": [],
+        "semantics": ""
+      },
+      {
+        "index": 59,
+        "opcode": "LAYER_NORM",
+        "stage": "decoder.3",
+        "inputs": [
+          "dec_hidden"
+        ],
+        "outputs": [
+          "dec_norm"
+        ],
+        "weights": [
+          "model.decoder.layers.3.self_attn_layer_norm.bias",
+          "model.decoder.layers.3.self_attn_layer_norm.weight"
+        ],
+        "semantics": ""
+      },
+      {
+        "index": 60,
+        "opcode": "CACHED_SELF_ATTENTION",
+        "stage": "decoder.3",
+        "inputs": [
+          "dec_norm",
+          "kv_cache_3"
+        ],
+        "outputs": [
+          "dec_attn",
+          "kv_cache_3"
+        ],
+        "weights": [
+          "model.decoder.layers.3.self_attn.k_proj.weight",
+          "model.decoder.layers.3.self_attn.out_proj.bias",
+          "model.decoder.layers.3.self_attn.out_proj.weight",
+          "model.decoder.layers.3.self_attn.q_proj.bias",
+          "model.decoder.layers.3.self_attn.q_proj.weight",
+          "model.decoder.layers.3.self_attn.v_proj.bias",
+          "model.decoder.layers.3.self_attn.v_proj.weight"
+        ],
+        "semantics": "causal six-head attention with typed K/V append"
+      },
+      {
+        "index": 61,
+        "opcode": "RESIDUAL_ADD",
+        "stage": "decoder.3",
+        "inputs": [
+          "dec_hidden",
+          "dec_attn"
+        ],
+        "outputs": [
+          "dec_hidden"
+        ],
+        "weights": [],
+        "semantics": ""
+      },
+      {
+        "index": 62,
+        "opcode": "LAYER_NORM",
+        "stage": "decoder.3",
+        "inputs": [
+          "dec_hidden"
+        ],
+        "outputs": [
+          "dec_norm"
+        ],
+        "weights": [
+          "model.decoder.layers.3.encoder_attn_layer_norm.bias",
+          "model.decoder.layers.3.encoder_attn_layer_norm.weight"
+        ],
+        "semantics": ""
+      },
+      {
+        "index": 63,
+        "opcode": "CROSS_ATTENTION",
+        "stage": "decoder.3",
+        "inputs": [
+          "dec_norm",
+          "encoder_memory"
+        ],
+        "outputs": [
+          "dec_cross"
+        ],
+        "weights": [
+          "model.decoder.layers.3.encoder_attn.k_proj.weight",
+          "model.decoder.layers.3.encoder_attn.out_proj.bias",
+          "model.decoder.layers.3.encoder_attn.out_proj.weight",
+          "model.decoder.layers.3.encoder_attn.q_proj.bias",
+          "model.decoder.layers.3.encoder_attn.q_proj.weight",
+          "model.decoder.layers.3.encoder_attn.v_proj.bias",
+          "model.decoder.layers.3.encoder_attn.v_proj.weight"
+        ],
+        "semantics": "six-head attention over fixed encoder memory"
+      },
+      {
+        "index": 64,
+        "opcode": "RESIDUAL_ADD",
+        "stage": "decoder.3",
+        "inputs": [
+          "dec_hidden",
+          "dec_cross"
+        ],
+        "outputs": [
+          "dec_hidden"
+        ],
+        "weights": [],
+        "semantics": ""
+      },
+      {
+        "index": 65,
+        "opcode": "LAYER_NORM",
+        "stage": "decoder.3",
+        "inputs": [
+          "dec_hidden"
+        ],
+        "outputs": [
+          "dec_norm"
+        ],
+        "weights": [
+          "model.decoder.layers.3.final_layer_norm.bias",
+          "model.decoder.layers.3.final_layer_norm.weight"
+        ],
+        "semantics": ""
+      },
+      {
+        "index": 66,
+        "opcode": "MLP_GELU",
+        "stage": "decoder.3",
+        "inputs": [
+          "dec_norm"
+        ],
+        "outputs": [
+          "dec_mlp"
+        ],
+        "weights": [
+          "model.decoder.layers.3.fc1.bias",
+          "model.decoder.layers.3.fc1.weight",
+          "model.decoder.layers.3.fc2.bias",
+          "model.decoder.layers.3.fc2.weight"
+        ],
+        "semantics": "384->1536 GELU ->384"
+      },
+      {
+        "index": 67,
+        "opcode": "RESIDUAL_ADD",
+        "stage": "decoder.3",
+        "inputs": [
+          "dec_hidden",
+          "dec_mlp"
+        ],
+        "outputs": [
+          "dec_hidden"
+        ],
+        "weights": [],
+        "semantics": ""
+      },
+      {
+        "index": 68,
+        "opcode": "LAYER_NORM",
+        "stage": "decoder.final",
+        "inputs": [
+          "dec_hidden"
+        ],
+        "outputs": [
+          "decoder_readout"
+        ],
+        "weights": [
+          "model.decoder.layer_norm.bias",
+          "model.decoder.layer_norm.weight"
+        ],
+        "semantics": ""
+      },
+      {
+        "index": 69,
+        "opcode": "TIED_LM_HEAD",
+        "stage": "readout",
+        "inputs": [
+          "decoder_readout"
+        ],
+        "outputs": [
+          "logits_51864"
+        ],
+        "weights": [
+          "model.decoder.embed_tokens.weight"
+        ],
+        "semantics": "matrix readout tied to token embedding"
+      },
+      {
+        "index": 70,
+        "opcode": "GENERATION_POLICY",
+        "stage": "readout",
+        "inputs": [
+          "logits_51864",
+          "decoder_position"
+        ],
+        "outputs": [
+          "policy_logits"
+        ],
+        "weights": [],
+        "semantics": "forced no-timestamps prefix plus suppression masks"
+      },
+      {
+        "index": 71,
+        "opcode": "SOFTMAX",
+        "stage": "readout",
+        "inputs": [
+          "policy_logits"
+        ],
+        "outputs": [
+          "categorical_mass_51864"
+        ],
+        "weights": [],
+        "semantics": "normalized next-token probability law"
+      },
+      {
+        "index": 72,
+        "opcode": "SAMPLE_OR_ARGMAX",
+        "stage": "transition",
+        "inputs": [
+          "categorical_mass_51864",
+          "random_bits_or_greedy_mode"
+        ],
+        "outputs": [
+          "next_token"
+        ],
+        "weights": [],
+        "semantics": ""
+      },
+      {
+        "index": 73,
+        "opcode": "TOKEN_AND_CACHE_APPEND",
+        "stage": "transition",
+        "inputs": [
+          "next_token",
+          "decoder_token_stack",
+          "kv_cache_0..3"
+        ],
+        "outputs": [
+          "next_decoder_state"
+        ],
+        "weights": [],
+        "semantics": "probabilistic transducer transition"
+      }
+    ]
+  },
+  "instance_families": {
+    "stft_analysis_frames": 3001,
+    "output_frames": 3000,
+    "dft_bins_per_frame": 201,
+    "mel_bands_per_frame": 80,
+    "carfac_sections_per_sample": 81,
+    "ihc_detectors_per_sample": 81,
+    "agc_stage_places_per_sample": 324,
+    "active_frames": 586,
+    "padded_samples": 480000
+  },
+  "flattening_estimates": {
+    "mel_scalar_nodes_per_frame": 323303,
+    "mel_scalar_nodes_active_sample": 189455558,
+    "mel_scalar_nodes_30_seconds": 970232303,
+    "carfac_scalar_nodes_per_sample_estimate": 6642,
+    "carfac_scalar_nodes_30_seconds_estimate": 3188160000,
+    "note": "counts expose flattening cost but are not exact backend instruction counts"
+  },
+  "semantic_status": {
+    "coefficient_bits": "explicit and finite",
+    "mel_filter_membership": "actual Whisper frontend coefficients",
+    "dft": "explicit ordered direct-DFT graph; backend bit equality to torch FFT remains unproved",
+    "carfac": "actual designed coefficient arrays and source-shaped update graph; source/backend equivalence remains unproved",
+    "probability": "positive frame measures and Fin16 sample traces are explicit",
+    "whisper_suffix": "74-op graph references original checkpoint tensors"
+  }
+}

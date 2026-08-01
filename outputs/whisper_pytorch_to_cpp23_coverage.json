@@ -1,0 +1,3541 @@
+{
+  "certificate": "WHISPER_PYTORCH_TO_CPP23_BIDIRECTIONAL_COVERAGE_1",
+  "checkpoint_sha256": "db59695928ded6043adaef491a53ef4e12da9611184d77c53baa691a60b958ad",
+  "graph_sha256": "2adbb1fb4d6d14993772e13d596d7f77981ca7c5be27c0a1088a338927a5fe3c",
+  "pytorch": {
+    "module_count": 126,
+    "state_dict_name_count": 168,
+    "state_dict_scalar_count_with_tied_alias_counted_twice": 57676032,
+    "buffer_count": 0
+  },
+  "checkpoint": {
+    "stored_tensor_count": 167,
+    "stored_scalar_count": 37760256,
+    "stored_tensor_names": [
+      "model.decoder.embed_positions.weight",
+      "model.decoder.embed_tokens.weight",
+      "model.decoder.layer_norm.bias",
+      "model.decoder.layer_norm.weight",
+      "model.decoder.layers.0.encoder_attn.k_proj.weight",
+      "model.decoder.layers.0.encoder_attn.out_proj.bias",
+      "model.decoder.layers.0.encoder_attn.out_proj.weight",
+      "model.decoder.layers.0.encoder_attn.q_proj.bias",
+      "model.decoder.layers.0.encoder_attn.q_proj.weight",
+      "model.decoder.layers.0.encoder_attn.v_proj.bias",
+      "model.decoder.layers.0.encoder_attn.v_proj.weight",
+      "model.decoder.layers.0.encoder_attn_layer_norm.bias",
+      "model.decoder.layers.0.encoder_attn_layer_norm.weight",
+      "model.decoder.layers.0.fc1.bias",
+      "model.decoder.layers.0.fc1.weight",
+      "model.decoder.layers.0.fc2.bias",
+      "model.decoder.layers.0.fc2.weight",
+      "model.decoder.layers.0.final_layer_norm.bias",
+      "model.decoder.layers.0.final_layer_norm.weight",
+      "model.decoder.layers.0.self_attn.k_proj.weight",
+      "model.decoder.layers.0.self_attn.out_proj.bias",
+      "model.decoder.layers.0.self_attn.out_proj.weight",
+      "model.decoder.layers.0.self_attn.q_proj.bias",
+      "model.decoder.layers.0.self_attn.q_proj.weight",
+      "model.decoder.layers.0.self_attn.v_proj.bias",
+      "model.decoder.layers.0.self_attn.v_proj.weight",
+      "model.decoder.layers.0.self_attn_layer_norm.bias",
+      "model.decoder.layers.0.self_attn_layer_norm.weight",
+      "model.decoder.layers.1.encoder_attn.k_proj.weight",
+      "model.decoder.layers.1.encoder_attn.out_proj.bias",
+      "model.decoder.layers.1.encoder_attn.out_proj.weight",
+      "model.decoder.layers.1.encoder_attn.q_proj.bias",
+      "model.decoder.layers.1.encoder_attn.q_proj.weight",
+      "model.decoder.layers.1.encoder_attn.v_proj.bias",
+      "model.decoder.layers.1.encoder_attn.v_proj.weight",
+      "model.decoder.layers.1.encoder_attn_layer_norm.bias",
+      "model.decoder.layers.1.encoder_attn_layer_norm.weight",
+      "model.decoder.layers.1.fc1.bias",
+      "model.decoder.layers.1.fc1.weight",
+      "model.decoder.layers.1.fc2.bias",
+      "model.decoder.layers.1.fc2.weight",
+      "model.decoder.layers.1.final_layer_norm.bias",
+      "model.decoder.layers.1.final_layer_norm.weight",
+      "model.decoder.layers.1.self_attn.k_proj.weight",
+      "model.decoder.layers.1.self_attn.out_proj.bias",
+      "model.decoder.layers.1.self_attn.out_proj.weight",
+      "model.decoder.layers.1.self_attn.q_proj.bias",
+      "model.decoder.layers.1.self_attn.q_proj.weight",
+      "model.decoder.layers.1.self_attn.v_proj.bias",
+      "model.decoder.layers.1.self_attn.v_proj.weight",
+      "model.decoder.layers.1.self_attn_layer_norm.bias",
+      "model.decoder.layers.1.self_attn_layer_norm.weight",
+      "model.decoder.layers.2.encoder_attn.k_proj.weight",
+      "model.decoder.layers.2.encoder_attn.out_proj.bias",
+      "model.decoder.layers.2.encoder_attn.out_proj.weight",
+      "model.decoder.layers.2.encoder_attn.q_proj.bias",
+      "model.decoder.layers.2.encoder_attn.q_proj.weight",
+      "model.decoder.layers.2.encoder_attn.v_proj.bias",
+      "model.decoder.layers.2.encoder_attn.v_proj.weight",
+      "model.decoder.layers.2.encoder_attn_layer_norm.bias",
+      "model.decoder.layers.2.encoder_attn_layer_norm.weight",
+      "model.decoder.layers.2.fc1.bias",
+      "model.decoder.layers.2.fc1.weight",
+      "model.decoder.layers.2.fc2.bias",
+      "model.decoder.layers.2.fc2.weight",
+      "model.decoder.layers.2.final_layer_norm.bias",
+      "model.decoder.layers.2.final_layer_norm.weight",
+      "model.decoder.layers.2.self_attn.k_proj.weight",
+      "model.decoder.layers.2.self_attn.out_proj.bias",
+      "model.decoder.layers.2.self_attn.out_proj.weight",
+      "model.decoder.layers.2.self_attn.q_proj.bias",
+      "model.decoder.layers.2.self_attn.q_proj.weight",
+      "model.decoder.layers.2.self_attn.v_proj.bias",
+      "model.decoder.layers.2.self_attn.v_proj.weight",
+      "model.decoder.layers.2.self_attn_layer_norm.bias",
+      "model.decoder.layers.2.self_attn_layer_norm.weight",
+      "model.decoder.layers.3.encoder_attn.k_proj.weight",
+      "model.decoder.layers.3.encoder_attn.out_proj.bias",
+      "model.decoder.layers.3.encoder_attn.out_proj.weight",
+      "model.decoder.layers.3.encoder_attn.q_proj.bias",
+      "model.decoder.layers.3.encoder_attn.q_proj.weight",
+      "model.decoder.layers.3.encoder_attn.v_proj.bias",
+      "model.decoder.layers.3.encoder_attn.v_proj.weight",
+      "model.decoder.layers.3.encoder_attn_layer_norm.bias",
+      "model.decoder.layers.3.encoder_attn_layer_norm.weight",
+      "model.decoder.layers.3.fc1.bias",
+      "model.decoder.layers.3.fc1.weight",
+      "model.decoder.layers.3.fc2.bias",
+      "model.decoder.layers.3.fc2.weight",
+      "model.decoder.layers.3.final_layer_norm.bias",
+      "model.decoder.layers.3.final_layer_norm.weight",
+      "model.decoder.layers.3.self_attn.k_proj.weight",
+      "model.decoder.layers.3.self_attn.out_proj.bias",
+      "model.decoder.layers.3.self_attn.out_proj.weight",
+      "model.decoder.layers.3.self_attn.q_proj.bias",
+      "model.decoder.layers.3.self_attn.q_proj.weight",
+      "model.decoder.layers.3.self_attn.v_proj.bias",
+      "model.decoder.layers.3.self_attn.v_proj.weight",
+      "model.decoder.layers.3.self_attn_layer_norm.bias",
+      "model.decoder.layers.3.self_attn_layer_norm.weight",
+      "model.encoder.conv1.bias",
+      "model.encoder.conv1.weight",
+      "model.encoder.conv2.bias",
+      "model.encoder.conv2.weight",
+      "model.encoder.embed_positions.weight",
+      "model.encoder.layer_norm.bias",
+      "model.encoder.layer_norm.weight",
+      "model.encoder.layers.0.fc1.bias",
+      "model.encoder.layers.0.fc1.weight",
+      "model.encoder.layers.0.fc2.bias",
+      "model.encoder.layers.0.fc2.weight",
+      "model.encoder.layers.0.final_layer_norm.bias",
+      "model.encoder.layers.0.final_layer_norm.weight",
+      "model.encoder.layers.0.self_attn.k_proj.weight",
+      "model.encoder.layers.0.self_attn.out_proj.bias",
+      "model.encoder.layers.0.self_attn.out_proj.weight",
+      "model.encoder.layers.0.self_attn.q_proj.bias",
+      "model.encoder.layers.0.self_attn.q_proj.weight",
+      "model.encoder.layers.0.self_attn.v_proj.bias",
+      "model.encoder.layers.0.self_attn.v_proj.weight",
+      "model.encoder.layers.0.self_attn_layer_norm.bias",
+      "model.encoder.layers.0.self_attn_layer_norm.weight",
+      "model.encoder.layers.1.fc1.bias",
+      "model.encoder.layers.1.fc1.weight",
+      "model.encoder.layers.1.fc2.bias",
+      "model.encoder.layers.1.fc2.weight",
+      "model.encoder.layers.1.final_layer_norm.bias",
+      "model.encoder.layers.1.final_layer_norm.weight",
+      "model.encoder.layers.1.self_attn.k_proj.weight",
+      "model.encoder.layers.1.self_attn.out_proj.bias",
+      "model.encoder.layers.1.self_attn.out_proj.weight",
+      "model.encoder.layers.1.self_attn.q_proj.bias",
+      "model.encoder.layers.1.self_attn.q_proj.weight",
+      "model.encoder.layers.1.self_attn.v_proj.bias",
+      "model.encoder.layers.1.self_attn.v_proj.weight",
+      "model.encoder.layers.1.self_attn_layer_norm.bias",
+      "model.encoder.layers.1.self_attn_layer_norm.weight",
+      "model.encoder.layers.2.fc1.bias",
+      "model.encoder.layers.2.fc1.weight",
+      "model.encoder.layers.2.fc2.bias",
+      "model.encoder.layers.2.fc2.weight",
+      "model.encoder.layers.2.final_layer_norm.bias",
+      "model.encoder.layers.2.final_layer_norm.weight",
+      "model.encoder.layers.2.self_attn.k_proj.weight",
+      "model.encoder.layers.2.self_attn.out_proj.bias",
+      "model.encoder.layers.2.self_attn.out_proj.weight",
+      "model.encoder.layers.2.self_attn.q_proj.bias",
+      "model.encoder.layers.2.self_attn.q_proj.weight",
+      "model.encoder.layers.2.self_attn.v_proj.bias",
+      "model.encoder.layers.2.self_attn.v_proj.weight",
+      "model.encoder.layers.2.self_attn_layer_norm.bias",
+      "model.encoder.layers.2.self_attn_layer_norm.weight",
+      "model.encoder.layers.3.fc1.bias",
+      "model.encoder.layers.3.fc1.weight",
+      "model.encoder.layers.3.fc2.bias",
+      "model.encoder.layers.3.fc2.weight",
+      "model.encoder.layers.3.final_layer_norm.bias",
+      "model.encoder.layers.3.final_layer_norm.weight",
+      "model.encoder.layers.3.self_attn.k_proj.weight",
+      "model.encoder.layers.3.self_attn.out_proj.bias",
+      "model.encoder.layers.3.self_attn.out_proj.weight",
+      "model.encoder.layers.3.self_attn.q_proj.bias",
+      "model.encoder.layers.3.self_attn.q_proj.weight",
+      "model.encoder.layers.3.self_attn.v_proj.bias",
+      "model.encoder.layers.3.self_attn.v_proj.weight",
+      "model.encoder.layers.3.self_attn_layer_norm.bias",
+      "model.encoder.layers.3.self_attn_layer_norm.weight"
+    ]
+  },
+  "graph": {
+    "op_count": 74,
+    "runtime_nodes_visited": 74,
+    "unique_weight_resource_count": 167
+  },
+  "tied_aliases": [
+    {
+      "pytorch_name": "proj_out.weight",
+      "canonical_graph_resource": "model.decoder.embed_tokens.weight",
+      "same_storage": true,
+      "bitwise_equal": true,
+      "graph_op_indices": [
+        31,
+        69
+      ]
+    }
+  ],
+  "modules": [
+    {
+      "pytorch_module": "<root>",
+      "class": "WhisperForConditionalGeneration",
+      "status": "CONTAINER_BY_DESCENDANTS",
+      "direct_parameters": [],
+      "descendant_state_name_count": 168,
+      "graph_op_indices": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        8,
+        9,
+        11,
+        12,
+        14,
+        15,
+        17,
+        18,
+        20,
+        21,
+        23,
+        24,
+        26,
+        27,
+        29,
+        31,
+        32,
+        33,
+        35,
+        36,
+        38,
+        39,
+        41,
+        42,
+        44,
+        45,
+        47,
+        48,
+        50,
+        51,
+        53,
+        54,
+        56,
+        57,
+        59,
+        60,
+        62,
+        63,
+        65,
+        66,
+        68,
+        69
+      ]
+    },
+    {
+      "pytorch_module": "model",
+      "class": "WhisperModel",
+      "status": "CONTAINER_BY_DESCENDANTS",
+      "direct_parameters": [],
+      "descendant_state_name_count": 167,
+      "graph_op_indices": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        8,
+        9,
+        11,
+        12,
+        14,
+        15,
+        17,
+        18,
+        20,
+        21,
+        23,
+        24,
+        26,
+        27,
+        29,
+        31,
+        32,
+        33,
+        35,
+        36,
+        38,
+        39,
+        41,
+        42,
+        44,
+        45,
+        47,
+        48,
+        50,
+        51,
+        53,
+        54,
+        56,
+        57,
+        59,
+        60,
+        62,
+        63,
+        65,
+        66,
+        68,
+        69
+      ]
+    },
+    {
+      "pytorch_module": "model.encoder",
+      "class": "WhisperEncoder",
+      "status": "CONTAINER_BY_DESCENDANTS",
+      "direct_parameters": [],
+      "descendant_state_name_count": 67,
+      "graph_op_indices": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        8,
+        9,
+        11,
+        12,
+        14,
+        15,
+        17,
+        18,
+        20,
+        21,
+        23,
+        24,
+        26,
+        27,
+        29
+      ]
+    },
+    {
+      "pytorch_module": "model.encoder.conv1",
+      "class": "Conv1d",
+      "status": "DIRECT_PARAMETER_BINDING",
+      "direct_parameters": [
+        "model.encoder.conv1.weight",
+        "model.encoder.conv1.bias"
+      ],
+      "descendant_state_name_count": 2,
+      "graph_op_indices": [
+        2
+      ]
+    },
+    {
+      "pytorch_module": "model.encoder.conv2",
+      "class": "Conv1d",
+      "status": "DIRECT_PARAMETER_BINDING",
+      "direct_parameters": [
+        "model.encoder.conv2.weight",
+        "model.encoder.conv2.bias"
+      ],
+      "descendant_state_name_count": 2,
+      "graph_op_indices": [
+        3
+      ]
+    },
+    {
+      "pytorch_module": "model.encoder.embed_positions",
+      "class": "Embedding",
+      "status": "DIRECT_PARAMETER_BINDING",
+      "direct_parameters": [
+        "model.encoder.embed_positions.weight"
+      ],
+      "descendant_state_name_count": 1,
+      "graph_op_indices": [
+        4
+      ]
+    },
+    {
+      "pytorch_module": "model.encoder.layers",
+      "class": "ModuleList",
+      "status": "CONTAINER_BY_DESCENDANTS",
+      "direct_parameters": [],
+      "descendant_state_name_count": 60,
+      "graph_op_indices": [
+        5,
+        6,
+        8,
+        9,
+        11,
+        12,
+        14,
+        15,
+        17,
+        18,
+        20,
+        21,
+        23,
+        24,
+        26,
+        27
+      ]
+    },
+    {
+      "pytorch_module": "model.encoder.layers.0",
+      "class": "WhisperEncoderLayer",
+      "status": "CONTAINER_BY_DESCENDANTS",
+      "direct_parameters": [],
+      "descendant_state_name_count": 15,
+      "graph_op_indices": [
+        5,
+        6,
+        8,
+        9
+      ]
+    },
+    {
+      "pytorch_module": "model.encoder.layers.0.self_attn",
+      "class": "WhisperAttention",
+      "status": "CONTAINER_BY_DESCENDANTS",
+      "direct_parameters": [],
+      "descendant_state_name_count": 7,
+      "graph_op_indices": [
+        6
+      ]
+    },
+    {
+      "pytorch_module": "model.encoder.layers.0.self_attn.k_proj",
+      "class": "Linear",
+      "status": "DIRECT_PARAMETER_BINDING",
+      "direct_parameters": [
+        "model.encoder.layers.0.self_attn.k_proj.weight"
+      ],
+      "descendant_state_name_count": 1,
+      "graph_op_indices": [
+        6
+      ]
+    },
+    {
+      "pytorch_module": "model.encoder.layers.0.self_attn.v_proj",
+      "class": "Linear",
+      "status": "DIRECT_PARAMETER_BINDING",
+      "direct_parameters": [
+        "model.encoder.layers.0.self_attn.v_proj.weight",
+        "model.encoder.layers.0.self_attn.v_proj.bias"
+      ],
+      "descendant_state_name_count": 2,
+      "graph_op_indices": [
+        6
+      ]
+    },
+    {
+      "pytorch_module": "model.encoder.layers.0.self_attn.q_proj",
+      "class": "Linear",
+      "status": "DIRECT_PARAMETER_BINDING",
+      "direct_parameters": [
+        "model.encoder.layers.0.self_attn.q_proj.weight",
+        "model.encoder.layers.0.self_attn.q_proj.bias"
+      ],
+      "descendant_state_name_count": 2,
+      "graph_op_indices": [
+        6
+      ]
+    },
+    {
+      "pytorch_module": "model.encoder.layers.0.self_attn.out_proj",
+      "class": "Linear",
+      "status": "DIRECT_PARAMETER_BINDING",
+      "direct_parameters": [
+        "model.encoder.layers.0.self_attn.out_proj.weight",
+        "model.encoder.layers.0.self_attn.out_proj.bias"
+      ],
+      "descendant_state_name_count": 2,
+      "graph_op_indices": [
+        6
+      ]
+    },
+    {
+      "pytorch_module": "model.encoder.layers.0.self_attn_layer_norm",
+      "class": "LayerNorm",
+      "status": "DIRECT_PARAMETER_BINDING",
+      "direct_parameters": [
+        "model.encoder.layers.0.self_attn_layer_norm.weight",
+        "model.encoder.layers.0.self_attn_layer_norm.bias"
+      ],
+      "descendant_state_name_count": 2,
+      "graph_op_indices": [
+        5
+      ]
+    },
+    {
+      "pytorch_module": "model.encoder.layers.0.activation_fn",
+      "class": "GELUActivation",
+      "status": "DIRECT_OPCODE_BINDING",
+      "direct_parameters": [],
+      "descendant_state_name_count": 0,
+      "graph_op_indices": [
+        9
+      ]
+    },
+    {
+      "pytorch_module": "model.encoder.layers.0.fc1",
+      "class": "Linear",
+      "status": "DIRECT_PARAMETER_BINDING",
+      "direct_parameters": [
+        "model.encoder.layers.0.fc1.weight",
+        "model.encoder.layers.0.fc1.bias"
+      ],
+      "descendant_state_name_count": 2,
+      "graph_op_indices": [
+        9
+      ]
+    },
+    {
+      "pytorch_module": "model.encoder.layers.0.fc2",
+      "class": "Linear",
+      "status": "DIRECT_PARAMETER_BINDING",
+      "direct_parameters": [
+        "model.encoder.layers.0.fc2.weight",
+        "model.encoder.layers.0.fc2.bias"
+      ],
+      "descendant_state_name_count": 2,
+      "graph_op_indices": [
+        9
+      ]
+    },
+    {
+      "pytorch_module": "model.encoder.layers.0.final_layer_norm",
+      "class": "LayerNorm",
+      "status": "DIRECT_PARAMETER_BINDING",
+      "direct_parameters": [
+        "model.encoder.layers.0.final_layer_norm.weight",
+        "model.encoder.layers.0.final_layer_norm.bias"
+      ],
+      "descendant_state_name_count": 2,
+      "graph_op_indices": [
+        8
+      ]
+    },
+    {
+      "pytorch_module": "model.encoder.layers.1",
+      "class": "WhisperEncoderLayer",
+      "status": "CONTAINER_BY_DESCENDANTS",
+      "direct_parameters": [],
+      "descendant_state_name_count": 15,
+      "graph_op_indices": [
+        11,
+        12,
+        14,
+        15
+      ]
+    },
+    {
+      "pytorch_module": "model.encoder.layers.1.self_attn",
+      "class": "WhisperAttention",
+      "status": "CONTAINER_BY_DESCENDANTS",
+      "direct_parameters": [],
+      "descendant_state_name_count": 7,
+      "graph_op_indices": [
+        12
+      ]
+    },
+    {
+      "pytorch_module": "model.encoder.layers.1.self_attn.k_proj",
+      "class": "Linear",
+      "status": "DIRECT_PARAMETER_BINDING",
+      "direct_parameters": [
+        "model.encoder.layers.1.self_attn.k_proj.weight"
+      ],
+      "descendant_state_name_count": 1,
+      "graph_op_indices": [
+        12
+      ]
+    },
+    {
+      "pytorch_module": "model.encoder.layers.1.self_attn.v_proj",
+      "class": "Linear",
+      "status": "DIRECT_PARAMETER_BINDING",
+      "direct_parameters": [
+        "model.encoder.layers.1.self_attn.v_proj.weight",
+        "model.encoder.layers.1.self_attn.v_proj.bias"
+      ],
+      "descendant_state_name_count": 2,
+      "graph_op_indices": [
+        12
+      ]
+    },
+    {
+      "pytorch_module": "model.encoder.layers.1.self_attn.q_proj",
+      "class": "Linear",
+      "status": "DIRECT_PARAMETER_BINDING",
+      "direct_parameters": [
+        "model.encoder.layers.1.self_attn.q_proj.weight",
+        "model.encoder.layers.1.self_attn.q_proj.bias"
+      ],
+      "descendant_state_name_count": 2,
+      "graph_op_indices": [
+        12
+      ]
+    },
+    {
+      "pytorch_module": "model.encoder.layers.1.self_attn.out_proj",
+      "class": "Linear",
+      "status": "DIRECT_PARAMETER_BINDING",
+      "direct_parameters": [
+        "model.encoder.layers.1.self_attn.out_proj.weight",
+        "model.encoder.layers.1.self_attn.out_proj.bias"
+      ],
+      "descendant_state_name_count": 2,
+      "graph_op_indices": [
+        12
+      ]
+    },
+    {
+      "pytorch_module": "model.encoder.layers.1.self_attn_layer_norm",
+      "class": "LayerNorm",
+      "status": "DIRECT_PARAMETER_BINDING",
+      "direct_parameters": [
+        "model.encoder.layers.1.self_attn_layer_norm.weight",
+        "model.encoder.layers.1.self_attn_layer_norm.bias"
+      ],
+      "descendant_state_name_count": 2,
+      "graph_op_indices": [
+        11
+      ]
+    },
+    {
+      "pytorch_module": "model.encoder.layers.1.activation_fn",
+      "class": "GELUActivation",
+      "status": "DIRECT_OPCODE_BINDING",
+      "direct_parameters": [],
+      "descendant_state_name_count": 0,
+      "graph_op_indices": [
+        15
+      ]
+    },
+    {
+      "pytorch_module": "model.encoder.layers.1.fc1",
+      "class": "Linear",
+      "status": "DIRECT_PARAMETER_BINDING",
+      "direct_parameters": [
+        "model.encoder.layers.1.fc1.weight",
+        "model.encoder.layers.1.fc1.bias"
+      ],
+      "descendant_state_name_count": 2,
+      "graph_op_indices": [
+        15
+      ]
+    },
+    {
+      "pytorch_module": "model.encoder.layers.1.fc2",
+      "class": "Linear",
+      "status": "DIRECT_PARAMETER_BINDING",
+      "direct_parameters": [
+        "model.encoder.layers.1.fc2.weight",
+        "model.encoder.layers.1.fc2.bias"
+      ],
+      "descendant_state_name_count": 2,
+      "graph_op_indices": [
+        15
+      ]
+    },
+    {
+      "pytorch_module": "model.encoder.layers.1.final_layer_norm",
+      "class": "LayerNorm",
+      "status": "DIRECT_PARAMETER_BINDING",
+      "direct_parameters": [
+        "model.encoder.layers.1.final_layer_norm.weight",
+        "model.encoder.layers.1.final_layer_norm.bias"
+      ],
+      "descendant_state_name_count": 2,
+      "graph_op_indices": [
+        14
+      ]
+    },
+    {
+      "pytorch_module": "model.encoder.layers.2",
+      "class": "WhisperEncoderLayer",
+      "status": "CONTAINER_BY_DESCENDANTS",
+      "direct_parameters": [],
+      "descendant_state_name_count": 15,
+      "graph_op_indices": [
+        17,
+        18,
+        20,
+        21
+      ]
+    },
+    {
+      "pytorch_module": "model.encoder.layers.2.self_attn",
+      "class": "WhisperAttention",
+      "status": "CONTAINER_BY_DESCENDANTS",
+      "direct_parameters": [],
+      "descendant_state_name_count": 7,
+      "graph_op_indices": [
+        18
+      ]
+    },
+    {
+      "pytorch_module": "model.encoder.layers.2.self_attn.k_proj",
+      "class": "Linear",
+      "status": "DIRECT_PARAMETER_BINDING",
+      "direct_parameters": [
+        "model.encoder.layers.2.self_attn.k_proj.weight"
+      ],
+      "descendant_state_name_count": 1,
+      "graph_op_indices": [
+        18
+      ]
+    },
+    {
+      "pytorch_module": "model.encoder.layers.2.self_attn.v_proj",
+      "class": "Linear",
+      "status": "DIRECT_PARAMETER_BINDING",
+      "direct_parameters": [
+        "model.encoder.layers.2.self_attn.v_proj.weight",
+        "model.encoder.layers.2.self_attn.v_proj.bias"
+      ],
+      "descendant_state_name_count": 2,
+      "graph_op_indices": [
+        18
+      ]
+    },
+    {
+      "pytorch_module": "model.encoder.layers.2.self_attn.q_proj",
+      "class": "Linear",
+      "status": "DIRECT_PARAMETER_BINDING",
+      "direct_parameters": [
+        "model.encoder.layers.2.self_attn.q_proj.weight",
+        "model.encoder.layers.2.self_attn.q_proj.bias"
+      ],
+      "descendant_state_name_count": 2,
+      "graph_op_indices": [
+        18
+      ]
+    },
+    {
+      "pytorch_module": "model.encoder.layers.2.self_attn.out_proj",
+      "class": "Linear",
+      "status": "DIRECT_PARAMETER_BINDING",
+      "direct_parameters": [
+        "model.encoder.layers.2.self_attn.out_proj.weight",
+        "model.encoder.layers.2.self_attn.out_proj.bias"
+      ],
+      "descendant_state_name_count": 2,
+      "graph_op_indices": [
+        18
+      ]
+    },
+    {
+      "pytorch_module": "model.encoder.layers.2.self_attn_layer_norm",
+      "class": "LayerNorm",
+      "status": "DIRECT_PARAMETER_BINDING",
+      "direct_parameters": [
+        "model.encoder.layers.2.self_attn_layer_norm.weight",
+        "model.encoder.layers.2.self_attn_layer_norm.bias"
+      ],
+      "descendant_state_name_count": 2,
+      "graph_op_indices": [
+        17
+      ]
+    },
+    {
+      "pytorch_module": "model.encoder.layers.2.activation_fn",
+      "class": "GELUActivation",
+      "status": "DIRECT_OPCODE_BINDING",
+      "direct_parameters": [],
+      "descendant_state_name_count": 0,
+      "graph_op_indices": [
+        21
+      ]
+    },
+    {
+      "pytorch_module": "model.encoder.layers.2.fc1",
+      "class": "Linear",
+      "status": "DIRECT_PARAMETER_BINDING",
+      "direct_parameters": [
+        "model.encoder.layers.2.fc1.weight",
+        "model.encoder.layers.2.fc1.bias"
+      ],
+      "descendant_state_name_count": 2,
+      "graph_op_indices": [
+        21
+      ]
+    },
+    {
+      "pytorch_module": "model.encoder.layers.2.fc2",
+      "class": "Linear",
+      "status": "DIRECT_PARAMETER_BINDING",
+      "direct_parameters": [
+        "model.encoder.layers.2.fc2.weight",
+        "model.encoder.layers.2.fc2.bias"
+      ],
+      "descendant_state_name_count": 2,
+      "graph_op_indices": [
+        21
+      ]
+    },
+    {
+      "pytorch_module": "model.encoder.layers.2.final_layer_norm",
+      "class": "LayerNorm",
+      "status": "DIRECT_PARAMETER_BINDING",
+      "direct_parameters": [
+        "model.encoder.layers.2.final_layer_norm.weight",
+        "model.encoder.layers.2.final_layer_norm.bias"
+      ],
+      "descendant_state_name_count": 2,
+      "graph_op_indices": [
+        20
+      ]
+    },
+    {
+      "pytorch_module": "model.encoder.layers.3",
+      "class": "WhisperEncoderLayer",
+      "status": "CONTAINER_BY_DESCENDANTS",
+      "direct_parameters": [],
+      "descendant_state_name_count": 15,
+      "graph_op_indices": [
+        23,
+        24,
+        26,
+        27
+      ]
+    },
+    {
+      "pytorch_module": "model.encoder.layers.3.self_attn",
+      "class": "WhisperAttention",
+      "status": "CONTAINER_BY_DESCENDANTS",
+      "direct_parameters": [],
+      "descendant_state_name_count": 7,
+      "graph_op_indices": [
+        24
+      ]
+    },
+    {
+      "pytorch_module": "model.encoder.layers.3.self_attn.k_proj",
+      "class": "Linear",
+      "status": "DIRECT_PARAMETER_BINDING",
+      "direct_parameters": [
+        "model.encoder.layers.3.self_attn.k_proj.weight"
+      ],
+      "descendant_state_name_count": 1,
+      "graph_op_indices": [
+        24
+      ]
+    },
+    {
+      "pytorch_module": "model.encoder.layers.3.self_attn.v_proj",
+      "class": "Linear",
+      "status": "DIRECT_PARAMETER_BINDING",
+      "direct_parameters": [
+        "model.encoder.layers.3.self_attn.v_proj.weight",
+        "model.encoder.layers.3.self_attn.v_proj.bias"
+      ],
+      "descendant_state_name_count": 2,
+      "graph_op_indices": [
+        24
+      ]
+    },
+    {
+      "pytorch_module": "model.encoder.layers.3.self_attn.q_proj",
+      "class": "Linear",
+      "status": "DIRECT_PARAMETER_BINDING",
+      "direct_parameters": [
+        "model.encoder.layers.3.self_attn.q_proj.weight",
+        "model.encoder.layers.3.self_attn.q_proj.bias"
+      ],
+      "descendant_state_name_count": 2,
+      "graph_op_indices": [
+        24
+      ]
+    },
+    {
+      "pytorch_module": "model.encoder.layers.3.self_attn.out_proj",
+      "class": "Linear",
+      "status": "DIRECT_PARAMETER_BINDING",
+      "direct_parameters": [
+        "model.encoder.layers.3.self_attn.out_proj.weight",
+        "model.encoder.layers.3.self_attn.out_proj.bias"
+      ],
+      "descendant_state_name_count": 2,
+      "graph_op_indices": [
+        24
+      ]
+    },
+    {
+      "pytorch_module": "model.encoder.layers.3.self_attn_layer_norm",
+      "class": "LayerNorm",
+      "status": "DIRECT_PARAMETER_BINDING",
+      "direct_parameters": [
+        "model.encoder.layers.3.self_attn_layer_norm.weight",
+        "model.encoder.layers.3.self_attn_layer_norm.bias"
+      ],
+      "descendant_state_name_count": 2,
+      "graph_op_indices": [
+        23
+      ]
+    },
+    {
+      "pytorch_module": "model.encoder.layers.3.activation_fn",
+      "class": "GELUActivation",
+      "status": "DIRECT_OPCODE_BINDING",
+      "direct_parameters": [],
+      "descendant_state_name_count": 0,
+      "graph_op_indices": [
+        27
+      ]
+    },
+    {
+      "pytorch_module": "model.encoder.layers.3.fc1",
+      "class": "Linear",
+      "status": "DIRECT_PARAMETER_BINDING",
+      "direct_parameters": [
+        "model.encoder.layers.3.fc1.weight",
+        "model.encoder.layers.3.fc1.bias"
+      ],
+      "descendant_state_name_count": 2,
+      "graph_op_indices": [
+        27
+      ]
+    },
+    {
+      "pytorch_module": "model.encoder.layers.3.fc2",
+      "class": "Linear",
+      "status": "DIRECT_PARAMETER_BINDING",
+      "direct_parameters": [
+        "model.encoder.layers.3.fc2.weight",
+        "model.encoder.layers.3.fc2.bias"
+      ],
+      "descendant_state_name_count": 2,
+      "graph_op_indices": [
+        27
+      ]
+    },
+    {
+      "pytorch_module": "model.encoder.layers.3.final_layer_norm",
+      "class": "LayerNorm",
+      "status": "DIRECT_PARAMETER_BINDING",
+      "direct_parameters": [
+        "model.encoder.layers.3.final_layer_norm.weight",
+        "model.encoder.layers.3.final_layer_norm.bias"
+      ],
+      "descendant_state_name_count": 2,
+      "graph_op_indices": [
+        26
+      ]
+    },
+    {
+      "pytorch_module": "model.encoder.layer_norm",
+      "class": "LayerNorm",
+      "status": "DIRECT_PARAMETER_BINDING",
+      "direct_parameters": [
+        "model.encoder.layer_norm.weight",
+        "model.encoder.layer_norm.bias"
+      ],
+      "descendant_state_name_count": 2,
+      "graph_op_indices": [
+        29
+      ]
+    },
+    {
+      "pytorch_module": "model.decoder",
+      "class": "WhisperDecoder",
+      "status": "CONTAINER_BY_DESCENDANTS",
+      "direct_parameters": [],
+      "descendant_state_name_count": 100,
+      "graph_op_indices": [
+        31,
+        32,
+        33,
+        35,
+        36,
+        38,
+        39,
+        41,
+        42,
+        44,
+        45,
+        47,
+        48,
+        50,
+        51,
+        53,
+        54,
+        56,
+        57,
+        59,
+        60,
+        62,
+        63,
+        65,
+        66,
+        68,
+        69
+      ]
+    },
+    {
+      "pytorch_module": "model.decoder.embed_tokens",
+      "class": "Embedding",
+      "status": "DIRECT_PARAMETER_BINDING",
+      "direct_parameters": [
+        "model.decoder.embed_tokens.weight"
+      ],
+      "descendant_state_name_count": 1,
+      "graph_op_indices": [
+        31,
+        69
+      ]
+    },
+    {
+      "pytorch_module": "model.decoder.embed_positions",
+      "class": "WhisperPositionalEmbedding",
+      "status": "DIRECT_PARAMETER_BINDING",
+      "direct_parameters": [
+        "model.decoder.embed_positions.weight"
+      ],
+      "descendant_state_name_count": 1,
+      "graph_op_indices": [
+        31
+      ]
+    },
+    {
+      "pytorch_module": "model.decoder.layers",
+      "class": "ModuleList",
+      "status": "CONTAINER_BY_DESCENDANTS",
+      "direct_parameters": [],
+      "descendant_state_name_count": 96,
+      "graph_op_indices": [
+        32,
+        33,
+        35,
+        36,
+        38,
+        39,
+        41,
+        42,
+        44,
+        45,
+        47,
+        48,
+        50,
+        51,
+        53,
+        54,
+        56,
+        57,
+        59,
+        60,
+        62,
+        63,
+        65,
+        66
+      ]
+    },
+    {
+      "pytorch_module": "model.decoder.layers.0",
+      "class": "WhisperDecoderLayer",
+      "status": "CONTAINER_BY_DESCENDANTS",
+      "direct_parameters": [],
+      "descendant_state_name_count": 24,
+      "graph_op_indices": [
+        32,
+        33,
+        35,
+        36,
+        38,
+        39
+      ]
+    },
+    {
+      "pytorch_module": "model.decoder.layers.0.self_attn",
+      "class": "WhisperAttention",
+      "status": "CONTAINER_BY_DESCENDANTS",
+      "direct_parameters": [],
+      "descendant_state_name_count": 7,
+      "graph_op_indices": [
+        33
+      ]
+    },
+    {
+      "pytorch_module": "model.decoder.layers.0.self_attn.k_proj",
+      "class": "Linear",
+      "status": "DIRECT_PARAMETER_BINDING",
+      "direct_parameters": [
+        "model.decoder.layers.0.self_attn.k_proj.weight"
+      ],
+      "descendant_state_name_count": 1,
+      "graph_op_indices": [
+        33
+      ]
+    },
+    {
+      "pytorch_module": "model.decoder.layers.0.self_attn.v_proj",
+      "class": "Linear",
+      "status": "DIRECT_PARAMETER_BINDING",
+      "direct_parameters": [
+        "model.decoder.layers.0.self_attn.v_proj.weight",
+        "model.decoder.layers.0.self_attn.v_proj.bias"
+      ],
+      "descendant_state_name_count": 2,
+      "graph_op_indices": [
+        33
+      ]
+    },
+    {
+      "pytorch_module": "model.decoder.layers.0.self_attn.q_proj",
+      "class": "Linear",
+      "status": "DIRECT_PARAMETER_BINDING",
+      "direct_parameters": [
+        "model.decoder.layers.0.self_attn.q_proj.weight",
+        "model.decoder.layers.0.self_attn.q_proj.bias"
+      ],
+      "descendant_state_name_count": 2,
+      "graph_op_indices": [
+        33
+      ]
+    },
+    {
+      "pytorch_module": "model.decoder.layers.0.self_attn.out_proj",
+      "class": "Linear",
+      "status": "DIRECT_PARAMETER_BINDING",
+      "direct_parameters": [
+        "model.decoder.layers.0.self_attn.out_proj.weight",
+        "model.decoder.layers.0.self_attn.out_proj.bias"
+      ],
+      "descendant_state_name_count": 2,
+      "graph_op_indices": [
+        33
+      ]
+    },
+    {
+      "pytorch_module": "model.decoder.layers.0.activation_fn",
+      "class": "GELUActivation",
+      "status": "DIRECT_OPCODE_BINDING",
+      "direct_parameters": [],
+      "descendant_state_name_count": 0,
+      "graph_op_indices": [
+        39
+      ]
+    },
+    {
+      "pytorch_module": "model.decoder.layers.0.self_attn_layer_norm",
+      "class": "LayerNorm",
+      "status": "DIRECT_PARAMETER_BINDING",
+      "direct_parameters": [
+        "model.decoder.layers.0.self_attn_layer_norm.weight",
+        "model.decoder.layers.0.self_attn_layer_norm.bias"
+      ],
+      "descendant_state_name_count": 2,
+      "graph_op_indices": [
+        32
+      ]
+    },
+    {
+      "pytorch_module": "model.decoder.layers.0.encoder_attn",
+      "class": "WhisperAttention",
+      "status": "CONTAINER_BY_DESCENDANTS",
+      "direct_parameters": [],
+      "descendant_state_name_count": 7,
+      "graph_op_indices": [
+        36
+      ]
+    },
+    {
+      "pytorch_module": "model.decoder.layers.0.encoder_attn.k_proj",
+      "class": "Linear",
+      "status": "DIRECT_PARAMETER_BINDING",
+      "direct_parameters": [
+        "model.decoder.layers.0.encoder_attn.k_proj.weight"
+      ],
+      "descendant_state_name_count": 1,
+      "graph_op_indices": [
+        36
+      ]
+    },
+    {
+      "pytorch_module": "model.decoder.layers.0.encoder_attn.v_proj",
+      "class": "Linear",
+      "status": "DIRECT_PARAMETER_BINDING",
+      "direct_parameters": [
+        "model.decoder.layers.0.encoder_attn.v_proj.weight",
+        "model.decoder.layers.0.encoder_attn.v_proj.bias"
+      ],
+      "descendant_state_name_count": 2,
+      "graph_op_indices": [
+        36
+      ]
+    },
+    {
+      "pytorch_module": "model.decoder.layers.0.encoder_attn.q_proj",
+      "class": "Linear",
+      "status": "DIRECT_PARAMETER_BINDING",
+      "direct_parameters": [
+        "model.decoder.layers.0.encoder_attn.q_proj.weight",
+        "model.decoder.layers.0.encoder_attn.q_proj.bias"
+      ],
+      "descendant_state_name_count": 2,
+      "graph_op_indices": [
+        36
+      ]
+    },
+    {
+      "pytorch_module": "model.decoder.layers.0.encoder_attn.out_proj",
+      "class": "Linear",
+      "status": "DIRECT_PARAMETER_BINDING",
+      "direct_parameters": [
+        "model.decoder.layers.0.encoder_attn.out_proj.weight",
+        "model.decoder.layers.0.encoder_attn.out_proj.bias"
+      ],
+      "descendant_state_name_count": 2,
+      "graph_op_indices": [
+        36
+      ]
+    },
+    {
+      "pytorch_module": "model.decoder.layers.0.encoder_attn_layer_norm",
+      "class": "LayerNorm",
+      "status": "DIRECT_PARAMETER_BINDING",
+      "direct_parameters": [
+        "model.decoder.layers.0.encoder_attn_layer_norm.weight",
+        "model.decoder.layers.0.encoder_attn_layer_norm.bias"
+      ],
+      "descendant_state_name_count": 2,
+      "graph_op_indices": [
+        35
+      ]
+    },
+    {
+      "pytorch_module": "model.decoder.layers.0.fc1",
+      "class": "Linear",
+      "status": "DIRECT_PARAMETER_BINDING",
+      "direct_parameters": [
+        "model.decoder.layers.0.fc1.weight",
+        "model.decoder.layers.0.fc1.bias"
+      ],
+      "descendant_state_name_count": 2,
+      "graph_op_indices": [
+        39
+      ]
+    },
+    {
+      "pytorch_module": "model.decoder.layers.0.fc2",
+      "class": "Linear",
+      "status": "DIRECT_PARAMETER_BINDING",
+      "direct_parameters": [
+        "model.decoder.layers.0.fc2.weight",
+        "model.decoder.layers.0.fc2.bias"
+      ],
+      "descendant_state_name_count": 2,
+      "graph_op_indices": [
+        39
+      ]
+    },
+    {
+      "pytorch_module": "model.decoder.layers.0.final_layer_norm",
+      "class": "LayerNorm",
+      "status": "DIRECT_PARAMETER_BINDING",
+      "direct_parameters": [
+        "model.decoder.layers.0.final_layer_norm.weight",
+        "model.decoder.layers.0.final_layer_norm.bias"
+      ],
+      "descendant_state_name_count": 2,
+      "graph_op_indices": [
+        38
+      ]
+    },
+    {
+      "pytorch_module": "model.decoder.layers.1",
+      "class": "WhisperDecoderLayer",
+      "status": "CONTAINER_BY_DESCENDANTS",
+      "direct_parameters": [],
+      "descendant_state_name_count": 24,
+      "graph_op_indices": [
+        41,
+        42,
+        44,
+        45,
+        47,
+        48
+      ]
+    },
+    {
+      "pytorch_module": "model.decoder.layers.1.self_attn",
+      "class": "WhisperAttention",
+      "status": "CONTAINER_BY_DESCENDANTS",
+      "direct_parameters": [],
+      "descendant_state_name_count": 7,
+      "graph_op_indices": [
+        42
+      ]
+    },
+    {
+      "pytorch_module": "model.decoder.layers.1.self_attn.k_proj",
+      "class": "Linear",
+      "status": "DIRECT_PARAMETER_BINDING",
+      "direct_parameters": [
+        "model.decoder.layers.1.self_attn.k_proj.weight"
+      ],
+      "descendant_state_name_count": 1,
+      "graph_op_indices": [
+        42
+      ]
+    },
+    {
+      "pytorch_module": "model.decoder.layers.1.self_attn.v_proj",
+      "class": "Linear",
+      "status": "DIRECT_PARAMETER_BINDING",
+      "direct_parameters": [
+        "model.decoder.layers.1.self_attn.v_proj.weight",
+        "model.decoder.layers.1.self_attn.v_proj.bias"
+      ],
+      "descendant_state_name_count": 2,
+      "graph_op_indices": [
+        42
+      ]
+    },
+    {
+      "pytorch_module": "model.decoder.layers.1.self_attn.q_proj",
+      "class": "Linear",
+      "status": "DIRECT_PARAMETER_BINDING",
+      "direct_parameters": [
+        "model.decoder.layers.1.self_attn.q_proj.weight",
+        "model.decoder.layers.1.self_attn.q_proj.bias"
+      ],
+      "descendant_state_name_count": 2,
+      "graph_op_indices": [
+        42
+      ]
+    },
+    {
+      "pytorch_module": "model.decoder.layers.1.self_attn.out_proj",
+      "class": "Linear",
+      "status": "DIRECT_PARAMETER_BINDING",
+      "direct_parameters": [
+        "model.decoder.layers.1.self_attn.out_proj.weight",
+        "model.decoder.layers.1.self_attn.out_proj.bias"
+      ],
+      "descendant_state_name_count": 2,
+      "graph_op_indices": [
+        42
+      ]
+    },
+    {
+      "pytorch_module": "model.decoder.layers.1.activation_fn",
+      "class": "GELUActivation",
+      "status": "DIRECT_OPCODE_BINDING",
+      "direct_parameters": [],
+      "descendant_state_name_count": 0,
+      "graph_op_indices": [
+        48
+      ]
+    },
+    {
+      "pytorch_module": "model.decoder.layers.1.self_attn_layer_norm",
+      "class": "LayerNorm",
+      "status": "DIRECT_PARAMETER_BINDING",
+      "direct_parameters": [
+        "model.decoder.layers.1.self_attn_layer_norm.weight",
+        "model.decoder.layers.1.self_attn_layer_norm.bias"
+      ],
+      "descendant_state_name_count": 2,
+      "graph_op_indices": [
+        41
+      ]
+    },
+    {
+      "pytorch_module": "model.decoder.layers.1.encoder_attn",
+      "class": "WhisperAttention",
+      "status": "CONTAINER_BY_DESCENDANTS",
+      "direct_parameters": [],
+      "descendant_state_name_count": 7,
+      "graph_op_indices": [
+        45
+      ]
+    },
+    {
+      "pytorch_module": "model.decoder.layers.1.encoder_attn.k_proj",
+      "class": "Linear",
+      "status": "DIRECT_PARAMETER_BINDING",
+      "direct_parameters": [
+        "model.decoder.layers.1.encoder_attn.k_proj.weight"
+      ],
+      "descendant_state_name_count": 1,
+      "graph_op_indices": [
+        45
+      ]
+    },
+    {
+      "pytorch_module": "model.decoder.layers.1.encoder_attn.v_proj",
+      "class": "Linear",
+      "status": "DIRECT_PARAMETER_BINDING",
+      "direct_parameters": [
+        "model.decoder.layers.1.encoder_attn.v_proj.weight",
+        "model.decoder.layers.1.encoder_attn.v_proj.bias"
+      ],
+      "descendant_state_name_count": 2,
+      "graph_op_indices": [
+        45
+      ]
+    },
+    {
+      "pytorch_module": "model.decoder.layers.1.encoder_attn.q_proj",
+      "class": "Linear",
+      "status": "DIRECT_PARAMETER_BINDING",
+      "direct_parameters": [
+        "model.decoder.layers.1.encoder_attn.q_proj.weight",
+        "model.decoder.layers.1.encoder_attn.q_proj.bias"
+      ],
+      "descendant_state_name_count": 2,
+      "graph_op_indices": [
+        45
+      ]
+    },
+    {
+      "pytorch_module": "model.decoder.layers.1.encoder_attn.out_proj",
+      "class": "Linear",
+      "status": "DIRECT_PARAMETER_BINDING",
+      "direct_parameters": [
+        "model.decoder.layers.1.encoder_attn.out_proj.weight",
+        "model.decoder.layers.1.encoder_attn.out_proj.bias"
+      ],
+      "descendant_state_name_count": 2,
+      "graph_op_indices": [
+        45
+      ]
+    },
+    {
+      "pytorch_module": "model.decoder.layers.1.encoder_attn_layer_norm",
+      "class": "LayerNorm",
+      "status": "DIRECT_PARAMETER_BINDING",
+      "direct_parameters": [
+        "model.decoder.layers.1.encoder_attn_layer_norm.weight",
+        "model.decoder.layers.1.encoder_attn_layer_norm.bias"
+      ],
+      "descendant_state_name_count": 2,
+      "graph_op_indices": [
+        44
+      ]
+    },
+    {
+      "pytorch_module": "model.decoder.layers.1.fc1",
+      "class": "Linear",
+      "status": "DIRECT_PARAMETER_BINDING",
+      "direct_parameters": [
+        "model.decoder.layers.1.fc1.weight",
+        "model.decoder.layers.1.fc1.bias"
+      ],
+      "descendant_state_name_count": 2,
+      "graph_op_indices": [
+        48
+      ]
+    },
+    {
+      "pytorch_module": "model.decoder.layers.1.fc2",
+      "class": "Linear",
+      "status": "DIRECT_PARAMETER_BINDING",
+      "direct_parameters": [
+        "model.decoder.layers.1.fc2.weight",
+        "model.decoder.layers.1.fc2.bias"
+      ],
+      "descendant_state_name_count": 2,
+      "graph_op_indices": [
+        48
+      ]
+    },
+    {
+      "pytorch_module": "model.decoder.layers.1.final_layer_norm",
+      "class": "LayerNorm",
+      "status": "DIRECT_PARAMETER_BINDING",
+      "direct_parameters": [
+        "model.decoder.layers.1.final_layer_norm.weight",
+        "model.decoder.layers.1.final_layer_norm.bias"
+      ],
+      "descendant_state_name_count": 2,
+      "graph_op_indices": [
+        47
+      ]
+    },
+    {
+      "pytorch_module": "model.decoder.layers.2",
+      "class": "WhisperDecoderLayer",
+      "status": "CONTAINER_BY_DESCENDANTS",
+      "direct_parameters": [],
+      "descendant_state_name_count": 24,
+      "graph_op_indices": [
+        50,
+        51,
+        53,
+        54,
+        56,
+        57
+      ]
+    },
+    {
+      "pytorch_module": "model.decoder.layers.2.self_attn",
+      "class": "WhisperAttention",
+      "status": "CONTAINER_BY_DESCENDANTS",
+      "direct_parameters": [],
+      "descendant_state_name_count": 7,
+      "graph_op_indices": [
+        51
+      ]
+    },
+    {
+      "pytorch_module": "model.decoder.layers.2.self_attn.k_proj",
+      "class": "Linear",
+      "status": "DIRECT_PARAMETER_BINDING",
+      "direct_parameters": [
+        "model.decoder.layers.2.self_attn.k_proj.weight"
+      ],
+      "descendant_state_name_count": 1,
+      "graph_op_indices": [
+        51
+      ]
+    },
+    {
+      "pytorch_module": "model.decoder.layers.2.self_attn.v_proj",
+      "class": "Linear",
+      "status": "DIRECT_PARAMETER_BINDING",
+      "direct_parameters": [
+        "model.decoder.layers.2.self_attn.v_proj.weight",
+        "model.decoder.layers.2.self_attn.v_proj.bias"
+      ],
+      "descendant_state_name_count": 2,
+      "graph_op_indices": [
+        51
+      ]
+    },
+    {
+      "pytorch_module": "model.decoder.layers.2.self_attn.q_proj",
+      "class": "Linear",
+      "status": "DIRECT_PARAMETER_BINDING",
+      "direct_parameters": [
+        "model.decoder.layers.2.self_attn.q_proj.weight",
+        "model.decoder.layers.2.self_attn.q_proj.bias"
+      ],
+      "descendant_state_name_count": 2,
+      "graph_op_indices": [
+        51
+      ]
+    },
+    {
+      "pytorch_module": "model.decoder.layers.2.self_attn.out_proj",
+      "class": "Linear",
+      "status": "DIRECT_PARAMETER_BINDING",
+      "direct_parameters": [
+        "model.decoder.layers.2.self_attn.out_proj.weight",
+        "model.decoder.layers.2.self_attn.out_proj.bias"
+      ],
+      "descendant_state_name_count": 2,
+      "graph_op_indices": [
+        51
+      ]
+    },
+    {
+      "pytorch_module": "model.decoder.layers.2.activation_fn",
+      "class": "GELUActivation",
+      "status": "DIRECT_OPCODE_BINDING",
+      "direct_parameters": [],
+      "descendant_state_name_count": 0,
+      "graph_op_indices": [
+        57
+      ]
+    },
+    {
+      "pytorch_module": "model.decoder.layers.2.self_attn_layer_norm",
+      "class": "LayerNorm",
+      "status": "DIRECT_PARAMETER_BINDING",
+      "direct_parameters": [
+        "model.decoder.layers.2.self_attn_layer_norm.weight",
+        "model.decoder.layers.2.self_attn_layer_norm.bias"
+      ],
+      "descendant_state_name_count": 2,
+      "graph_op_indices": [
+        50
+      ]
+    },
+    {
+      "pytorch_module": "model.decoder.layers.2.encoder_attn",
+      "class": "WhisperAttention",
+      "status": "CONTAINER_BY_DESCENDANTS",
+      "direct_parameters": [],
+      "descendant_state_name_count": 7,
+      "graph_op_indices": [
+        54
+      ]
+    },
+    {
+      "pytorch_module": "model.decoder.layers.2.encoder_attn.k_proj",
+      "class": "Linear",
+      "status": "DIRECT_PARAMETER_BINDING",
+      "direct_parameters": [
+        "model.decoder.layers.2.encoder_attn.k_proj.weight"
+      ],
+      "descendant_state_name_count": 1,
+      "graph_op_indices": [
+        54
+      ]
+    },
+    {
+      "pytorch_module": "model.decoder.layers.2.encoder_attn.v_proj",
+      "class": "Linear",
+      "status": "DIRECT_PARAMETER_BINDING",
+      "direct_parameters": [
+        "model.decoder.layers.2.encoder_attn.v_proj.weight",
+        "model.decoder.layers.2.encoder_attn.v_proj.bias"
+      ],
+      "descendant_state_name_count": 2,
+      "graph_op_indices": [
+        54
+      ]
+    },
+    {
+      "pytorch_module": "model.decoder.layers.2.encoder_attn.q_proj",
+      "class": "Linear",
+      "status": "DIRECT_PARAMETER_BINDING",
+      "direct_parameters": [
+        "model.decoder.layers.2.encoder_attn.q_proj.weight",
+        "model.decoder.layers.2.encoder_attn.q_proj.bias"
+      ],
+      "descendant_state_name_count": 2,
+      "graph_op_indices": [
+        54
+      ]
+    },
+    {
+      "pytorch_module": "model.decoder.layers.2.encoder_attn.out_proj",
+      "class": "Linear",
+      "status": "DIRECT_PARAMETER_BINDING",
+      "direct_parameters": [
+        "model.decoder.layers.2.encoder_attn.out_proj.weight",
+        "model.decoder.layers.2.encoder_attn.out_proj.bias"
+      ],
+      "descendant_state_name_count": 2,
+      "graph_op_indices": [
+        54
+      ]
+    },
+    {
+      "pytorch_module": "model.decoder.layers.2.encoder_attn_layer_norm",
+      "class": "LayerNorm",
+      "status": "DIRECT_PARAMETER_BINDING",
+      "direct_parameters": [
+        "model.decoder.layers.2.encoder_attn_layer_norm.weight",
+        "model.decoder.layers.2.encoder_attn_layer_norm.bias"
+      ],
+      "descendant_state_name_count": 2,
+      "graph_op_indices": [
+        53
+      ]
+    },
+    {
+      "pytorch_module": "model.decoder.layers.2.fc1",
+      "class": "Linear",
+      "status": "DIRECT_PARAMETER_BINDING",
+      "direct_parameters": [
+        "model.decoder.layers.2.fc1.weight",
+        "model.decoder.layers.2.fc1.bias"
+      ],
+      "descendant_state_name_count": 2,
+      "graph_op_indices": [
+        57
+      ]
+    },
+    {
+      "pytorch_module": "model.decoder.layers.2.fc2",
+      "class": "Linear",
+      "status": "DIRECT_PARAMETER_BINDING",
+      "direct_parameters": [
+        "model.decoder.layers.2.fc2.weight",
+        "model.decoder.layers.2.fc2.bias"
+      ],
+      "descendant_state_name_count": 2,
+      "graph_op_indices": [
+        57
+      ]
+    },
+    {
+      "pytorch_module": "model.decoder.layers.2.final_layer_norm",
+      "class": "LayerNorm",
+      "status": "DIRECT_PARAMETER_BINDING",
+      "direct_parameters": [
+        "model.decoder.layers.2.final_layer_norm.weight",
+        "model.decoder.layers.2.final_layer_norm.bias"
+      ],
+      "descendant_state_name_count": 2,
+      "graph_op_indices": [
+        56
+      ]
+    },
+    {
+      "pytorch_module": "model.decoder.layers.3",
+      "class": "WhisperDecoderLayer",
+      "status": "CONTAINER_BY_DESCENDANTS",
+      "direct_parameters": [],
+      "descendant_state_name_count": 24,
+      "graph_op_indices": [
+        59,
+        60,
+        62,
+        63,
+        65,
+        66
+      ]
+    },
+    {
+      "pytorch_module": "model.decoder.layers.3.self_attn",
+      "class": "WhisperAttention",
+      "status": "CONTAINER_BY_DESCENDANTS",
+      "direct_parameters": [],
+      "descendant_state_name_count": 7,
+      "graph_op_indices": [
+        60
+      ]
+    },
+    {
+      "pytorch_module": "model.decoder.layers.3.self_attn.k_proj",
+      "class": "Linear",
+      "status": "DIRECT_PARAMETER_BINDING",
+      "direct_parameters": [
+        "model.decoder.layers.3.self_attn.k_proj.weight"
+      ],
+      "descendant_state_name_count": 1,
+      "graph_op_indices": [
+        60
+      ]
+    },
+    {
+      "pytorch_module": "model.decoder.layers.3.self_attn.v_proj",
+      "class": "Linear",
+      "status": "DIRECT_PARAMETER_BINDING",
+      "direct_parameters": [
+        "model.decoder.layers.3.self_attn.v_proj.weight",
+        "model.decoder.layers.3.self_attn.v_proj.bias"
+      ],
+      "descendant_state_name_count": 2,
+      "graph_op_indices": [
+        60
+      ]
+    },
+    {
+      "pytorch_module": "model.decoder.layers.3.self_attn.q_proj",
+      "class": "Linear",
+      "status": "DIRECT_PARAMETER_BINDING",
+      "direct_parameters": [
+        "model.decoder.layers.3.self_attn.q_proj.weight",
+        "model.decoder.layers.3.self_attn.q_proj.bias"
+      ],
+      "descendant_state_name_count": 2,
+      "graph_op_indices": [
+        60
+      ]
+    },
+    {
+      "pytorch_module": "model.decoder.layers.3.self_attn.out_proj",
+      "class": "Linear",
+      "status": "DIRECT_PARAMETER_BINDING",
+      "direct_parameters": [
+        "model.decoder.layers.3.self_attn.out_proj.weight",
+        "model.decoder.layers.3.self_attn.out_proj.bias"
+      ],
+      "descendant_state_name_count": 2,
+      "graph_op_indices": [
+        60
+      ]
+    },
+    {
+      "pytorch_module": "model.decoder.layers.3.activation_fn",
+      "class": "GELUActivation",
+      "status": "DIRECT_OPCODE_BINDING",
+      "direct_parameters": [],
+      "descendant_state_name_count": 0,
+      "graph_op_indices": [
+        66
+      ]
+    },
+    {
+      "pytorch_module": "model.decoder.layers.3.self_attn_layer_norm",
+      "class": "LayerNorm",
+      "status": "DIRECT_PARAMETER_BINDING",
+      "direct_parameters": [
+        "model.decoder.layers.3.self_attn_layer_norm.weight",
+        "model.decoder.layers.3.self_attn_layer_norm.bias"
+      ],
+      "descendant_state_name_count": 2,
+      "graph_op_indices": [
+        59
+      ]
+    },
+    {
+      "pytorch_module": "model.decoder.layers.3.encoder_attn",
+      "class": "WhisperAttention",
+      "status": "CONTAINER_BY_DESCENDANTS",
+      "direct_parameters": [],
+      "descendant_state_name_count": 7,
+      "graph_op_indices": [
+        63
+      ]
+    },
+    {
+      "pytorch_module": "model.decoder.layers.3.encoder_attn.k_proj",
+      "class": "Linear",
+      "status": "DIRECT_PARAMETER_BINDING",
+      "direct_parameters": [
+        "model.decoder.layers.3.encoder_attn.k_proj.weight"
+      ],
+      "descendant_state_name_count": 1,
+      "graph_op_indices": [
+        63
+      ]
+    },
+    {
+      "pytorch_module": "model.decoder.layers.3.encoder_attn.v_proj",
+      "class": "Linear",
+      "status": "DIRECT_PARAMETER_BINDING",
+      "direct_parameters": [
+        "model.decoder.layers.3.encoder_attn.v_proj.weight",
+        "model.decoder.layers.3.encoder_attn.v_proj.bias"
+      ],
+      "descendant_state_name_count": 2,
+      "graph_op_indices": [
+        63
+      ]
+    },
+    {
+      "pytorch_module": "model.decoder.layers.3.encoder_attn.q_proj",
+      "class": "Linear",
+      "status": "DIRECT_PARAMETER_BINDING",
+      "direct_parameters": [
+        "model.decoder.layers.3.encoder_attn.q_proj.weight",
+        "model.decoder.layers.3.encoder_attn.q_proj.bias"
+      ],
+      "descendant_state_name_count": 2,
+      "graph_op_indices": [
+        63
+      ]
+    },
+    {
+      "pytorch_module": "model.decoder.layers.3.encoder_attn.out_proj",
+      "class": "Linear",
+      "status": "DIRECT_PARAMETER_BINDING",
+      "direct_parameters": [
+        "model.decoder.layers.3.encoder_attn.out_proj.weight",
+        "model.decoder.layers.3.encoder_attn.out_proj.bias"
+      ],
+      "descendant_state_name_count": 2,
+      "graph_op_indices": [
+        63
+      ]
+    },
+    {
+      "pytorch_module": "model.decoder.layers.3.encoder_attn_layer_norm",
+      "class": "LayerNorm",
+      "status": "DIRECT_PARAMETER_BINDING",
+      "direct_parameters": [
+        "model.decoder.layers.3.encoder_attn_layer_norm.weight",
+        "model.decoder.layers.3.encoder_attn_layer_norm.bias"
+      ],
+      "descendant_state_name_count": 2,
+      "graph_op_indices": [
+        62
+      ]
+    },
+    {
+      "pytorch_module": "model.decoder.layers.3.fc1",
+      "class": "Linear",
+      "status": "DIRECT_PARAMETER_BINDING",
+      "direct_parameters": [
+        "model.decoder.layers.3.fc1.weight",
+        "model.decoder.layers.3.fc1.bias"
+      ],
+      "descendant_state_name_count": 2,
+      "graph_op_indices": [
+        66
+      ]
+    },
+    {
+      "pytorch_module": "model.decoder.layers.3.fc2",
+      "class": "Linear",
+      "status": "DIRECT_PARAMETER_BINDING",
+      "direct_parameters": [
+        "model.decoder.layers.3.fc2.weight",
+        "model.decoder.layers.3.fc2.bias"
+      ],
+      "descendant_state_name_count": 2,
+      "graph_op_indices": [
+        66
+      ]
+    },
+    {
+      "pytorch_module": "model.decoder.layers.3.final_layer_norm",
+      "class": "LayerNorm",
+      "status": "DIRECT_PARAMETER_BINDING",
+      "direct_parameters": [
+        "model.decoder.layers.3.final_layer_norm.weight",
+        "model.decoder.layers.3.final_layer_norm.bias"
+      ],
+      "descendant_state_name_count": 2,
+      "graph_op_indices": [
+        65
+      ]
+    },
+    {
+      "pytorch_module": "model.decoder.layer_norm",
+      "class": "LayerNorm",
+      "status": "DIRECT_PARAMETER_BINDING",
+      "direct_parameters": [
+        "model.decoder.layer_norm.weight",
+        "model.decoder.layer_norm.bias"
+      ],
+      "descendant_state_name_count": 2,
+      "graph_op_indices": [
+        68
+      ]
+    },
+    {
+      "pytorch_module": "proj_out",
+      "class": "Linear",
+      "status": "DIRECT_PARAMETER_BINDING",
+      "direct_parameters": [
+        "proj_out.weight"
+      ],
+      "descendant_state_name_count": 1,
+      "graph_op_indices": [
+        31,
+        69
+      ]
+    }
+  ],
+  "ops": [
+    {
+      "index": 0,
+      "opcode": "PCM_AUDIO_INPUT",
+      "stage": "frontend",
+      "execution_status": "CPP23_EXECUTABLE_NUMERICAL",
+      "bound_pytorch_modules": [],
+      "functional_binding": "C++23 WAV parser and typed PCM register",
+      "weight_count": 0,
+      "semantics": "mono 16 kHz samples in [-1,1]"
+    },
+    {
+      "index": 1,
+      "opcode": "LOG_MEL_STFT",
+      "stage": "frontend",
+      "execution_status": "CPP23_EXECUTABLE_NUMERICAL",
+      "bound_pytorch_modules": [],
+      "functional_binding": "WhisperFeatureExtractor semantics and exported Hann/Mel resources",
+      "weight_count": 0,
+      "semantics": "WhisperFeatureExtractor: padded 30 s log-Mel spectrogram"
+    },
+    {
+      "index": 2,
+      "opcode": "CONV1_GELU",
+      "stage": "encoder",
+      "execution_status": "CPP23_EXECUTABLE_NUMERICAL",
+      "bound_pytorch_modules": [
+        "model.encoder.conv1"
+      ],
+      "functional_binding": null,
+      "weight_count": 2,
+      "semantics": "Conv1d 80->384, kernel 3, padding 1, GELU"
+    },
+    {
+      "index": 3,
+      "opcode": "CONV2_GELU",
+      "stage": "encoder",
+      "execution_status": "CPP23_EXECUTABLE_NUMERICAL",
+      "bound_pytorch_modules": [
+        "model.encoder.conv2"
+      ],
+      "functional_binding": null,
+      "weight_count": 2,
+      "semantics": "Conv1d 384->384, kernel 3, stride 2, GELU"
+    },
+    {
+      "index": 4,
+      "opcode": "POSITIONAL_ADD",
+      "stage": "encoder",
+      "execution_status": "CPP23_EXECUTABLE_NUMERICAL",
+      "bound_pytorch_modules": [
+        "model.encoder.embed_positions"
+      ],
+      "functional_binding": null,
+      "weight_count": 1,
+      "semantics": "add fixed 1500-position embedding"
+    },
+    {
+      "index": 5,
+      "opcode": "LAYER_NORM",
+      "stage": "encoder.0",
+      "execution_status": "CPP23_EXECUTABLE_NUMERICAL",
+      "bound_pytorch_modules": [
+        "model.encoder.layers.0.self_attn_layer_norm"
+      ],
+      "functional_binding": null,
+      "weight_count": 2,
+      "semantics": ""
+    },
+    {
+      "index": 6,
+      "opcode": "SELF_ATTENTION",
+      "stage": "encoder.0",
+      "execution_status": "CPP23_EXECUTABLE_NUMERICAL",
+      "bound_pytorch_modules": [
+        "model.encoder.layers.0.self_attn.k_proj",
+        "model.encoder.layers.0.self_attn.v_proj",
+        "model.encoder.layers.0.self_attn.q_proj",
+        "model.encoder.layers.0.self_attn.out_proj"
+      ],
+      "functional_binding": null,
+      "weight_count": 7,
+      "semantics": "six-head scaled dot-product attention"
+    },
+    {
+      "index": 7,
+      "opcode": "RESIDUAL_ADD",
+      "stage": "encoder.0",
+      "execution_status": "CPP23_EXECUTABLE_NUMERICAL",
+      "bound_pytorch_modules": [],
+      "functional_binding": "functional residual addition in PyTorch layer forward",
+      "weight_count": 0,
+      "semantics": ""
+    },
+    {
+      "index": 8,
+      "opcode": "LAYER_NORM",
+      "stage": "encoder.0",
+      "execution_status": "CPP23_EXECUTABLE_NUMERICAL",
+      "bound_pytorch_modules": [
+        "model.encoder.layers.0.final_layer_norm"
+      ],
+      "functional_binding": null,
+      "weight_count": 2,
+      "semantics": ""
+    },
+    {
+      "index": 9,
+      "opcode": "MLP_GELU",
+      "stage": "encoder.0",
+      "execution_status": "CPP23_EXECUTABLE_NUMERICAL",
+      "bound_pytorch_modules": [
+        "model.encoder.layers.0.activation_fn",
+        "model.encoder.layers.0.fc1",
+        "model.encoder.layers.0.fc2"
+      ],
+      "functional_binding": null,
+      "weight_count": 4,
+      "semantics": "384->1536 GELU ->384"
+    },
+    {
+      "index": 10,
+      "opcode": "RESIDUAL_ADD",
+      "stage": "encoder.0",
+      "execution_status": "CPP23_EXECUTABLE_NUMERICAL",
+      "bound_pytorch_modules": [],
+      "functional_binding": "functional residual addition in PyTorch layer forward",
+      "weight_count": 0,
+      "semantics": ""
+    },
+    {
+      "index": 11,
+      "opcode": "LAYER_NORM",
+      "stage": "encoder.1",
+      "execution_status": "CPP23_EXECUTABLE_NUMERICAL",
+      "bound_pytorch_modules": [
+        "model.encoder.layers.1.self_attn_layer_norm"
+      ],
+      "functional_binding": null,
+      "weight_count": 2,
+      "semantics": ""
+    },
+    {
+      "index": 12,
+      "opcode": "SELF_ATTENTION",
+      "stage": "encoder.1",
+      "execution_status": "CPP23_EXECUTABLE_NUMERICAL",
+      "bound_pytorch_modules": [
+        "model.encoder.layers.1.self_attn.k_proj",
+        "model.encoder.layers.1.self_attn.v_proj",
+        "model.encoder.layers.1.self_attn.q_proj",
+        "model.encoder.layers.1.self_attn.out_proj"
+      ],
+      "functional_binding": null,
+      "weight_count": 7,
+      "semantics": "six-head scaled dot-product attention"
+    },
+    {
+      "index": 13,
+      "opcode": "RESIDUAL_ADD",
+      "stage": "encoder.1",
+      "execution_status": "CPP23_EXECUTABLE_NUMERICAL",
+      "bound_pytorch_modules": [],
+      "functional_binding": "functional residual addition in PyTorch layer forward",
+      "weight_count": 0,
+      "semantics": ""
+    },
+    {
+      "index": 14,
+      "opcode": "LAYER_NORM",
+      "stage": "encoder.1",
+      "execution_status": "CPP23_EXECUTABLE_NUMERICAL",
+      "bound_pytorch_modules": [
+        "model.encoder.layers.1.final_layer_norm"
+      ],
+      "functional_binding": null,
+      "weight_count": 2,
+      "semantics": ""
+    },
+    {
+      "index": 15,
+      "opcode": "MLP_GELU",
+      "stage": "encoder.1",
+      "execution_status": "CPP23_EXECUTABLE_NUMERICAL",
+      "bound_pytorch_modules": [
+        "model.encoder.layers.1.activation_fn",
+        "model.encoder.layers.1.fc1",
+        "model.encoder.layers.1.fc2"
+      ],
+      "functional_binding": null,
+      "weight_count": 4,
+      "semantics": "384->1536 GELU ->384"
+    },
+    {
+      "index": 16,
+      "opcode": "RESIDUAL_ADD",
+      "stage": "encoder.1",
+      "execution_status": "CPP23_EXECUTABLE_NUMERICAL",
+      "bound_pytorch_modules": [],
+      "functional_binding": "functional residual addition in PyTorch layer forward",
+      "weight_count": 0,
+      "semantics": ""
+    },
+    {
+      "index": 17,
+      "opcode": "LAYER_NORM",
+      "stage": "encoder.2",
+      "execution_status": "CPP23_EXECUTABLE_NUMERICAL",
+      "bound_pytorch_modules": [
+        "model.encoder.layers.2.self_attn_layer_norm"
+      ],
+      "functional_binding": null,
+      "weight_count": 2,
+      "semantics": ""
+    },
+    {
+      "index": 18,
+      "opcode": "SELF_ATTENTION",
+      "stage": "encoder.2",
+      "execution_status": "CPP23_EXECUTABLE_NUMERICAL",
+      "bound_pytorch_modules": [
+        "model.encoder.layers.2.self_attn.k_proj",
+        "model.encoder.layers.2.self_attn.v_proj",
+        "model.encoder.layers.2.self_attn.q_proj",
+        "model.encoder.layers.2.self_attn.out_proj"
+      ],
+      "functional_binding": null,
+      "weight_count": 7,
+      "semantics": "six-head scaled dot-product attention"
+    },
+    {
+      "index": 19,
+      "opcode": "RESIDUAL_ADD",
+      "stage": "encoder.2",
+      "execution_status": "CPP23_EXECUTABLE_NUMERICAL",
+      "bound_pytorch_modules": [],
+      "functional_binding": "functional residual addition in PyTorch layer forward",
+      "weight_count": 0,
+      "semantics": ""
+    },
+    {
+      "index": 20,
+      "opcode": "LAYER_NORM",
+      "stage": "encoder.2",
+      "execution_status": "CPP23_EXECUTABLE_NUMERICAL",
+      "bound_pytorch_modules": [
+        "model.encoder.layers.2.final_layer_norm"
+      ],
+      "functional_binding": null,
+      "weight_count": 2,
+      "semantics": ""
+    },
+    {
+      "index": 21,
+      "opcode": "MLP_GELU",
+      "stage": "encoder.2",
+      "execution_status": "CPP23_EXECUTABLE_NUMERICAL",
+      "bound_pytorch_modules": [
+        "model.encoder.layers.2.activation_fn",
+        "model.encoder.layers.2.fc1",
+        "model.encoder.layers.2.fc2"
+      ],
+      "functional_binding": null,
+      "weight_count": 4,
+      "semantics": "384->1536 GELU ->384"
+    },
+    {
+      "index": 22,
+      "opcode": "RESIDUAL_ADD",
+      "stage": "encoder.2",
+      "execution_status": "CPP23_EXECUTABLE_NUMERICAL",
+      "bound_pytorch_modules": [],
+      "functional_binding": "functional residual addition in PyTorch layer forward",
+      "weight_count": 0,
+      "semantics": ""
+    },
+    {
+      "index": 23,
+      "opcode": "LAYER_NORM",
+      "stage": "encoder.3",
+      "execution_status": "CPP23_EXECUTABLE_NUMERICAL",
+      "bound_pytorch_modules": [
+        "model.encoder.layers.3.self_attn_layer_norm"
+      ],
+      "functional_binding": null,
+      "weight_count": 2,
+      "semantics": ""
+    },
+    {
+      "index": 24,
+      "opcode": "SELF_ATTENTION",
+      "stage": "encoder.3",
+      "execution_status": "CPP23_EXECUTABLE_NUMERICAL",
+      "bound_pytorch_modules": [
+        "model.encoder.layers.3.self_attn.k_proj",
+        "model.encoder.layers.3.self_attn.v_proj",
+        "model.encoder.layers.3.self_attn.q_proj",
+        "model.encoder.layers.3.self_attn.out_proj"
+      ],
+      "functional_binding": null,
+      "weight_count": 7,
+      "semantics": "six-head scaled dot-product attention"
+    },
+    {
+      "index": 25,
+      "opcode": "RESIDUAL_ADD",
+      "stage": "encoder.3",
+      "execution_status": "CPP23_EXECUTABLE_NUMERICAL",
+      "bound_pytorch_modules": [],
+      "functional_binding": "functional residual addition in PyTorch layer forward",
+      "weight_count": 0,
+      "semantics": ""
+    },
+    {
+      "index": 26,
+      "opcode": "LAYER_NORM",
+      "stage": "encoder.3",
+      "execution_status": "CPP23_EXECUTABLE_NUMERICAL",
+      "bound_pytorch_modules": [
+        "model.encoder.layers.3.final_layer_norm"
+      ],
+      "functional_binding": null,
+      "weight_count": 2,
+      "semantics": ""
+    },
+    {
+      "index": 27,
+      "opcode": "MLP_GELU",
+      "stage": "encoder.3",
+      "execution_status": "CPP23_EXECUTABLE_NUMERICAL",
+      "bound_pytorch_modules": [
+        "model.encoder.layers.3.activation_fn",
+        "model.encoder.layers.3.fc1",
+        "model.encoder.layers.3.fc2"
+      ],
+      "functional_binding": null,
+      "weight_count": 4,
+      "semantics": "384->1536 GELU ->384"
+    },
+    {
+      "index": 28,
+      "opcode": "RESIDUAL_ADD",
+      "stage": "encoder.3",
+      "execution_status": "CPP23_EXECUTABLE_NUMERICAL",
+      "bound_pytorch_modules": [],
+      "functional_binding": "functional residual addition in PyTorch layer forward",
+      "weight_count": 0,
+      "semantics": ""
+    },
+    {
+      "index": 29,
+      "opcode": "LAYER_NORM",
+      "stage": "encoder.final",
+      "execution_status": "CPP23_EXECUTABLE_NUMERICAL",
+      "bound_pytorch_modules": [
+        "model.encoder.layer_norm"
+      ],
+      "functional_binding": null,
+      "weight_count": 2,
+      "semantics": ""
+    },
+    {
+      "index": 30,
+      "opcode": "TOKEN_STACK_INPUT",
+      "stage": "decoder",
+      "execution_status": "CPP23_EXECUTABLE_NUMERICAL",
+      "bound_pytorch_modules": [],
+      "functional_binding": "probabilistic transducer token-stack register",
+      "weight_count": 0,
+      "semantics": ""
+    },
+    {
+      "index": 31,
+      "opcode": "TOKEN_POSITION_EMBED",
+      "stage": "decoder",
+      "execution_status": "CPP23_EXECUTABLE_NUMERICAL",
+      "bound_pytorch_modules": [
+        "model.decoder.embed_tokens",
+        "model.decoder.embed_positions",
+        "proj_out"
+      ],
+      "functional_binding": null,
+      "weight_count": 2,
+      "semantics": ""
+    },
+    {
+      "index": 32,
+      "opcode": "LAYER_NORM",
+      "stage": "decoder.0",
+      "execution_status": "CPP23_EXECUTABLE_NUMERICAL",
+      "bound_pytorch_modules": [
+        "model.decoder.layers.0.self_attn_layer_norm"
+      ],
+      "functional_binding": null,
+      "weight_count": 2,
+      "semantics": ""
+    },
+    {
+      "index": 33,
+      "opcode": "CACHED_SELF_ATTENTION",
+      "stage": "decoder.0",
+      "execution_status": "CPP23_EXECUTABLE_INCREMENTAL_KV",
+      "bound_pytorch_modules": [
+        "model.decoder.layers.0.self_attn.k_proj",
+        "model.decoder.layers.0.self_attn.v_proj",
+        "model.decoder.layers.0.self_attn.q_proj",
+        "model.decoder.layers.0.self_attn.out_proj"
+      ],
+      "functional_binding": null,
+      "weight_count": 7,
+      "semantics": "causal six-head attention with typed K/V append"
+    },
+    {
+      "index": 34,
+      "opcode": "RESIDUAL_ADD",
+      "stage": "decoder.0",
+      "execution_status": "CPP23_EXECUTABLE_NUMERICAL",
+      "bound_pytorch_modules": [],
+      "functional_binding": "functional residual addition in PyTorch layer forward",
+      "weight_count": 0,
+      "semantics": ""
+    },
+    {
+      "index": 35,
+      "opcode": "LAYER_NORM",
+      "stage": "decoder.0",
+      "execution_status": "CPP23_EXECUTABLE_NUMERICAL",
+      "bound_pytorch_modules": [
+        "model.decoder.layers.0.encoder_attn_layer_norm"
+      ],
+      "functional_binding": null,
+      "weight_count": 2,
+      "semantics": ""
+    },
+    {
+      "index": 36,
+      "opcode": "CROSS_ATTENTION",
+      "stage": "decoder.0",
+      "execution_status": "CPP23_EXECUTABLE_NUMERICAL",
+      "bound_pytorch_modules": [
+        "model.decoder.layers.0.encoder_attn.k_proj",
+        "model.decoder.layers.0.encoder_attn.v_proj",
+        "model.decoder.layers.0.encoder_attn.q_proj",
+        "model.decoder.layers.0.encoder_attn.out_proj"
+      ],
+      "functional_binding": null,
+      "weight_count": 7,
+      "semantics": "six-head attention over fixed encoder memory"
+    },
+    {
+      "index": 37,
+      "opcode": "RESIDUAL_ADD",
+      "stage": "decoder.0",
+      "execution_status": "CPP23_EXECUTABLE_NUMERICAL",
+      "bound_pytorch_modules": [],
+      "functional_binding": "functional residual addition in PyTorch layer forward",
+      "weight_count": 0,
+      "semantics": ""
+    },
+    {
+      "index": 38,
+      "opcode": "LAYER_NORM",
+      "stage": "decoder.0",
+      "execution_status": "CPP23_EXECUTABLE_NUMERICAL",
+      "bound_pytorch_modules": [
+        "model.decoder.layers.0.final_layer_norm"
+      ],
+      "functional_binding": null,
+      "weight_count": 2,
+      "semantics": ""
+    },
+    {
+      "index": 39,
+      "opcode": "MLP_GELU",
+      "stage": "decoder.0",
+      "execution_status": "CPP23_EXECUTABLE_NUMERICAL",
+      "bound_pytorch_modules": [
+        "model.decoder.layers.0.activation_fn",
+        "model.decoder.layers.0.fc1",
+        "model.decoder.layers.0.fc2"
+      ],
+      "functional_binding": null,
+      "weight_count": 4,
+      "semantics": "384->1536 GELU ->384"
+    },
+    {
+      "index": 40,
+      "opcode": "RESIDUAL_ADD",
+      "stage": "decoder.0",
+      "execution_status": "CPP23_EXECUTABLE_NUMERICAL",
+      "bound_pytorch_modules": [],
+      "functional_binding": "functional residual addition in PyTorch layer forward",
+      "weight_count": 0,
+      "semantics": ""
+    },
+    {
+      "index": 41,
+      "opcode": "LAYER_NORM",
+      "stage": "decoder.1",
+      "execution_status": "CPP23_EXECUTABLE_NUMERICAL",
+      "bound_pytorch_modules": [
+        "model.decoder.layers.1.self_attn_layer_norm"
+      ],
+      "functional_binding": null,
+      "weight_count": 2,
+      "semantics": ""
+    },
+    {
+      "index": 42,
+      "opcode": "CACHED_SELF_ATTENTION",
+      "stage": "decoder.1",
+      "execution_status": "CPP23_EXECUTABLE_INCREMENTAL_KV",
+      "bound_pytorch_modules": [
+        "model.decoder.layers.1.self_attn.k_proj",
+        "model.decoder.layers.1.self_attn.v_proj",
+        "model.decoder.layers.1.self_attn.q_proj",
+        "model.decoder.layers.1.self_attn.out_proj"
+      ],
+      "functional_binding": null,
+      "weight_count": 7,
+      "semantics": "causal six-head attention with typed K/V append"
+    },
+    {
+      "index": 43,
+      "opcode": "RESIDUAL_ADD",
+      "stage": "decoder.1",
+      "execution_status": "CPP23_EXECUTABLE_NUMERICAL",
+      "bound_pytorch_modules": [],
+      "functional_binding": "functional residual addition in PyTorch layer forward",
+      "weight_count": 0,
+      "semantics": ""
+    },
+    {
+      "index": 44,
+      "opcode": "LAYER_NORM",
+      "stage": "decoder.1",
+      "execution_status": "CPP23_EXECUTABLE_NUMERICAL",
+      "bound_pytorch_modules": [
+        "model.decoder.layers.1.encoder_attn_layer_norm"
+      ],
+      "functional_binding": null,
+      "weight_count": 2,
+      "semantics": ""
+    },
+    {
+      "index": 45,
+      "opcode": "CROSS_ATTENTION",
+      "stage": "decoder.1",
+      "execution_status": "CPP23_EXECUTABLE_NUMERICAL",
+      "bound_pytorch_modules": [
+        "model.decoder.layers.1.encoder_attn.k_proj",
+        "model.decoder.layers.1.encoder_attn.v_proj",
+        "model.decoder.layers.1.encoder_attn.q_proj",
+        "model.decoder.layers.1.encoder_attn.out_proj"
+      ],
+      "functional_binding": null,
+      "weight_count": 7,
+      "semantics": "six-head attention over fixed encoder memory"
+    },
+    {
+      "index": 46,
+      "opcode": "RESIDUAL_ADD",
+      "stage": "decoder.1",
+      "execution_status": "CPP23_EXECUTABLE_NUMERICAL",
+      "bound_pytorch_modules": [],
+      "functional_binding": "functional residual addition in PyTorch layer forward",
+      "weight_count": 0,
+      "semantics": ""
+    },
+    {
+      "index": 47,
+      "opcode": "LAYER_NORM",
+      "stage": "decoder.1",
+      "execution_status": "CPP23_EXECUTABLE_NUMERICAL",
+      "bound_pytorch_modules": [
+        "model.decoder.layers.1.final_layer_norm"
+      ],
+      "functional_binding": null,
+      "weight_count": 2,
+      "semantics": ""
+    },
+    {
+      "index": 48,
+      "opcode": "MLP_GELU",
+      "stage": "decoder.1",
+      "execution_status": "CPP23_EXECUTABLE_NUMERICAL",
+      "bound_pytorch_modules": [
+        "model.decoder.layers.1.activation_fn",
+        "model.decoder.layers.1.fc1",
+        "model.decoder.layers.1.fc2"
+      ],
+      "functional_binding": null,
+      "weight_count": 4,
+      "semantics": "384->1536 GELU ->384"
+    },
+    {
+      "index": 49,
+      "opcode": "RESIDUAL_ADD",
+      "stage": "decoder.1",
+      "execution_status": "CPP23_EXECUTABLE_NUMERICAL",
+      "bound_pytorch_modules": [],
+      "functional_binding": "functional residual addition in PyTorch layer forward",
+      "weight_count": 0,
+      "semantics": ""
+    },
+    {
+      "index": 50,
+      "opcode": "LAYER_NORM",
+      "stage": "decoder.2",
+      "execution_status": "CPP23_EXECUTABLE_NUMERICAL",
+      "bound_pytorch_modules": [
+        "model.decoder.layers.2.self_attn_layer_norm"
+      ],
+      "functional_binding": null,
+      "weight_count": 2,
+      "semantics": ""
+    },
+    {
+      "index": 51,
+      "opcode": "CACHED_SELF_ATTENTION",
+      "stage": "decoder.2",
+      "execution_status": "CPP23_EXECUTABLE_INCREMENTAL_KV",
+      "bound_pytorch_modules": [
+        "model.decoder.layers.2.self_attn.k_proj",
+        "model.decoder.layers.2.self_attn.v_proj",
+        "model.decoder.layers.2.self_attn.q_proj",
+        "model.decoder.layers.2.self_attn.out_proj"
+      ],
+      "functional_binding": null,
+      "weight_count": 7,
+      "semantics": "causal six-head attention with typed K/V append"
+    },
+    {
+      "index": 52,
+      "opcode": "RESIDUAL_ADD",
+      "stage": "decoder.2",
+      "execution_status": "CPP23_EXECUTABLE_NUMERICAL",
+      "bound_pytorch_modules": [],
+      "functional_binding": "functional residual addition in PyTorch layer forward",
+      "weight_count": 0,
+      "semantics": ""
+    },
+    {
+      "index": 53,
+      "opcode": "LAYER_NORM",
+      "stage": "decoder.2",
+      "execution_status": "CPP23_EXECUTABLE_NUMERICAL",
+      "bound_pytorch_modules": [
+        "model.decoder.layers.2.encoder_attn_layer_norm"
+      ],
+      "functional_binding": null,
+      "weight_count": 2,
+      "semantics": ""
+    },
+    {
+      "index": 54,
+      "opcode": "CROSS_ATTENTION",
+      "stage": "decoder.2",
+      "execution_status": "CPP23_EXECUTABLE_NUMERICAL",
+      "bound_pytorch_modules": [
+        "model.decoder.layers.2.encoder_attn.k_proj",
+        "model.decoder.layers.2.encoder_attn.v_proj",
+        "model.decoder.layers.2.encoder_attn.q_proj",
+        "model.decoder.layers.2.encoder_attn.out_proj"
+      ],
+      "functional_binding": null,
+      "weight_count": 7,
+      "semantics": "six-head attention over fixed encoder memory"
+    },
+    {
+      "index": 55,
+      "opcode": "RESIDUAL_ADD",
+      "stage": "decoder.2",
+      "execution_status": "CPP23_EXECUTABLE_NUMERICAL",
+      "bound_pytorch_modules": [],
+      "functional_binding": "functional residual addition in PyTorch layer forward",
+      "weight_count": 0,
+      "semantics": ""
+    },
+    {
+      "index": 56,
+      "opcode": "LAYER_NORM",
+      "stage": "decoder.2",
+      "execution_status": "CPP23_EXECUTABLE_NUMERICAL",
+      "bound_pytorch_modules": [
+        "model.decoder.layers.2.final_layer_norm"
+      ],
+      "functional_binding": null,
+      "weight_count": 2,
+      "semantics": ""
+    },
+    {
+      "index": 57,
+      "opcode": "MLP_GELU",
+      "stage": "decoder.2",
+      "execution_status": "CPP23_EXECUTABLE_NUMERICAL",
+      "bound_pytorch_modules": [
+        "model.decoder.layers.2.activation_fn",
+        "model.decoder.layers.2.fc1",
+        "model.decoder.layers.2.fc2"
+      ],
+      "functional_binding": null,
+      "weight_count": 4,
+      "semantics": "384->1536 GELU ->384"
+    },
+    {
+      "index": 58,
+      "opcode": "RESIDUAL_ADD",
+      "stage": "decoder.2",
+      "execution_status": "CPP23_EXECUTABLE_NUMERICAL",
+      "bound_pytorch_modules": [],
+      "functional_binding": "functional residual addition in PyTorch layer forward",
+      "weight_count": 0,
+      "semantics": ""
+    },
+    {
+      "index": 59,
+      "opcode": "LAYER_NORM",
+      "stage": "decoder.3",
+      "execution_status": "CPP23_EXECUTABLE_NUMERICAL",
+      "bound_pytorch_modules": [
+        "model.decoder.layers.3.self_attn_layer_norm"
+      ],
+      "functional_binding": null,
+      "weight_count": 2,
+      "semantics": ""
+    },
+    {
+      "index": 60,
+      "opcode": "CACHED_SELF_ATTENTION",
+      "stage": "decoder.3",
+      "execution_status": "CPP23_EXECUTABLE_INCREMENTAL_KV",
+      "bound_pytorch_modules": [
+        "model.decoder.layers.3.self_attn.k_proj",
+        "model.decoder.layers.3.self_attn.v_proj",
+        "model.decoder.layers.3.self_attn.q_proj",
+        "model.decoder.layers.3.self_attn.out_proj"
+      ],
+      "functional_binding": null,
+      "weight_count": 7,
+      "semantics": "causal six-head attention with typed K/V append"
+    },
+    {
+      "index": 61,
+      "opcode": "RESIDUAL_ADD",
+      "stage": "decoder.3",
+      "execution_status": "CPP23_EXECUTABLE_NUMERICAL",
+      "bound_pytorch_modules": [],
+      "functional_binding": "functional residual addition in PyTorch layer forward",
+      "weight_count": 0,
+      "semantics": ""
+    },
+    {
+      "index": 62,
+      "opcode": "LAYER_NORM",
+      "stage": "decoder.3",
+      "execution_status": "CPP23_EXECUTABLE_NUMERICAL",
+      "bound_pytorch_modules": [
+        "model.decoder.layers.3.encoder_attn_layer_norm"
+      ],
+      "functional_binding": null,
+      "weight_count": 2,
+      "semantics": ""
+    },
+    {
+      "index": 63,
+      "opcode": "CROSS_ATTENTION",
+      "stage": "decoder.3",
+      "execution_status": "CPP23_EXECUTABLE_NUMERICAL",
+      "bound_pytorch_modules": [
+        "model.decoder.layers.3.encoder_attn.k_proj",
+        "model.decoder.layers.3.encoder_attn.v_proj",
+        "model.decoder.layers.3.encoder_attn.q_proj",
+        "model.decoder.layers.3.encoder_attn.out_proj"
+      ],
+      "functional_binding": null,
+      "weight_count": 7,
+      "semantics": "six-head attention over fixed encoder memory"
+    },
+    {
+      "index": 64,
+      "opcode": "RESIDUAL_ADD",
+      "stage": "decoder.3",
+      "execution_status": "CPP23_EXECUTABLE_NUMERICAL",
+      "bound_pytorch_modules": [],
+      "functional_binding": "functional residual addition in PyTorch layer forward",
+      "weight_count": 0,
+      "semantics": ""
+    },
+    {
+      "index": 65,
+      "opcode": "LAYER_NORM",
+      "stage": "decoder.3",
+      "execution_status": "CPP23_EXECUTABLE_NUMERICAL",
+      "bound_pytorch_modules": [
+        "model.decoder.layers.3.final_layer_norm"
+      ],
+      "functional_binding": null,
+      "weight_count": 2,
+      "semantics": ""
+    },
+    {
+      "index": 66,
+      "opcode": "MLP_GELU",
+      "stage": "decoder.3",
+      "execution_status": "CPP23_EXECUTABLE_NUMERICAL",
+      "bound_pytorch_modules": [
+        "model.decoder.layers.3.activation_fn",
+        "model.decoder.layers.3.fc1",
+        "model.decoder.layers.3.fc2"
+      ],
+      "functional_binding": null,
+      "weight_count": 4,
+      "semantics": "384->1536 GELU ->384"
+    },
+    {
+      "index": 67,
+      "opcode": "RESIDUAL_ADD",
+      "stage": "decoder.3",
+      "execution_status": "CPP23_EXECUTABLE_NUMERICAL",
+      "bound_pytorch_modules": [],
+      "functional_binding": "functional residual addition in PyTorch layer forward",
+      "weight_count": 0,
+      "semantics": ""
+    },
+    {
+      "index": 68,
+      "opcode": "LAYER_NORM",
+      "stage": "decoder.final",
+      "execution_status": "CPP23_EXECUTABLE_NUMERICAL",
+      "bound_pytorch_modules": [
+        "model.decoder.layer_norm"
+      ],
+      "functional_binding": null,
+      "weight_count": 2,
+      "semantics": ""
+    },
+    {
+      "index": 69,
+      "opcode": "TIED_LM_HEAD",
+      "stage": "readout",
+      "execution_status": "CPP23_EXECUTABLE_NUMERICAL",
+      "bound_pytorch_modules": [
+        "model.decoder.embed_tokens",
+        "proj_out"
+      ],
+      "functional_binding": null,
+      "weight_count": 1,
+      "semantics": "matrix readout tied to token embedding"
+    },
+    {
+      "index": 70,
+      "opcode": "GENERATION_POLICY",
+      "stage": "readout",
+      "execution_status": "CPP23_EXECUTABLE_NUMERICAL",
+      "bound_pytorch_modules": [],
+      "functional_binding": "generation-config forced/suppressed token policy",
+      "weight_count": 0,
+      "semantics": "forced no-timestamps prefix plus suppression masks"
+    },
+    {
+      "index": 71,
+      "opcode": "SOFTMAX",
+      "stage": "readout",
+      "execution_status": "CPP23_EXECUTABLE_PROBABILISTIC",
+      "bound_pytorch_modules": [],
+      "functional_binding": "functional categorical normalization",
+      "weight_count": 0,
+      "semantics": "normalized next-token probability law"
+    },
+    {
+      "index": 72,
+      "opcode": "SAMPLE_OR_ARGMAX",
+      "stage": "transition",
+      "execution_status": "CPP23_EXECUTABLE_PROBABILISTIC",
+      "bound_pytorch_modules": [],
+      "functional_binding": "probabilistic/greedy transition selector",
+      "weight_count": 0,
+      "semantics": ""
+    },
+    {
+      "index": 73,
+      "opcode": "TOKEN_AND_CACHE_APPEND",
+      "stage": "transition",
+      "execution_status": "CPP23_EXECUTABLE_STATE_TRANSITION",
+      "bound_pytorch_modules": [],
+      "functional_binding": "typed transducer and K/V-cache state update",
+      "weight_count": 0,
+      "semantics": "probabilistic transducer transition"
+    }
+  ],
+  "configuration": {
+    "config.json": [
+      {
+        "field": "_name_or_path",
+        "value": "openai/whisper-tiny.en",
+        "status": "METADATA_ONLY",
+        "binding": "checkpoint identity"
+      },
+      {
+        "field": "activation_dropout",
+        "value": 0.0,
+        "status": "COMPILE_TIME_NOOP",
+        "binding": "pinned zero in eval mode"
+      },
+      {
+        "field": "activation_function",
+        "value": "gelu",
+        "status": "CPP23_RUNTIME",
+        "binding": "GELU in CONV1_GELU, CONV2_GELU and MLP_GELU"
+      },
+      {
+        "field": "architectures",
+        "value": [
+          "WhisperForConditionalGeneration"
+        ],
+        "status": "METADATA_ONLY",
+        "binding": "root module class"
+      },
+      {
+        "field": "attention_dropout",
+        "value": 0.0,
+        "status": "COMPILE_TIME_NOOP",
+        "binding": "pinned zero in eval mode"
+      },
+      {
+        "field": "begin_suppress_tokens",
+        "value": [
+          220,
+          50256
+        ],
+        "status": "CPP23_RUNTIME",
+        "binding": "GENERATION_POLICY begin_suppress_tokens"
+      },
+      {
+        "field": "bos_token_id",
+        "value": 50257,
+        "status": "INACTIVE_PINNED_MODE",
+        "binding": "generation uses decoder_start_token_id"
+      },
+      {
+        "field": "d_model",
+        "value": 384,
+        "status": "CPP23_RUNTIME",
+        "binding": "typed hidden dimension 384"
+      },
+      {
+        "field": "decoder_attention_heads",
+        "value": 6,
+        "status": "CPP23_RUNTIME",
+        "binding": "typed decoder head count 6"
+      },
+      {
+        "field": "decoder_ffn_dim",
+        "value": 1536,
+        "status": "CPP23_RUNTIME",
+        "binding": "typed decoder FFN dimension 1536"
+      },
+      {
+        "field": "decoder_layerdrop",
+        "value": 0.0,
+        "status": "COMPILE_TIME_NOOP",
+        "binding": "pinned zero in eval mode"
+      },
+      {
+        "field": "decoder_layers",
+        "value": 4,
+        "status": "CPP23_RUNTIME",
+        "binding": "four explicit decoder layer families"
+      },
+      {
+        "field": "decoder_start_token_id",
+        "value": 50257,
+        "status": "CPP23_RUNTIME",
+        "binding": "forced_prefix[0]"
+      },
+      {
+        "field": "dropout",
+        "value": 0.0,
+        "status": "COMPILE_TIME_NOOP",
+        "binding": "pinned zero in eval mode"
+      },
+      {
+        "field": "encoder_attention_heads",
+        "value": 6,
+        "status": "CPP23_RUNTIME",
+        "binding": "typed encoder head count 6"
+      },
+      {
+        "field": "encoder_ffn_dim",
+        "value": 1536,
+        "status": "CPP23_RUNTIME",
+        "binding": "typed encoder FFN dimension 1536"
+      },
+      {
+        "field": "encoder_layerdrop",
+        "value": 0.0,
+        "status": "COMPILE_TIME_NOOP",
+        "binding": "pinned zero in eval mode"
+      },
+      {
+        "field": "encoder_layers",
+        "value": 4,
+        "status": "CPP23_RUNTIME",
+        "binding": "four explicit encoder layer families"
+      },
+      {
+        "field": "eos_token_id",
+        "value": 50256,
+        "status": "CPP23_RUNTIME",
+        "binding": "generation termination token"
+      },
+      {
+        "field": "forced_decoder_ids",
+        "value": [
+          [
+            1,
+            50362
+          ]
+        ],
+        "status": "CPP23_RUNTIME",
+        "binding": "forced no-timestamps prefix"
+      },
+      {
+        "field": "init_std",
+        "value": 0.02,
+        "status": "TRAINING_ONLY",
+        "binding": "checkpoint is already trained"
+      },
+      {
+        "field": "is_encoder_decoder",
+        "value": true,
+        "status": "CPP23_RUNTIME",
+        "binding": "encoder-memory/cross-attention graph topology"
+      },
+      {
+        "field": "max_length",
+        "value": 448,
+        "status": "CPP23_RUNTIME",
+        "binding": "bounded generation loop and 448-position table"
+      },
+      {
+        "field": "max_source_positions",
+        "value": 1500,
+        "status": "CPP23_RUNTIME",
+        "binding": "typed source length 1500"
+      },
+      {
+        "field": "max_target_positions",
+        "value": 448,
+        "status": "CPP23_RUNTIME",
+        "binding": "typed target capacity 448"
+      },
+      {
+        "field": "model_type",
+        "value": "whisper",
+        "status": "METADATA_ONLY",
+        "binding": "graph model identity"
+      },
+      {
+        "field": "num_hidden_layers",
+        "value": 4,
+        "status": "METADATA_ALIAS",
+        "binding": "same pinned value as encoder_layers/decoder_layers"
+      },
+      {
+        "field": "num_mel_bins",
+        "value": 80,
+        "status": "CPP23_RUNTIME",
+        "binding": "typed Mel channel count 80"
+      },
+      {
+        "field": "pad_token_id",
+        "value": 50256,
+        "status": "CPP23_RUNTIME",
+        "binding": "shared EOS/padding convention"
+      },
+      {
+        "field": "scale_embedding",
+        "value": false,
+        "status": "COMPILE_TIME_NOOP",
+        "binding": "pinned false; embedding is not scaled"
+      },
+      {
+        "field": "suppress_tokens",
+        "value": [
+          1,
+          2,
+          7,
+          8,
+          9,
+          10,
+          14,
+          25,
+          26,
+          27,
+          28,
+          29,
+          31,
+          58,
+          59,
+          60,
+          61,
+          62,
+          63,
+          90,
+          91,
+          92,
+          93,
+          357,
+          366,
+          438,
+          532,
+          685,
+          705,
+          796,
+          930,
+          1058,
+          1220,
+          1267,
+          1279,
+          1303,
+          1343,
+          1377,
+          1391,
+          1635,
+          1782,
+          1875,
+          2162,
+          2361,
+          2488,
+          3467,
+          4008,
+          4211,
+          4600,
+          4808,
+          5299,
+          5855,
+          6329,
+          7203,
+          9609,
+          9959,
+          10563,
+          10786,
+          11420,
+          11709,
+          11907,
+          13163,
+          13697,
+          13700,
+          14808,
+          15306,
+          16410,
+          16791,
+          17992,
+          19203,
+          19510,
+          20724,
+          22305,
+          22935,
+          27007,
+          30109,
+          30420,
+          33409,
+          34949,
+          40283,
+          40493,
+          40549,
+          47282,
+          49146,
+          50257,
+          50357,
+          50358,
+          50359,
+          50360,
+          50361
+        ],
+        "status": "CPP23_RUNTIME",
+        "binding": "GENERATION_POLICY suppression mask"
+      },
+      {
+        "field": "torch_dtype",
+        "value": "float32",
+        "status": "CPP23_RUNTIME",
+        "binding": "binary32 TensorStore and arithmetic ABI"
+      },
+      {
+        "field": "transformers_version",
+        "value": "4.27.0.dev0",
+        "status": "METADATA_ONLY",
+        "binding": "source provenance"
+      },
+      {
+        "field": "use_cache",
+        "value": true,
+        "status": "CPP23_RUNTIME",
+        "binding": "explicit four-layer self/cross K/V state"
+      },
+      {
+        "field": "vocab_size",
+        "value": 51864,
+        "status": "CPP23_RUNTIME",
+        "binding": "typed categorical law over 51864 tokens"
+      }
+    ],
+    "generation_config.json": [
+      {
+        "field": "alignment_heads",
+        "value": [
+          [
+            1,
+            0
+          ],
+          [
+            2,
+            0
+          ],
+          [
+            2,
+            5
+          ],
+          [
+            3,
+            0
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            3,
+            2
+          ],
+          [
+            3,
+            3
+          ],
+          [
+            3,
+            4
+          ]
+        ],
+        "status": "INACTIVE_PINNED_MODE",
+        "binding": "timestamps are disabled"
+      },
+      {
+        "field": "begin_suppress_tokens",
+        "value": [
+          220,
+          50256
+        ],
+        "status": "CPP23_RUNTIME",
+        "binding": "GENERATION_POLICY begin suppression"
+      },
+      {
+        "field": "bos_token_id",
+        "value": 50257,
+        "status": "INACTIVE_PINNED_MODE",
+        "binding": "decoder_start_token_id is active"
+      },
+      {
+        "field": "decoder_start_token_id",
+        "value": 50257,
+        "status": "CPP23_RUNTIME",
+        "binding": "forced_prefix[0]"
+      },
+      {
+        "field": "eos_token_id",
+        "value": 50256,
+        "status": "CPP23_RUNTIME",
+        "binding": "generation termination"
+      },
+      {
+        "field": "forced_decoder_ids",
+        "value": [
+          [
+            1,
+            50362
+          ]
+        ],
+        "status": "CPP23_RUNTIME",
+        "binding": "forced no-timestamps prefix"
+      },
+      {
+        "field": "is_multilingual",
+        "value": false,
+        "status": "COMPILE_TIME_NOOP",
+        "binding": "pinned English-only false"
+      },
+      {
+        "field": "max_initial_timestamp_index",
+        "value": 50,
+        "status": "INACTIVE_PINNED_MODE",
+        "binding": "timestamps are disabled"
+      },
+      {
+        "field": "max_length",
+        "value": 448,
+        "status": "CPP23_RUNTIME",
+        "binding": "448-position generation bound"
+      },
+      {
+        "field": "no_timestamps_token_id",
+        "value": 50362,
+        "status": "CPP23_RUNTIME",
+        "binding": "forced prefix token 50362"
+      },
+      {
+        "field": "pad_token_id",
+        "value": 50256,
+        "status": "CPP23_RUNTIME",
+        "binding": "shared EOS/padding convention"
+      },
+      {
+        "field": "prev_sot_token_id",
+        "value": 50360,
+        "status": "INACTIVE_PINNED_MODE",
+        "binding": "condition-on-previous-text is not requested"
+      },
+      {
+        "field": "return_timestamps",
+        "value": false,
+        "status": "COMPILE_TIME_NOOP",
+        "binding": "pinned false no-timestamps interface"
+      },
+      {
+        "field": "suppress_tokens",
+        "value": [
+          1,
+          2,
+          7,
+          8,
+          9,
+          10,
+          14,
+          25,
+          26,
+          27,
+          28,
+          29,
+          31,
+          58,
+          59,
+          60,
+          61,
+          62,
+          63,
+          90,
+          91,
+          92,
+          93,
+          357,
+          366,
+          438,
+          532,
+          685,
+          705,
+          796,
+          930,
+          1058,
+          1220,
+          1267,
+          1279,
+          1303,
+          1343,
+          1377,
+          1391,
+          1635,
+          1782,
+          1875,
+          2162,
+          2361,
+          2488,
+          3467,
+          4008,
+          4211,
+          4600,
+          4808,
+          5299,
+          5855,
+          6329,
+          7203,
+          9609,
+          9959,
+          10563,
+          10786,
+          11420,
+          11709,
+          11907,
+          13163,
+          13697,
+          13700,
+          14808,
+          15306,
+          16410,
+          16791,
+          17992,
+          19203,
+          19510,
+          20724,
+          22305,
+          22935,
+          27007,
+          30109,
+          30420,
+          33409,
+          34949,
+          40283,
+          40493,
+          40549,
+          47282,
+          49146,
+          50257,
+          50357,
+          50358,
+          50359,
+          50360,
+          50361
+        ],
+        "status": "CPP23_RUNTIME",
+        "binding": "GENERATION_POLICY suppression mask"
+      },
+      {
+        "field": "transformers_version",
+        "value": "4.31.0.dev0",
+        "status": "METADATA_ONLY",
+        "binding": "source provenance"
+      }
+    ],
+    "preprocessor_config.json": [
+      {
+        "field": "chunk_length",
+        "value": 30,
+        "status": "CPP23_RUNTIME",
+        "binding": "30-second PCM truncation/zero padding"
+      },
+      {
+        "field": "feature_extractor_type",
+        "value": "WhisperFeatureExtractor",
+        "status": "METADATA_ONLY",
+        "binding": "frontend identity"
+      },
+      {
+        "field": "feature_size",
+        "value": 80,
+        "status": "CPP23_RUNTIME",
+        "binding": "80 Mel channels"
+      },
+      {
+        "field": "hop_length",
+        "value": 160,
+        "status": "CPP23_RUNTIME",
+        "binding": "160-sample STFT hop"
+      },
+      {
+        "field": "mel_filters",
+        "value": {
+          "representation": "HASHED_LARGE_JSON_VALUE",
+          "json_bytes": 71269,
+          "sha256": "caf5779874f82b52482dfa6e753a45d35181e78bb2bbbccdfd0c226c2a6410c1",
+          "dimensions": [
+            80,
+            201
+          ]
+        },
+        "status": "CPP23_RESOURCE",
+        "binding": "bit-exact exported 201x80 binary32 matrix"
+      },
+      {
+        "field": "n_fft",
+        "value": 400,
+        "status": "CPP23_RUNTIME",
+        "binding": "400-point Hann/direct-DFT frontend"
+      },
+      {
+        "field": "n_samples",
+        "value": 480000,
+        "status": "CPP23_RUNTIME",
+        "binding": "480000-sample waveform register"
+      },
+      {
+        "field": "nb_max_frames",
+        "value": 3000,
+        "status": "CPP23_RUNTIME",
+        "binding": "3000-frame Mel register"
+      },
+      {
+        "field": "padding_side",
+        "value": "right",
+        "status": "CPP23_RUNTIME",
+        "binding": "right zero padding before reflect STFT padding"
+      },
+      {
+        "field": "padding_value",
+        "value": 0.0,
+        "status": "CPP23_RUNTIME",
+        "binding": "binary32 zero padding"
+      },
+      {
+        "field": "processor_class",
+        "value": "WhisperProcessor",
+        "status": "METADATA_ONLY",
+        "binding": "source processor identity"
+      },
+      {
+        "field": "return_attention_mask",
+        "value": false,
+        "status": "COMPILE_TIME_NOOP",
+        "binding": "fixed padded encoder extent; mask is not needed"
+      },
+      {
+        "field": "sampling_rate",
+        "value": 16000,
+        "status": "CPP23_RUNTIME",
+        "binding": "WAV parser enforces 16000 Hz"
+      }
+    ]
+  },
+  "resources": [
+    {
+      "path": "work/whisper_tiny_en/added_tokens.json",
+      "bytes": 34604,
+      "sha256": "560be47bea388757f8d4cc185c5d82067426cbb6361e38016dd90ddc01ab203a",
+      "status": "TOKEN_DECODER_SOURCE",
+      "binding": "compiled into token manifest/byte blob; text-input BPE encoding is outside the audio-to-text graph"
+    },
+    {
+      "path": "work/whisper_tiny_en/merges.txt",
+      "bytes": 456318,
+      "sha256": "1ce1664773c50f3e0cc8842619a93edc4624525b728b188a9e0be33b7726adc5",
+      "status": "TOKEN_DECODER_SOURCE",
+      "binding": "compiled into token manifest/byte blob; text-input BPE encoding is outside the audio-to-text graph"
+    },
+    {
+      "path": "work/whisper_tiny_en/normalizer.json",
+      "bytes": 52666,
+      "sha256": "bf1c507dc8724ca9cf9903640dacfb69dae2f00edee4f21ceba106a7392f26dd",
+      "status": "TOKEN_DECODER_SOURCE",
+      "binding": "compiled into token manifest/byte blob; text-input BPE encoding is outside the audio-to-text graph"
+    },
+    {
+      "path": "work/whisper_tiny_en/special_tokens_map.json",
+      "bytes": 1830,
+      "sha256": "014f8f802366ed818919550be0ad9e35907327cb9e142e8aaa102420f460bda8",
+      "status": "TOKEN_DECODER_SOURCE",
+      "binding": "compiled into token manifest/byte blob; text-input BPE encoding is outside the audio-to-text graph"
+    },
+    {
+      "path": "work/whisper_tiny_en/tokenizer.json",
+      "bytes": 2405679,
+      "sha256": "5eb60cec1e77aeeb6869a2bb5a8e01a84c3fe5d072d75369343021fe6f5310d0",
+      "status": "TOKEN_DECODER_SOURCE",
+      "binding": "compiled into token manifest/byte blob; text-input BPE encoding is outside the audio-to-text graph"
+    },
+    {
+      "path": "work/whisper_tiny_en/tokenizer_config.json",
+      "bytes": 805,
+      "sha256": "14f84bdf4b9ecdbd4738ddc81c17a1baedfc02bb93c6e049c951e15a1b40b70d",
+      "status": "TOKEN_DECODER_SOURCE",
+      "binding": "compiled into token manifest/byte blob; text-input BPE encoding is outside the audio-to-text graph"
+    },
+    {
+      "path": "work/whisper_tiny_en/vocab.json",
+      "bytes": 798156,
+      "sha256": "3ba3c3109ff33976c4bd966589c11ee14fcaa1f4c9e5e154c2ed7f99d80709e7",
+      "status": "TOKEN_DECODER_SOURCE",
+      "binding": "compiled into token manifest/byte blob; text-input BPE encoding is outside the audio-to-text graph"
+    },
+    {
+      "path": "outputs/whisper_cpp23_hann_f32.bin",
+      "bytes": 1600,
+      "sha256": "c692d19f0b2bd745f0dfc967261c3e3d21a2473e485a677d219e9b4a73e0218e",
+      "status": "CPP23_RUNTIME_RESOURCE",
+      "binding": "LOG_MEL_STFT Hann window"
+    },
+    {
+      "path": "outputs/whisper_cpp23_mel_filters_f32.bin",
+      "bytes": 64320,
+      "sha256": "d18b48f33345d958ea71098bb990b5e32cebc78d9a2cf65ca0d7302f34ebe8a9",
+      "status": "CPP23_RUNTIME_RESOURCE",
+      "binding": "LOG_MEL_STFT 201x80 Mel matrix"
+    },
+    {
+      "path": "outputs/whisper_cpp23_token_manifest.tsv",
+      "bytes": 1089138,
+      "sha256": "5cb9798ad3ca78b0550b364823614cdc698851f152cfae4fdae83f6e78a9df2b",
+      "status": "CPP23_RUNTIME_RESOURCE",
+      "binding": "Token Fin51864 to byte-span table"
+    },
+    {
+      "path": "outputs/whisper_cpp23_token_bytes.bin",
+      "bytes": 333823,
+      "sha256": "a63787dd367ad9e2219677b6b2b7fc603e4483ced38225ce8da6afa3d00e124e",
+      "status": "CPP23_RUNTIME_RESOURCE",
+      "binding": "byte-level token decoding payload"
+    }
+  ],
+  "failures": {
+    "uncovered_pytorch_state_names": [],
+    "uncovered_checkpoint_keys": [],
+    "extra_graph_weight_names": [],
+    "unmapped_pytorch_modules": [],
+    "non_executable_graph_ops": [],
+    "unbound_graph_ops": [],
+    "runtime_graph_dispatch": []
+  },
+  "passed": true,
+  "scope": "Pinned openai/whisper-tiny.en float32 eval-mode, English no-timestamps audio-to-text execution under the declared C++23/Accelerate ABI.",
+  "proof_boundary": "Structural coverage plus finite numerical tests do not prove backend-independent equality for every binary32 waveform. Training, timestamp generation, multilingual modes, text-input BPE encoding, and arbitrary Transformers generation options are not active in this pinned graph."
+}

@@ -1,0 +1,176 @@
+{
+  "benchmark": "WHISPER-CPP23-VS-TRANSFORMERS-1",
+  "measurement_date": "2026-08-02",
+  "platform": {
+    "system": "Darwin",
+    "release": "25.5.0",
+    "machine": "arm64",
+    "python": "3.14.6"
+  },
+  "sample": "work/whisper_sample.wav",
+  "checkpoint": "work/whisper_tiny_en/model.safetensors",
+  "checkpoint_bytes": 151060136,
+  "cpp_binary_bytes": 529712,
+  "protocol": "five alternating fresh processes; warm OS file cache is not flushed; wall time includes process startup and model loading; peak RSS is whole-process high-water mark",
+  "cpp23": {
+    "runs": 5,
+    "fresh_process_wall_seconds": {
+      "median": 0.8109200829931069,
+      "minimum": 0.806247959000757,
+      "maximum": 1.3416947500081733
+    },
+    "peak_rss_bytes": {
+      "median": 312098816,
+      "minimum": 312049664,
+      "maximum": 316620800
+    },
+    "transcript": "Mr. Quilter is the apostle of the middle classes, and we are glad to welcome his gospel.",
+    "all_transcripts_exact": true
+  },
+  "transformers": {
+    "runs": 5,
+    "fresh_process_wall_seconds": {
+      "median": 3.2948117080086377,
+      "minimum": 3.1129683339968324,
+      "maximum": 4.505538333003642
+    },
+    "peak_rss_bytes": {
+      "median": 759250944,
+      "minimum": 757448704,
+      "maximum": 759382016
+    },
+    "transcript": "Mr. Quilter is the apostle of the middle classes, and we are glad to welcome his gospel.",
+    "all_transcripts_exact": true,
+    "model_load_seconds": {
+      "median": 0.15207591600483283,
+      "minimum": 0.14598491697688587,
+      "maximum": 0.1666469589981716
+    },
+    "frontend_seconds": {
+      "median": 0.0038374169962480664,
+      "minimum": 0.003636584006017074,
+      "maximum": 0.024920208001276478
+    },
+    "generation_seconds": {
+      "median": 0.19748525001341477,
+      "minimum": 0.18753712499164976,
+      "maximum": 0.22618870800943114
+    },
+    "worker_total_seconds": {
+      "median": 0.3511640829965472,
+      "minimum": 0.33745166700100526,
+      "maximum": 0.41877612500684336
+    }
+  },
+  "comparison": {
+    "cpp23_fresh_process_speedup": 4.063053532781534,
+    "transformers_to_cpp23_peak_rss_ratio": 2.4327261273557665,
+    "cpp23_peak_rss_reduction_percent": 58.8938520964157
+  },
+  "raw_runs": {
+    "cpp23": [
+      {
+        "implementation": "cpp23_accelerate",
+        "fresh_process_wall_seconds": 1.3416947500081733,
+        "peak_rss_bytes": 316620800,
+        "graph_nodes_visited": 74,
+        "generated_token_count": 22,
+        "cache_logit_error_check_disabled": true,
+        "transcript": "Mr. Quilter is the apostle of the middle classes, and we are glad to welcome his gospel."
+      },
+      {
+        "implementation": "cpp23_accelerate",
+        "fresh_process_wall_seconds": 0.8106095420080237,
+        "peak_rss_bytes": 312082432,
+        "graph_nodes_visited": 74,
+        "generated_token_count": 22,
+        "cache_logit_error_check_disabled": true,
+        "transcript": "Mr. Quilter is the apostle of the middle classes, and we are glad to welcome his gospel."
+      },
+      {
+        "implementation": "cpp23_accelerate",
+        "fresh_process_wall_seconds": 0.8109200829931069,
+        "peak_rss_bytes": 312098816,
+        "graph_nodes_visited": 74,
+        "generated_token_count": 22,
+        "cache_logit_error_check_disabled": true,
+        "transcript": "Mr. Quilter is the apostle of the middle classes, and we are glad to welcome his gospel."
+      },
+      {
+        "implementation": "cpp23_accelerate",
+        "fresh_process_wall_seconds": 0.806247959000757,
+        "peak_rss_bytes": 312098816,
+        "graph_nodes_visited": 74,
+        "generated_token_count": 22,
+        "cache_logit_error_check_disabled": true,
+        "transcript": "Mr. Quilter is the apostle of the middle classes, and we are glad to welcome his gospel."
+      },
+      {
+        "implementation": "cpp23_accelerate",
+        "fresh_process_wall_seconds": 0.846464999980526,
+        "peak_rss_bytes": 312049664,
+        "graph_nodes_visited": 74,
+        "generated_token_count": 22,
+        "cache_logit_error_check_disabled": true,
+        "transcript": "Mr. Quilter is the apostle of the middle classes, and we are glad to welcome his gospel."
+      }
+    ],
+    "transformers": [
+      {
+        "implementation": "transformers_python",
+        "model_load_seconds": 0.1666469589981716,
+        "frontend_seconds": 0.024920208001276478,
+        "generation_seconds": 0.22618870800943114,
+        "worker_total_seconds": 0.41877612500684336,
+        "peak_rss_bytes": 759250944,
+        "token_count_including_specials": 22,
+        "transcript": "Mr. Quilter is the apostle of the middle classes, and we are glad to welcome his gospel.",
+        "fresh_process_wall_seconds": 4.505538333003642
+      },
+      {
+        "implementation": "transformers_python",
+        "model_load_seconds": 0.14955862500937656,
+        "frontend_seconds": 0.003731541975867003,
+        "generation_seconds": 0.19748525001341477,
+        "worker_total_seconds": 0.3511640829965472,
+        "peak_rss_bytes": 757448704,
+        "token_count_including_specials": 22,
+        "transcript": "Mr. Quilter is the apostle of the middle classes, and we are glad to welcome his gospel.",
+        "fresh_process_wall_seconds": 3.173400333005702
+      },
+      {
+        "implementation": "transformers_python",
+        "model_load_seconds": 0.14598491697688587,
+        "frontend_seconds": 0.003636584006017074,
+        "generation_seconds": 0.18753712499164976,
+        "worker_total_seconds": 0.33745166700100526,
+        "peak_rss_bytes": 759087104,
+        "token_count_including_specials": 22,
+        "transcript": "Mr. Quilter is the apostle of the middle classes, and we are glad to welcome his gospel.",
+        "fresh_process_wall_seconds": 3.1129683339968324
+      },
+      {
+        "implementation": "transformers_python",
+        "model_load_seconds": 0.15207591600483283,
+        "frontend_seconds": 0.0038374169962480664,
+        "generation_seconds": 0.19301258298219182,
+        "worker_total_seconds": 0.34925454200129025,
+        "peak_rss_bytes": 759349248,
+        "token_count_including_specials": 22,
+        "transcript": "Mr. Quilter is the apostle of the middle classes, and we are glad to welcome his gospel.",
+        "fresh_process_wall_seconds": 3.2948117080086377
+      },
+      {
+        "implementation": "transformers_python",
+        "model_load_seconds": 0.1596115000138525,
+        "frontend_seconds": 0.00459054100792855,
+        "generation_seconds": 0.20874016598099843,
+        "worker_total_seconds": 0.3732950410048943,
+        "peak_rss_bytes": 759382016,
+        "token_count_including_specials": 22,
+        "transcript": "Mr. Quilter is the apostle of the middle classes, and we are glad to welcome his gospel.",
+        "fresh_process_wall_seconds": 3.410798208002234
+      }
+    ]
+  }
+}

@@ -1,0 +1,269 @@
+{
+  "certificate": "WHISPER_CPP23_STANDARD_BEAM_SEARCH_1",
+  "case_count": 5,
+  "all_ranked_sequences_exact": true,
+  "worst_sequence_score_error": 0.0001455841390686219,
+  "all_graph_nodes_visited": true,
+  "cases": [
+    {
+      "case": "two_beam_ranked_frontier",
+      "num_beams": 2,
+      "num_return_sequences": 2,
+      "maximum_positions": 8,
+      "length_penalty": 1.0,
+      "early_stopping": false,
+      "sequences": [
+        [
+          50257,
+          50362,
+          1770,
+          13,
+          2264,
+          346,
+          353,
+          318
+        ],
+        [
+          50257,
+          50362,
+          1770,
+          13,
+          627,
+          346,
+          353,
+          318
+        ]
+      ],
+      "cpp23_sequence_scores": [
+        -0.0908433571,
+        -0.607070446
+      ],
+      "transformers_sequence_scores": [
+        -0.09077849239110947,
+        -0.6070044636726379
+      ],
+      "maximum_sequence_score_error": 6.598232736210186e-05,
+      "all_ranked_sequences_exact": true,
+      "expanded_candidates": 570504,
+      "cache_branches": 10,
+      "graph_nodes_visited": 74,
+      "constructor": "Selection.StandardBeamSearch"
+    },
+    {
+      "case": "four_beam_ranked_frontier",
+      "num_beams": 4,
+      "num_return_sequences": 4,
+      "maximum_positions": 8,
+      "length_penalty": 1.0,
+      "early_stopping": false,
+      "sequences": [
+        [
+          50257,
+          50362,
+          1770,
+          13,
+          2264,
+          346,
+          353,
+          318
+        ],
+        [
+          50257,
+          50362,
+          1770,
+          13,
+          627,
+          346,
+          353,
+          318
+        ],
+        [
+          50257,
+          50362,
+          1770,
+          13,
+          421,
+          346,
+          353,
+          318
+        ],
+        [
+          50257,
+          50362,
+          1770,
+          13,
+          2264,
+          343,
+          353,
+          318
+        ]
+      ],
+      "cpp23_sequence_scores": [
+        -0.0908433571,
+        -0.607070446,
+        -0.732001305,
+        -0.879015625
+      ],
+      "transformers_sequence_scores": [
+        -0.09077849239110947,
+        -0.6070044636726379,
+        -0.7319352030754089,
+        -0.8789635300636292
+      ],
+      "maximum_sequence_score_error": 6.610192459111097e-05,
+      "all_ranked_sequences_exact": true,
+      "expanded_candidates": 1089144,
+      "cache_branches": 20,
+      "graph_nodes_visited": 74,
+      "constructor": "Selection.StandardBeamSearch"
+    },
+    {
+      "case": "two_beam_eos_finalization",
+      "num_beams": 2,
+      "num_return_sequences": 1,
+      "maximum_positions": 448,
+      "length_penalty": 1.0,
+      "early_stopping": false,
+      "sequences": [
+        [
+          50257,
+          50362,
+          1770,
+          13,
+          2264,
+          346,
+          353,
+          318,
+          262,
+          46329,
+          286,
+          262,
+          3504,
+          6097,
+          11,
+          290,
+          356,
+          389,
+          9675,
+          284,
+          7062,
+          465,
+          21443,
+          13,
+          50256
+        ]
+      ],
+      "cpp23_sequence_scores": [
+        -0.114422716
+      ],
+      "transformers_sequence_scores": [
+        -0.11436589062213898
+      ],
+      "maximum_sequence_score_error": 5.682537786101671e-05,
+      "all_ranked_sequences_exact": true,
+      "expanded_candidates": 2333880,
+      "cache_branches": 46,
+      "graph_nodes_visited": 74,
+      "constructor": "Selection.StandardBeamSearch"
+    },
+    {
+      "case": "all_finished_early_stop",
+      "num_beams": 2,
+      "num_return_sequences": 1,
+      "maximum_positions": 448,
+      "length_penalty": 0.7,
+      "early_stopping": true,
+      "sequences": [
+        [
+          50257,
+          50362,
+          1770,
+          13,
+          2264,
+          346,
+          353,
+          318,
+          262,
+          46329,
+          286,
+          262,
+          3504,
+          6097,
+          11,
+          290,
+          356,
+          389,
+          9675,
+          284,
+          7062,
+          465,
+          21443,
+          13,
+          50256
+        ]
+      ],
+      "cpp23_sequence_scores": [
+        -0.293109983
+      ],
+      "transformers_sequence_scores": [
+        -0.2929643988609314
+      ],
+      "maximum_sequence_score_error": 0.0001455841390686219,
+      "all_ranked_sequences_exact": true,
+      "expanded_candidates": 2333880,
+      "cache_branches": 46,
+      "graph_nodes_visited": 74,
+      "constructor": "Selection.StandardBeamSearch"
+    },
+    {
+      "case": "canonical_never_stop",
+      "num_beams": 2,
+      "num_return_sequences": 1,
+      "maximum_positions": 448,
+      "length_penalty": 1.0,
+      "early_stopping": "never",
+      "sequences": [
+        [
+          50257,
+          50362,
+          1770,
+          13,
+          2264,
+          346,
+          353,
+          318,
+          262,
+          46329,
+          286,
+          262,
+          3504,
+          6097,
+          11,
+          290,
+          356,
+          389,
+          9675,
+          284,
+          7062,
+          465,
+          21443,
+          13,
+          50256
+        ]
+      ],
+      "cpp23_sequence_scores": [
+        -0.114422716
+      ],
+      "transformers_sequence_scores": [
+        -0.11436589062213898
+      ],
+      "maximum_sequence_score_error": 5.682537786101671e-05,
+      "all_ranked_sequences_exact": true,
+      "expanded_candidates": 12395496,
+      "cache_branches": 240,
+      "graph_nodes_visited": 74,
+      "constructor": "Selection.StandardBeamSearch"
+    }
+  ],
+  "scope": "Batch-one deterministic standard beam search with explicit copied K/V states, top-2B continuation frontier, EOS/max-length finalization, length penalties, and three early-stopping modes."
+}

@@ -1,0 +1,18 @@
+{
+  "artifact": "outputs/flan_budget_1000.prslb",
+  "requested_bytes": 1000,
+  "actual_bytes": 919,
+  "prompts": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6
+  ],
+  "states": 47,
+  "horizon": 3,
+  "sha256": "69e5a8bca5f24583f47cdc612d4909b2ca44a1999be33930ad6639b13299826f",
+  "source": "outputs/flan_domain32_quotient.json"
+}

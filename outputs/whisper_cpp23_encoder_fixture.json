@@ -1,0 +1,248 @@
+{
+  "language": "WHISPER-CPP23-ENCODER-DECODER-FIXTURE-1",
+  "checkpoint_path": "work/whisper_tiny_en/model.safetensors",
+  "checkpoint_sha256": "db59695928ded6043adaef491a53ef4e12da9611184d77c53baa691a60b958ad",
+  "tensor_manifest": "whisper_cpp23_tensor_manifest.tsv",
+  "tensor_manifest_sha256": "db463072b26d21d1b28d77b3cab5eee27c7931e0706810639417bdb06e790851",
+  "audio_path": "work/whisper_sample.wav",
+  "audio_sha256": "b0c046b68368226b725c2ae364b03a709e983d9749c7157ded6b7af582814747",
+  "mel_path": "whisper_cpp23_mel_f32.bin",
+  "mel_shape": [
+    1,
+    80,
+    3000
+  ],
+  "mel_sha256": "2c4d3aef928c6a58ba79a1bd7ace26118b6e03bb02182eba09e7867c4bc530de",
+  "hann_path": "whisper_cpp23_hann_f32.bin",
+  "hann_sha256": "c692d19f0b2bd745f0dfc967261c3e3d21a2473e485a677d219e9b4a73e0218e",
+  "mel_filters_path": "whisper_cpp23_mel_filters_f32.bin",
+  "mel_filters_shape": [
+    201,
+    80
+  ],
+  "mel_filters_sha256": "d18b48f33345d958ea71098bb990b5e32cebc78d9a2cf65ca0d7302f34ebe8a9",
+  "reference_path": "whisper_cpp23_encoder_reference_f32.bin",
+  "reference_sha256": "f10480f71915c126ac4831ef029cb9bd94e5d0212978ec1fe6cf9eed00277f3c",
+  "stages": [
+    {
+      "name": "conv1_gelu",
+      "shape": [
+        1,
+        3000,
+        384
+      ],
+      "begin": 0,
+      "end": 4608000
+    },
+    {
+      "name": "conv2_gelu_position",
+      "shape": [
+        1,
+        1500,
+        384
+      ],
+      "begin": 4608000,
+      "end": 6912000
+    },
+    {
+      "name": "encoder_layer_0",
+      "shape": [
+        1,
+        1500,
+        384
+      ],
+      "begin": 6912000,
+      "end": 9216000
+    },
+    {
+      "name": "encoder_layer_1",
+      "shape": [
+        1,
+        1500,
+        384
+      ],
+      "begin": 9216000,
+      "end": 11520000
+    },
+    {
+      "name": "encoder_layer_2",
+      "shape": [
+        1,
+        1500,
+        384
+      ],
+      "begin": 11520000,
+      "end": 13824000
+    },
+    {
+      "name": "encoder_layer_3",
+      "shape": [
+        1,
+        1500,
+        384
+      ],
+      "begin": 13824000,
+      "end": 16128000
+    },
+    {
+      "name": "encoder_final",
+      "shape": [
+        1,
+        1500,
+        384
+      ],
+      "begin": 16128000,
+      "end": 18432000
+    }
+  ],
+  "decoder_ids_path": "whisper_cpp23_decoder_ids_i32.bin",
+  "decoder_ids_sha256": "f05d4ca2bba4cbe1617a89d30a54e8a067c326be711d38213919aeb142ded4ae",
+  "decoder_ids": [
+    50257,
+    50362,
+    1770,
+    13,
+    2264,
+    346,
+    353,
+    318,
+    262,
+    46329,
+    286,
+    262,
+    3504,
+    6097,
+    11,
+    290,
+    356,
+    389,
+    9675,
+    284,
+    7062,
+    465,
+    21443
+  ],
+  "decoder_reference_path": "whisper_cpp23_decoder_reference_f32.bin",
+  "decoder_reference_sha256": "db1dd38a2b03c2b267313638302c90f063a1b17ddb96d553698a5ac69651da28",
+  "decoder_stages": [
+    {
+      "name": "decoder_embed_position",
+      "shape": [
+        1,
+        23,
+        384
+      ],
+      "begin": 0,
+      "end": 35328
+    },
+    {
+      "name": "decoder_layer_0",
+      "shape": [
+        1,
+        23,
+        384
+      ],
+      "begin": 35328,
+      "end": 70656
+    },
+    {
+      "name": "decoder_layer_1",
+      "shape": [
+        1,
+        23,
+        384
+      ],
+      "begin": 70656,
+      "end": 105984
+    },
+    {
+      "name": "decoder_layer_2",
+      "shape": [
+        1,
+        23,
+        384
+      ],
+      "begin": 105984,
+      "end": 141312
+    },
+    {
+      "name": "decoder_layer_3",
+      "shape": [
+        1,
+        23,
+        384
+      ],
+      "begin": 141312,
+      "end": 176640
+    },
+    {
+      "name": "decoder_final",
+      "shape": [
+        1,
+        23,
+        384
+      ],
+      "begin": 176640,
+      "end": 211968
+    },
+    {
+      "name": "logits",
+      "shape": [
+        1,
+        23,
+        51864
+      ],
+      "begin": 211968,
+      "end": 4983456
+    }
+  ],
+  "token_bytes_path": "whisper_cpp23_token_bytes.bin",
+  "token_bytes_sha256": "a63787dd367ad9e2219677b6b2b7fc603e4483ced38225ce8da6afa3d00e124e",
+  "token_manifest_path": "whisper_cpp23_token_manifest.tsv",
+  "token_manifest_sha256": "5cb9798ad3ca78b0550b364823614cdc698851f152cfae4fdae83f6e78a9df2b",
+  "tokenizer_source_hashes": {
+    "tokenizer.json": "5eb60cec1e77aeeb6869a2bb5a8e01a84c3fe5d072d75369343021fe6f5310d0",
+    "vocab.json": "3ba3c3109ff33976c4bd966589c11ee14fcaa1f4c9e5e154c2ed7f99d80709e7",
+    "merges.txt": "1ce1664773c50f3e0cc8842619a93edc4624525b728b188a9e0be33b7726adc5",
+    "normalizer.json": "bf1c507dc8724ca9cf9903640dacfb69dae2f00edee4f21ceba106a7392f26dd",
+    "tokenizer_config.json": "14f84bdf4b9ecdbd4738ddc81c17a1baedfc02bb93c6e049c951e15a1b40b70d",
+    "special_tokens_map.json": "014f8f802366ed818919550be0ad9e35907327cb9e142e8aaa102420f460bda8"
+  },
+  "target_token_ids": [
+    1770,
+    13,
+    2264,
+    346,
+    353,
+    318,
+    262,
+    46329,
+    286,
+    262,
+    3504,
+    6097,
+    11,
+    290,
+    356,
+    389,
+    9675,
+    284,
+    7062,
+    465,
+    21443,
+    13
+  ],
+  "target_transcript": "Mr. Quilter is the apostle of the middle classes, and we are glad to welcome his gospel.",
+  "layer_norm_eps": 1e-05,
+  "model_dimensions": {
+    "mel": 80,
+    "model": 384,
+    "ffn": 1536,
+    "heads": 6,
+    "source_positions": 1500,
+    "target_positions": 448,
+    "vocabulary": 51864,
+    "encoder_layers": 4,
+    "decoder_layers": 4
+  }
+}
