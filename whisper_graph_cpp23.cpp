@@ -1,7 +1,11 @@
 #include "generated_whisper_generation_config.hpp"
 #include "generated_whisper_graph.hpp"
 #include "whisper_interface_adt.hpp"
+#if defined(WHISPER_PORTABLE_BACKEND)
+#include "portable_backend.hpp"
+#else
 #include <Accelerate/Accelerate.h>
+#endif
 #include <algorithm>
 #include <array>
 #include <bit>
