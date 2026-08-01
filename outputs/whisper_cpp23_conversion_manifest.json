@@ -3,15 +3,16 @@
   "model": "openai/whisper-tiny.en",
   "checkpoint_sha256": "db59695928ded6043adaef491a53ef4e12da9611184d77c53baa691a60b958ad",
   "graph_sha256": "2adbb1fb4d6d14993772e13d596d7f77981ca7c5be27c0a1088a338927a5fe3c",
-  "cpp_source_sha256": "4958b16a129b4317072c6918cfb66a4e432cf9ed92d1f10942eca06f8189be88",
+  "cpp_source_sha256": "e60b03bb03579ed9996a211aeb1f7ade9f39e179efd0829cc369a484f1897d9f",
   "generated_header_sha256": "d046e5e3e947bf7de87cc59a01e5d08e36156ff59864a9b616707a2b4091b71f",
-  "generation_config_header_sha256": "9c3c8e646e892189e1c0604049642175f1fd9033544c556520770e55be1afc41",
+  "generation_config_header_sha256": "55ad53e74b89e91cf87d72a8b7b01446b6dd76c70351e6f0399f4f2c0dadf018",
   "sampling_filter_fixture_sha256": "5f41ea938e5d4eeacb1a67cfb1bdf5a133272a1e913b76dfb4fa09036d38334f",
   "score_policy_fixture_sha256": "c5938915d3df389b4e79aa87699d4aea24fee6996aa0e97f500e51e2a27ddd24",
   "beam_search_fixture_sha256": "de8bfd281d1fdae0e4b9080fde3005648077a2a2221b084b46f8d748fe90afb2",
   "synthid_beam_fixture_sha256": "c4802eb77505d4ee51830e7b38d39baa7799bcf4a6d605d533a3073b9ffde21b",
   "synthid_group_beam_fixture_sha256": "fd03036cb29fb147ba80b37c6c13e6e09cf0d4091c514485725ec6af0dac0560",
   "synthid_constrained_beam_fixture_sha256": "baf8693dd1f82ce0f31ed4b5854f6c5edbffe590e208c0c783eb952a998c1fd8",
+  "synthid_sampled_beam_fixture_sha256": "ddfc863e44fa0d02c3fca415fb3ee31490fcea0fecb4936f28335280552fde81",
   "group_beam_search_fixture_sha256": "d80b9d729f66ff5df84d8d221e00d2503c7d5faa8f4db3d6301f6aa352bc4318",
   "constrained_beam_search_fixture_sha256": "8bb0cc53ca1832855e20c8b7d624c7287695465653807a79a20772e114a107ca",
   "beam_sampling_fixture_sha256": "796bb17a0313604e872a31a8b21f7da4553c15c30655264c99a39c30a4106672",
@@ -605,8 +606,8 @@
     },
     {
       "requirement": "history-keyed watermark probability transport",
-      "status": "PROVED_FINITE_CLASSIC_AND_GREEDY_STANDARD_CONSTRAINED_GROUP_SYNTHID",
-      "evidence": "6 classic and 5 greedy SynthID configurations have exact masks/g-values and state trajectories; exact row-state and ranked-sequence certificates cover 6 standard, 5 constrained, and 5 diverse-group cases; sampled-beam SynthID remains separate"
+      "status": "PROVED_FINITE_CLASSIC_AND_ALL_IMPLEMENTED_SYNTHID_SEARCHES",
+      "evidence": "6 classic and 5 greedy SynthID configurations have exact masks/g-values and state trajectories; exact row-state and ranked-sequence certificates cover 6 standard, 5 constrained, and 5 diverse-group cases; sampled beam transports 12 row states through explicit parent-row copies with deterministic C++ seed replay"
     },
     {
       "requirement": "readable token output",
@@ -636,7 +637,7 @@
     {
       "requirement": "arbitrary non-default GenerationMixin reconfiguration",
       "status": "IN_PROGRESS",
-      "evidence": "full non-default closure=False; 14 inactive and 8 partial generic fields remain explicitly inventoried"
+      "evidence": "full non-default closure=False; 14 inactive and 2 partial generic fields remain explicitly inventoried"
     }
   ],
   "all_opcodes_executable": true,
@@ -663,26 +664,20 @@
   ],
   "partial_generic_generation_fields": [
     "bos_token_id",
-    "low_memory",
-    "max_matching_ngram_size",
-    "num_return_sequences",
-    "prompt_lookup_num_tokens",
-    "return_legacy_cache",
-    "stop_strings",
-    "watermarking_config"
+    "return_legacy_cache"
   ],
   "backend_contract": {
     "language": "C++23",
-    "linear_algebra": "macOS Accelerate CBLAS binary32",
+    "linear_algebra": "macOS Accelerate CBLAS binary32, plus compile-tested portable scalar binary32 GEMM/dot backend",
     "audio": "mono 16 kHz signed PCM16 WAV; finite inputs truncate or zero-pad to 30 seconds",
-    "generation": "greedy, categorical, and contrastive decoding; greedy token-byte stop strings and prompt-lookup speculative transport; classic left/self-hash watermark probability transport plus greedy, standard-beam, constrained-beam, and diverse-group SynthID row-state transport; standard/sampled/diverse-group/phrase-and-disjunction-constrained beam search; prompts, timestamp-token policy, short-form segments, eight-head DTW token timestamps, and sequential batches with shared immutable weights and isolated item state; maximum 448 decoder positions",
+    "generation": "greedy, categorical, and contrastive decoding; greedy token-byte stop strings and prompt-lookup speculative transport; classic left/self-hash watermark probability transport plus greedy, standard-beam, sampled-beam, constrained-beam, and diverse-group SynthID row-state transport; standard/sampled/diverse-group/phrase-and-disjunction-constrained beam search; prompts, timestamp-token policy, short-form segments, eight-head DTW token timestamps, and sequential batches with shared immutable weights and isolated item state; maximum 448 decoder positions",
     "checkpoint": "pinned openai/whisper-tiny.en safetensors"
   },
   "portable_backend_independent": false,
   "universal_numerical_equivalence_proved": false,
   "remaining_validation": [
-    "implement or formally exclude the explicitly inventoried non-default generic generation algorithms, including SynthID scheduling for sampled beam search",
-    "repeat numerical validation on a non-Accelerate backend if portability is required",
+    "implement or formally exclude the explicitly inventoried non-default generic generation algorithms",
+    "run whole-model numerical validation on the portable scalar backend; its current gate covers bitwise dot/GEMM kernels and whole-runtime compilation",
     "expand finite corpus beyond five recordings",
     "formalize primitive floating-point correspondence if a universal proof is required"
   ],

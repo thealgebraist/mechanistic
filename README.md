@@ -29,11 +29,13 @@ WHISPER_CPP23_GRAPH_REGRESSION_OK
 
 - `whisper_graph_cpp23.cpp` — executable graph interpreter, native audio frontend, encoder/decoder, cache state, and generation algorithms.
 - `whisper_interface_adt.hpp` — named algebraic data types for the PyTorch/GenerationConfig interface.
+- `portable_backend.hpp` — vendor-neutral scalar binary32 GEMM/dot backend with an executable correspondence test.
 - `generated_whisper_graph.hpp` — generated 74-node graph and weight-reference table.
 - `generated_whisper_generation_config.hpp` — generated pinned configuration representation.
 - `generate_whisper_cpp23_graph.py` and `export_whisper_cpp23_encoder_fixture.py` — regenerate graph/config bindings and numerical fixtures.
 - `verify_whisper_cpp23_graph.sh` — optimized, differential, coverage, and ASan/UBSan regression suite.
 - `verify_whisper_cpp23_*.py` — source-pinned differential verifiers for forward variants, sampling, beam algorithms, constraints, watermarking, prompt lookup, batching, and model-specific boundaries.
+- `verify_portable_backend.cpp` — bitwise dot/GEMM kernel checks and a portable-backend compile gate.
 
 ## Evidence
 

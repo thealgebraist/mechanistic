@@ -24,8 +24,7 @@ without Accelerate headers or libraries.
 
 The portable slice covers the graph's vendor BLAS dependency only. It is not a
 claim of universal bitwise equivalence across compilers, vectorization, or
-math libraries. FFT, quantized/int8 GEMM, vendor vector intrinsics, alternate
-generation algorithms, and PyTorch/Accelerate transcript comparisons require
-their existing fixtures and remain explicit unsupported extensions in this
-backend contract. Full end-to-end comparison is therefore conditional on the
-checkpoint/audio fixture bundle being present.
+math libraries. Quantized/int8 GEMM and vendor vector intrinsics remain outside
+this backend contract. The complete runtime compiles in portable mode, but a
+full portable transcript/logit comparison has not yet been run; the current
+portable evidence is limited to bitwise dot/GEMM checks and the compile gate.

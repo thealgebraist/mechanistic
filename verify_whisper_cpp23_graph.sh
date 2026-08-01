@@ -4,6 +4,10 @@ PYTHONPATH=work/venv/lib/python3.14/site-packages python3 export_whisper_cpp23_e
 python3 generate_whisper_cpp23_graph.py >/dev/null
 PYTHONPATH=work/venv/lib/python3.14/site-packages python3 audit_whisper_generation_extensions.py >/dev/null
 c++ -std=c++23 -O3 -DNDEBUG -Wall -Wextra -Wpedantic -Wno-deprecated-declarations whisper_graph_cpp23.cpp -framework Accelerate -lz -o work/whisper_graph_cpp23
+c++ -std=c++23 -O2 -DNDEBUG -Wall -Wextra -Wpedantic verify_portable_backend.cpp -o work/verify_portable_backend
+work/verify_portable_backend
+c++ -std=c++23 -O2 -DNDEBUG -Wall -Wextra -Wpedantic -DWHISPER_PORTABLE_BACKEND whisper_graph_cpp23.cpp -lz -o work/whisper_graph_cpp23_portable
+work/whisper_graph_cpp23_portable 2>&1 | grep -q 'WHISPER_CPP23_GRAPH_FAIL usage:'
 work/whisper_graph_cpp23 work/whisper_tiny_en/model.safetensors outputs/whisper_cpp23_tensor_manifest.tsv work/whisper_sample.wav outputs/whisper_cpp23_mel_f32.bin outputs/whisper_cpp23_hann_f32.bin outputs/whisper_cpp23_mel_filters_f32.bin outputs/whisper_cpp23_encoder_reference_f32.bin outputs/whisper_cpp23_decoder_ids_i32.bin outputs/whisper_cpp23_decoder_reference_f32.bin outputs/whisper_cpp23_token_manifest.tsv outputs/whisper_cpp23_token_bytes.bin | tee outputs/whisper_cpp23_graph_run.log
 PYTHONPATH=work/venv/lib/python3.14/site-packages python3 verify_whisper_cpp23_multiaudio.py
 PYTHONPATH=work/venv/lib/python3.14/site-packages python3 verify_whisper_cpp23_batch.py
@@ -17,6 +21,7 @@ PYTHONPATH=work/venv/lib/python3.14/site-packages python3 verify_whisper_cpp23_s
 PYTHONPATH=work/venv/lib/python3.14/site-packages python3 verify_whisper_cpp23_constrained_beam_search.py
 PYTHONPATH=work/venv/lib/python3.14/site-packages python3 verify_whisper_cpp23_synthid_constrained_beam.py
 PYTHONPATH=work/venv/lib/python3.14/site-packages python3 verify_whisper_cpp23_beam_sampling.py
+PYTHONPATH=work/venv/lib/python3.14/site-packages python3 verify_whisper_cpp23_synthid_sampled_beam.py
 PYTHONPATH=work/venv/lib/python3.14/site-packages python3 verify_whisper_cpp23_contrastive_search.py
 PYTHONPATH=work/venv/lib/python3.14/site-packages python3 verify_whisper_cpp23_model_applicability.py
 PYTHONPATH=work/venv/lib/python3.14/site-packages python3 verify_whisper_cpp23_stop_strings.py
@@ -31,6 +36,7 @@ work/whisper_graph_cpp23_san --transcribe-batch work/whisper_tiny_en/model.safet
 work/whisper_graph_cpp23_san --group-beam-search work/whisper_tiny_en/model.safetensors outputs/whisper_cpp23_tensor_manifest.tsv work/whisper_sample.wav outputs/whisper_cpp23_hann_f32.bin outputs/whisper_cpp23_mel_filters_f32.bin outputs/whisper_cpp23_token_manifest.tsv outputs/whisper_cpp23_token_bytes.bin 4 2 4 8 1.0 0.5 heuristic >/dev/null
 work/whisper_graph_cpp23_san --constrained-beam-search work/whisper_tiny_en/model.safetensors outputs/whisper_cpp23_tensor_manifest.tsv work/whisper_sample.wav outputs/whisper_cpp23_hann_f32.bin outputs/whisper_cpp23_mel_filters_f32.bin outputs/whisper_cpp23_token_manifest.tsv outputs/whisper_cpp23_token_bytes.bin 4 4 12 1.0 heuristic p:25996 >/dev/null
 work/whisper_graph_cpp23_san --beam-sample work/whisper_tiny_en/model.safetensors outputs/whisper_cpp23_tensor_manifest.tsv work/whisper_sample.wav outputs/whisper_cpp23_hann_f32.bin outputs/whisper_cpp23_mel_filters_f32.bin outputs/whisper_cpp23_token_manifest.tsv outputs/whisper_cpp23_token_bytes.bin 2 2 8 1.0 heuristic 1.0 11 50 - - - - - >/dev/null
+work/whisper_graph_cpp23_san --beam-sample work/whisper_tiny_en/model.safetensors outputs/whisper_cpp23_tensor_manifest.tsv work/whisper_sample.wav outputs/whisper_cpp23_hann_f32.bin outputs/whisper_cpp23_mel_filters_f32.bin outputs/whisper_cpp23_token_manifest.tsv outputs/whisper_cpp23_token_bytes.bin 2 2 8 1.0 heuristic 1.0 11 50 - - - - - 5 654,400,836,123,340,443,597,160,57 1024 0 65536 0 0 >/dev/null
 work/whisper_graph_cpp23_san --contrastive-search work/whisper_tiny_en/model.safetensors outputs/whisper_cpp23_tensor_manifest.tsv work/whisper_sample.wav outputs/whisper_cpp23_hann_f32.bin outputs/whisper_cpp23_mel_filters_f32.bin outputs/whisper_cpp23_token_manifest.tsv outputs/whisper_cpp23_token_bytes.bin 4 0.6 8 >/dev/null
 work/whisper_graph_cpp23_san --generation-applicability dola_layers low >/dev/null
 work/whisper_graph_cpp23_san --generation-applicability guidance_scale 1.5 >/dev/null

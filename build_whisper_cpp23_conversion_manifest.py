@@ -29,6 +29,9 @@ synthid_group_beam = json.loads(
 synthid_constrained_beam = json.loads(
     Path("outputs/whisper_cpp23_synthid_constrained_beam.json").read_text()
 )
+synthid_sampled_beam = json.loads(
+    Path("outputs/whisper_cpp23_synthid_sampled_beam.json").read_text()
+)
 group_beam_search = json.loads(
     Path("outputs/whisper_cpp23_group_beam_search.json").read_text()
 )
@@ -149,8 +152,8 @@ requirements = [
     },
     {
         "requirement": "history-keyed watermark probability transport",
-        "status": "PROVED_FINITE_CLASSIC_AND_GREEDY_STANDARD_CONSTRAINED_GROUP_SYNTHID",
-        "evidence": f"{watermark['classic_case_count']} classic and {watermark['synthid_case_count']} greedy SynthID configurations have exact masks/g-values and state trajectories; exact row-state and ranked-sequence certificates cover {synthid_beam['case_count']} standard, {synthid_constrained_beam['case_count']} constrained, and {synthid_group_beam['case_count']} diverse-group cases; sampled-beam SynthID remains separate",
+        "status": "PROVED_FINITE_CLASSIC_AND_ALL_IMPLEMENTED_SYNTHID_SEARCHES",
+        "evidence": f"{watermark['classic_case_count']} classic and {watermark['synthid_case_count']} greedy SynthID configurations have exact masks/g-values and state trajectories; exact row-state and ranked-sequence certificates cover {synthid_beam['case_count']} standard, {synthid_constrained_beam['case_count']} constrained, and {synthid_group_beam['case_count']} diverse-group cases; sampled beam transports {synthid_sampled_beam['state_rows']} row states through explicit parent-row copies with deterministic C++ seed replay",
     },
     {
         "requirement": "readable token output",
@@ -212,6 +215,9 @@ out = {
     ),
     "synthid_constrained_beam_fixture_sha256": sha(
         "outputs/whisper_cpp23_synthid_constrained_beam.json"
+    ),
+    "synthid_sampled_beam_fixture_sha256": sha(
+        "outputs/whisper_cpp23_synthid_sampled_beam.json"
     ),
     "group_beam_search_fixture_sha256": sha(
         "outputs/whisper_cpp23_group_beam_search.json"
@@ -371,16 +377,16 @@ out = {
     ],
     "backend_contract": {
         "language": "C++23",
-        "linear_algebra": "macOS Accelerate CBLAS binary32",
+        "linear_algebra": "macOS Accelerate CBLAS binary32, plus compile-tested portable scalar binary32 GEMM/dot backend",
         "audio": "mono 16 kHz signed PCM16 WAV; finite inputs truncate or zero-pad to 30 seconds",
-        "generation": "greedy, categorical, and contrastive decoding; greedy token-byte stop strings and prompt-lookup speculative transport; classic left/self-hash watermark probability transport plus greedy, standard-beam, constrained-beam, and diverse-group SynthID row-state transport; standard/sampled/diverse-group/phrase-and-disjunction-constrained beam search; prompts, timestamp-token policy, short-form segments, eight-head DTW token timestamps, and sequential batches with shared immutable weights and isolated item state; maximum 448 decoder positions",
+        "generation": "greedy, categorical, and contrastive decoding; greedy token-byte stop strings and prompt-lookup speculative transport; classic left/self-hash watermark probability transport plus greedy, standard-beam, sampled-beam, constrained-beam, and diverse-group SynthID row-state transport; standard/sampled/diverse-group/phrase-and-disjunction-constrained beam search; prompts, timestamp-token policy, short-form segments, eight-head DTW token timestamps, and sequential batches with shared immutable weights and isolated item state; maximum 448 decoder positions",
         "checkpoint": "pinned openai/whisper-tiny.en safetensors",
     },
     "portable_backend_independent": False,
     "universal_numerical_equivalence_proved": False,
     "remaining_validation": [
-        "implement or formally exclude the explicitly inventoried non-default generic generation algorithms, including SynthID scheduling for sampled beam search",
-        "repeat numerical validation on a non-Accelerate backend if portability is required",
+        "implement or formally exclude the explicitly inventoried non-default generic generation algorithms",
+        "run whole-model numerical validation on the portable scalar backend; its current gate covers bitwise dot/GEMM kernels and whole-runtime compilation",
         "expand finite corpus beyond five recordings",
         "formalize primitive floating-point correspondence if a universal proof is required",
     ],
@@ -408,7 +414,7 @@ The runtime dispatched all `{match.group(9)}` generated graph nodes, resolving m
 |---|---:|
 {rows}
 
-All 74 core opcodes now have executable C++23 semantics under the declared macOS Accelerate binary32 ABI. Timestamp-token policy, short-form segments, eight-head cross-attention/DTW token timestamps, typed non-empty batch execution, contrastive hidden-state transport, sampled/diverse-group beam state transport, phrase/disjunction constraint-bank transport, classic watermark transport, and greedy/standard/constrained/diverse-group SynthID state transport are also executable. All pinned top-level values are represented and there are `{interface["pending_parameter_count"]}` unclassified signature rows. That closes the checkpoint's active path, not every alternate generic generation algorithm: `{extensions["override_status_counts"].get("PINNED_INACTIVE_GENERIC_EXTENSION", 0)}` inactive and `{extensions["override_status_counts"].get("CPP23_PARTIAL_OVERRIDE", 0)}` partial GenerationConfig fields remain explicit reconfiguration work. It is not a backend-independent floating-point proof: the finite numerical checks cover five recordings, and another BLAS/FFT implementation must be revalidated separately.
+All 74 core opcodes now have executable C++23 semantics under the declared macOS Accelerate binary32 ABI. Timestamp-token policy, short-form segments, eight-head cross-attention/DTW token timestamps, typed non-empty batch execution, contrastive hidden-state transport, sampled/diverse-group beam state transport, phrase/disjunction constraint-bank transport, classic watermark transport, and greedy/standard/sampled/constrained/diverse-group SynthID state transport are also executable. Sampled-beam SynthID explicitly copies each surviving runtime from its selected parent row; the finite certificate records `{synthid_sampled_beam["state_rows"]}` row states and deterministic C++ seed replay. All pinned top-level values are represented and there are `{interface["pending_parameter_count"]}` unclassified signature rows. That closes the checkpoint's active path, not every alternate generic generation algorithm: `{extensions["override_status_counts"].get("PINNED_INACTIVE_GENERIC_EXTENSION", 0)}` inactive and `{extensions["override_status_counts"].get("CPP23_PARTIAL_OVERRIDE", 0)}` partial GenerationConfig fields remain explicit reconfiguration work. The optional portable backend has bitwise dot/GEMM tests and a whole-runtime compile gate, but has not yet completed full-model numerical comparison. It is not a backend-independent floating-point proof: the finite numerical checks cover five recordings, and another BLAS/FFT implementation must be revalidated separately.
 """)
 audit = "\n".join(
     f"| {i + 1} | {r['requirement']} | {r['status']} | {r['evidence']} |"
@@ -422,7 +428,7 @@ Path(
 |---:|---|---|---|
 {audit}
 
-Verdict: **PINNED CORE GRAPH AND ACTIVE INTERFACE COMPLETE; GENERIC RECONFIGURATION IN PROGRESS** under the declared C++23/macOS Accelerate ABI. Every extracted graph opcode and checkpoint tensor has an executable representation, all 17 `forward` and 27 top-level `generate` parameters are classified, and all 74 pinned GenerationConfig values are represented. The full objective remains open because non-default generic generation algorithms are not all executable, and finite tests do not establish a universal backend-independent floating-point equivalence theorem.
+Verdict: **PINNED CORE GRAPH AND ACTIVE INTERFACE COMPLETE; GENERIC RECONFIGURATION IN PROGRESS** under the declared C++23/macOS Accelerate ABI. Every extracted graph opcode and checkpoint tensor has an executable representation, all 17 `forward` and 27 top-level `generate` parameters are classified, and all 74 pinned GenerationConfig values are represented. Prompt lookup, stop strings, watermarking, low-memory contrastive scheduling, matching-ngram sizing, and multi-return sequencing are named executable overrides backed by source-pinned fixtures. Sampled-beam SynthID parent-row state transport is executable and sanitizer-covered. The full objective remains open because assistant/cache/time/prefill/token-healing extensions and non-default external generation algorithms are not all executable, portable whole-model numerical parity remains unverified, and finite tests do not establish a universal backend-independent floating-point equivalence theorem.
 """)
 print(
     json.dumps(

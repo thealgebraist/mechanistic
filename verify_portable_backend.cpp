@@ -1,4 +1,5 @@
 #include "portable_backend.hpp"
+#include <bit>
 #include <chrono>
 #include <cmath>
 #include <iostream>

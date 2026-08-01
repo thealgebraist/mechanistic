@@ -3291,6 +3291,7 @@ struct SampledBeamSearchResult : BeamSearchResult {
   std::size_t sampled_candidates = 0;
   double maximum_conditional_mass_error = 0.0;
   bool every_draw_set_unique = true;
+  std::vector<std::size_t> synthid_parent_rows;
 };
 
 static std::vector<BeamCandidate> sample_candidates_without_replacement(
@@ -3471,6 +3472,16 @@ static SampledBeamSearchResult sampled_beam_search(
               better_beam_candidate);
     if (continuations.size() > configuration.beams)
       continuations.resize(configuration.beams);
+    std::vector<SynthIDWatermarkRuntime> next_synthid_rows;
+    if (!synthid_rows.empty()) {
+      next_synthid_rows.reserve(continuations.size());
+      for (const auto &candidate : continuations) {
+        if (candidate.parent >= synthid_rows.size())
+          throw std::runtime_error("SynthID sampled parent row");
+        next_synthid_rows.push_back(synthid_rows[candidate.parent]);
+        result.synthid_parent_rows.push_back(candidate.parent);
+      }
+    }
     audit.hit(nodes[72]);
     std::vector<LiveBeam> next;
     next.reserve(continuations.size());
@@ -3487,6 +3498,8 @@ static SampledBeamSearchResult sampled_beam_search(
       next.push_back(std::move(branch));
     }
     live = std::move(next);
+    if (!synthid_rows.empty())
+      synthid_rows = std::move(next_synthid_rows);
     first_beam_step = false;
     if (live.empty())
       break;
@@ -4593,19 +4606,30 @@ int main(int argc, char **argv) try {
               << " expanded_candidates=" << result.expanded_candidates
               << " cache_branches=" << result.cache_branches
               << " unique_draw_sets=" << result.every_draw_set_unique
-              << " mass_error=" << result.maximum_conditional_mass_error
-              << " synthid_state_rows=" << result.synthid_context_hashes.size()
-              << " synthid_hashes=";
-    for (std::size_t i = 0; i < result.synthid_context_hashes.size(); ++i) {
-      if (i) std::cout << ',';
-      std::cout << result.synthid_context_hashes[i];
+              << " mass_error=" << result.maximum_conditional_mass_error;
+    if (synthid_policies) {
+      std::cout << " synthid_state_rows="
+                << result.synthid_context_hashes.size()
+                << " synthid_hashes=";
+      for (std::size_t i = 0; i < result.synthid_context_hashes.size(); ++i) {
+        if (i)
+          std::cout << ',';
+        std::cout << result.synthid_context_hashes[i];
+      }
+      std::cout << " synthid_repeated=";
+      for (bool value : result.synthid_repeated)
+        std::cout << int(value);
+      std::cout << " synthid_skipped=";
+      for (bool value : result.synthid_skipped)
+        std::cout << int(value);
+      std::cout << " synthid_parent_rows=";
+      for (std::size_t i = 0; i < result.synthid_parent_rows.size(); ++i) {
+        if (i)
+          std::cout << ',';
+        std::cout << result.synthid_parent_rows[i];
+      }
     }
-    std::cout << " synthid_repeated=";
-    for (bool value : result.synthid_repeated) std::cout << int(value);
-    std::cout << " synthid_skipped=";
-    for (bool value : result.synthid_skipped) std::cout << int(value);
-    std::cout
-              << " graph_nodes_visited=" << execution.visited() << "\n";
+    std::cout << " graph_nodes_visited=" << execution.visited() << "\n";
     return 0;
   }
   if (argc == 22 &&
