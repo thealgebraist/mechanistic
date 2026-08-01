@@ -75,3 +75,11 @@ __pycache__/
 .DS_Store
 outputs/.DS_Store
 *.olean
+
+# Regenerated Whisper numerical fixtures
+outputs/whisper_cpp23_*_f32.bin
+outputs/whisper_cpp23_decoder_ids_i32.bin
+outputs/whisper_cpp23_tensor_manifest.tsv
+outputs/whisper_cpp23_token_manifest.tsv
+outputs/whisper_cpp23_token_bytes.bin
+outputs/whisper_cpp23_multiaudio/
