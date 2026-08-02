@@ -2003,7 +2003,7 @@ struct GenerationDeadlineRuntime {
   whisper_interface::FiniteMonotonicDeadline configuration;
   std::function<double()> elapsed_seconds;
   std::size_t checks = 0;
-  whisper_interface::DeadlineTransition after_token_transition() {
+  whisper_interface::DeadlineTransition evaluate() {
     if (!configuration.valid() || !elapsed_seconds)
       throw std::runtime_error("generation deadline runtime invariant");
     ++checks;
@@ -2011,6 +2011,26 @@ struct GenerationDeadlineRuntime {
                                                   elapsed_seconds());
   }
 };
+static bool check_generation_deadline(
+    GenerationDeadlineRuntime *deadline,
+    std::optional<whisper_interface::StopAfterDeadline> &stop,
+    std::size_t &checks) {
+  if (!deadline)
+    return false;
+  auto transition = deadline->evaluate();
+  checks = deadline->checks;
+  if (const auto *expired =
+          std::get_if<whisper_interface::StopAfterDeadline>(&transition)) {
+    if (!expired->valid())
+      throw std::runtime_error("generation deadline stop invariant");
+    stop = *expired;
+    return true;
+  }
+  if (!std::get<whisper_interface::ContinueAtOrBeforeDeadline>(transition)
+           .valid())
+    throw std::runtime_error("generation deadline continue invariant");
+  return false;
+}
 using StopStringPredicate =
     std::function<bool(std::span<const std::int32_t>, std::int32_t)>;
 static double categorical_probability(std::span<const float> logits,
@@ -2292,20 +2312,8 @@ static GenerationResult generate(
     return result;
   };
   auto deadline_expired = [&]() {
-    if (!deadline)
-      return false;
-    auto transition = deadline->after_token_transition();
-    if (const auto *stop =
-            std::get_if<whisper_interface::StopAfterDeadline>(&transition)) {
-      if (!stop->valid())
-        throw std::runtime_error("generation deadline stop invariant");
-      result.deadline_stop = *stop;
-      return true;
-    }
-    if (!std::get<whisper_interface::ContinueAtOrBeforeDeadline>(transition)
-             .valid())
-      throw std::runtime_error("generation deadline continue invariant");
-    return false;
+    return check_generation_deadline(deadline, result.deadline_stop,
+                                     result.deadline_checks);
   };
   F32 cached_logits;
   auto verify_step = [&](std::int32_t token) {
@@ -2456,6 +2464,8 @@ struct BeamSearchResult {
   std::vector<std::int64_t> synthid_context_hashes;
   std::vector<std::uint8_t> synthid_repeated;
   std::vector<std::uint8_t> synthid_skipped;
+  std::optional<whisper_interface::StopAfterDeadline> deadline_stop;
+  std::size_t deadline_checks = 0;
 };
 struct LiveBeam {
   std::vector<std::int32_t> stack;
@@ -2489,12 +2499,27 @@ static float length_normalized_beam_score(float cumulative,
   return cumulative / static_cast<float>(std::pow(double(generated_positions),
                                                   double(length_penalty)));
 }
+static void append_live_beam_sequences(
+    std::span<const LiveBeam> live, std::size_t decoder_prompt_length,
+    float length_penalty, std::vector<BeamSequence> &finished) {
+  for (const auto &beam : live) {
+    const auto generated = beam.stack.size() - decoder_prompt_length;
+    if (generated == 0)
+      throw std::runtime_error("deadline beam finalization zero length");
+    finished.push_back(
+        {beam.stack,
+         length_normalized_beam_score(beam.cumulative_log_probability,
+                                      generated, length_penalty),
+         beam.parent_beams});
+  }
+}
 static BeamSearchResult beam_search(
     CachedDecoder &cached, const F32 &memory,
     std::span<const std::int32_t> prefix,
     const whisper_interface::StandardBeamSearch &configuration,
     std::size_t maximum_positions, GraphExecutionAudit &audit,
-    const whisper_interface::GenerationLogitPolicies *policies = nullptr) {
+    const whisper_interface::GenerationLogitPolicies *policies = nullptr,
+    GenerationDeadlineRuntime *deadline = nullptr) {
   using namespace generated_whisper;
   if (!configuration.valid() || prefix.empty() ||
       prefix.size() >= maximum_positions || maximum_positions > 448)
@@ -2633,6 +2658,9 @@ static BeamSearchResult beam_search(
     }
     live = std::move(next);
     first_beam_step = false;
+    if (check_generation_deadline(deadline, result.deadline_stop,
+                                  result.deadline_checks))
+      break;
     if (live.empty())
       break;
     if (std::holds_alternative<whisper_interface::StopWhenAllBeamsFinished>(
@@ -2653,6 +2681,15 @@ static BeamSearchResult beam_search(
         break;
     }
   }
+  if (result.deadline_stop)
+    append_live_beam_sequences(live, decoder_prompt_length,
+                               configuration.length_penalty, finished);
+  std::sort(finished.begin(), finished.end(),
+            [](const auto &left, const auto &right) {
+              return left.score > right.score;
+            });
+  if (finished.size() > configuration.beams)
+    finished.resize(configuration.beams);
   if (finished.size() < configuration.return_sequences)
     throw std::runtime_error("beam search finalization coverage");
   finished.resize(configuration.return_sequences);
@@ -2680,7 +2717,8 @@ static BeamSearchResult group_beam_search(
     std::span<const std::int32_t> prefix,
     const whisper_interface::DiverseGroupBeamSearch &configuration,
     std::size_t maximum_positions, GraphExecutionAudit &audit,
-    const whisper_interface::GenerationLogitPolicies *policies = nullptr) {
+    const whisper_interface::GenerationLogitPolicies *policies = nullptr,
+    GenerationDeadlineRuntime *deadline = nullptr) {
   using namespace generated_whisper;
   if (!configuration.valid() || prefix.empty() ||
       prefix.size() >= maximum_positions || maximum_positions > 448)
@@ -2887,6 +2925,16 @@ static BeamSearchResult group_beam_search(
         throw std::runtime_error("group beam token transport invariant");
     }
     first_group_position = false;
+    if (check_generation_deadline(deadline, result.deadline_stop,
+                                  result.deadline_checks)) {
+      for (auto &group : groups) {
+        if (!group.done)
+          append_live_beam_sequences(group.live, decoder_prompt_length,
+                                     configuration.length_penalty,
+                                     group.finished);
+        group.done = true;
+      }
+    }
   }
 
   for (auto &group : groups)
@@ -3070,7 +3118,8 @@ static BeamSearchResult constrained_beam_search(
     std::span<const std::int32_t> prefix,
     const whisper_interface::ConstrainedBeamSearch &configuration,
     std::size_t maximum_positions, GraphExecutionAudit &audit,
-    const whisper_interface::GenerationLogitPolicies *policies = nullptr) {
+    const whisper_interface::GenerationLogitPolicies *policies = nullptr,
+    GenerationDeadlineRuntime *deadline = nullptr) {
   using namespace generated_whisper;
   if (!configuration.valid() || prefix.empty() ||
       prefix.size() >= maximum_positions || maximum_positions > 448)
@@ -3260,6 +3309,9 @@ static BeamSearchResult constrained_beam_search(
     }
     live = std::move(next);
     first_beam_step = false;
+    if (check_generation_deadline(deadline, result.deadline_stop,
+                                  result.deadline_checks))
+      stopped = true;
     if (live.front().stack.size() >= maximum_positions)
       break;
     if (std::holds_alternative<whisper_interface::StopWhenAllBeamsFinished>(
@@ -3386,7 +3438,8 @@ static SampledBeamSearchResult sampled_beam_search(
     std::span<const std::int32_t> prefix,
     const whisper_interface::SampledBeamSearch &configuration,
     std::size_t maximum_positions, GraphExecutionAudit &audit,
-    const whisper_interface::GenerationLogitPolicies *policies = nullptr) {
+    const whisper_interface::GenerationLogitPolicies *policies = nullptr,
+    GenerationDeadlineRuntime *deadline = nullptr) {
   using namespace generated_whisper;
   if (!configuration.valid() || prefix.empty() ||
       prefix.size() >= maximum_positions || maximum_positions > 448)
@@ -3540,6 +3593,9 @@ static SampledBeamSearchResult sampled_beam_search(
     if (!synthid_rows.empty())
       synthid_rows = std::move(next_synthid_rows);
     first_beam_step = false;
+    if (check_generation_deadline(deadline, result.deadline_stop,
+                                  result.deadline_checks))
+      break;
     if (live.empty())
       break;
     if (std::holds_alternative<whisper_interface::StopWhenAllBeamsFinished>(
@@ -3560,6 +3616,15 @@ static SampledBeamSearchResult sampled_beam_search(
         break;
     }
   }
+  if (result.deadline_stop)
+    append_live_beam_sequences(live, decoder_prompt_length,
+                               configuration.length_penalty, finished);
+  std::sort(finished.begin(), finished.end(),
+            [](const auto &left, const auto &right) {
+              return left.score > right.score;
+            });
+  if (finished.size() > configuration.beams)
+    finished.resize(configuration.beams);
   if (finished.size() < configuration.return_sequences)
     throw std::runtime_error("sampled beam finalization coverage");
   finished.resize(configuration.return_sequences);
@@ -3580,6 +3645,8 @@ struct ContrastiveSearchResult {
   std::vector<std::int32_t> first_candidate_tokens;
   F32 first_probabilities, first_degenerations, first_scores;
   std::size_t first_selected_rank = 0;
+  std::optional<whisper_interface::StopAfterDeadline> deadline_stop;
+  std::size_t deadline_checks = 0;
 };
 
 static ContrastiveSearchResult contrastive_search(
@@ -3587,7 +3654,8 @@ static ContrastiveSearchResult contrastive_search(
     std::span<const std::int32_t> prefix,
     const whisper_interface::ContrastiveSearch &configuration,
     std::size_t maximum_positions, GraphExecutionAudit &audit,
-    const whisper_interface::GenerationLogitPolicies *policies = nullptr) {
+    const whisper_interface::GenerationLogitPolicies *policies = nullptr,
+    GenerationDeadlineRuntime *deadline = nullptr) {
   using namespace generated_whisper;
   if (!configuration.valid() || prefix.empty() ||
       prefix.size() >= maximum_positions || maximum_positions > 448)
@@ -3700,6 +3768,9 @@ static ContrastiveSearchResult contrastive_search(
     next_logits = std::move(best_logits);
     context_hidden.insert(context_hidden.end(), best_hidden.begin(),
                           best_hidden.end());
+    if (check_generation_deadline(deadline, result.deadline_stop,
+                                  result.deadline_checks))
+      break;
     if (best_token == eos_token)
       break;
   }
@@ -3714,6 +3785,8 @@ struct PromptLookupResult {
   std::vector<std::int32_t> first_proposal;
   std::size_t first_accepted = 0;
   bool terminated_by_eos = false;
+  std::optional<whisper_interface::StopAfterDeadline> deadline_stop;
+  std::size_t deadline_checks = 0;
 };
 
 static std::vector<std::int32_t> prompt_lookup_proposal(
@@ -3758,7 +3831,8 @@ static PromptLookupResult prompt_lookup_search(
     std::span<const std::int32_t> initial_stack,
     const whisper_interface::PromptLookupSearch &configuration,
     std::size_t maximum_positions, GraphExecutionAudit &audit,
-    const whisper_interface::GenerationLogitPolicies *policies = nullptr) {
+    const whisper_interface::GenerationLogitPolicies *policies = nullptr,
+    GenerationDeadlineRuntime *deadline = nullptr) {
   using namespace generated_whisper;
   if (!configuration.valid() || initial_stack.empty() ||
       initial_stack.size() >= maximum_positions || maximum_positions > 448)
@@ -3798,6 +3872,12 @@ static PromptLookupResult prompt_lookup_search(
   while (state.position < maximum_positions) {
     auto proposal =
         prompt_lookup_proposal(stack, configuration, maximum_positions);
+    // The pinned assisted loop applies stopping criteria to the proposed
+    // candidate prefix before running the target model. An already expired
+    // deadline therefore admits zero new tokens in prompt-lookup mode.
+    if (check_generation_deadline(deadline, result.deadline_stop,
+                                  result.deadline_checks))
+      break;
     const bool capture_first_proposal =
         result.first_proposal.empty() && !proposal.empty();
     ++result.proposal_rounds;
@@ -3830,8 +3910,11 @@ static PromptLookupResult prompt_lookup_search(
     }
     if (capture_first_proposal)
       result.first_accepted = accepted_this_round;
-    if (result.terminated_by_eos || state.position >= maximum_positions)
+    if (result.terminated_by_eos || state.position >= maximum_positions) {
+      check_generation_deadline(deadline, result.deadline_stop,
+                                result.deadline_checks);
       break;
+    }
     if (!proposal.empty() && !corrected &&
         accepted_this_round == proposal.size()) {
       const auto extra = target_token();
@@ -3850,6 +3933,9 @@ static PromptLookupResult prompt_lookup_search(
       }
       commit(target);
     }
+    if (check_generation_deadline(deadline, result.deadline_stop,
+                                  result.deadline_checks))
+      break;
   }
   return result;
 }
@@ -4472,6 +4558,117 @@ int main(int argc, char **argv) try {
               << " deadline_checks=" << generated.deadline_checks
               << " cache_positions=" << generated.cache_positions
               << " graph_nodes_visited=" << execution.visited() << "\n";
+    return 0;
+  }
+  if (argc == 7 && std::string(argv[1]) == "--deadline-all-searches") {
+    TensorStore tensors(argv[2], argv[3]);
+    audit_graph(tensors);
+    GraphExecutionAudit execution;
+    auto mel = execute_frontend(argv[4], read_f32(argv[5]), read_f32(argv[6]),
+                                execution);
+    std::vector<std::pair<std::string, F32>> trace;
+    Encoder encoder(tensors, execution);
+    auto memory = encoder.run(mel, trace);
+    CachedDecoder cached(tensors, execution);
+    constexpr std::size_t maximum_positions = 8;
+    auto make_deadline = [] {
+      return GenerationDeadlineRuntime{
+          whisper_interface::FiniteMonotonicDeadline{-1.0},
+          [] { return 0.0; }};
+    };
+    auto generated_suffix = [](std::span<const std::int32_t> tokens,
+                               bool drop_eos_padding) {
+      std::vector<std::int32_t> output(
+          tokens.begin() + static_cast<std::ptrdiff_t>(
+                               generated_whisper::forced_prefix.size()),
+          tokens.end());
+      if (drop_eos_padding && !output.empty() &&
+          output.back() == generated_whisper::eos_token)
+        output.pop_back();
+      return output;
+    };
+    auto print = [&](std::string_view mode,
+                     std::span<const std::int32_t> tokens,
+                     const auto &result) {
+      std::cout << "WHISPER_CPP23_DEADLINE_MODE mode=" << mode << " tokens=";
+      for (std::size_t index = 0; index < tokens.size(); ++index) {
+        if (index)
+          std::cout << ',';
+        std::cout << tokens[index];
+      }
+      std::cout << " terminated_by_deadline="
+                << result.deadline_stop.has_value()
+                << " deadline_checks=" << result.deadline_checks
+                << " graph_nodes_visited=" << execution.visited() << "\n";
+    };
+    {
+      auto deadline = make_deadline();
+      const whisper_interface::StandardBeamSearch configuration{
+          2, 1, 1.0f, whisper_interface::HeuristicBeamStopping{}};
+      auto result = beam_search(cached, memory,
+                                generated_whisper::forced_prefix,
+                                configuration, maximum_positions, execution,
+                                nullptr, &deadline);
+      auto tokens = generated_suffix(result.sequences.front().tokens, false);
+      print("beam", tokens, result);
+    }
+    {
+      auto deadline = make_deadline();
+      const whisper_interface::DiverseGroupBeamSearch configuration{
+          4, 2, 1, 0.5f, 1.0f,
+          whisper_interface::HeuristicBeamStopping{}};
+      auto result = group_beam_search(
+          cached, memory, generated_whisper::forced_prefix, configuration,
+          maximum_positions, execution, nullptr, &deadline);
+      auto tokens = generated_suffix(result.sequences.front().tokens, false);
+      print("group_beam", tokens, result);
+    }
+    {
+      auto deadline = make_deadline();
+      const whisper_interface::ConstrainedBeamSearch configuration{
+          4, 1, 1.0f, whisper_interface::HeuristicBeamStopping{},
+          {whisper_interface::ForcedPhrase{{1770}}}};
+      auto result = constrained_beam_search(
+          cached, memory, generated_whisper::forced_prefix, configuration,
+          maximum_positions, execution, nullptr, &deadline);
+      auto tokens = generated_suffix(result.sequences.front().tokens, true);
+      print("constrained_beam", tokens, result);
+    }
+    {
+      auto deadline = make_deadline();
+      const whisper_interface::SamplingFilters sampling{
+          whisper_interface::NoTopK{}, whisper_interface::NoTopP{},
+          whisper_interface::NoMinP{}, whisper_interface::NoTypicalP{},
+          whisper_interface::NoEpsilonCutoff{},
+          whisper_interface::NoEtaCutoff{}};
+      const whisper_interface::SampledBeamSearch configuration{
+          2, 1, 1.0f, 11, 1.0f,
+          whisper_interface::HeuristicBeamStopping{}, sampling};
+      auto result = sampled_beam_search(
+          cached, memory, generated_whisper::forced_prefix, configuration,
+          maximum_positions, execution, nullptr, &deadline);
+      auto tokens = generated_suffix(result.sequences.front().tokens, false);
+      print("sampled_beam", tokens, result);
+    }
+    {
+      auto deadline = make_deadline();
+      const whisper_interface::ContrastiveSearch configuration{
+          4, 0.6f, whisper_interface::SequentialCandidateEvaluation{}};
+      auto result = contrastive_search(
+          cached, memory, generated_whisper::forced_prefix, configuration,
+          maximum_positions, execution, nullptr, &deadline);
+      auto tokens = generated_suffix(result.tokens, false);
+      print("contrastive", tokens, result);
+    }
+    {
+      auto deadline = make_deadline();
+      const whisper_interface::PromptLookupSearch configuration{3, 2};
+      auto result = prompt_lookup_search(
+          cached, memory, generated_whisper::forced_prefix, configuration,
+          maximum_positions, execution, nullptr, &deadline);
+      print("prompt_lookup", result.tokens, result);
+    }
+    execution.require_all();
     return 0;
   }
   if (argc == 4 && std::string(argv[1]) == "--generation-applicability") {

@@ -4,9 +4,12 @@
   "max_time_criteria_sha256": "2aef18e1a27191255f8ca9a0f63774e5af327b57d268a6732f16c52ffd2fdd5e",
   "transition_case_count": 6,
   "generation_case_count": 3,
+  "search_mode_case_count": 6,
   "all_transition_decisions_exact": true,
   "all_generation_tokens_exact": true,
   "all_graph_nodes_visited": true,
+  "all_search_mode_tokens_exact": true,
+  "all_search_modes_deadline_terminated": true,
   "negative_elapsed_rejected": true,
   "clock_contract": "C++ std::chrono::steady_clock; injected elapsed time for boundary tests",
   "transition_cases": [
@@ -97,5 +100,81 @@
       "tokens_exact": true
     }
   ],
-  "scope": "Finite strict-boundary correspondence plus three real-audio greedy runs. The C++ deadline is checked after token selection, uses a monotonic clock, and currently certifies the converted greedy generation path."
+  "search_mode_cases": [
+    {
+      "mode": "beam",
+      "reference_tokens": [
+        1770
+      ],
+      "cpp23_tokens": [
+        1770
+      ],
+      "terminated_by_deadline": true,
+      "deadline_checks": 1,
+      "graph_nodes_visited": 74,
+      "tokens_exact": true
+    },
+    {
+      "mode": "group_beam",
+      "reference_tokens": [
+        1770
+      ],
+      "cpp23_tokens": [
+        1770
+      ],
+      "terminated_by_deadline": true,
+      "deadline_checks": 1,
+      "graph_nodes_visited": 74,
+      "tokens_exact": true
+    },
+    {
+      "mode": "constrained_beam",
+      "reference_tokens": [
+        1770
+      ],
+      "cpp23_tokens": [
+        1770
+      ],
+      "terminated_by_deadline": true,
+      "deadline_checks": 1,
+      "graph_nodes_visited": 74,
+      "tokens_exact": true
+    },
+    {
+      "mode": "sampled_beam",
+      "reference_tokens": [
+        1770
+      ],
+      "cpp23_tokens": [
+        1770
+      ],
+      "terminated_by_deadline": true,
+      "deadline_checks": 1,
+      "graph_nodes_visited": 74,
+      "tokens_exact": true
+    },
+    {
+      "mode": "contrastive",
+      "reference_tokens": [
+        1770
+      ],
+      "cpp23_tokens": [
+        1770
+      ],
+      "terminated_by_deadline": true,
+      "deadline_checks": 1,
+      "graph_nodes_visited": 74,
+      "tokens_exact": true
+    },
+    {
+      "mode": "prompt_lookup",
+      "reference_tokens": [],
+      "cpp23_tokens": [],
+      "terminated_by_deadline": true,
+      "deadline_checks": 1,
+      "graph_nodes_visited": 74,
+      "tokens_exact": true
+    }
+  ],
+  "scope": "Finite strict-boundary correspondence, three real-audio greedy runs, and expired-deadline finalization for every converted search interpreter. Ordinary searches check after a selected frontier transition; prompt lookup also checks the candidate prefix before target-model selection."
 }

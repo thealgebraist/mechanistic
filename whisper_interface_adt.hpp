@@ -123,8 +123,9 @@ struct GenerationCacheProjection {
 };
 
 // Time is an execution-state input, not a model tensor. The decision uses the
-// pinned stopping criterion's strict `elapsed > maximum` boundary and is
-// evaluated only after a token transition has been selected.
+// pinned stopping criterion's strict `elapsed > maximum` boundary. Ordinary
+// search evaluates it after a token transition; assisted prompt lookup also
+// evaluates it on the candidate prefix before target-model selection.
 struct UnlimitedGenerationTime {
   bool valid() const { return true; }
 };
