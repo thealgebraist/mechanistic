@@ -3,9 +3,9 @@
   "model": "openai/whisper-tiny.en",
   "checkpoint_sha256": "db59695928ded6043adaef491a53ef4e12da9611184d77c53baa691a60b958ad",
   "graph_sha256": "2adbb1fb4d6d14993772e13d596d7f77981ca7c5be27c0a1088a338927a5fe3c",
-  "cpp_source_sha256": "aa103fcac773c8cf178c36396018104c6fb033718d2724314493e735f7f8ee39",
+  "cpp_source_sha256": "ba7abb9b3d67525ab6fa9a98127697c33a83544295b2f24aba87c18a9b043625",
   "generated_header_sha256": "d046e5e3e947bf7de87cc59a01e5d08e36156ff59864a9b616707a2b4091b71f",
-  "generation_config_header_sha256": "885bc4f1d2ef789c935e4d358bd49cd58ee43048976440986860a2f90c3e4527",
+  "generation_config_header_sha256": "d66b4f210bb71daa9b42d4c306883f682620f24ce3b9c8fb3809525f860cd3ba",
   "sampling_filter_fixture_sha256": "5f41ea938e5d4eeacb1a67cfb1bdf5a133272a1e913b76dfb4fa09036d38334f",
   "score_policy_fixture_sha256": "c5938915d3df389b4e79aa87699d4aea24fee6996aa0e97f500e51e2a27ddd24",
   "beam_search_fixture_sha256": "de8bfd281d1fdae0e4b9080fde3005648077a2a2221b084b46f8d748fe90afb2",
@@ -20,6 +20,7 @@
   "model_applicability_fixture_sha256": "795d5fe75f1d3c702f3436910e784dd7bfbdeae0e9a34de090e0c631bf26ffc5",
   "stop_strings_fixture_sha256": "9703890e4189b9b662ccb61d2c0d3ea75d4d1c0cc9b3c39d5413a35b40df3f5d",
   "prompt_lookup_fixture_sha256": "3c93c3b57d90d68906f9d2d803826f54c58be3b8848dbb1ed3c7d74bbab237ed",
+  "external_assistant_fixture_sha256": "5cfe1580f87307bad543bdb5e960b8b8702abb8301b2abd3ba553ff86ba29632",
   "watermark_fixture_sha256": "70f4ed51ac2bafc909c47d9c74029c7f9407f42e0f30a479d579c57e1c904a1f",
   "batch_fixture_sha256": "5ba8708f2c49d0c4edde66da939b1b344a3565c24eae6a2e252a43dfce562125",
   "fixture_sha256": "a38ec0ec6a6ce500fdce2a9a150a142c32266ccc38be2cd29e1970ac3809dfaf",
@@ -94,6 +95,14 @@
   "prompt_lookup_cases": 6,
   "prompt_lookup_all_complete_tokens_exact": true,
   "prompt_lookup_accepted_candidates": 7,
+  "external_assistant_cases": 5,
+  "external_assistant_all_proposals_exact": true,
+  "external_assistant_all_cache_positions_exact": true,
+  "external_assistant_acceptance_classes": [
+    "FULL",
+    "PARTIAL",
+    "ZERO"
+  ],
   "watermark_cases": 11,
   "classic_watermark_cases": 6,
   "synthid_watermark_cases": 5,
@@ -650,6 +659,11 @@
       "evidence": "6 exact complete sequences and first proposals/acceptance counts; 7/35 proposal occurrences accepted"
     },
     {
+      "requirement": "external assistant speculative product state",
+      "status": "PROVED_FINITE_COMMON_VOCABULARY_DETERMINISTIC_SUBSET",
+      "evidence": "5 source-pinned cases have exact complete sequences, proposal stacks, acceptance/correction transitions, and final target/assistant cache positions; first-round classes=['FULL', 'PARTIAL', 'ZERO']; different-tokenizer, sampled, early-exit, adaptive-threshold, and useful-small-checkpoint obligations remain open"
+    },
+    {
       "requirement": "history-keyed watermark probability transport",
       "status": "PROVED_FINITE_CLASSIC_AND_ALL_IMPLEMENTED_SYNTHID_SEARCHES",
       "evidence": "6 classic and 5 greedy SynthID configurations have exact masks/g-values and state trajectories; exact row-state and ranked-sequence certificates cover 6 standard, 5 constrained, and 5 diverse-group cases; sampled beam transports 12 row states through explicit parent-row copies with deterministic C++ seed replay"
@@ -682,7 +696,7 @@
     {
       "requirement": "arbitrary non-default GenerationMixin reconfiguration",
       "status": "IN_PROGRESS",
-      "evidence": "full non-default closure=False; 10 inactive and 0 partial generic fields remain explicitly inventoried"
+      "evidence": "full non-default closure=False; 6 inactive and 4 partial generic fields remain explicitly inventoried"
     }
   ],
   "all_opcodes_executable": true,
@@ -692,23 +706,24 @@
   "complete_conversion": false,
   "pending_generate_parameters": [],
   "inactive_generic_generation_fields": [
-    "assistant_confidence_threshold",
     "assistant_early_exit",
     "assistant_lookbehind",
     "disable_compile",
-    "is_assistant",
     "is_multilingual",
-    "num_assistant_tokens",
-    "num_assistant_tokens_schedule",
     "target_lookbehind",
     "token_healing"
   ],
-  "partial_generic_generation_fields": [],
+  "partial_generic_generation_fields": [
+    "assistant_confidence_threshold",
+    "is_assistant",
+    "num_assistant_tokens",
+    "num_assistant_tokens_schedule"
+  ],
   "backend_contract": {
     "language": "C++23",
     "linear_algebra": "macOS Accelerate CBLAS binary32 plus a whole-model-validated portable scalar binary32 GEMM/dot backend",
     "audio": "mono 16 kHz signed PCM16 WAV; finite inputs truncate or zero-pad to 30 seconds",
-    "generation": "greedy, categorical, and contrastive decoding; greedy token-byte stop strings and prompt-lookup speculative transport; classic left/self-hash watermark probability transport plus greedy, standard-beam, sampled-beam, constrained-beam, and diverse-group SynthID row-state transport; standard/sampled/diverse-group/phrase-and-disjunction-constrained beam search; prompts, timestamp-token policy, short-form segments, eight-head DTW token timestamps, and sequential batches with shared immutable weights and isolated item state; maximum 448 decoder positions",
+    "generation": "greedy, categorical, and contrastive decoding; greedy token-byte stop strings, prompt-lookup transport, and deterministic common-vocabulary external-assistant product state; classic left/self-hash watermark probability transport plus greedy, standard-beam, sampled-beam, constrained-beam, and diverse-group SynthID row-state transport; standard/sampled/diverse-group/phrase-and-disjunction-constrained beam search; prompts, timestamp-token policy, short-form segments, eight-head DTW token timestamps, and sequential batches with shared immutable weights and isolated item state; maximum 448 decoder positions",
     "checkpoint": "pinned openai/whisper-tiny.en safetensors"
   },
   "portable_backend_whole_model_validated": true,

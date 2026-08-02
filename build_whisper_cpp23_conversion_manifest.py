@@ -63,6 +63,9 @@ stop_strings = json.loads(
 prompt_lookup = json.loads(
     Path("outputs/whisper_cpp23_prompt_lookup.json").read_text()
 )
+external_assistant = json.loads(
+    Path("outputs/whisper_cpp23_external_assistant.json").read_text()
+)
 watermark = json.loads(Path("outputs/whisper_cpp23_watermark.json").read_text())
 batch = json.loads(Path("outputs/whisper_cpp23_batch.json").read_text())
 match = re.search(
@@ -181,6 +184,11 @@ requirements = [
         "evidence": f"{prompt_lookup['case_count']} exact complete sequences and first proposals/acceptance counts; {prompt_lookup['total_accepted_candidate_tokens']}/{prompt_lookup['total_proposed_tokens']} proposal occurrences accepted",
     },
     {
+        "requirement": "external assistant speculative product state",
+        "status": "PROVED_FINITE_COMMON_VOCABULARY_DETERMINISTIC_SUBSET",
+        "evidence": f"{external_assistant['case_count']} source-pinned cases have exact complete sequences, proposal stacks, acceptance/correction transitions, and final target/assistant cache positions; first-round classes={external_assistant['first_acceptance_classes']}; different-tokenizer, sampled, early-exit, adaptive-threshold, and useful-small-checkpoint obligations remain open",
+    },
+    {
         "requirement": "history-keyed watermark probability transport",
         "status": "PROVED_FINITE_CLASSIC_AND_ALL_IMPLEMENTED_SYNTHID_SEARCHES",
         "evidence": f"{watermark['classic_case_count']} classic and {watermark['synthid_case_count']} greedy SynthID configurations have exact masks/g-values and state trajectories; exact row-state and ranked-sequence certificates cover {synthid_beam['case_count']} standard, {synthid_constrained_beam['case_count']} constrained, and {synthid_group_beam['case_count']} diverse-group cases; sampled beam transports {synthid_sampled_beam['state_rows']} row states through explicit parent-row copies with deterministic C++ seed replay",
@@ -269,6 +277,9 @@ out = {
     ),
     "prompt_lookup_fixture_sha256": sha(
         "outputs/whisper_cpp23_prompt_lookup.json"
+    ),
+    "external_assistant_fixture_sha256": sha(
+        "outputs/whisper_cpp23_external_assistant.json"
     ),
     "watermark_fixture_sha256": sha("outputs/whisper_cpp23_watermark.json"),
     "batch_fixture_sha256": sha("outputs/whisper_cpp23_batch.json"),
@@ -416,6 +427,16 @@ out = {
     "prompt_lookup_accepted_candidates": prompt_lookup[
         "total_accepted_candidate_tokens"
     ],
+    "external_assistant_cases": external_assistant["case_count"],
+    "external_assistant_all_proposals_exact": external_assistant[
+        "all_proposal_stacks_exact"
+    ],
+    "external_assistant_all_cache_positions_exact": external_assistant[
+        "all_final_cache_positions_exact"
+    ],
+    "external_assistant_acceptance_classes": external_assistant[
+        "first_acceptance_classes"
+    ],
     "watermark_cases": watermark["case_count"],
     "classic_watermark_cases": watermark["classic_case_count"],
     "synthid_watermark_cases": watermark["synthid_case_count"],
@@ -472,7 +493,7 @@ out = {
         "language": "C++23",
         "linear_algebra": "macOS Accelerate CBLAS binary32 plus a whole-model-validated portable scalar binary32 GEMM/dot backend",
         "audio": "mono 16 kHz signed PCM16 WAV; finite inputs truncate or zero-pad to 30 seconds",
-        "generation": "greedy, categorical, and contrastive decoding; greedy token-byte stop strings and prompt-lookup speculative transport; classic left/self-hash watermark probability transport plus greedy, standard-beam, sampled-beam, constrained-beam, and diverse-group SynthID row-state transport; standard/sampled/diverse-group/phrase-and-disjunction-constrained beam search; prompts, timestamp-token policy, short-form segments, eight-head DTW token timestamps, and sequential batches with shared immutable weights and isolated item state; maximum 448 decoder positions",
+        "generation": "greedy, categorical, and contrastive decoding; greedy token-byte stop strings, prompt-lookup transport, and deterministic common-vocabulary external-assistant product state; classic left/self-hash watermark probability transport plus greedy, standard-beam, sampled-beam, constrained-beam, and diverse-group SynthID row-state transport; standard/sampled/diverse-group/phrase-and-disjunction-constrained beam search; prompts, timestamp-token policy, short-form segments, eight-head DTW token timestamps, and sequential batches with shared immutable weights and isolated item state; maximum 448 decoder positions",
         "checkpoint": "pinned openai/whisper-tiny.en safetensors",
     },
     "portable_backend_whole_model_validated": True,
@@ -500,7 +521,7 @@ On the actual LibriSpeech sample, C++23 reads the PCM16 WAV and executes reflect
 
 > {match.group(10)}
 
-The runtime dispatched all `{match.group(9)}` generated graph nodes, resolving model tensors through each node's declared weight-reference slice. The C++ log-Mel tensor has maximum absolute error `{float(match.group(7)):.9g}` against PyTorch. Seven encoder and seven decoder/readout stages were also compared; worst stage maximum absolute error was `{float(match.group(8)):.9g}`, and full-logit RMSE was approximately `2.29e-05`. Incremental cached logits match causal recomputation within `{float(match.group(4)):.3g}`. The modern and legacy public cache projections preserve identical C++ tensor bytes and compare with PyTorch within `{cache_projection["worst_max_absolute_cache_error"]:.3g}`. Explicit dynamic/static allocation preserves logical tensor bytes across `{cache_implementations['executable_case_count']}` requests and tokens across all `{cache_implementations['search_mode_case_count']}` converted searches; contrastive and assisted modes retain their pinned dynamic-full/dynamic overrides. Source-pinned negative cases preserve cache and generic-prefill rejection rather than inventing unsupported Whisper paths. The masked softmax mass sums to one within `{float(match.group(5)):.3g}`, and selected-token probabilities match the Python trace within `{float(match.group(6)):.3g}`. Complete greedy and seeded sampled traces both terminate. The monotonic deadline ADT reproduces `{deadline['transition_case_count']}` strict `elapsed > max_time` boundary decisions, `{deadline['generation_case_count']}` real-audio greedy sequences, and expired-deadline finalization in all `{deadline['search_mode_case_count']}` separately converted search interpreters. Temperature plus six named sampling filters reproduce complete 51,864-way distributions in all `{sampling["case_count"]}` tested cases. All `{score_policies["case_count"]}` deterministic score-policy configurations reproduce Transformers token sequences exactly. Contrastive, prompt lookup, standard/sampled/diverse-group beam, constrained search, classic watermark, and all implemented SynthID schedulers retain their source-pinned certificates. Four additional speech recordings match Transformers exactly at every generated token and in decoded text. One true five-recording Transformers batch also matches a single shared-checkpoint C++23 process item-for-item; the explicit execution policy is sequential with isolated per-item graph and K/V state, not vectorized matrix algebra.
+The runtime dispatched all `{match.group(9)}` generated graph nodes, resolving model tensors through each node's declared weight-reference slice. The C++ log-Mel tensor has maximum absolute error `{float(match.group(7)):.9g}` against PyTorch. Seven encoder and seven decoder/readout stages were also compared; worst stage maximum absolute error was `{float(match.group(8)):.9g}`, and full-logit RMSE was approximately `2.29e-05`. Incremental cached logits match causal recomputation within `{float(match.group(4)):.3g}`. The modern and legacy public cache projections preserve identical C++ tensor bytes and compare with PyTorch within `{cache_projection["worst_max_absolute_cache_error"]:.3g}`. Explicit dynamic/static allocation preserves logical tensor bytes across `{cache_implementations['executable_case_count']}` requests and tokens across all `{cache_implementations['search_mode_case_count']}` converted searches; contrastive and assisted modes retain their pinned dynamic-full/dynamic overrides. Source-pinned negative cases preserve cache and generic-prefill rejection rather than inventing unsupported Whisper paths. The masked softmax mass sums to one within `{float(match.group(5)):.3g}`, and selected-token probabilities match the Python trace within `{float(match.group(6)):.3g}`. Complete greedy and seeded sampled traces both terminate. The monotonic deadline ADT reproduces `{deadline['transition_case_count']}` strict `elapsed > max_time` boundary decisions, `{deadline['generation_case_count']}` real-audio greedy sequences, and expired-deadline finalization in all `{deadline['search_mode_case_count']}` separately converted search interpreters. Temperature plus six named sampling filters reproduce complete 51,864-way distributions in all `{sampling["case_count"]}` tested cases. All `{score_policies["case_count"]}` deterministic score-policy configurations reproduce Transformers token sequences exactly. Contrastive, prompt lookup, and `{external_assistant['case_count']}` common-vocabulary external-assistant cases retain source-pinned certificates, including exact proposal/acceptance/correction and cache state. Standard/sampled/diverse-group beam, constrained search, classic watermark, and all implemented SynthID schedulers retain their source-pinned certificates. Four additional speech recordings match Transformers exactly at every generated token and in decoded text. One true five-recording Transformers batch also matches a single shared-checkpoint C++23 process item-for-item; the explicit execution policy is sequential with isolated per-item graph and K/V state, not vectorized matrix algebra.
 
 ## Opcode ledger
 
@@ -522,7 +543,7 @@ Path(
 |---:|---|---|---|
 {audit}
 
-Verdict: **PINNED CORE GRAPH AND ACTIVE INTERFACE COMPLETE; GENERIC RECONFIGURATION IN PROGRESS** under the declared C++23/macOS Accelerate ABI, with a finite complete-graph certificate for the portable scalar backend. Every extracted graph opcode and checkpoint tensor has an executable representation, all 17 `forward` and 27 top-level `generate` parameters are classified, and all 74 pinned GenerationConfig values are represented. Prompt lookup, stop strings, monotonic deadlines across all converted searches, watermarking, dynamic/static cache allocation, cache configuration routing, low-memory contrastive scheduling, matching-ngram sizing, and multi-return sequencing are named behaviors backed by source-pinned fixtures. Generic prefill chunking preserves its mode-dependent source behavior: sample search rejects missing cache or unsupported Whisper `position_ids`, while beam search ignores the field. The full objective remains open because assistant/token-healing extensions and non-default external generation algorithms are not all executable, portable whole-model evidence currently covers one recording/compiler/machine, and finite tests do not establish a universal backend-independent floating-point equivalence theorem.
+Verdict: **PINNED CORE GRAPH AND ACTIVE INTERFACE COMPLETE; GENERIC RECONFIGURATION IN PROGRESS** under the declared C++23/macOS Accelerate ABI, with a finite complete-graph certificate for the portable scalar backend. Every extracted graph opcode and checkpoint tensor has an executable representation, all 17 `forward` and 27 top-level `generate` parameters are classified, and all 74 pinned GenerationConfig values are represented. Prompt lookup, the deterministic common-vocabulary external-assistant subset, stop strings, monotonic deadlines across all converted searches, watermarking, dynamic/static cache allocation, cache configuration routing, low-memory contrastive scheduling, matching-ngram sizing, and multi-return sequencing are named behaviors backed by source-pinned fixtures. Generic prefill chunking preserves its mode-dependent source behavior: sample search rejects missing cache or unsupported Whisper `position_ids`, while beam search ignores the field. The full objective remains open because different-tokenizer/sampled/early-exit assistant variants, token healing, and non-default external generation algorithms are not all executable, portable whole-model evidence currently covers one recording/compiler/machine, and finite tests do not establish a universal backend-independent floating-point equivalence theorem.
 """)
 print(
     json.dumps(

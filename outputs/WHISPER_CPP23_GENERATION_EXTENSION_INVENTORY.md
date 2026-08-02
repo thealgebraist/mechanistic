@@ -2,7 +2,7 @@
 
 This inventory is derived from Transformers `4.57.3` at verification time. It closes the top-level `**kwargs` row for the pinned model: all 74 generation-configuration values are represented, all 17 model-forward kwargs route to previously audited ADTs, and unknown kwargs are rejected by the installed framework.
 
-This does **not** claim every non-default generic GenerationMixin algorithm is converted. Categorical and contrastive sampling plus prompt-lookup speculation, monotonic-deadline stopping across every converted search interpreter, classic left-hash/self-hash watermarking, all implemented SynthID schedulers, and standard, sampled, diverse-group, and phrase/disjunction-constrained beam search are lowered. There are no remaining `CPP23_PARTIAL_OVERRIDE` rows. External assistant models and similar inactive extensions remain visibly classified as `PINNED_INACTIVE_GENERIC_EXTENSION` or `EXTERNAL_GENERATION_ALGORITHM`. Contrastive candidate evaluation has the explicit low-memory sequential schedule. `return_legacy_cache` is a tested output-container projection over identical cache tensors. Dynamic/static cache allocation is threaded through greedy and beam-family state branches; contrastive and assisted generation preserve their source-mandated dynamic-full/dynamic overrides. The non-quantized `cache_config` no-op is an explicit ADT. Generic prefill chunking has mode-dependent typed semantics: sample search requires a cache and then passes unsupported `position_ids` to Whisper, while beam search ignores the field because only `_sample` dispatches the helper. DoLa, quantized cache, and unbatched classifier-free guidance are explicitly model-rejected for Whisper's encoder-decoder/Mel interface; `bos_token_id` and encoder-token repetition processors are explicitly model-ignored by the pinned Whisper source paths.
+This does **not** claim every non-default generic GenerationMixin algorithm is converted. Categorical and contrastive sampling plus prompt-lookup speculation, monotonic-deadline stopping across every converted search interpreter, classic left-hash/self-hash watermarking, all implemented SynthID schedulers, and standard, sampled, diverse-group, and phrase/disjunction-constrained beam search are lowered. Common-vocabulary deterministic external assistance now has an explicit two-model product state, but its four configuration rows remain `CPP23_PARTIAL_OVERRIDE` until different-tokenizer UAG, sampled speculative rejection, early exit, adaptive ROC thresholds, cross-call schedule persistence, and a useful smaller checkpoint are covered. Contrastive candidate evaluation has the explicit low-memory sequential schedule. `return_legacy_cache` is a tested output-container projection over identical cache tensors. Dynamic/static cache allocation is threaded through greedy and beam-family state branches; contrastive and assisted generation preserve their source-mandated dynamic-full/dynamic overrides. The non-quantized `cache_config` no-op is an explicit ADT. Generic prefill chunking has mode-dependent typed semantics: sample search requires a cache and then passes unsupported `position_ids` to Whisper, while beam search ignores the field because only `_sample` dispatches the helper. DoLa, quantized cache, and unbatched classifier-free guidance are explicitly model-rejected for Whisper's encoder-decoder/Mel interface; `bos_token_id` and encoder-token repetition processors are explicitly model-ignored by the pinned Whisper source paths.
 
 ## GenerationConfig fields
 
@@ -10,7 +10,7 @@ This does **not** claim every non-default generic GenerationMixin algorithm is c
 |---|---|---|---|
 | `_from_model_config` | `false` | `FromModelConfig` | METADATA_FIXED |
 | `alignment_heads` | `[[1,0],[2,0],[2,5],[3,0],[3,1],[3,2],[3,3],[3,4]]` | `AlignmentHeads` | CPP23_NAMED_OVERRIDE |
-| `assistant_confidence_threshold` | `0.4` | `AssistantConfidenceThreshold` | PINNED_INACTIVE_GENERIC_EXTENSION |
+| `assistant_confidence_threshold` | `0.4` | `AssistantConfidenceThreshold` | CPP23_PARTIAL_OVERRIDE |
 | `assistant_early_exit` | `null` | `AssistantEarlyExit` | PINNED_INACTIVE_GENERIC_EXTENSION |
 | `assistant_lookbehind` | `10` | `AssistantLookbehind` | PINNED_INACTIVE_GENERIC_EXTENSION |
 | `bad_words_ids` | `null` | `BadWordsIds` | CPP23_NAMED_OVERRIDE |
@@ -36,7 +36,7 @@ This does **not** claim every non-default generic GenerationMixin algorithm is c
 | `forced_decoder_ids` | `[[1,50362]]` | `ForcedDecoderIds` | CPP23_NAMED_OVERRIDE |
 | `forced_eos_token_id` | `null` | `ForcedEosTokenId` | CPP23_NAMED_OVERRIDE |
 | `guidance_scale` | `null` | `GuidanceScale` | CPP23_MODEL_REJECTED |
-| `is_assistant` | `false` | `IsAssistant` | PINNED_INACTIVE_GENERIC_EXTENSION |
+| `is_assistant` | `false` | `IsAssistant` | CPP23_PARTIAL_OVERRIDE |
 | `is_multilingual` | `false` | `IsMultilingual` | PINNED_INACTIVE_GENERIC_EXTENSION |
 | `length_penalty` | `1.0` | `LengthPenalty` | CPP23_NAMED_OVERRIDE |
 | `low_memory` | `null` | `LowMemory` | CPP23_NAMED_OVERRIDE |
@@ -50,8 +50,8 @@ This does **not** claim every non-default generic GenerationMixin algorithm is c
 | `min_p` | `null` | `MinP` | CPP23_NAMED_OVERRIDE |
 | `no_repeat_ngram_size` | `0` | `NoRepeatNgramSize` | CPP23_NAMED_OVERRIDE |
 | `no_timestamps_token_id` | `50362` | `NoTimestampsTokenId` | CPP23_NAMED_OVERRIDE |
-| `num_assistant_tokens` | `20` | `NumAssistantTokens` | PINNED_INACTIVE_GENERIC_EXTENSION |
-| `num_assistant_tokens_schedule` | `"constant"` | `NumAssistantTokensSchedule` | PINNED_INACTIVE_GENERIC_EXTENSION |
+| `num_assistant_tokens` | `20` | `NumAssistantTokens` | CPP23_PARTIAL_OVERRIDE |
+| `num_assistant_tokens_schedule` | `"constant"` | `NumAssistantTokensSchedule` | CPP23_PARTIAL_OVERRIDE |
 | `num_beam_groups` | `1` | `NumBeamGroups` | CPP23_NAMED_OVERRIDE |
 | `num_beams` | `1` | `NumBeams` | CPP23_NAMED_OVERRIDE |
 | `num_return_sequences` | `1` | `NumReturnSequences` | CPP23_NAMED_OVERRIDE |
@@ -87,7 +87,7 @@ This does **not** claim every non-default generic GenerationMixin algorithm is c
 
 | parameter | pinned default | pinned status | override status |
 |---|---|---|---|
-| `assistant_model` | `null` | DISABLED_IN_PINNED_MODEL | EXTERNAL_GENERATION_ALGORITHM |
+| `assistant_model` | `null` | DISABLED_IN_PINNED_MODEL | CPP23_PARTIAL_EXTERNAL_ASSISTANT |
 | `streamer` | `null` | DISABLED_IN_PINNED_MODEL | EXTERNAL_GENERATION_ALGORITHM |
 | `negative_prompt_ids` | `null` | DISABLED_IN_PINNED_MODEL | EXTERNAL_GENERATION_ALGORITHM |
 | `negative_prompt_attention_mask` | `null` | DISABLED_IN_PINNED_MODEL | EXTERNAL_GENERATION_ALGORITHM |

@@ -118,7 +118,7 @@
       "parameter": "generation_config",
       "status": "PINNED_EXECUTABLE_PLUS_POLICIES",
       "adt_constructor": "GenerationRequest",
-      "evidence_or_gap": "pinned English policy plus typed cache-allocation/rejection behavior, sequence bias, repetition, no-repeat n-gram, forbidden-sequence, boundary/decay/length, repair/normalization, six sampling filters, contrastive hidden-state ranking, greedy stop-string and prompt-lookup speculation, standard/sampled/diverse-group beam search, and phrase/disjunction-constrained beam search"
+      "evidence_or_gap": "pinned English policy plus typed cache-allocation/rejection behavior, sequence bias, repetition, no-repeat n-gram, forbidden-sequence, boundary/decay/length, repair/normalization, six sampling filters, contrastive hidden-state ranking, greedy stop-string and prompt-lookup speculation, common-vocabulary external-assistant product state, standard/sampled/diverse-group beam search, and phrase/disjunction-constrained beam search"
     },
     {
       "parameter": "logits_processor",

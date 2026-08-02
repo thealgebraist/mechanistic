@@ -11,8 +11,9 @@
     "CPP23_MODEL_IGNORED": 3,
     "CPP23_MODEL_REJECTED": 2,
     "CPP23_NAMED_OVERRIDE": 57,
+    "CPP23_PARTIAL_OVERRIDE": 4,
     "METADATA_FIXED": 2,
-    "PINNED_INACTIVE_GENERIC_EXTENSION": 10
+    "PINNED_INACTIVE_GENERIC_EXTENSION": 6
   },
   "generation_config_fields": [
     {
@@ -70,7 +71,7 @@
       "pinned_value": 0.4,
       "global_default": 0.4,
       "pinned_value_status": "CPP23_PINNED_VALUE_REPRESENTED",
-      "override_status": "PINNED_INACTIVE_GENERIC_EXTENSION"
+      "override_status": "CPP23_PARTIAL_OVERRIDE"
     },
     {
       "field": "assistant_early_exit",
@@ -286,7 +287,7 @@
       "pinned_value": false,
       "global_default": false,
       "pinned_value_status": "CPP23_PINNED_VALUE_REPRESENTED",
-      "override_status": "PINNED_INACTIVE_GENERIC_EXTENSION"
+      "override_status": "CPP23_PARTIAL_OVERRIDE"
     },
     {
       "field": "is_multilingual",
@@ -398,7 +399,7 @@
       "pinned_value": 20,
       "global_default": 20,
       "pinned_value_status": "CPP23_PINNED_VALUE_REPRESENTED",
-      "override_status": "PINNED_INACTIVE_GENERIC_EXTENSION"
+      "override_status": "CPP23_PARTIAL_OVERRIDE"
     },
     {
       "field": "num_assistant_tokens_schedule",
@@ -406,7 +407,7 @@
       "pinned_value": "constant",
       "global_default": "constant",
       "pinned_value_status": "CPP23_PINNED_VALUE_REPRESENTED",
-      "override_status": "PINNED_INACTIVE_GENERIC_EXTENSION"
+      "override_status": "CPP23_PARTIAL_OVERRIDE"
     },
     {
       "field": "num_beam_groups",
@@ -745,7 +746,7 @@
       "parameter": "assistant_model",
       "default": null,
       "pinned_status": "DISABLED_IN_PINNED_MODEL",
-      "override_status": "EXTERNAL_GENERATION_ALGORITHM"
+      "override_status": "CPP23_PARTIAL_EXTERNAL_ASSISTANT"
     },
     {
       "parameter": "streamer",

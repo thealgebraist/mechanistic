@@ -624,10 +624,104 @@ struct PromptLookupSearch {
            maximum_matching_ngram > 0 && maximum_matching_ngram < 448;
   }
 };
+
+// External assisted generation is a two-interpreter product state. The target
+// and assistant own separate encoder memories and decoder caches, while token
+// proposals cross the boundary only through this typed common vocabulary.
+// Different-tokenizer UAG and early-exit self-assistance are intentionally
+// separate constructors because their transport/ownership laws differ.
+struct CommonWhisperVocabularyAssistant {
+  std::size_t target_cardinality;
+  std::size_t assistant_cardinality;
+  bool target_is_encoder_decoder;
+  bool assistant_is_encoder_decoder;
+  bool valid() const {
+    return target_cardinality == 51864 &&
+           assistant_cardinality == target_cardinality &&
+           target_is_encoder_decoder && assistant_is_encoder_decoder;
+  }
+};
+struct ConstantAssistantTokenBudget {
+  float tokens;
+  bool valid() const { return std::isfinite(tokens) && tokens >= 1.0f; }
+};
+struct PersistentHeuristicAssistantTokenBudget {
+  float tokens;
+  bool valid() const { return std::isfinite(tokens) && tokens >= 1.0f; }
+};
+struct TransientHeuristicAssistantTokenBudget {
+  float tokens;
+  bool valid() const { return std::isfinite(tokens) && tokens >= 1.0f; }
+};
+using AssistantTokenBudget =
+    std::variant<ConstantAssistantTokenBudget,
+                 PersistentHeuristicAssistantTokenBudget,
+                 TransientHeuristicAssistantTokenBudget>;
+struct NoAssistantConfidenceThreshold {
+  bool valid() const { return true; }
+};
+struct AssistantConfidenceThreshold {
+  float probability;
+  bool valid() const {
+    return std::isfinite(probability) && probability > 0.0f &&
+           probability < 1.0f;
+  }
+};
+using AssistantConfidencePolicy =
+    std::variant<NoAssistantConfidenceThreshold,
+                 AssistantConfidenceThreshold>;
+struct ExternalAssistantSearch {
+  CommonWhisperVocabularyAssistant model;
+  AssistantTokenBudget budget;
+  AssistantConfidencePolicy confidence;
+  bool valid() const {
+    return model.valid() &&
+           std::visit([](const auto &value) { return value.valid(); },
+                      budget) &&
+           std::visit([](const auto &value) { return value.valid(); },
+                      confidence);
+  }
+};
+struct AssistantProposalStack {
+  std::vector<std::int32_t> tokens;
+  std::vector<float> probabilities;
+  bool valid() const {
+    if (tokens.empty() || tokens.size() != probabilities.size())
+      return false;
+    for (std::size_t index = 0; index < tokens.size(); ++index)
+      if (tokens[index] < 0 || tokens[index] >= 51864 ||
+          !std::isfinite(probabilities[index]) || probabilities[index] < 0.0f ||
+          probabilities[index] > 1.0f)
+        return false;
+    return true;
+  }
+};
+struct AcceptAssistantPrefix {
+  std::size_t count;
+  bool valid() const { return count > 0; }
+};
+struct CorrectAssistantProposal {
+  std::size_t accepted_prefix;
+  std::int32_t target_token;
+  bool valid() const {
+    return target_token >= 0 && target_token < 51864;
+  }
+};
+struct AcceptAllAssistantAndTargetExtra {
+  std::size_t accepted;
+  std::int32_t target_token;
+  bool valid() const {
+    return accepted > 0 && target_token >= 0 && target_token < 51864;
+  }
+};
+using AssistantAcceptanceTransition =
+    std::variant<AcceptAssistantPrefix, CorrectAssistantProposal,
+                 AcceptAllAssistantAndTargetExtra>;
 using Selection =
     std::variant<Greedy, CategoricalSample, StandardBeamSearch,
                  DiverseGroupBeamSearch, ConstrainedBeamSearch,
-                 SampledBeamSearch, ContrastiveSearch, PromptLookupSearch>;
+                 SampledBeamSearch, ContrastiveSearch, PromptLookupSearch,
+                 ExternalAssistantSearch>;
 struct NoSequenceBias {
   bool valid() const { return true; }
 };

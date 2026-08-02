@@ -1251,6 +1251,21 @@ static F32 serialize_cache(const DecoderKVState &state) {
   }
   return serialized;
 }
+static void crop_decoder_cache(DecoderKVState &state,
+                               std::size_t new_position) {
+  if (new_position > state.position)
+    throw std::runtime_error("decoder cache crop direction");
+  if (!static_cache_capacity(state.implementation)) {
+    for (auto &layer : state.layers) {
+      if (layer.self_key.size() != state.position * 384 ||
+          layer.self_value.size() != state.position * 384)
+        throw std::runtime_error("dynamic cache crop shape");
+      layer.self_key.resize(new_position * 384);
+      layer.self_value.resize(new_position * 384);
+    }
+  }
+  state.position = new_position;
+}
 class CachedDecoder {
   TensorStore &t_;
   GraphExecutionAudit &audit_;
@@ -4019,6 +4034,237 @@ static PromptLookupResult prompt_lookup_search(
   }
   return result;
 }
+
+struct ExternalAssistantRound {
+  std::vector<std::int32_t> proposal_tokens;
+  std::vector<float> proposal_probabilities;
+  std::size_t proposed = 0, accepted = 0;
+  std::int32_t correction = -1;
+  float budget_before = 0.0f, budget_after = 0.0f;
+  std::size_t assistant_cache_before = 0, assistant_cache_after_proposal = 0,
+              assistant_cache_after_rollback = 0;
+  bool all_candidates_accepted = false, confidence_stopped = false;
+};
+struct ExternalAssistantResult {
+  std::vector<std::int32_t> tokens;
+  std::vector<ExternalAssistantRound> rounds;
+  std::size_t proposed_tokens = 0, accepted_candidate_tokens = 0,
+              correction_tokens = 0, target_verification_rounds = 0,
+              target_decoder_steps = 0, assistant_decoder_steps = 0,
+              rollback_events = 0, rollback_positions = 0;
+  std::size_t target_cache_position = 0, assistant_cache_position = 0;
+  bool terminated_by_eos = false, terminated_by_maximum = false;
+};
+
+static float assistant_budget_value(
+    const whisper_interface::AssistantTokenBudget &budget) {
+  return std::visit([](const auto &value) { return value.tokens; }, budget);
+}
+static bool adaptive_assistant_budget(
+    const whisper_interface::AssistantTokenBudget &budget) {
+  return !std::holds_alternative<
+      whisper_interface::ConstantAssistantTokenBudget>(budget);
+}
+static std::optional<float> assistant_confidence_value(
+    const whisper_interface::AssistantConfidencePolicy &confidence) {
+  if (const auto *value =
+          std::get_if<whisper_interface::AssistantConfidenceThreshold>(
+              &confidence))
+    return value->probability;
+  return std::nullopt;
+}
+
+static std::pair<std::int32_t, float> assisted_greedy_token(
+    F32 logits, std::span<const std::int32_t> stack,
+    std::size_t decoder_prompt_length, std::size_t maximum_positions,
+    GraphExecutionAudit &audit,
+    const whisper_interface::GenerationLogitPolicies *policies) {
+  audit.hit(generated_whisper::nodes[70]);
+  if (policies)
+    apply_generation_logit_policies(logits, stack, decoder_prompt_length,
+                                    maximum_positions, *policies);
+  logits = policy_logits(logits, stack.size() - decoder_prompt_length);
+  if (policies)
+    apply_watermark_logit_policy(logits, stack, policies->watermark);
+  audit.hit(generated_whisper::nodes[71]);
+  softmax_rows(logits, 1, logits.size());
+  audit.hit(generated_whisper::nodes[72]);
+  const auto selected = std::max_element(logits.begin(), logits.end());
+  return {static_cast<std::int32_t>(selected - logits.begin()), *selected};
+}
+
+static ExternalAssistantResult external_assistant_search(
+    CachedDecoder &target, const F32 &target_memory,
+    CachedDecoder &assistant, const F32 &assistant_memory,
+    std::span<const std::int32_t> initial_stack,
+    const whisper_interface::ExternalAssistantSearch &configuration,
+    std::size_t maximum_positions, GraphExecutionAudit &audit,
+    const whisper_interface::GenerationLogitPolicies *policies = nullptr) {
+  using namespace generated_whisper;
+  if (!configuration.valid() || initial_stack.empty() ||
+      initial_stack.size() >= maximum_positions || maximum_positions > 448)
+    throw std::runtime_error("external assistant ADT invariant");
+
+  ExternalAssistantResult result;
+  std::vector<std::int32_t> stack(initial_stack.begin(), initial_stack.end());
+  const auto decoder_prompt_length = stack.size();
+  DecoderKVState target_state, assistant_state;
+  target_state.implementation = whisper_interface::DynamicGenerationCache{};
+  assistant_state.implementation =
+      whisper_interface::DynamicFullGenerationCache{};
+  F32 target_logits, assistant_logits;
+  for (auto token : stack) {
+    audit.hit(nodes[73]);
+    target_logits = target.step(token, target_memory, target_state);
+    ++result.target_decoder_steps;
+    audit.hit(nodes[73]);
+    assistant_logits =
+        assistant.step(token, assistant_memory, assistant_state);
+    ++result.assistant_decoder_steps;
+  }
+
+  float budget = assistant_budget_value(configuration.budget);
+  const auto confidence = assistant_confidence_value(configuration.confidence);
+  while (stack.size() < maximum_positions) {
+    ExternalAssistantRound round;
+    round.budget_before = budget;
+    round.assistant_cache_before = assistant_state.position;
+    const auto available = maximum_positions - stack.size() - 1;
+    const auto proposal_limit =
+        std::min<std::size_t>(static_cast<std::size_t>(budget), available);
+    whisper_interface::AssistantProposalStack proposal;
+    std::vector<std::int32_t> assistant_stack = stack;
+    for (std::size_t index = 0; index < proposal_limit; ++index) {
+      const auto [candidate, probability] = assisted_greedy_token(
+          assistant_logits, assistant_stack, decoder_prompt_length,
+          maximum_positions, audit, policies);
+      proposal.tokens.push_back(candidate);
+      proposal.probabilities.push_back(probability);
+      assistant_stack.push_back(candidate);
+      if (candidate == eos_token) {
+        break;
+      }
+      if (confidence && probability < *confidence) {
+        round.confidence_stopped = true;
+        break;
+      }
+      // GenerationMixin returns a cache that excludes the last selected
+      // proposal token. It is forwarded only when another proposal is needed.
+      if (index + 1 < proposal_limit) {
+        audit.hit(nodes[73]);
+        assistant_logits =
+            assistant.step(candidate, assistant_memory, assistant_state);
+        ++result.assistant_decoder_steps;
+      }
+    }
+    if (!proposal.tokens.empty() && !proposal.valid())
+      throw std::runtime_error("assistant proposal ADT invariant");
+    round.proposed = proposal.tokens.size();
+    round.proposal_tokens = proposal.tokens;
+    round.proposal_probabilities = proposal.probabilities;
+    result.proposed_tokens += round.proposed;
+    round.assistant_cache_after_proposal = assistant_state.position;
+    ++result.target_verification_rounds;
+
+    auto commit_target = [&](std::int32_t token) {
+      stack.push_back(token);
+      result.tokens.push_back(token);
+      if (stack.size() < maximum_positions) {
+        audit.hit(nodes[73]);
+        target_logits = target.step(token, target_memory, target_state);
+        ++result.target_decoder_steps;
+      }
+    };
+
+    bool mismatch = false;
+    for (auto candidate : proposal.tokens) {
+      const auto [selected, probability] = assisted_greedy_token(
+          target_logits, stack, decoder_prompt_length, maximum_positions,
+          audit, policies);
+      (void)probability;
+      if (selected != candidate) {
+        mismatch = true;
+        round.correction = selected;
+        ++result.correction_tokens;
+        if (selected == eos_token) {
+          result.terminated_by_eos = true;
+          break;
+        }
+        commit_target(selected);
+        break;
+      }
+      // If the candidate prefix itself satisfies EOS stopping, Transformers
+      // reclassifies that final matching EOS as the target correction token
+      // (`n_matches -= 1`) rather than as an accepted assistant token.
+      if (candidate == eos_token) {
+        round.correction = candidate;
+        ++result.correction_tokens;
+        result.terminated_by_eos = true;
+        break;
+      }
+      ++round.accepted;
+      ++result.accepted_candidate_tokens;
+      commit_target(candidate);
+      if (stack.size() >= maximum_positions)
+        break;
+    }
+
+    if (!result.terminated_by_eos && stack.size() < maximum_positions &&
+        !mismatch) {
+      round.all_candidates_accepted = !proposal.tokens.empty();
+      const auto [extra, probability] = assisted_greedy_token(
+          target_logits, stack, decoder_prompt_length, maximum_positions,
+          audit, policies);
+      (void)probability;
+      round.correction = extra;
+      ++result.correction_tokens;
+      if (extra == eos_token)
+        result.terminated_by_eos = true;
+      else
+        commit_target(extra);
+    }
+
+    if (adaptive_assistant_budget(configuration.budget)) {
+      if (!proposal.tokens.empty() &&
+          round.accepted == proposal.tokens.size())
+        budget += 2.0f;
+      else
+        budget = std::max(1.0f, budget - 1.0f);
+    }
+    round.budget_after = budget;
+
+    if (!result.terminated_by_eos && stack.size() < maximum_positions) {
+      const auto desired_cache_before_last = stack.size() - 1;
+      if (assistant_state.position > desired_cache_before_last) {
+        ++result.rollback_events;
+        result.rollback_positions +=
+            assistant_state.position - desired_cache_before_last;
+        crop_decoder_cache(assistant_state, desired_cache_before_last);
+      }
+      if (assistant_state.position > desired_cache_before_last)
+        throw std::runtime_error("assistant cache reconciliation position");
+      while (assistant_state.position < stack.size()) {
+        const auto token = stack[assistant_state.position];
+        audit.hit(nodes[73]);
+        assistant_logits =
+            assistant.step(token, assistant_memory, assistant_state);
+        ++result.assistant_decoder_steps;
+      }
+      if (assistant_state.position != stack.size())
+        throw std::runtime_error("assistant cache reconciliation result");
+    }
+    round.assistant_cache_after_rollback = assistant_state.position;
+    result.rounds.push_back(round);
+    if (result.terminated_by_eos || stack.size() >= maximum_positions)
+      break;
+  }
+
+  result.terminated_by_maximum =
+      !result.terminated_by_eos && stack.size() >= maximum_positions;
+  result.target_cache_position = target_state.position;
+  result.assistant_cache_position = assistant_state.position;
+  return result;
+}
 struct FallbackObservation {
   std::size_t seek = 0, attempt = 0;
   float temperature = 0;
@@ -4484,6 +4730,124 @@ int main(int argc, char **argv) try {
       std::cout << (item.skipped_initial_ngram ? '1' : '0');
     std::cout << " terminated_by_eos=" << generated.terminated_by_eos
               << " graph_nodes_visited=" << execution.visited() << "\n";
+    return 0;
+  }
+  if (argc == 16 && std::string(argv[1]) == "--external-assistant") {
+    TensorStore target_tensors(argv[2], argv[3]);
+    TensorStore assistant_tensors(argv[4], argv[5]);
+    audit_graph(target_tensors);
+    audit_graph(assistant_tensors);
+    const auto initial = parse_token_ids(argv[11]);
+    const auto budget_value = parse_optional_f32(argv[12]);
+    const std::string schedule = argv[13];
+    const std::string confidence_text = argv[14];
+    const auto maximum_positions = parse_optional_size(argv[15]);
+    if (!budget_value || !maximum_positions)
+      throw std::runtime_error("external assistant arguments");
+    whisper_interface::AssistantTokenBudget budget;
+    if (schedule == "constant")
+      budget = whisper_interface::ConstantAssistantTokenBudget{*budget_value};
+    else if (schedule == "heuristic")
+      budget = whisper_interface::PersistentHeuristicAssistantTokenBudget{
+          *budget_value};
+    else if (schedule == "heuristic_transient")
+      budget = whisper_interface::TransientHeuristicAssistantTokenBudget{
+          *budget_value};
+    else
+      throw std::runtime_error("external assistant schedule");
+    whisper_interface::AssistantConfidencePolicy confidence;
+    if (confidence_text == "none") {
+      confidence = whisper_interface::NoAssistantConfidenceThreshold{};
+    } else {
+      const auto value = parse_optional_f32(confidence_text);
+      if (!value)
+        throw std::runtime_error("external assistant confidence");
+      confidence = whisper_interface::AssistantConfidenceThreshold{*value};
+    }
+    const whisper_interface::ExternalAssistantSearch configuration{
+        {51864, 51864, true, true}, budget, confidence};
+    if (!configuration.valid())
+      throw std::runtime_error("external assistant configuration ADT invariant");
+
+    GraphExecutionAudit execution;
+    const auto window = read_f32(argv[7]);
+    const auto filters = read_f32(argv[8]);
+    auto mel = execute_frontend(argv[6], window, filters, execution);
+    std::vector<std::pair<std::string, F32>> target_trace, assistant_trace;
+    Encoder target_encoder(target_tensors, execution);
+    Encoder assistant_encoder(assistant_tensors, execution);
+    auto target_memory = target_encoder.run(mel, target_trace);
+    auto assistant_memory = assistant_encoder.run(mel, assistant_trace);
+    CachedDecoder target(target_tensors, execution);
+    CachedDecoder assistant(assistant_tensors, execution);
+    auto result = external_assistant_search(
+        target, target_memory, assistant, assistant_memory, initial,
+        configuration, *maximum_positions, execution);
+    execution.require_all();
+    TokenDecoder token_decoder(argv[9], argv[10]);
+    std::cout << "WHISPER_CPP23_EXTERNAL_ASSISTANT initial_positions="
+              << initial.size() << " tokens=";
+    for (std::size_t index = 0; index < result.tokens.size(); ++index) {
+      if (index)
+        std::cout << ',';
+      std::cout << result.tokens[index];
+    }
+    std::cout << " rounds=" << result.rounds.size()
+              << " proposed=" << result.proposed_tokens
+              << " accepted=" << result.accepted_candidate_tokens
+              << " corrections=" << result.correction_tokens
+              << " target_verifications="
+              << result.target_verification_rounds
+              << " target_steps=" << result.target_decoder_steps
+              << " assistant_steps=" << result.assistant_decoder_steps
+              << " rollback_events=" << result.rollback_events
+              << " rollback_positions=" << result.rollback_positions
+              << " target_cache=" << result.target_cache_position
+              << " assistant_cache=" << result.assistant_cache_position
+              << " eos=" << result.terminated_by_eos
+              << " maximum=" << result.terminated_by_maximum
+              << " proposal_trace=";
+    for (std::size_t round_index = 0; round_index < result.rounds.size();
+         ++round_index) {
+      if (round_index)
+        std::cout << '/';
+      const auto &proposal = result.rounds[round_index].proposal_tokens;
+      for (std::size_t token_index = 0; token_index < proposal.size();
+           ++token_index) {
+        if (token_index)
+          std::cout << ',';
+        std::cout << proposal[token_index];
+      }
+    }
+    std::cout << " accepted_trace=";
+    for (std::size_t index = 0; index < result.rounds.size(); ++index) {
+      if (index)
+        std::cout << ',';
+      std::cout << result.rounds[index].accepted;
+    }
+    std::cout << " correction_trace=";
+    for (std::size_t index = 0; index < result.rounds.size(); ++index) {
+      if (index)
+        std::cout << ',';
+      std::cout << result.rounds[index].correction;
+    }
+    std::cout
+              << " round_trace=";
+    for (std::size_t index = 0; index < result.rounds.size(); ++index) {
+      if (index)
+        std::cout << ';';
+      const auto &round = result.rounds[index];
+      std::cout << round.proposed << ',' << round.accepted << ','
+                << round.correction << ',' << round.budget_before << ','
+                << round.budget_after << ',' << round.assistant_cache_before
+                << ',' << round.assistant_cache_after_proposal << ','
+                << round.assistant_cache_after_rollback << ','
+                << round.all_candidates_accepted << ','
+                << round.confidence_stopped;
+    }
+    std::cout << " graph_nodes_visited=" << execution.visited()
+              << " text=" << std::quoted(token_decoder.decode(result.tokens))
+              << "\n";
     return 0;
   }
   if (argc == 13 && std::string(argv[1]) == "--prompt-lookup") {

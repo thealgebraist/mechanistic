@@ -104,7 +104,7 @@ generate = {
     "generation_config": (
         "PINNED_EXECUTABLE_PLUS_POLICIES",
         "GenerationRequest",
-        "pinned English policy plus typed cache-allocation/rejection behavior, sequence bias, repetition, no-repeat n-gram, forbidden-sequence, boundary/decay/length, repair/normalization, six sampling filters, contrastive hidden-state ranking, greedy stop-string and prompt-lookup speculation, standard/sampled/diverse-group beam search, and phrase/disjunction-constrained beam search",
+        "pinned English policy plus typed cache-allocation/rejection behavior, sequence bias, repetition, no-repeat n-gram, forbidden-sequence, boundary/decay/length, repair/normalization, six sampling filters, contrastive hidden-state ranking, greedy stop-string and prompt-lookup speculation, common-vocabulary external-assistant product state, standard/sampled/diverse-group beam search, and phrase/disjunction-constrained beam search",
     ),
     "logits_processor": (
         "EXECUTABLE_NAMED_SUBSET",
@@ -339,7 +339,7 @@ The C++23 constructors live in `whisper_interface_adt.hpp`. Dimension-bearing co
 |---|---|---|---|
 {table(generate_rows)}
 
-There are no unclassified top-level signature rows for the pinned model. This is narrower than full generic reconfiguration: arbitrary non-contiguous generation masks plus assistant and watermark extensions remain explicit in `WHISPER_CPP23_GENERATION_EXTENSION_INVENTORY.md` and are not counted as executable. Model-inapplicable DoLa/guidance paths and ignored encoder-token processors have explicit typed classifications.
+There are no unclassified top-level signature rows for the pinned model. This is narrower than full generic reconfiguration: common-vocabulary deterministic external assistance is partially executable, while different-tokenizer/sampled/early-exit assistant variants and other external hooks remain explicit in `WHISPER_CPP23_GENERATION_EXTENSION_INVENTORY.md`. Model-inapplicable DoLa/guidance paths and ignored encoder-token processors have explicit typed classifications.
 """
 )
 print(

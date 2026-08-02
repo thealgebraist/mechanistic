@@ -77,7 +77,16 @@ full_override = {
 }
 
 # The pinned value is executable, while only the listed subset of non-default values is lowered.
-partial_override = set()
+partial_override = {
+    # The common-vocabulary deterministic external-assistant product state is
+    # executable. Different-tokenizer UAG, sampled speculative rejection,
+    # early exit, adaptive ROC thresholds, and cross-call schedule persistence
+    # remain separate work, so these rows must not be promoted to full.
+    "assistant_confidence_threshold",
+    "is_assistant",
+    "num_assistant_tokens",
+    "num_assistant_tokens_schedule",
+}
 full_override.update(
     {
         # These paths have source-pinned differential fixtures in outputs/.
@@ -152,7 +161,9 @@ for name, parameter in generic_signature.parameters.items():
             if parameter.default is inspect.Parameter.empty
             else parameter.default,
             "pinned_status": "DISABLED_IN_PINNED_MODEL",
-            "override_status": "EXTERNAL_GENERATION_ALGORITHM",
+            "override_status": "CPP23_PARTIAL_EXTERNAL_ASSISTANT"
+            if name == "assistant_model"
+            else "EXTERNAL_GENERATION_ALGORITHM",
         }
     )
 
@@ -240,7 +251,7 @@ extension_table = "\n".join(
 
 This inventory is derived from Transformers `{version}` at verification time. It closes the top-level `**kwargs` row for the pinned model: all {len(rows)} generation-configuration values are represented, all {len(model_kwargs)} model-forward kwargs route to previously audited ADTs, and unknown kwargs are rejected by the installed framework.
 
-This does **not** claim every non-default generic GenerationMixin algorithm is converted. Categorical and contrastive sampling plus prompt-lookup speculation, monotonic-deadline stopping across every converted search interpreter, classic left-hash/self-hash watermarking, all implemented SynthID schedulers, and standard, sampled, diverse-group, and phrase/disjunction-constrained beam search are lowered. There are no remaining `CPP23_PARTIAL_OVERRIDE` rows. External assistant models and similar inactive extensions remain visibly classified as `PINNED_INACTIVE_GENERIC_EXTENSION` or `EXTERNAL_GENERATION_ALGORITHM`. Contrastive candidate evaluation has the explicit low-memory sequential schedule. `return_legacy_cache` is a tested output-container projection over identical cache tensors. Dynamic/static cache allocation is threaded through greedy and beam-family state branches; contrastive and assisted generation preserve their source-mandated dynamic-full/dynamic overrides. The non-quantized `cache_config` no-op is an explicit ADT. Generic prefill chunking has mode-dependent typed semantics: sample search requires a cache and then passes unsupported `position_ids` to Whisper, while beam search ignores the field because only `_sample` dispatches the helper. DoLa, quantized cache, and unbatched classifier-free guidance are explicitly model-rejected for Whisper's encoder-decoder/Mel interface; `bos_token_id` and encoder-token repetition processors are explicitly model-ignored by the pinned Whisper source paths.
+This does **not** claim every non-default generic GenerationMixin algorithm is converted. Categorical and contrastive sampling plus prompt-lookup speculation, monotonic-deadline stopping across every converted search interpreter, classic left-hash/self-hash watermarking, all implemented SynthID schedulers, and standard, sampled, diverse-group, and phrase/disjunction-constrained beam search are lowered. Common-vocabulary deterministic external assistance now has an explicit two-model product state, but its four configuration rows remain `CPP23_PARTIAL_OVERRIDE` until different-tokenizer UAG, sampled speculative rejection, early exit, adaptive ROC thresholds, cross-call schedule persistence, and a useful smaller checkpoint are covered. Contrastive candidate evaluation has the explicit low-memory sequential schedule. `return_legacy_cache` is a tested output-container projection over identical cache tensors. Dynamic/static cache allocation is threaded through greedy and beam-family state branches; contrastive and assisted generation preserve their source-mandated dynamic-full/dynamic overrides. The non-quantized `cache_config` no-op is an explicit ADT. Generic prefill chunking has mode-dependent typed semantics: sample search requires a cache and then passes unsupported `position_ids` to Whisper, while beam search ignores the field because only `_sample` dispatches the helper. DoLa, quantized cache, and unbatched classifier-free guidance are explicitly model-rejected for Whisper's encoder-decoder/Mel interface; `bos_token_id` and encoder-token repetition processors are explicitly model-ignored by the pinned Whisper source paths.
 
 ## GenerationConfig fields
 
