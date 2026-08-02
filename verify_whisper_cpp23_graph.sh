@@ -6,9 +6,9 @@ PYTHONPATH=work/venv/lib/python3.14/site-packages python3 audit_whisper_generati
 c++ -std=c++23 -O3 -DNDEBUG -Wall -Wextra -Wpedantic -Wno-deprecated-declarations whisper_graph_cpp23.cpp -framework Accelerate -lz -o work/whisper_graph_cpp23
 c++ -std=c++23 -O2 -DNDEBUG -Wall -Wextra -Wpedantic verify_portable_backend.cpp -o work/verify_portable_backend
 work/verify_portable_backend
-c++ -std=c++23 -O2 -DNDEBUG -Wall -Wextra -Wpedantic -DWHISPER_PORTABLE_BACKEND whisper_graph_cpp23.cpp -lz -o work/whisper_graph_cpp23_portable
-work/whisper_graph_cpp23_portable 2>&1 | grep -q 'WHISPER_CPP23_GRAPH_FAIL usage:'
+c++ -std=c++23 -O3 -DNDEBUG -Wall -Wextra -Wpedantic -DWHISPER_PORTABLE_BACKEND whisper_graph_cpp23.cpp -lz -o work/whisper_graph_cpp23_portable
 work/whisper_graph_cpp23 work/whisper_tiny_en/model.safetensors outputs/whisper_cpp23_tensor_manifest.tsv work/whisper_sample.wav outputs/whisper_cpp23_mel_f32.bin outputs/whisper_cpp23_hann_f32.bin outputs/whisper_cpp23_mel_filters_f32.bin outputs/whisper_cpp23_encoder_reference_f32.bin outputs/whisper_cpp23_decoder_ids_i32.bin outputs/whisper_cpp23_decoder_reference_f32.bin outputs/whisper_cpp23_token_manifest.tsv outputs/whisper_cpp23_token_bytes.bin | tee outputs/whisper_cpp23_graph_run.log
+python3 verify_whisper_cpp23_portable_model.py
 PYTHONPATH=work/venv/lib/python3.14/site-packages python3 verify_whisper_cpp23_multiaudio.py
 PYTHONPATH=work/venv/lib/python3.14/site-packages python3 verify_whisper_cpp23_batch.py
 PYTHONPATH=work/venv/lib/python3.14/site-packages python3 verify_whisper_cpp23_forward_variants.py

@@ -3,7 +3,7 @@
   "model": "openai/whisper-tiny.en",
   "checkpoint_sha256": "db59695928ded6043adaef491a53ef4e12da9611184d77c53baa691a60b958ad",
   "graph_sha256": "2adbb1fb4d6d14993772e13d596d7f77981ca7c5be27c0a1088a338927a5fe3c",
-  "cpp_source_sha256": "a56c06894240642805135fe5d832abb6892aa48f7007a2660d0ceae1a41f1e1f",
+  "cpp_source_sha256": "e738683caacd04ca4fcfbd0d16c407f15fce417b759ca6ce9ccfaff46836d10f",
   "generated_header_sha256": "d046e5e3e947bf7de87cc59a01e5d08e36156ff59864a9b616707a2b4091b71f",
   "generation_config_header_sha256": "a9df76366c1678c7bbc127a2ef17dbbadafad2b15bac15db69f78b07e364ef4a",
   "sampling_filter_fixture_sha256": "5f41ea938e5d4eeacb1a67cfb1bdf5a133272a1e913b76dfb4fa09036d38334f",
@@ -67,6 +67,9 @@
   "cache_projection_fixture_sha256": "5b180150d1c07208d0b95ca701ea82b911d8713e3b67ef1df3bac671c8c112ed",
   "cache_projection_values_bitwise_equal": true,
   "cache_projection_worst_max_absolute_error": 1.9788742065429688e-05,
+  "portable_model_fixture_sha256": "51179f240117912d0914035b561b4fd934d683504860a9ac5f8467d4b79cce3a",
+  "portable_model_whole_graph_validated": true,
+  "portable_model_worst_stage_max_absolute_error": 0.000549316,
   "stop_string_cases": 7,
   "stop_string_all_complete_tokens_exact": true,
   "prompt_lookup_cases": 6,
@@ -563,6 +566,11 @@
       "evidence": "14 stage comparisons; worst max absolute error 0.00180054"
     },
     {
+      "requirement": "whole-model portable C++23 numerical backend",
+      "status": "PROVED_FINITE_ONE_RECORDING",
+      "evidence": "portable scalar backend visited 74/74 nodes, validated 167 tensors, reproduced the expected greedy transcript and seeded sampling assertions, and stayed within 0.000549316 of PyTorch stage fixtures"
+    },
+    {
       "requirement": "explicit probabilistic graph state",
       "status": "PROVED_CONCRETE_AND_STRUCTURAL",
       "evidence": "four self K/V and cross K/V cache pairs; 24 positions; cached logit error 4.19617e-05"
@@ -673,17 +681,18 @@
   "partial_generic_generation_fields": [],
   "backend_contract": {
     "language": "C++23",
-    "linear_algebra": "macOS Accelerate CBLAS binary32, plus compile-tested portable scalar binary32 GEMM/dot backend",
+    "linear_algebra": "macOS Accelerate CBLAS binary32 plus a whole-model-validated portable scalar binary32 GEMM/dot backend",
     "audio": "mono 16 kHz signed PCM16 WAV; finite inputs truncate or zero-pad to 30 seconds",
     "generation": "greedy, categorical, and contrastive decoding; greedy token-byte stop strings and prompt-lookup speculative transport; classic left/self-hash watermark probability transport plus greedy, standard-beam, sampled-beam, constrained-beam, and diverse-group SynthID row-state transport; standard/sampled/diverse-group/phrase-and-disjunction-constrained beam search; prompts, timestamp-token policy, short-form segments, eight-head DTW token timestamps, and sequential batches with shared immutable weights and isolated item state; maximum 448 decoder positions",
     "checkpoint": "pinned openai/whisper-tiny.en safetensors"
   },
+  "portable_backend_whole_model_validated": true,
   "portable_backend_independent": false,
   "universal_numerical_equivalence_proved": false,
   "remaining_validation": [
     "implement or formally exclude the explicitly inventoried non-default generic generation algorithms",
-    "run whole-model numerical validation on the portable scalar backend; its current gate covers bitwise dot/GEMM kernels and whole-runtime compilation",
-    "expand finite corpus beyond five recordings",
+    "expand portable whole-model validation beyond one recording and one compiler/machine",
+    "expand Accelerate finite corpus beyond five recordings",
     "formalize primitive floating-point correspondence if a universal proof is required"
   ],
   "scope": "complete graph-driven executable conversion of the pinned Whisper Tiny English tensor graph under the declared C++23/Accelerate ABI; all pinned top-level values are represented, while generic non-default generation reconfiguration remains in progress and finite tests do not prove equality for every waveform"

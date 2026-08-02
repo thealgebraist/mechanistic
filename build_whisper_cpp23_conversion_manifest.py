@@ -50,6 +50,9 @@ model_applicability = json.loads(
 cache_projection = json.loads(
     Path("outputs/whisper_cpp23_cache_projection.json").read_text()
 )
+portable_model = json.loads(
+    Path("outputs/whisper_cpp23_portable_model.json").read_text()
+)
 stop_strings = json.loads(
     Path("outputs/whisper_cpp23_stop_strings.json").read_text()
 )
@@ -107,6 +110,11 @@ requirements = [
         "requirement": "encoder and decoder numerical execution",
         "status": "PROVED_CONCRETE",
         "evidence": f"14 stage comparisons; worst max absolute error {float(match.group(8)):.9g}",
+    },
+    {
+        "requirement": "whole-model portable C++23 numerical backend",
+        "status": "PROVED_FINITE_ONE_RECORDING",
+        "evidence": f"portable scalar backend visited 74/74 nodes, validated 167 tensors, reproduced the expected greedy transcript and seeded sampling assertions, and stayed within {portable_model['backends'][1]['worst_stage_max_absolute_error']:.9g} of PyTorch stage fixtures",
     },
     {
         "requirement": "explicit probabilistic graph state",
@@ -329,6 +337,15 @@ out = {
     "cache_projection_worst_max_absolute_error": cache_projection[
         "worst_max_absolute_cache_error"
     ],
+    "portable_model_fixture_sha256": sha(
+        "outputs/whisper_cpp23_portable_model.json"
+    ),
+    "portable_model_whole_graph_validated": portable_model[
+        "all_graph_nodes_visited"
+    ],
+    "portable_model_worst_stage_max_absolute_error": portable_model[
+        "backends"
+    ][1]["worst_stage_max_absolute_error"],
     "stop_string_cases": stop_strings["case_count"],
     "stop_string_all_complete_tokens_exact": stop_strings[
         "all_complete_tokens_exact"
@@ -394,17 +411,18 @@ out = {
     ],
     "backend_contract": {
         "language": "C++23",
-        "linear_algebra": "macOS Accelerate CBLAS binary32, plus compile-tested portable scalar binary32 GEMM/dot backend",
+        "linear_algebra": "macOS Accelerate CBLAS binary32 plus a whole-model-validated portable scalar binary32 GEMM/dot backend",
         "audio": "mono 16 kHz signed PCM16 WAV; finite inputs truncate or zero-pad to 30 seconds",
         "generation": "greedy, categorical, and contrastive decoding; greedy token-byte stop strings and prompt-lookup speculative transport; classic left/self-hash watermark probability transport plus greedy, standard-beam, sampled-beam, constrained-beam, and diverse-group SynthID row-state transport; standard/sampled/diverse-group/phrase-and-disjunction-constrained beam search; prompts, timestamp-token policy, short-form segments, eight-head DTW token timestamps, and sequential batches with shared immutable weights and isolated item state; maximum 448 decoder positions",
         "checkpoint": "pinned openai/whisper-tiny.en safetensors",
     },
+    "portable_backend_whole_model_validated": True,
     "portable_backend_independent": False,
     "universal_numerical_equivalence_proved": False,
     "remaining_validation": [
         "implement or formally exclude the explicitly inventoried non-default generic generation algorithms",
-        "run whole-model numerical validation on the portable scalar backend; its current gate covers bitwise dot/GEMM kernels and whole-runtime compilation",
-        "expand finite corpus beyond five recordings",
+        "expand portable whole-model validation beyond one recording and one compiler/machine",
+        "expand Accelerate finite corpus beyond five recordings",
         "formalize primitive floating-point correspondence if a universal proof is required",
     ],
     "scope": "complete graph-driven executable conversion of the pinned Whisper Tiny English tensor graph under the declared C++23/Accelerate ABI; all pinned top-level values are represented, while generic non-default generation reconfiguration remains in progress and finite tests do not prove equality for every waveform",
@@ -431,7 +449,7 @@ The runtime dispatched all `{match.group(9)}` generated graph nodes, resolving m
 |---|---:|
 {rows}
 
-All 74 core opcodes now have executable C++23 semantics under the declared macOS Accelerate binary32 ABI. Timestamp-token policy, short-form segments, eight-head cross-attention/DTW token timestamps, typed non-empty batch execution, contrastive hidden-state transport, sampled/diverse-group beam state transport, phrase/disjunction constraint-bank transport, classic watermark transport, and greedy/standard/sampled/constrained/diverse-group SynthID state transport are also executable. Sampled-beam SynthID explicitly copies each surviving runtime from its selected parent row; the finite certificate records `{synthid_sampled_beam["state_rows"]}` row states and deterministic C++ seed replay. All pinned top-level values are represented and there are `{interface["pending_parameter_count"]}` unclassified signature rows. That closes the checkpoint's active path, not every alternate generic generation algorithm: `{extensions["override_status_counts"].get("PINNED_INACTIVE_GENERIC_EXTENSION", 0)}` inactive and `{extensions["override_status_counts"].get("CPP23_PARTIAL_OVERRIDE", 0)}` partial GenerationConfig fields remain explicit reconfiguration work. The optional portable backend has bitwise dot/GEMM tests and a whole-runtime compile gate, but has not yet completed full-model numerical comparison. It is not a backend-independent floating-point proof: the finite numerical checks cover five recordings, and another BLAS/FFT implementation must be revalidated separately.
+All 74 core opcodes now have executable C++23 semantics under both the declared macOS Accelerate binary32 ABI and the scalar C++23 backend. Timestamp-token policy, short-form segments, eight-head cross-attention/DTW token timestamps, typed non-empty batch execution, contrastive hidden-state transport, sampled/diverse-group beam state transport, phrase/disjunction constraint-bank transport, classic watermark transport, and greedy/standard/sampled/constrained/diverse-group SynthID state transport are also executable. Sampled-beam SynthID explicitly copies each surviving runtime from its selected parent row; the finite certificate records `{synthid_sampled_beam["state_rows"]}` row states and deterministic C++ seed replay. All pinned top-level values are represented and there are `{interface["pending_parameter_count"]}` unclassified signature rows. That closes the checkpoint's active path, not every alternate generic generation algorithm: `{extensions["override_status_counts"].get("PINNED_INACTIVE_GENERIC_EXTENSION", 0)}` inactive and `{extensions["override_status_counts"].get("CPP23_PARTIAL_OVERRIDE", 0)}` partial GenerationConfig fields remain explicit reconfiguration work. The portable backend now has primitive bitwise checks plus a complete 74-node numerical run on one recording; its worst stage maximum error is `{portable_model['backends'][1]['worst_stage_max_absolute_error']:.3g}` and its transcript is exact. This remains finite evidence, not a backend-independent floating-point proof: the portable whole-model certificate covers one recording and one compiler/machine.
 """)
 audit = "\n".join(
     f"| {i + 1} | {r['requirement']} | {r['status']} | {r['evidence']} |"
@@ -445,7 +463,7 @@ Path(
 |---:|---|---|---|
 {audit}
 
-Verdict: **PINNED CORE GRAPH AND ACTIVE INTERFACE COMPLETE; GENERIC RECONFIGURATION IN PROGRESS** under the declared C++23/macOS Accelerate ABI. Every extracted graph opcode and checkpoint tensor has an executable representation, all 17 `forward` and 27 top-level `generate` parameters are classified, and all 74 pinned GenerationConfig values are represented. Prompt lookup, stop strings, watermarking, low-memory contrastive scheduling, matching-ngram sizing, and multi-return sequencing are named executable overrides backed by source-pinned fixtures. Sampled-beam SynthID parent-row state transport is executable and sanitizer-covered. The full objective remains open because assistant/cache/time/prefill/token-healing extensions and non-default external generation algorithms are not all executable, portable whole-model numerical parity remains unverified, and finite tests do not establish a universal backend-independent floating-point equivalence theorem.
+Verdict: **PINNED CORE GRAPH AND ACTIVE INTERFACE COMPLETE; GENERIC RECONFIGURATION IN PROGRESS** under the declared C++23/macOS Accelerate ABI, with a finite complete-graph certificate for the portable scalar backend. Every extracted graph opcode and checkpoint tensor has an executable representation, all 17 `forward` and 27 top-level `generate` parameters are classified, and all 74 pinned GenerationConfig values are represented. Prompt lookup, stop strings, watermarking, low-memory contrastive scheduling, matching-ngram sizing, and multi-return sequencing are named executable overrides backed by source-pinned fixtures. Sampled-beam SynthID parent-row state transport is executable and sanitizer-covered. The full objective remains open because assistant/cache/time/prefill/token-healing extensions and non-default external generation algorithms are not all executable, portable whole-model evidence currently covers one recording/compiler/machine, and finite tests do not establish a universal backend-independent floating-point equivalence theorem.
 """)
 print(
     json.dumps(

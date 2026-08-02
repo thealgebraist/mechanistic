@@ -32,6 +32,11 @@
 
 namespace whisper_graph {
 using F32 = std::vector<float>;
+#if defined(WHISPER_PORTABLE_BACKEND)
+static constexpr std::string_view numeric_backend = "portable-scalar-f32";
+#else
+static constexpr std::string_view numeric_backend = "accelerate-cblas-f32";
+#endif
 static std::uint64_t peak_rss_bytes() {
   rusage usage{};
   if (getrusage(RUSAGE_SELF, &usage) != 0)
@@ -6061,7 +6066,8 @@ int main(int argc, char **argv) try {
     throw std::runtime_error("decoded text mismatch: " + text);
   execution.require_all();
   std::cout << "WHISPER_CPP23_WAV_TO_TEXT_CACHED_PROBABILISTIC_OK graph_nodes="
-            << generated_whisper::nodes.size() << " tensors=" << validated
+            << generated_whisper::nodes.size() << " backend=" << numeric_backend
+            << " tensors=" << validated
             << " generated_tokens=" << generated.tokens.size()
             << " sampled_tokens=" << sampled.tokens.size()
             << " cache_positions=" << generated.cache_positions

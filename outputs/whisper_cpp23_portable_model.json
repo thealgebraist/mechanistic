@@ -1,0 +1,229 @@
+{
+  "certificate": "WHISPER_CPP23_PORTABLE_WHOLE_MODEL_1",
+  "all_expected_token_assertions_passed": true,
+  "all_transcripts_exact": true,
+  "all_graph_nodes_visited": true,
+  "all_checkpoint_tensors_validated": true,
+  "portable_numerical_threshold_passed": true,
+  "portable_to_accelerate_wall_ratio": 41.92746113989637,
+  "portable_to_accelerate_peak_rss_ratio": 0.9858439759963071,
+  "backends": [
+    {
+      "backend": "accelerate-cblas-f32",
+      "wall_seconds": 1.93,
+      "peak_rss_bytes": 425918464,
+      "stage_count": 15,
+      "worst_stage_max_absolute_error": 0.00180054,
+      "logit_max_absolute_error": 8.96454e-05,
+      "cache_logit_error": 4.19617e-05,
+      "mass_sum_error": 2.76716e-08,
+      "selected_mass_error": 0.000108838,
+      "graph_nodes_visited": 74,
+      "checkpoint_tensors_validated": 167,
+      "generated_tokens": 22,
+      "sampled_tokens": 22,
+      "transcript": "Mr. Quilter is the apostle of the middle classes, and we are glad to welcome his gospel.",
+      "stages": [
+        {
+          "name": "log_mel",
+          "max_absolute_error": 1.41859e-05,
+          "rmse": 1.25555e-07,
+          "cosine": 1.0
+        },
+        {
+          "name": "conv1_gelu",
+          "max_absolute_error": 4.88758e-06,
+          "rmse": 1.49643e-07,
+          "cosine": 1.0
+        },
+        {
+          "name": "conv2_gelu_position",
+          "max_absolute_error": 1.81198e-05,
+          "rmse": 6.22813e-07,
+          "cosine": 1.0
+        },
+        {
+          "name": "encoder_layer_0",
+          "max_absolute_error": 1.90735e-05,
+          "rmse": 9.96472e-07,
+          "cosine": 1.0
+        },
+        {
+          "name": "encoder_layer_1",
+          "max_absolute_error": 2.28882e-05,
+          "rmse": 1.20533e-06,
+          "cosine": 1.0
+        },
+        {
+          "name": "encoder_layer_2",
+          "max_absolute_error": 2.57492e-05,
+          "rmse": 1.51357e-06,
+          "cosine": 1.0
+        },
+        {
+          "name": "encoder_layer_3",
+          "max_absolute_error": 0.00180054,
+          "rmse": 3.87393e-06,
+          "cosine": 1.0
+        },
+        {
+          "name": "encoder_final",
+          "max_absolute_error": 3.02792e-05,
+          "rmse": 2.23145e-06,
+          "cosine": 1.0
+        },
+        {
+          "name": "decoder_embed_position",
+          "max_absolute_error": 0.0,
+          "rmse": 0.0,
+          "cosine": 1.0
+        },
+        {
+          "name": "decoder_layer_0",
+          "max_absolute_error": 7.15256e-06,
+          "rmse": 3.86206e-07,
+          "cosine": 1.0
+        },
+        {
+          "name": "decoder_layer_1",
+          "max_absolute_error": 8.82149e-06,
+          "rmse": 6.30511e-07,
+          "cosine": 1.0
+        },
+        {
+          "name": "decoder_layer_2",
+          "max_absolute_error": 8.64267e-06,
+          "rmse": 1.00603e-06,
+          "cosine": 1.0
+        },
+        {
+          "name": "decoder_layer_3",
+          "max_absolute_error": 1.81198e-05,
+          "rmse": 2.0246e-06,
+          "cosine": 1.0
+        },
+        {
+          "name": "decoder_final",
+          "max_absolute_error": 0.000208378,
+          "rmse": 3.93976e-05,
+          "cosine": 1.0
+        },
+        {
+          "name": "logits",
+          "max_absolute_error": 8.96454e-05,
+          "rmse": 2.2859e-05,
+          "cosine": 1.0
+        }
+      ]
+    },
+    {
+      "backend": "portable-scalar-f32",
+      "wall_seconds": 80.92,
+      "peak_rss_bytes": 419889152,
+      "stage_count": 15,
+      "worst_stage_max_absolute_error": 0.000549316,
+      "logit_max_absolute_error": 0.000106812,
+      "cache_logit_error": 0.0,
+      "mass_sum_error": 3.48991e-08,
+      "selected_mass_error": 0.000108957,
+      "graph_nodes_visited": 74,
+      "checkpoint_tensors_validated": 167,
+      "generated_tokens": 22,
+      "sampled_tokens": 22,
+      "transcript": "Mr. Quilter is the apostle of the middle classes, and we are glad to welcome his gospel.",
+      "stages": [
+        {
+          "name": "log_mel",
+          "max_absolute_error": 1.2517e-05,
+          "rmse": 1.2664e-07,
+          "cosine": 1.0
+        },
+        {
+          "name": "conv1_gelu",
+          "max_absolute_error": 4.52995e-06,
+          "rmse": 1.51682e-07,
+          "cosine": 1.0
+        },
+        {
+          "name": "conv2_gelu_position",
+          "max_absolute_error": 1.7643e-05,
+          "rmse": 6.23815e-07,
+          "cosine": 1.0
+        },
+        {
+          "name": "encoder_layer_0",
+          "max_absolute_error": 1.85966e-05,
+          "rmse": 9.92258e-07,
+          "cosine": 1.0
+        },
+        {
+          "name": "encoder_layer_1",
+          "max_absolute_error": 2.14577e-05,
+          "rmse": 1.20163e-06,
+          "cosine": 1.0
+        },
+        {
+          "name": "encoder_layer_2",
+          "max_absolute_error": 2.57492e-05,
+          "rmse": 1.51259e-06,
+          "cosine": 1.0
+        },
+        {
+          "name": "encoder_layer_3",
+          "max_absolute_error": 0.000549316,
+          "rmse": 2.78713e-06,
+          "cosine": 1.0
+        },
+        {
+          "name": "encoder_final",
+          "max_absolute_error": 2.93255e-05,
+          "rmse": 2.21668e-06,
+          "cosine": 1.0
+        },
+        {
+          "name": "decoder_embed_position",
+          "max_absolute_error": 0.0,
+          "rmse": 0.0,
+          "cosine": 1.0
+        },
+        {
+          "name": "decoder_layer_0",
+          "max_absolute_error": 6.67572e-06,
+          "rmse": 3.86923e-07,
+          "cosine": 1.0
+        },
+        {
+          "name": "decoder_layer_1",
+          "max_absolute_error": 8.34465e-06,
+          "rmse": 6.25017e-07,
+          "cosine": 1.0
+        },
+        {
+          "name": "decoder_layer_2",
+          "max_absolute_error": 8.28505e-06,
+          "rmse": 1.00419e-06,
+          "cosine": 1.0
+        },
+        {
+          "name": "decoder_layer_3",
+          "max_absolute_error": 1.90735e-05,
+          "rmse": 2.0567e-06,
+          "cosine": 1.0
+        },
+        {
+          "name": "decoder_final",
+          "max_absolute_error": 0.000239372,
+          "rmse": 4.00249e-05,
+          "cosine": 1.0
+        },
+        {
+          "name": "logits",
+          "max_absolute_error": 0.000106812,
+          "rmse": 2.4493e-05,
+          "cosine": 1.0
+        }
+      ]
+    }
+  ],
+  "scope": "Finite whole-model differential run for the pinned Whisper Tiny English checkpoint and one LibriSpeech recording. Both binaries execute all 74 graph nodes, validate all 167 checkpoint tensors, and internally assert the complete greedy token sequence and seeded sampled transition law."
+}
