@@ -7,7 +7,7 @@
 | 3 | complete checkpoint binding | PROVED_CURRENT_ARTIFACT | 167/167 binary32 tensor slices CRC-validated by C++23 |
 | 4 | native audio frontend | PROVED_CONCRETE_AND_ALGORITHMIC | PCM16 WAV, 30-second truncate/pad, reflected Hann STFT and Mel; sample max error 1.41859e-05 |
 | 5 | encoder and decoder numerical execution | PROVED_CONCRETE | 14 stage comparisons; worst max absolute error 0.00180054 |
-| 6 | whole-model portable C++23 numerical backend | PROVED_FINITE_ONE_RECORDING | portable scalar backend visited 74/74 nodes, validated 167 tensors, reproduced the expected greedy transcript and seeded sampling assertions, and stayed within 0.000549316 of PyTorch stage fixtures |
+| 6 | whole-model portable C++23 numerical backend | PROVED_FINITE_ONE_RECORDING | portable scalar backend visited 74/74 nodes, validated 167 tensors, reproduced the expected greedy tokens/transcript, passed seeded-sampling probability/cache checks, and stayed within 0.000549316 of PyTorch stage fixtures |
 | 7 | explicit probabilistic graph state | PROVED_CONCRETE_AND_STRUCTURAL | four self K/V and cross K/V cache pairs; 24 positions; cached logit error 4.19617e-05 |
 | 8 | probability law and transitions | PROVED_CONCRETE_AND_ALGORITHMIC | masked softmax mass error 2.76716e-08; full greedy and seeded sampled traces terminate |
 | 9 | sampling-filter probability transport | PROVED_FINITE | 8 complete 51,864-way distributions; exact supports and argmax tokens; worst probability error 9.7155571e-06 |

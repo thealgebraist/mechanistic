@@ -101,7 +101,8 @@ accelerate = run("whisper_graph_cpp23", "accelerate-cblas-f32")
 portable = run("whisper_graph_cpp23_portable", "portable-scalar-f32")
 artifact = {
     "certificate": "WHISPER_CPP23_PORTABLE_WHOLE_MODEL_1",
-    "all_expected_token_assertions_passed": True,
+    "greedy_expected_token_assertion_passed": True,
+    "seeded_sampling_probability_cache_checks_passed": True,
     "all_transcripts_exact": True,
     "all_graph_nodes_visited": True,
     "all_checkpoint_tensors_validated": True,
@@ -115,7 +116,8 @@ artifact = {
         "Finite whole-model differential run for the pinned Whisper Tiny English "
         "checkpoint and one LibriSpeech recording. Both binaries execute all 74 "
         "graph nodes, validate all 167 checkpoint tensors, and internally assert "
-        "the complete greedy token sequence and seeded sampled transition law."
+        "the complete greedy token sequence plus seeded-sampling probability and "
+        "cache invariants."
     ),
 }
 OUT.mkdir(exist_ok=True)
@@ -125,7 +127,7 @@ OUT.mkdir(exist_ok=True)
 (OUT / "WHISPER_CPP23_PORTABLE_MODEL.md").write_text(
     f"""# Portable C++23 whole-model validation
 
-Both numerical backends execute the complete 74-node graph, validate all 167 checkpoint tensors, pass the embedded greedy and seeded-sampling token assertions, and produce the exact transcript.
+Both numerical backends execute the complete 74-node graph, validate all 167 checkpoint tensors, pass the embedded greedy token assertion and seeded-sampling probability/cache checks, and produce the exact transcript.
 
 | backend | wall time | peak RSS | worst stage max error | logit max error |
 |---|---:|---:|---:|---:|

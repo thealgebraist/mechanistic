@@ -67,7 +67,7 @@
   "cache_projection_fixture_sha256": "5b180150d1c07208d0b95ca701ea82b911d8713e3b67ef1df3bac671c8c112ed",
   "cache_projection_values_bitwise_equal": true,
   "cache_projection_worst_max_absolute_error": 1.9788742065429688e-05,
-  "portable_model_fixture_sha256": "51179f240117912d0914035b561b4fd934d683504860a9ac5f8467d4b79cce3a",
+  "portable_model_fixture_sha256": "67b32e9199b566c805d9dea0ce4eb11847d17e107401c3e1da9b79e6a131d8ca",
   "portable_model_whole_graph_validated": true,
   "portable_model_worst_stage_max_absolute_error": 0.000549316,
   "stop_string_cases": 7,
@@ -568,7 +568,7 @@
     {
       "requirement": "whole-model portable C++23 numerical backend",
       "status": "PROVED_FINITE_ONE_RECORDING",
-      "evidence": "portable scalar backend visited 74/74 nodes, validated 167 tensors, reproduced the expected greedy transcript and seeded sampling assertions, and stayed within 0.000549316 of PyTorch stage fixtures"
+      "evidence": "portable scalar backend visited 74/74 nodes, validated 167 tensors, reproduced the expected greedy tokens/transcript, passed seeded-sampling probability/cache checks, and stayed within 0.000549316 of PyTorch stage fixtures"
     },
     {
       "requirement": "explicit probabilistic graph state",

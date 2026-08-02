@@ -114,7 +114,7 @@ requirements = [
     {
         "requirement": "whole-model portable C++23 numerical backend",
         "status": "PROVED_FINITE_ONE_RECORDING",
-        "evidence": f"portable scalar backend visited 74/74 nodes, validated 167 tensors, reproduced the expected greedy transcript and seeded sampling assertions, and stayed within {portable_model['backends'][1]['worst_stage_max_absolute_error']:.9g} of PyTorch stage fixtures",
+        "evidence": f"portable scalar backend visited 74/74 nodes, validated 167 tensors, reproduced the expected greedy tokens/transcript, passed seeded-sampling probability/cache checks, and stayed within {portable_model['backends'][1]['worst_stage_max_absolute_error']:.9g} of PyTorch stage fixtures",
     },
     {
         "requirement": "explicit probabilistic graph state",

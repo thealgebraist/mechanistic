@@ -1,17 +1,18 @@
 {
   "certificate": "WHISPER_CPP23_PORTABLE_WHOLE_MODEL_1",
-  "all_expected_token_assertions_passed": true,
+  "greedy_expected_token_assertion_passed": true,
+  "seeded_sampling_probability_cache_checks_passed": true,
   "all_transcripts_exact": true,
   "all_graph_nodes_visited": true,
   "all_checkpoint_tensors_validated": true,
   "portable_numerical_threshold_passed": true,
-  "portable_to_accelerate_wall_ratio": 41.92746113989637,
-  "portable_to_accelerate_peak_rss_ratio": 0.9858439759963071,
+  "portable_to_accelerate_wall_ratio": 41.53926701570681,
+  "portable_to_accelerate_peak_rss_ratio": 0.8092383367919452,
   "backends": [
     {
       "backend": "accelerate-cblas-f32",
-      "wall_seconds": 1.93,
-      "peak_rss_bytes": 425918464,
+      "wall_seconds": 1.91,
+      "peak_rss_bytes": 426344448,
       "stage_count": 15,
       "worst_stage_max_absolute_error": 0.00180054,
       "logit_max_absolute_error": 8.96454e-05,
@@ -118,8 +119,8 @@
     },
     {
       "backend": "portable-scalar-f32",
-      "wall_seconds": 80.92,
-      "peak_rss_bytes": 419889152,
+      "wall_seconds": 79.34,
+      "peak_rss_bytes": 345014272,
       "stage_count": 15,
       "worst_stage_max_absolute_error": 0.000549316,
       "logit_max_absolute_error": 0.000106812,
@@ -225,5 +226,5 @@
       ]
     }
   ],
-  "scope": "Finite whole-model differential run for the pinned Whisper Tiny English checkpoint and one LibriSpeech recording. Both binaries execute all 74 graph nodes, validate all 167 checkpoint tensors, and internally assert the complete greedy token sequence and seeded sampled transition law."
+  "scope": "Finite whole-model differential run for the pinned Whisper Tiny English checkpoint and one LibriSpeech recording. Both binaries execute all 74 graph nodes, validate all 167 checkpoint tensors, and internally assert the complete greedy token sequence plus seeded-sampling probability and cache invariants."
 }
