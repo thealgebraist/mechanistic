@@ -10,6 +10,7 @@
 #include <array>
 #include <bit>
 #include <cctype>
+#include <chrono>
 #include <cmath>
 #include <cstdint>
 #include <cstdlib>
@@ -1990,10 +1991,24 @@ struct GenerationResult {
          no_speech_probability = 0;
   std::size_t selected_logprob_count = 0, cache_positions = 0;
   bool terminated_by_eos = false, terminated_by_stop_string = false;
+  std::optional<whisper_interface::StopAfterDeadline> deadline_stop;
+  std::size_t deadline_checks = 0;
   double average_logprob() const {
     return selected_logprob_count
                ? selected_logprob_sum / selected_logprob_count
                : -std::numeric_limits<double>::infinity();
+  }
+};
+struct GenerationDeadlineRuntime {
+  whisper_interface::FiniteMonotonicDeadline configuration;
+  std::function<double()> elapsed_seconds;
+  std::size_t checks = 0;
+  whisper_interface::DeadlineTransition after_token_transition() {
+    if (!configuration.valid() || !elapsed_seconds)
+      throw std::runtime_error("generation deadline runtime invariant");
+    ++checks;
+    return whisper_interface::deadline_transition(configuration,
+                                                  elapsed_seconds());
   }
 };
 using StopStringPredicate =
@@ -2254,7 +2269,8 @@ static GenerationResult generate(
     std::size_t maximum_positions = 448,
     const StopStringPredicate *stop_string = nullptr,
     std::vector<SynthIDWatermarkTrace> *synthid_traces = nullptr,
-    DecoderKVState *returned_cache = nullptr) {
+    DecoderKVState *returned_cache = nullptr,
+    GenerationDeadlineRuntime *deadline = nullptr) {
   using namespace generated_whisper;
   const bool timestamp_mode =
       std::holds_alternative<whisper_interface::TimestampTokens>(time_output) ||
@@ -2264,6 +2280,7 @@ static GenerationResult generate(
   GenerationResult result;
   auto finalize = [&]() {
     result.cache_positions = state.position;
+    result.deadline_checks = deadline ? deadline->checks : 0;
     for (const auto &layer : state.layers)
       if (layer.self_key.size() != state.position * 384 ||
           layer.self_value.size() != state.position * 384 ||
@@ -2273,6 +2290,22 @@ static GenerationResult generate(
     if (returned_cache)
       *returned_cache = state;
     return result;
+  };
+  auto deadline_expired = [&]() {
+    if (!deadline)
+      return false;
+    auto transition = deadline->after_token_transition();
+    if (const auto *stop =
+            std::get_if<whisper_interface::StopAfterDeadline>(&transition)) {
+      if (!stop->valid())
+        throw std::runtime_error("generation deadline stop invariant");
+      result.deadline_stop = *stop;
+      return true;
+    }
+    if (!std::get<whisper_interface::ContinueAtOrBeforeDeadline>(transition)
+             .valid())
+      throw std::runtime_error("generation deadline continue invariant");
+    return false;
   };
   F32 cached_logits;
   auto verify_step = [&](std::int32_t token) {
@@ -2391,13 +2424,17 @@ static GenerationResult generate(
           std::abs(double(mass[token]) - expected_selected_mass[step]));
     if (token == eos_token) {
       result.terminated_by_eos = true;
+      deadline_expired();
       return finalize();
     }
     result.tokens.push_back(token);
-    if (stop_string && (*stop_string)(stack, token)) {
+    const bool expired = deadline_expired();
+    const bool matched_stop_string =
+        stop_string && (*stop_string)(stack, token);
+    if (matched_stop_string)
       result.terminated_by_stop_string = true;
+    if (expired || matched_stop_string)
       return finalize();
-    }
     // Generation returns the cache used to select the final token. The final
     // selected token is part of `sequences`, but is not forwarded solely to
     // create a cache entry when the length criterion has already fired.
@@ -4372,6 +4409,69 @@ int main(int argc, char **argv) try {
               << " graph_nodes_visited=" << execution.visited()
               << " text=" << std::quoted(token_decoder.decode(generated.tokens))
               << "\n";
+    return 0;
+  }
+  if (argc == 4 && std::string(argv[1]) == "--deadline-transition") {
+    const whisper_interface::FiniteMonotonicDeadline deadline{
+        parse_f64(argv[2])};
+    const auto elapsed = parse_f64(argv[3]);
+    auto transition =
+        whisper_interface::deadline_transition(deadline, elapsed);
+    std::cout << std::setprecision(17)
+              << "WHISPER_CPP23_DEADLINE_TRANSITION maximum_seconds="
+              << deadline.maximum_seconds << " elapsed_seconds=" << elapsed
+              << " decision=";
+    if (std::holds_alternative<
+            whisper_interface::ContinueAtOrBeforeDeadline>(transition))
+      std::cout << "CONTINUE_AT_OR_BEFORE";
+    else
+      std::cout << "STOP_AFTER";
+    std::cout << "\n";
+    return 0;
+  }
+  if (argc == 9 && std::string(argv[1]) == "--deadline-search") {
+    TensorStore tensors(argv[2], argv[3]);
+    audit_graph(tensors);
+    const auto maximum_positions = parse_optional_size(argv[7]);
+    const whisper_interface::FiniteMonotonicDeadline configuration{
+        parse_f64(argv[8])};
+    if (!maximum_positions ||
+        *maximum_positions <= generated_whisper::forced_prefix.size() ||
+        !configuration.valid())
+      throw std::runtime_error("deadline search arguments");
+    GraphExecutionAudit execution;
+    auto mel = execute_frontend(argv[4], read_f32(argv[5]), read_f32(argv[6]),
+                                execution);
+    std::vector<std::pair<std::string, F32>> trace;
+    Encoder encoder(tensors, execution);
+    auto memory = encoder.run(mel, trace);
+    Decoder decoder(tensors, execution);
+    CachedDecoder cached(tensors, execution);
+    const auto start = std::chrono::steady_clock::now();
+    GenerationDeadlineRuntime deadline{
+        configuration,
+        [start] {
+          return std::chrono::duration<double>(
+                     std::chrono::steady_clock::now() - start)
+              .count();
+        }};
+    auto generated = generate(
+        decoder, cached, memory, Selection::Greedy, 0.0f, 0, false, {},
+        generated_whisper::forced_prefix, whisper_interface::NoTimestamps{},
+        nullptr, nullptr, execution, nullptr, *maximum_positions, nullptr,
+        nullptr, nullptr, &deadline);
+    execution.require_all();
+    std::cout << "WHISPER_CPP23_DEADLINE_SEARCH tokens=";
+    for (std::size_t index = 0; index < generated.tokens.size(); ++index) {
+      if (index)
+        std::cout << ',';
+      std::cout << generated.tokens[index];
+    }
+    std::cout << " terminated_by_deadline="
+              << generated.deadline_stop.has_value()
+              << " deadline_checks=" << generated.deadline_checks
+              << " cache_positions=" << generated.cache_positions
+              << " graph_nodes_visited=" << execution.visited() << "\n";
     return 0;
   }
   if (argc == 4 && std::string(argv[1]) == "--generation-applicability") {

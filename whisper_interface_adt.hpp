@@ -7,6 +7,7 @@
 #include <functional>
 #include <optional>
 #include <span>
+#include <stdexcept>
 #include <string>
 #include <variant>
 #include <vector>
@@ -120,6 +121,48 @@ struct GenerationCacheProjection {
                       representation);
   }
 };
+
+// Time is an execution-state input, not a model tensor. The decision uses the
+// pinned stopping criterion's strict `elapsed > maximum` boundary and is
+// evaluated only after a token transition has been selected.
+struct UnlimitedGenerationTime {
+  bool valid() const { return true; }
+};
+struct FiniteMonotonicDeadline {
+  double maximum_seconds;
+  bool valid() const { return std::isfinite(maximum_seconds); }
+};
+using GenerationDeadline =
+    std::variant<UnlimitedGenerationTime, FiniteMonotonicDeadline>;
+struct ContinueAtOrBeforeDeadline {
+  double elapsed_seconds;
+  double maximum_seconds;
+  bool valid() const {
+    return std::isfinite(elapsed_seconds) && elapsed_seconds >= 0.0 &&
+           std::isfinite(maximum_seconds) &&
+           elapsed_seconds <= maximum_seconds;
+  }
+};
+struct StopAfterDeadline {
+  double elapsed_seconds;
+  double maximum_seconds;
+  bool valid() const {
+    return std::isfinite(elapsed_seconds) && elapsed_seconds >= 0.0 &&
+           std::isfinite(maximum_seconds) && elapsed_seconds > maximum_seconds;
+  }
+};
+using DeadlineTransition =
+    std::variant<ContinueAtOrBeforeDeadline, StopAfterDeadline>;
+inline DeadlineTransition deadline_transition(
+    const FiniteMonotonicDeadline &deadline, double elapsed_seconds) {
+  if (!deadline.valid() || !std::isfinite(elapsed_seconds) ||
+      elapsed_seconds < 0.0)
+    throw std::invalid_argument("generation deadline domain");
+  if (elapsed_seconds > deadline.maximum_seconds)
+    return StopAfterDeadline{elapsed_seconds, deadline.maximum_seconds};
+  return ContinueAtOrBeforeDeadline{elapsed_seconds,
+                                    deadline.maximum_seconds};
+}
 
 struct NoAttentionMask {};
 struct EncoderAttentionMask {

@@ -118,7 +118,7 @@ inline constexpr std::array<PinnedGenerationField,74> pinned_generation_fields={
  {GenerationField::MaxLength,"max_length",R"json(448)json",OverrideStatus::CPP23_NAMED_OVERRIDE},
  {GenerationField::MaxMatchingNgramSize,"max_matching_ngram_size",R"json(null)json",OverrideStatus::CPP23_NAMED_OVERRIDE},
  {GenerationField::MaxNewTokens,"max_new_tokens",R"json(null)json",OverrideStatus::CPP23_NAMED_OVERRIDE},
- {GenerationField::MaxTime,"max_time",R"json(null)json",OverrideStatus::PINNED_INACTIVE_GENERIC_EXTENSION},
+ {GenerationField::MaxTime,"max_time",R"json(null)json",OverrideStatus::CPP23_NAMED_OVERRIDE},
  {GenerationField::MinLength,"min_length",R"json(0)json",OverrideStatus::CPP23_NAMED_OVERRIDE},
  {GenerationField::MinNewTokens,"min_new_tokens",R"json(null)json",OverrideStatus::CPP23_NAMED_OVERRIDE},
  {GenerationField::MinP,"min_p",R"json(null)json",OverrideStatus::CPP23_NAMED_OVERRIDE},

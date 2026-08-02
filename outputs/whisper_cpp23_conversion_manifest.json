@@ -3,9 +3,9 @@
   "model": "openai/whisper-tiny.en",
   "checkpoint_sha256": "db59695928ded6043adaef491a53ef4e12da9611184d77c53baa691a60b958ad",
   "graph_sha256": "2adbb1fb4d6d14993772e13d596d7f77981ca7c5be27c0a1088a338927a5fe3c",
-  "cpp_source_sha256": "e738683caacd04ca4fcfbd0d16c407f15fce417b759ca6ce9ccfaff46836d10f",
+  "cpp_source_sha256": "6a8e4739dde12c59935f707f2c1b4d0d5f9d2c35def8c14ba8d0fb651fa45877",
   "generated_header_sha256": "d046e5e3e947bf7de87cc59a01e5d08e36156ff59864a9b616707a2b4091b71f",
-  "generation_config_header_sha256": "a9df76366c1678c7bbc127a2ef17dbbadafad2b15bac15db69f78b07e364ef4a",
+  "generation_config_header_sha256": "7cc6873662b83ec1c851049b2b93883bfeb8d05049c76752fda78224502f67c4",
   "sampling_filter_fixture_sha256": "5f41ea938e5d4eeacb1a67cfb1bdf5a133272a1e913b76dfb4fa09036d38334f",
   "score_policy_fixture_sha256": "c5938915d3df389b4e79aa87699d4aea24fee6996aa0e97f500e51e2a27ddd24",
   "beam_search_fixture_sha256": "de8bfd281d1fdae0e4b9080fde3005648077a2a2221b084b46f8d748fe90afb2",
@@ -70,6 +70,10 @@
   "portable_model_fixture_sha256": "67b32e9199b566c805d9dea0ce4eb11847d17e107401c3e1da9b79e6a131d8ca",
   "portable_model_whole_graph_validated": true,
   "portable_model_worst_stage_max_absolute_error": 0.000549316,
+  "deadline_fixture_sha256": "27a2c2f9c606747ca1fd3cbb0a4058570bd915e6fe42bd9a058d17dbb056dd42",
+  "deadline_transition_cases": 6,
+  "deadline_generation_cases": 3,
+  "deadline_all_generation_tokens_exact": true,
   "stop_string_cases": 7,
   "stop_string_all_complete_tokens_exact": true,
   "prompt_lookup_cases": 6,
@@ -581,6 +585,11 @@
       "evidence": "masked softmax mass error 2.76716e-08; full greedy and seeded sampled traces terminate"
     },
     {
+      "requirement": "monotonic generation deadline state",
+      "status": "PROVED_FINITE_GREEDY_AND_STRUCTURAL",
+      "evidence": "6 strict-boundary transitions and 3 real-audio expired-deadline runs agree with pinned MaxTimeCriteria; all runs visit 74 nodes"
+    },
+    {
       "requirement": "sampling-filter probability transport",
       "status": "PROVED_FINITE",
       "evidence": "8 complete 51,864-way distributions; exact supports and argmax tokens; worst probability error 9.7155571e-06"
@@ -653,7 +662,7 @@
     {
       "requirement": "arbitrary non-default GenerationMixin reconfiguration",
       "status": "IN_PROGRESS",
-      "evidence": "full non-default closure=False; 14 inactive and 0 partial generic fields remain explicitly inventoried"
+      "evidence": "full non-default closure=False; 13 inactive and 0 partial generic fields remain explicitly inventoried"
     }
   ],
   "all_opcodes_executable": true,
@@ -671,7 +680,6 @@
     "disable_compile",
     "is_assistant",
     "is_multilingual",
-    "max_time",
     "num_assistant_tokens",
     "num_assistant_tokens_schedule",
     "prefill_chunk_size",

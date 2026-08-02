@@ -1,0 +1,101 @@
+{
+  "certificate": "WHISPER_CPP23_MONOTONIC_DEADLINE_1",
+  "transformers_version": "4.57.3",
+  "max_time_criteria_sha256": "2aef18e1a27191255f8ca9a0f63774e5af327b57d268a6732f16c52ffd2fdd5e",
+  "transition_case_count": 6,
+  "generation_case_count": 3,
+  "all_transition_decisions_exact": true,
+  "all_generation_tokens_exact": true,
+  "all_graph_nodes_visited": true,
+  "negative_elapsed_rejected": true,
+  "clock_contract": "C++ std::chrono::steady_clock; injected elapsed time for boundary tests",
+  "transition_cases": [
+    {
+      "maximum_seconds": 1.0,
+      "elapsed_seconds": 0.0,
+      "python_stop": false,
+      "cpp23_decision": "CONTINUE_AT_OR_BEFORE",
+      "exact": true
+    },
+    {
+      "maximum_seconds": 1.0,
+      "elapsed_seconds": 1.0,
+      "python_stop": false,
+      "cpp23_decision": "CONTINUE_AT_OR_BEFORE",
+      "exact": true
+    },
+    {
+      "maximum_seconds": 1.0,
+      "elapsed_seconds": 1.000001,
+      "python_stop": true,
+      "cpp23_decision": "STOP_AFTER",
+      "exact": true
+    },
+    {
+      "maximum_seconds": 0.0,
+      "elapsed_seconds": 0.0,
+      "python_stop": false,
+      "cpp23_decision": "CONTINUE_AT_OR_BEFORE",
+      "exact": true
+    },
+    {
+      "maximum_seconds": 0.0,
+      "elapsed_seconds": 1e-06,
+      "python_stop": true,
+      "cpp23_decision": "STOP_AFTER",
+      "exact": true
+    },
+    {
+      "maximum_seconds": -1.0,
+      "elapsed_seconds": 0.0,
+      "python_stop": true,
+      "cpp23_decision": "STOP_AFTER",
+      "exact": true
+    }
+  ],
+  "generation_cases": [
+    {
+      "max_time_seconds": -1.0,
+      "python_tokens": [
+        1770
+      ],
+      "cpp23_tokens": [
+        1770
+      ],
+      "terminated_by_deadline": true,
+      "deadline_checks": 1,
+      "cache_positions": 2,
+      "graph_nodes_visited": 74,
+      "tokens_exact": true
+    },
+    {
+      "max_time_seconds": 0.0,
+      "python_tokens": [
+        1770
+      ],
+      "cpp23_tokens": [
+        1770
+      ],
+      "terminated_by_deadline": true,
+      "deadline_checks": 1,
+      "cache_positions": 2,
+      "graph_nodes_visited": 74,
+      "tokens_exact": true
+    },
+    {
+      "max_time_seconds": 1e-09,
+      "python_tokens": [
+        1770
+      ],
+      "cpp23_tokens": [
+        1770
+      ],
+      "terminated_by_deadline": true,
+      "deadline_checks": 1,
+      "cache_positions": 2,
+      "graph_nodes_visited": 74,
+      "tokens_exact": true
+    }
+  ],
+  "scope": "Finite strict-boundary correspondence plus three real-audio greedy runs. The C++ deadline is checked after token selection, uses a monotonic clock, and currently certifies the converted greedy generation path."
+}
