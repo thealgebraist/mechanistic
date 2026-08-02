@@ -61,6 +61,7 @@ full_override = {
     "repetition_penalty",
     "remove_invalid_values",
     "renormalize_logits",
+    "return_legacy_cache",
     "return_timestamps",
     "suppress_tokens",
     "sequence_bias",
@@ -72,10 +73,7 @@ full_override = {
 }
 
 # The pinned value is executable, while only the listed subset of non-default values is lowered.
-partial_override = {
-    "bos_token_id",
-    "return_legacy_cache",
-}
+partial_override = set()
 full_override.update(
     {
         # These paths have source-pinned differential fixtures in outputs/.
@@ -92,7 +90,11 @@ full_override.update(
 # C++ ADT preserves the pinned framework's rejection or warning-plus-ignore
 # behavior instead of pretending that a text-token algorithm applies to Mel.
 model_rejected = {"dola_layers", "guidance_scale"}
-model_ignored = {"encoder_no_repeat_ngram_size", "encoder_repetition_penalty"}
+model_ignored = {
+    "bos_token_id",
+    "encoder_no_repeat_ngram_size",
+    "encoder_repetition_penalty",
+}
 
 metadata = {"_from_model_config", "transformers_version"}
 
@@ -234,7 +236,7 @@ extension_table = "\n".join(
 
 This inventory is derived from Transformers `{version}` at verification time. It closes the top-level `**kwargs` row for the pinned model: all {len(rows)} generation-configuration values are represented, all {len(model_kwargs)} model-forward kwargs route to previously audited ADTs, and unknown kwargs are rejected by the installed framework.
 
-This does **not** claim every non-default generic GenerationMixin algorithm is converted. Categorical and contrastive sampling plus greedy prompt-lookup speculation, classic left-hash/self-hash watermarking, greedy, standard-beam, constrained-beam, and diverse-group SynthID state transport, and standard, sampled, diverse-group, and phrase/disjunction-constrained beam search are lowered. Stateful SynthID scheduling for sampled beam search, external assistant models, and similar extensions remain visibly classified as `CPP23_PARTIAL_OVERRIDE`, `PINNED_INACTIVE_GENERIC_EXTENSION`, or `EXTERNAL_GENERATION_ALGORITHM`. Contrastive candidate evaluation currently has the explicit low-memory sequential schedule. DoLa and unbatched classifier-free guidance are explicitly model-rejected for Whisper's encoder-decoder/Mel interface; encoder-token repetition processors are explicitly ignored because audio has no encoder token IDs.
+This does **not** claim every non-default generic GenerationMixin algorithm is converted. Categorical and contrastive sampling plus greedy prompt-lookup speculation, classic left-hash/self-hash watermarking, all implemented SynthID schedulers, and standard, sampled, diverse-group, and phrase/disjunction-constrained beam search are lowered. There are no remaining `CPP23_PARTIAL_OVERRIDE` rows. External assistant models and similar inactive extensions remain visibly classified as `PINNED_INACTIVE_GENERIC_EXTENSION` or `EXTERNAL_GENERATION_ALGORITHM`. Contrastive candidate evaluation has the explicit low-memory sequential schedule. `return_legacy_cache` is a tested output-container projection over identical cache tensors. DoLa and unbatched classifier-free guidance are explicitly model-rejected for Whisper's encoder-decoder/Mel interface; `bos_token_id` and encoder-token repetition processors are explicitly model-ignored by the pinned Whisper source paths.
 
 ## GenerationConfig fields
 

@@ -2,7 +2,7 @@
 
 This inventory is derived from Transformers `4.57.3` at verification time. It closes the top-level `**kwargs` row for the pinned model: all 74 generation-configuration values are represented, all 17 model-forward kwargs route to previously audited ADTs, and unknown kwargs are rejected by the installed framework.
 
-This does **not** claim every non-default generic GenerationMixin algorithm is converted. Categorical and contrastive sampling plus greedy prompt-lookup speculation, classic left-hash/self-hash watermarking, greedy, standard-beam, constrained-beam, and diverse-group SynthID state transport, and standard, sampled, diverse-group, and phrase/disjunction-constrained beam search are lowered. Stateful SynthID scheduling for sampled beam search, external assistant models, and similar extensions remain visibly classified as `CPP23_PARTIAL_OVERRIDE`, `PINNED_INACTIVE_GENERIC_EXTENSION`, or `EXTERNAL_GENERATION_ALGORITHM`. Contrastive candidate evaluation currently has the explicit low-memory sequential schedule. DoLa and unbatched classifier-free guidance are explicitly model-rejected for Whisper's encoder-decoder/Mel interface; encoder-token repetition processors are explicitly ignored because audio has no encoder token IDs.
+This does **not** claim every non-default generic GenerationMixin algorithm is converted. Categorical and contrastive sampling plus greedy prompt-lookup speculation, classic left-hash/self-hash watermarking, all implemented SynthID schedulers, and standard, sampled, diverse-group, and phrase/disjunction-constrained beam search are lowered. There are no remaining `CPP23_PARTIAL_OVERRIDE` rows. External assistant models and similar inactive extensions remain visibly classified as `PINNED_INACTIVE_GENERIC_EXTENSION` or `EXTERNAL_GENERATION_ALGORITHM`. Contrastive candidate evaluation has the explicit low-memory sequential schedule. `return_legacy_cache` is a tested output-container projection over identical cache tensors. DoLa and unbatched classifier-free guidance are explicitly model-rejected for Whisper's encoder-decoder/Mel interface; `bos_token_id` and encoder-token repetition processors are explicitly model-ignored by the pinned Whisper source paths.
 
 ## GenerationConfig fields
 
@@ -15,7 +15,7 @@ This does **not** claim every non-default generic GenerationMixin algorithm is c
 | `assistant_lookbehind` | `10` | `AssistantLookbehind` | PINNED_INACTIVE_GENERIC_EXTENSION |
 | `bad_words_ids` | `null` | `BadWordsIds` | CPP23_NAMED_OVERRIDE |
 | `begin_suppress_tokens` | `[220,50256]` | `BeginSuppressTokens` | CPP23_NAMED_OVERRIDE |
-| `bos_token_id` | `50257` | `BosTokenId` | CPP23_PARTIAL_OVERRIDE |
+| `bos_token_id` | `50257` | `BosTokenId` | CPP23_MODEL_IGNORED |
 | `cache_config` | `null` | `CacheConfig` | PINNED_INACTIVE_GENERIC_EXTENSION |
 | `cache_implementation` | `null` | `CacheImplementation` | PINNED_INACTIVE_GENERIC_EXTENSION |
 | `constraints` | `null` | `Constraints` | CPP23_NAMED_OVERRIDE |
@@ -68,7 +68,7 @@ This does **not** claim every non-default generic GenerationMixin algorithm is c
 | `renormalize_logits` | `false` | `RenormalizeLogits` | CPP23_NAMED_OVERRIDE |
 | `repetition_penalty` | `1.0` | `RepetitionPenalty` | CPP23_NAMED_OVERRIDE |
 | `return_dict_in_generate` | `false` | `ReturnDictInGenerate` | CPP23_NAMED_OVERRIDE |
-| `return_legacy_cache` | `null` | `ReturnLegacyCache` | CPP23_PARTIAL_OVERRIDE |
+| `return_legacy_cache` | `null` | `ReturnLegacyCache` | CPP23_NAMED_OVERRIDE |
 | `return_timestamps` | `false` | `ReturnTimestamps` | CPP23_NAMED_OVERRIDE |
 | `sequence_bias` | `null` | `SequenceBias` | CPP23_NAMED_OVERRIDE |
 | `stop_strings` | `null` | `StopStrings` | CPP23_NAMED_OVERRIDE |

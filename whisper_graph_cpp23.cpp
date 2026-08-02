@@ -2248,7 +2248,8 @@ static GenerationResult generate(
     const whisper_interface::GenerationLogitPolicies *logit_policies = nullptr,
     std::size_t maximum_positions = 448,
     const StopStringPredicate *stop_string = nullptr,
-    std::vector<SynthIDWatermarkTrace> *synthid_traces = nullptr) {
+    std::vector<SynthIDWatermarkTrace> *synthid_traces = nullptr,
+    DecoderKVState *returned_cache = nullptr) {
   using namespace generated_whisper;
   const bool timestamp_mode =
       std::holds_alternative<whisper_interface::TimestampTokens>(time_output) ||
@@ -2256,6 +2257,18 @@ static GenerationResult generate(
   std::vector<std::int32_t> stack;
   DecoderKVState state;
   GenerationResult result;
+  auto finalize = [&]() {
+    result.cache_positions = state.position;
+    for (const auto &layer : state.layers)
+      if (layer.self_key.size() != state.position * 384 ||
+          layer.self_value.size() != state.position * 384 ||
+          layer.cross_key.size() != 1500 * 384 ||
+          layer.cross_value.size() != 1500 * 384)
+        throw std::runtime_error("cache shape invariant");
+    if (returned_cache)
+      *returned_cache = state;
+    return result;
+  };
   F32 cached_logits;
   auto verify_step = [&](std::int32_t token) {
     audit.hit(nodes[73]);
@@ -2373,37 +2386,21 @@ static GenerationResult generate(
           std::abs(double(mass[token]) - expected_selected_mass[step]));
     if (token == eos_token) {
       result.terminated_by_eos = true;
-      result.cache_positions = state.position;
-      for (const auto &layer : state.layers)
-        if (layer.self_key.size() != state.position * 384 ||
-            layer.self_value.size() != state.position * 384 ||
-            layer.cross_key.size() != 1500 * 384 ||
-            layer.cross_value.size() != 1500 * 384)
-          throw std::runtime_error("cache shape invariant");
-      return result;
+      return finalize();
     }
     result.tokens.push_back(token);
     if (stop_string && (*stop_string)(stack, token)) {
       result.terminated_by_stop_string = true;
-      result.cache_positions = state.position;
-      for (const auto &layer : state.layers)
-        if (layer.self_key.size() != state.position * 384 ||
-            layer.self_value.size() != state.position * 384 ||
-            layer.cross_key.size() != 1500 * 384 ||
-            layer.cross_value.size() != 1500 * 384)
-          throw std::runtime_error("cache shape invariant");
-      return result;
+      return finalize();
     }
+    // Generation returns the cache used to select the final token. The final
+    // selected token is part of `sequences`, but is not forwarded solely to
+    // create a cache entry when the length criterion has already fired.
+    if (state.position + 1 >= maximum_positions)
+      return finalize();
     verify_step(token);
   }
-  result.cache_positions = state.position;
-  for (const auto &layer : state.layers)
-    if (layer.self_key.size() != state.position * 384 ||
-        layer.self_value.size() != state.position * 384 ||
-        layer.cross_key.size() != 1500 * 384 ||
-        layer.cross_value.size() != 1500 * 384)
-      throw std::runtime_error("cache shape invariant");
-  return result;
+  return finalize();
 }
 struct BeamSequence {
   std::vector<std::int32_t> tokens;
@@ -4374,6 +4371,18 @@ int main(int argc, char **argv) try {
   }
   if (argc == 4 && std::string(argv[1]) == "--generation-applicability") {
     const std::string field = argv[2], value = argv[3];
+    if (field == "bos_token_id") {
+      const auto token = parse_i64(value);
+      if (token < 0 || token >= 51864)
+        throw std::runtime_error("Whisper BOS token range");
+      const whisper_interface::IgnoreBosTokenInWhisperCustomInitialization
+          ignored{static_cast<std::int32_t>(token)};
+      if (!ignored.valid())
+        throw std::runtime_error("Whisper BOS ignored ADT invariant");
+      std::cout << "WHISPER_CPP23_GENERATION_APPLICABILITY field=" << field
+                << " status=MODEL_IGNORED reason=whisper_custom_init_uses_decoder_start_token\n";
+      return 0;
+    }
     if (field == "dola_layers") {
       const whisper_interface::RejectDolaForEncoderDecoder rejection{
           parse_dola_layers(value)};
@@ -4420,6 +4429,67 @@ int main(int argc, char **argv) try {
       return 0;
     }
     throw std::runtime_error("unknown generation applicability field");
+  }
+  if (argc == 10 &&
+      std::string(argv[1]) == "--generation-cache-projection") {
+    TensorStore tensors(argv[2], argv[3]);
+    audit_graph(tensors);
+    const auto maximum_positions = parse_optional_size(argv[7]);
+    if (!maximum_positions ||
+        *maximum_positions <= generated_whisper::forced_prefix.size())
+      throw std::runtime_error("generation cache maximum positions");
+    whisper_interface::GenerationCacheRepresentation representation;
+    std::string_view representation_name;
+    if (std::string_view(argv[8]) == "object") {
+      representation = whisper_interface::EncoderDecoderCacheObject{};
+      representation_name = "EncoderDecoderCache";
+    } else if (std::string_view(argv[8]) == "legacy") {
+      representation = whisper_interface::LegacyFourTuplePerLayer{};
+      representation_name = "legacy_four_tuple_per_layer";
+    } else {
+      throw std::runtime_error("generation cache representation");
+    }
+    GraphExecutionAudit execution;
+    auto mel = execute_frontend(argv[4], read_f32(argv[5]), read_f32(argv[6]),
+                                execution);
+    std::vector<std::pair<std::string, F32>> trace;
+    Encoder encoder(tensors, execution);
+    auto memory = encoder.run(mel, trace);
+    Decoder decoder(tensors, execution);
+    CachedDecoder cached(tensors, execution);
+    DecoderKVState returned_cache;
+    auto generated = generate(
+        decoder, cached, memory, Selection::Greedy, 0.0f, 0, false, {},
+        generated_whisper::forced_prefix, whisper_interface::NoTimestamps{},
+        nullptr, nullptr, execution, nullptr, *maximum_positions, nullptr,
+        nullptr, &returned_cache);
+    execution.require_all();
+    auto serialized = serialize_cache(returned_cache);
+    const whisper_interface::GenerationCacheProjection projection{
+        representation, std::span<const float>(serialized),
+        returned_cache.position};
+    if (!projection.valid())
+      throw std::runtime_error("generation cache projection ADT invariant");
+    write_f32(argv[9], serialized);
+    std::cout << "WHISPER_CPP23_GENERATION_CACHE representation="
+              << representation_name << " tokens=";
+    bool separator = false;
+    for (const auto token : generated_whisper::forced_prefix) {
+      if (separator)
+        std::cout << ',';
+      std::cout << token;
+      separator = true;
+    }
+    for (const auto token : generated.tokens) {
+      if (separator)
+        std::cout << ',';
+      std::cout << token;
+      separator = true;
+    }
+    std::cout << " layers=4 self_positions=" << returned_cache.position
+              << " cross_positions=1500 cache_floats=" << serialized.size()
+              << " graph_nodes_visited=" << execution.visited() << "\n";
+    return 0;
   }
   if (argc == 12 && std::string(argv[1]) == "--contrastive-search") {
     TensorStore tensors(argv[2], argv[3]);

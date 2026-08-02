@@ -1,0 +1,46 @@
+{
+  "certificate": "WHISPER_CPP23_GENERATION_CACHE_PROJECTION_1",
+  "transformers_version": "4.57.3",
+  "python_none_representation": "EncoderDecoderCache",
+  "python_false_representation": "EncoderDecoderCache",
+  "python_true_representation": "legacy_four_tuple_per_layer",
+  "tensor_only_has_no_public_cache": true,
+  "sequences_exact": true,
+  "python_projection_values_bitwise_equal": true,
+  "cpp23_projection_values_bitwise_equal": true,
+  "invalid_representation_rejected": true,
+  "worst_max_absolute_cache_error": 1.9788742065429688e-05,
+  "cases": [
+    {
+      "representation": "EncoderDecoderCache",
+      "tokens": [
+        50257,
+        50362,
+        1770,
+        13
+      ],
+      "layers": 4,
+      "self_positions": 3,
+      "cross_positions": 1500,
+      "cache_floats": 4617216,
+      "max_absolute_cache_error": 1.9788742065429688e-05,
+      "graph_nodes_visited": 74
+    },
+    {
+      "representation": "legacy_four_tuple_per_layer",
+      "tokens": [
+        50257,
+        50362,
+        1770,
+        13
+      ],
+      "layers": 4,
+      "self_positions": 3,
+      "cross_positions": 1500,
+      "cache_floats": 4617216,
+      "max_absolute_cache_error": 1.9788742065429688e-05,
+      "graph_nodes_visited": 74
+    }
+  ],
+  "scope": "Finite two-token generation on one recording. return_legacy_cache is verified as a container projection over identical four-layer self/cross tensors."
+}

@@ -8,10 +8,9 @@
   "all_pinned_generation_values_represented": true,
   "all_nondefault_generation_variants_executable": false,
   "override_status_counts": {
-    "CPP23_MODEL_IGNORED": 2,
+    "CPP23_MODEL_IGNORED": 3,
     "CPP23_MODEL_REJECTED": 2,
-    "CPP23_NAMED_OVERRIDE": 52,
-    "CPP23_PARTIAL_OVERRIDE": 2,
+    "CPP23_NAMED_OVERRIDE": 53,
     "METADATA_FIXED": 2,
     "PINNED_INACTIVE_GENERIC_EXTENSION": 14
   },
@@ -114,7 +113,7 @@
       "pinned_value": 50257,
       "global_default": null,
       "pinned_value_status": "CPP23_PINNED_VALUE_REPRESENTED",
-      "override_status": "CPP23_PARTIAL_OVERRIDE"
+      "override_status": "CPP23_MODEL_IGNORED"
     },
     {
       "field": "cache_config",
@@ -543,7 +542,7 @@
       "pinned_value": null,
       "global_default": null,
       "pinned_value_status": "CPP23_PINNED_VALUE_REPRESENTED",
-      "override_status": "CPP23_PARTIAL_OVERRIDE"
+      "override_status": "CPP23_NAMED_OVERRIDE"
     },
     {
       "field": "return_timestamps",

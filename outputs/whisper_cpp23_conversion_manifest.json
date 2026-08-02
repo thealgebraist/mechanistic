@@ -3,9 +3,9 @@
   "model": "openai/whisper-tiny.en",
   "checkpoint_sha256": "db59695928ded6043adaef491a53ef4e12da9611184d77c53baa691a60b958ad",
   "graph_sha256": "2adbb1fb4d6d14993772e13d596d7f77981ca7c5be27c0a1088a338927a5fe3c",
-  "cpp_source_sha256": "e60b03bb03579ed9996a211aeb1f7ade9f39e179efd0829cc369a484f1897d9f",
+  "cpp_source_sha256": "a56c06894240642805135fe5d832abb6892aa48f7007a2660d0ceae1a41f1e1f",
   "generated_header_sha256": "d046e5e3e947bf7de87cc59a01e5d08e36156ff59864a9b616707a2b4091b71f",
-  "generation_config_header_sha256": "55ad53e74b89e91cf87d72a8b7b01446b6dd76c70351e6f0399f4f2c0dadf018",
+  "generation_config_header_sha256": "a9df76366c1678c7bbc127a2ef17dbbadafad2b15bac15db69f78b07e364ef4a",
   "sampling_filter_fixture_sha256": "5f41ea938e5d4eeacb1a67cfb1bdf5a133272a1e913b76dfb4fa09036d38334f",
   "score_policy_fixture_sha256": "c5938915d3df389b4e79aa87699d4aea24fee6996aa0e97f500e51e2a27ddd24",
   "beam_search_fixture_sha256": "de8bfd281d1fdae0e4b9080fde3005648077a2a2221b084b46f8d748fe90afb2",
@@ -17,7 +17,7 @@
   "constrained_beam_search_fixture_sha256": "8bb0cc53ca1832855e20c8b7d624c7287695465653807a79a20772e114a107ca",
   "beam_sampling_fixture_sha256": "796bb17a0313604e872a31a8b21f7da4553c15c30655264c99a39c30a4106672",
   "contrastive_search_fixture_sha256": "deb5c4dc3a2e4e86b5734a7e87bca08d87e3a7bc51f51a5cda81eb2c13089183",
-  "model_applicability_fixture_sha256": "f0c936cd3a56ceb289dd0fc2782d65aaaf5c6ac3016e5ac078b56d41be0ee696",
+  "model_applicability_fixture_sha256": "795d5fe75f1d3c702f3436910e784dd7bfbdeae0e9a34de090e0c631bf26ffc5",
   "stop_strings_fixture_sha256": "9703890e4189b9b662ccb61d2c0d3ea75d4d1c0cc9b3c39d5413a35b40df3f5d",
   "prompt_lookup_fixture_sha256": "3c93c3b57d90d68906f9d2d803826f54c58be3b8848dbb1ed3c7d74bbab237ed",
   "watermark_fixture_sha256": "70f4ed51ac2bafc909c47d9c74029c7f9407f42e0f30a479d579c57e1c904a1f",
@@ -62,8 +62,11 @@
   "contrastive_search_all_token_sequences_exact": true,
   "contrastive_search_reference_revision": "89ece6d21c47e6187e86d45d98fd495feadb33cb",
   "contrastive_search_worst_cosine_penalty_error": 5.067895202381933e-07,
-  "model_applicability_cases": 9,
+  "model_applicability_cases": 12,
   "model_applicability_all_behaviors_exact": true,
+  "cache_projection_fixture_sha256": "5b180150d1c07208d0b95ca701ea82b911d8713e3b67ef1df3bac671c8c112ed",
+  "cache_projection_values_bitwise_equal": true,
+  "cache_projection_worst_max_absolute_error": 1.9788742065429688e-05,
   "stop_string_cases": 7,
   "stop_string_all_complete_tokens_exact": true,
   "prompt_lookup_cases": 6,
@@ -592,7 +595,12 @@
     {
       "requirement": "model-specific generic generation boundaries",
       "status": "PROVED_FINITE_AND_SOURCE_STRUCTURAL",
-      "evidence": "5 model-rejected and 4 warning-plus-ignored cases agree with pinned Transformers; DoLa source hash pinned"
+      "evidence": "5 model-rejected and 7 model-ignored cases agree with pinned Transformers, including three non-default BOS values; DoLa source hash pinned"
+    },
+    {
+      "requirement": "public generation cache representation",
+      "status": "PROVED_FINITE_OUTPUT_PROJECTION",
+      "evidence": "EncoderDecoderCache and legacy four-tuple projections are byte-identical in C++23, sequences match, and both compare with PyTorch within 1.97887421e-05"
     },
     {
       "requirement": "token-byte stop-string termination",
@@ -637,7 +645,7 @@
     {
       "requirement": "arbitrary non-default GenerationMixin reconfiguration",
       "status": "IN_PROGRESS",
-      "evidence": "full non-default closure=False; 14 inactive and 2 partial generic fields remain explicitly inventoried"
+      "evidence": "full non-default closure=False; 14 inactive and 0 partial generic fields remain explicitly inventoried"
     }
   ],
   "all_opcodes_executable": true,
@@ -662,10 +670,7 @@
     "target_lookbehind",
     "token_healing"
   ],
-  "partial_generic_generation_fields": [
-    "bos_token_id",
-    "return_legacy_cache"
-  ],
+  "partial_generic_generation_fields": [],
   "backend_contract": {
     "language": "C++23",
     "linear_algebra": "macOS Accelerate CBLAS binary32, plus compile-tested portable scalar binary32 GEMM/dot backend",

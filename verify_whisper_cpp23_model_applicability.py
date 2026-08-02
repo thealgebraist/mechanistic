@@ -145,6 +145,31 @@ with torch.inference_mode():
         max_new_tokens=6,
     ).tolist()
 
+for value in (0, 123, 51863):
+    with torch.inference_mode():
+        output = model.generate(
+            inputs.input_features,
+            attention_mask=inputs.attention_mask,
+            max_new_tokens=6,
+            bos_token_id=value,
+        ).tolist()
+    assert output == baseline
+    status, reason = cpp("bos_token_id", str(value))
+    assert status == "MODEL_IGNORED"
+    assert reason == "whisper_custom_init_uses_decoder_start_token"
+    rows.append(
+        {
+            "case": f"bos_token_id_{value}",
+            "field": "bos_token_id",
+            "value": value,
+            "transformers_behavior": "ignored by Whisper custom initialization; output equals baseline",
+            "cpp23_status": status,
+            "cpp23_reason": reason,
+            "behavior_exact": True,
+            "constructor": "IgnoreBosTokenInWhisperCustomInitialization",
+        }
+    )
+
 for field, values, warning_fragment in (
     (
         "encoder_repetition_penalty",
@@ -198,7 +223,7 @@ artifact = {
     "cases": rows,
     "scope": (
         "Whisper-specific behavior for DoLa, unbatched classifier-free guidance, "
-        "and encoder-token repetition processors under Transformers 4.57.3."
+        "BOS initialization, and encoder-token repetition processors under Transformers 4.57.3."
     ),
 }
 OUT.mkdir(exist_ok=True)
@@ -219,7 +244,7 @@ Not every generic text-generation option denotes an executable path for Whisper.
 |---|---|---:|---|---|
 {table}
 
-DoLa is source-pinned at revision `{DOLA_REVISION}` with SHA-256 `{DOLA_HASH}`. Its implementation rejects encoder-decoder models before selecting premature layers. Unbatched classifier-free guidance sends token IDs through the unconditional model branch; Whisper interprets that positional input as Mel features and rejects its length. Encoder repetition processors require encoder token IDs, which Whisper's continuous audio encoder does not provide, so Transformers warns and ignores them.
+DoLa is source-pinned at revision `{DOLA_REVISION}` with SHA-256 `{DOLA_HASH}`. Its implementation rejects encoder-decoder models before selecting premature layers. Unbatched classifier-free guidance sends token IDs through the unconditional model branch; Whisper interprets that positional input as Mel features and rejects its length. Whisper's custom decoder initialization uses `decoder_start_token_id` and does not consult `bos_token_id`; three altered BOS values therefore reproduce the baseline sequence. Encoder repetition processors require encoder token IDs, which Whisper's continuous audio encoder does not provide, so Transformers warns and ignores them.
 
 All `{len(rows)}` tested rejection/no-op behaviors are represented by explicit C++23 ADTs and agree with the pinned Python behavior. This closes these model-applicability fields; it does not count rejection as a neural decoding implementation.
 """

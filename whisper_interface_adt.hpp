@@ -99,6 +99,28 @@ struct SuppliedKeyValueCache {
 using CacheMode =
     std::variant<NoCache, InternalIncrementalCache, SuppliedKeyValueCache>;
 
+// `return_legacy_cache` is a public-output projection. It does not change the
+// decoder's internal cache recurrence or any tensor value.
+struct EncoderDecoderCacheObject {
+  bool valid() const { return true; }
+};
+struct LegacyFourTuplePerLayer {
+  bool valid() const { return true; }
+};
+using GenerationCacheRepresentation =
+    std::variant<EncoderDecoderCacheObject, LegacyFourTuplePerLayer>;
+struct GenerationCacheProjection {
+  GenerationCacheRepresentation representation;
+  std::span<const float> serialized;
+  std::size_t position;
+  bool valid() const {
+    return position <= 448 &&
+           serialized.size() == 4 * (2 * position * 384 + 2 * 1500 * 384) &&
+           std::visit([](const auto &value) { return value.valid(); },
+                      representation);
+  }
+};
+
 struct NoAttentionMask {};
 struct EncoderAttentionMask {
   BoundedIndexSequence<3000, 2> keep;
@@ -435,6 +457,10 @@ struct IgnoreEncoderTokenPenaltyWithoutEncoderTokenIds {
     return std::isfinite(repetition_factor) && repetition_factor > 0.0f &&
            (repetition_factor != 1.0f || no_repeat_ngram_size > 0);
   }
+};
+struct IgnoreBosTokenInWhisperCustomInitialization {
+  std::int32_t token;
+  bool valid() const { return token >= 0 && token < 51864; }
 };
 struct StopStringSet {
   std::vector<std::string> values;
