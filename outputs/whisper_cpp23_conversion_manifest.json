@@ -3,9 +3,9 @@
   "model": "openai/whisper-tiny.en",
   "checkpoint_sha256": "db59695928ded6043adaef491a53ef4e12da9611184d77c53baa691a60b958ad",
   "graph_sha256": "2adbb1fb4d6d14993772e13d596d7f77981ca7c5be27c0a1088a338927a5fe3c",
-  "cpp_source_sha256": "c37d12fcc57e0cbf4f63bc05eff86c26397ee1b5b657bdeeec56cebc45012deb",
+  "cpp_source_sha256": "aa103fcac773c8cf178c36396018104c6fb033718d2724314493e735f7f8ee39",
   "generated_header_sha256": "d046e5e3e947bf7de87cc59a01e5d08e36156ff59864a9b616707a2b4091b71f",
-  "generation_config_header_sha256": "7cc6873662b83ec1c851049b2b93883bfeb8d05049c76752fda78224502f67c4",
+  "generation_config_header_sha256": "885bc4f1d2ef789c935e4d358bd49cd58ee43048976440986860a2f90c3e4527",
   "sampling_filter_fixture_sha256": "5f41ea938e5d4eeacb1a67cfb1bdf5a133272a1e913b76dfb4fa09036d38334f",
   "score_policy_fixture_sha256": "c5938915d3df389b4e79aa87699d4aea24fee6996aa0e97f500e51e2a27ddd24",
   "beam_search_fixture_sha256": "de8bfd281d1fdae0e4b9080fde3005648077a2a2221b084b46f8d748fe90afb2",
@@ -13,8 +13,8 @@
   "synthid_group_beam_fixture_sha256": "fd03036cb29fb147ba80b37c6c13e6e09cf0d4091c514485725ec6af0dac0560",
   "synthid_constrained_beam_fixture_sha256": "baf8693dd1f82ce0f31ed4b5854f6c5edbffe590e208c0c783eb952a998c1fd8",
   "synthid_sampled_beam_fixture_sha256": "ddfc863e44fa0d02c3fca415fb3ee31490fcea0fecb4936f28335280552fde81",
-  "group_beam_search_fixture_sha256": "d80b9d729f66ff5df84d8d221e00d2503c7d5faa8f4db3d6301f6aa352bc4318",
-  "constrained_beam_search_fixture_sha256": "8bb0cc53ca1832855e20c8b7d624c7287695465653807a79a20772e114a107ca",
+  "group_beam_search_fixture_sha256": "c1d7724489553faf28c8d4deea5a9cbbb86d911f8cf1133f0c4a80637867df3e",
+  "constrained_beam_search_fixture_sha256": "8ae4224818d9e76c305dce380884d81b290970abe3230986f041b305dbdc232c",
   "beam_sampling_fixture_sha256": "796bb17a0313604e872a31a8b21f7da4553c15c30655264c99a39c30a4106672",
   "contrastive_search_fixture_sha256": "deb5c4dc3a2e4e86b5734a7e87bca08d87e3a7bc51f51a5cda81eb2c13089183",
   "model_applicability_fixture_sha256": "795d5fe75f1d3c702f3436910e784dd7bfbdeae0e9a34de090e0c631bf26ffc5",
@@ -67,6 +67,19 @@
   "cache_projection_fixture_sha256": "5b180150d1c07208d0b95ca701ea82b911d8713e3b67ef1df3bac671c8c112ed",
   "cache_projection_values_bitwise_equal": true,
   "cache_projection_worst_max_absolute_error": 1.9788742065429688e-05,
+  "cache_implementations_fixture_sha256": "12975830da438cae691f273d5fdf92afc1fb5654bbef1cd088f50fdc1aa7062f",
+  "cache_implementation_executable_cases": 7,
+  "cache_implementation_rejected_cases": 5,
+  "prefill_policy_cases": 5,
+  "prefill_rejected_cases": 4,
+  "prefill_ignored_cases": 1,
+  "cache_implementation_storage_values_bitwise_equal": true,
+  "cache_search_mode_cases": 6,
+  "cache_search_mode_tokens_storage_invariant": true,
+  "cache_standard_beam_static_tokens_exact": true,
+  "cache_sampled_beam_static_tokens_exact": true,
+  "cache_contrastive_forced_dynamic_full": true,
+  "cache_assisted_forced_dynamic": true,
   "portable_model_fixture_sha256": "67b32e9199b566c805d9dea0ce4eb11847d17e107401c3e1da9b79e6a131d8ca",
   "portable_model_whole_graph_validated": true,
   "portable_model_worst_stage_max_absolute_error": 0.000549316,
@@ -622,6 +635,11 @@
       "evidence": "EncoderDecoderCache and legacy four-tuple projections are byte-identical in C++23, sequences match, and both compare with PyTorch within 1.97887421e-05"
     },
     {
+      "requirement": "generation cache allocation and prefill applicability",
+      "status": "PROVED_FINITE_CPU_AND_SOURCE_STRUCTURAL",
+      "evidence": "7 cache requests preserve exact greedy sequences and bitwise-equal within-runtime logical tensors; dynamic/static policy preserves tokens across 6 converted searches with explicit contrastive/assisted dynamic overrides; 5 cache requests reproduce pinned rejection categories; 5 prefill cases preserve 4 rejection and 1 ignored-mode outcomes; worst C++23/PyTorch cache error 1.97887421e-05"
+    },
+    {
       "requirement": "token-byte stop-string termination",
       "status": "PROVED_FINITE_GREEDY",
       "evidence": "7 whole/cross-token/overhang/alternative/EOS cases exactly match pinned StopStringCriteria"
@@ -664,7 +682,7 @@
     {
       "requirement": "arbitrary non-default GenerationMixin reconfiguration",
       "status": "IN_PROGRESS",
-      "evidence": "full non-default closure=False; 13 inactive and 0 partial generic fields remain explicitly inventoried"
+      "evidence": "full non-default closure=False; 10 inactive and 0 partial generic fields remain explicitly inventoried"
     }
   ],
   "all_opcodes_executable": true,
@@ -677,14 +695,11 @@
     "assistant_confidence_threshold",
     "assistant_early_exit",
     "assistant_lookbehind",
-    "cache_config",
-    "cache_implementation",
     "disable_compile",
     "is_assistant",
     "is_multilingual",
     "num_assistant_tokens",
     "num_assistant_tokens_schedule",
-    "prefill_chunk_size",
     "target_lookbehind",
     "token_healing"
   ],

@@ -2,7 +2,7 @@
 
 This inventory is derived from Transformers `4.57.3` at verification time. It closes the top-level `**kwargs` row for the pinned model: all 74 generation-configuration values are represented, all 17 model-forward kwargs route to previously audited ADTs, and unknown kwargs are rejected by the installed framework.
 
-This does **not** claim every non-default generic GenerationMixin algorithm is converted. Categorical and contrastive sampling plus prompt-lookup speculation, monotonic-deadline stopping across every converted search interpreter, classic left-hash/self-hash watermarking, all implemented SynthID schedulers, and standard, sampled, diverse-group, and phrase/disjunction-constrained beam search are lowered. There are no remaining `CPP23_PARTIAL_OVERRIDE` rows. External assistant models and similar inactive extensions remain visibly classified as `PINNED_INACTIVE_GENERIC_EXTENSION` or `EXTERNAL_GENERATION_ALGORITHM`. Contrastive candidate evaluation has the explicit low-memory sequential schedule. `return_legacy_cache` is a tested output-container projection over identical cache tensors. DoLa and unbatched classifier-free guidance are explicitly model-rejected for Whisper's encoder-decoder/Mel interface; `bos_token_id` and encoder-token repetition processors are explicitly model-ignored by the pinned Whisper source paths.
+This does **not** claim every non-default generic GenerationMixin algorithm is converted. Categorical and contrastive sampling plus prompt-lookup speculation, monotonic-deadline stopping across every converted search interpreter, classic left-hash/self-hash watermarking, all implemented SynthID schedulers, and standard, sampled, diverse-group, and phrase/disjunction-constrained beam search are lowered. There are no remaining `CPP23_PARTIAL_OVERRIDE` rows. External assistant models and similar inactive extensions remain visibly classified as `PINNED_INACTIVE_GENERIC_EXTENSION` or `EXTERNAL_GENERATION_ALGORITHM`. Contrastive candidate evaluation has the explicit low-memory sequential schedule. `return_legacy_cache` is a tested output-container projection over identical cache tensors. Dynamic/static cache allocation is threaded through greedy and beam-family state branches; contrastive and assisted generation preserve their source-mandated dynamic-full/dynamic overrides. The non-quantized `cache_config` no-op is an explicit ADT. Generic prefill chunking has mode-dependent typed semantics: sample search requires a cache and then passes unsupported `position_ids` to Whisper, while beam search ignores the field because only `_sample` dispatches the helper. DoLa, quantized cache, and unbatched classifier-free guidance are explicitly model-rejected for Whisper's encoder-decoder/Mel interface; `bos_token_id` and encoder-token repetition processors are explicitly model-ignored by the pinned Whisper source paths.
 
 ## GenerationConfig fields
 
@@ -16,8 +16,8 @@ This does **not** claim every non-default generic GenerationMixin algorithm is c
 | `bad_words_ids` | `null` | `BadWordsIds` | CPP23_NAMED_OVERRIDE |
 | `begin_suppress_tokens` | `[220,50256]` | `BeginSuppressTokens` | CPP23_NAMED_OVERRIDE |
 | `bos_token_id` | `50257` | `BosTokenId` | CPP23_MODEL_IGNORED |
-| `cache_config` | `null` | `CacheConfig` | PINNED_INACTIVE_GENERIC_EXTENSION |
-| `cache_implementation` | `null` | `CacheImplementation` | PINNED_INACTIVE_GENERIC_EXTENSION |
+| `cache_config` | `null` | `CacheConfig` | CPP23_NAMED_OVERRIDE |
+| `cache_implementation` | `null` | `CacheImplementation` | CPP23_NAMED_OVERRIDE |
 | `constraints` | `null` | `Constraints` | CPP23_NAMED_OVERRIDE |
 | `decoder_start_token_id` | `50257` | `DecoderStartTokenId` | CPP23_NAMED_OVERRIDE |
 | `disable_compile` | `false` | `DisableCompile` | PINNED_INACTIVE_GENERIC_EXTENSION |
@@ -61,7 +61,7 @@ This does **not** claim every non-default generic GenerationMixin algorithm is c
 | `output_scores` | `false` | `OutputScores` | CPP23_NAMED_OVERRIDE |
 | `pad_token_id` | `50256` | `PadTokenId` | CPP23_NAMED_OVERRIDE |
 | `penalty_alpha` | `null` | `PenaltyAlpha` | CPP23_NAMED_OVERRIDE |
-| `prefill_chunk_size` | `null` | `PrefillChunkSize` | PINNED_INACTIVE_GENERIC_EXTENSION |
+| `prefill_chunk_size` | `null` | `PrefillChunkSize` | CPP23_NAMED_OVERRIDE |
 | `prev_sot_token_id` | `50360` | `PrevSotTokenId` | CPP23_NAMED_OVERRIDE |
 | `prompt_lookup_num_tokens` | `null` | `PromptLookupNumTokens` | CPP23_NAMED_OVERRIDE |
 | `remove_invalid_values` | `false` | `RemoveInvalidValues` | CPP23_NAMED_OVERRIDE |

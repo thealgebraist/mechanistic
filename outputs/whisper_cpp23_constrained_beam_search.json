@@ -99,7 +99,7 @@
       "maximum_sequence_score_error": 6.103474975605039e-05,
       "all_ranked_sequences_exact": true,
       "expanded_candidates": 1918968,
-      "cache_branches": 40,
+      "cache_branches": 36,
       "graph_nodes_visited": 74,
       "constructor": "Selection.ConstrainedBeamSearch"
     },
@@ -214,7 +214,7 @@
       "maximum_sequence_score_error": 6.258186981211722e-05,
       "all_ranked_sequences_exact": true,
       "expanded_candidates": 3163704,
-      "cache_branches": 64,
+      "cache_branches": 60,
       "graph_nodes_visited": 74,
       "constructor": "Selection.ConstrainedBeamSearch"
     },
@@ -329,7 +329,7 @@
       "maximum_sequence_score_error": 0.0001440018621825523,
       "all_ranked_sequences_exact": true,
       "expanded_candidates": 4719624,
-      "cache_branches": 96,
+      "cache_branches": 90,
       "graph_nodes_visited": 74,
       "constructor": "Selection.ConstrainedBeamSearch"
     },
@@ -387,7 +387,7 @@
       "maximum_sequence_score_error": 0.00014280883544914857,
       "all_ranked_sequences_exact": true,
       "expanded_candidates": 8453832,
-      "cache_branches": 168,
+      "cache_branches": 162,
       "graph_nodes_visited": 74,
       "constructor": "Selection.ConstrainedBeamSearch"
     },
@@ -502,7 +502,7 @@
       "maximum_sequence_score_error": 6.25828512572646e-05,
       "all_ranked_sequences_exact": true,
       "expanded_candidates": 3163704,
-      "cache_branches": 64,
+      "cache_branches": 60,
       "graph_nodes_visited": 74,
       "constructor": "Selection.ConstrainedBeamSearch"
     },
@@ -548,7 +548,7 @@
       "maximum_sequence_score_error": 6.201828770446838e-05,
       "all_ranked_sequences_exact": true,
       "expanded_candidates": 3163704,
-      "cache_branches": 64,
+      "cache_branches": 60,
       "graph_nodes_visited": 74,
       "constructor": "Selection.ConstrainedBeamSearch"
     },
@@ -663,7 +663,7 @@
       "maximum_sequence_score_error": 6.201828770446838e-05,
       "all_ranked_sequences_exact": true,
       "expanded_candidates": 3163704,
-      "cache_branches": 64,
+      "cache_branches": 60,
       "graph_nodes_visited": 74,
       "constructor": "Selection.ConstrainedBeamSearch"
     },
@@ -716,7 +716,7 @@
       "maximum_sequence_score_error": 5.682537786101671e-05,
       "all_ranked_sequences_exact": true,
       "expanded_candidates": 92369784,
-      "cache_branches": 1784,
+      "cache_branches": 1780,
       "graph_nodes_visited": 74,
       "constructor": "Selection.ConstrainedBeamSearch"
     }

@@ -75,7 +75,7 @@
       "maximum_sequence_score_error": 6.598232736210186e-05,
       "all_ranked_sequences_exact": true,
       "expanded_candidates": 1141008,
-      "cache_branches": 24,
+      "cache_branches": 20,
       "graph_nodes_visited": 74,
       "constructor": "Selection.DiverseGroupBeamSearch"
     },
@@ -153,7 +153,7 @@
       "maximum_sequence_score_error": 0.00011682237976096133,
       "all_ranked_sequences_exact": true,
       "expanded_candidates": 1555920,
-      "cache_branches": 32,
+      "cache_branches": 28,
       "graph_nodes_visited": 74,
       "constructor": "Selection.DiverseGroupBeamSearch"
     },
@@ -247,7 +247,7 @@
       "maximum_sequence_score_error": 6.598232736210186e-05,
       "all_ranked_sequences_exact": true,
       "expanded_candidates": 1711512,
-      "cache_branches": 36,
+      "cache_branches": 30,
       "graph_nodes_visited": 74,
       "constructor": "Selection.DiverseGroupBeamSearch"
     },
@@ -545,7 +545,7 @@
       "maximum_sequence_score_error": 5.682537786101671e-05,
       "all_ranked_sequences_exact": true,
       "expanded_candidates": 58606320,
-      "cache_branches": 1132,
+      "cache_branches": 1130,
       "graph_nodes_visited": 74,
       "constructor": "Selection.DiverseGroupBeamSearch"
     }

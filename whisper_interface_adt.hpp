@@ -100,6 +100,105 @@ struct SuppliedKeyValueCache {
 using CacheMode =
     std::variant<NoCache, InternalIncrementalCache, SuppliedKeyValueCache>;
 
+// GenerationMixin 4.57.3 can construct either append-only dynamic caches or
+// fixed-capacity static caches for Whisper. `dynamic_full` is observably the
+// same storage law as `dynamic` because Whisper has no sliding decoder layer;
+// the deprecated static names are explicit aliases rather than hidden string
+// switches. Offloaded caches are unavailable in the pinned CPU execution
+// environment, and quantized caches are rejected for every encoder-decoder
+// model before `cache_config` is consumed.
+struct DefaultDynamicGenerationCache {
+  bool valid() const { return true; }
+};
+struct DynamicGenerationCache {
+  bool valid() const { return true; }
+};
+struct DynamicFullGenerationCache {
+  bool valid() const { return true; }
+};
+struct StaticGenerationCache {
+  std::size_t maximum_positions;
+  bool valid() const {
+    return maximum_positions > 0 && maximum_positions <= 448;
+  }
+};
+enum class DeprecatedStaticCacheName {
+  SlidingWindow,
+  Hybrid,
+  HybridChunked,
+};
+struct DeprecatedStaticGenerationCache {
+  DeprecatedStaticCacheName name;
+  std::size_t maximum_positions;
+  bool valid() const {
+    return maximum_positions > 0 && maximum_positions <= 448;
+  }
+};
+using ExecutableGenerationCache =
+    std::variant<DefaultDynamicGenerationCache, DynamicGenerationCache,
+                 DynamicFullGenerationCache, StaticGenerationCache,
+                 DeprecatedStaticGenerationCache>;
+
+struct NoCacheConfiguration {
+  bool valid() const { return true; }
+};
+struct IgnoredNonQuantizedCacheConfiguration {
+  std::string canonical_json;
+  bool valid() const { return !canonical_json.empty(); }
+};
+using WhisperCacheConfiguration =
+    std::variant<NoCacheConfiguration,
+                 IgnoredNonQuantizedCacheConfiguration>;
+
+struct OffloadedCacheRequiresAccelerator {
+  std::string implementation;
+  bool valid() const {
+    return implementation == "offloaded" ||
+           implementation == "offloaded_static" ||
+           implementation == "offloaded_hybrid" ||
+           implementation == "offloaded_hybrid_chunked";
+  }
+};
+struct QuantizedCacheRejectsEncoderDecoder {
+  bool valid() const { return true; }
+};
+using RejectedGenerationCache =
+    std::variant<OffloadedCacheRequiresAccelerator,
+                 QuantizedCacheRejectsEncoderDecoder>;
+struct AssistedGenerationForcesDynamicCache {
+  std::string requested_implementation;
+  bool valid() const { return !requested_implementation.empty(); }
+};
+struct ContrastiveSearchForcesDynamicFullCache {
+  std::string requested_implementation;
+  bool valid() const { return !requested_implementation.empty(); }
+};
+
+// Sample/greedy search's generic prefill helper passes `position_ids` into
+// every chunk. Whisper's pinned forward signature has no such argument, so
+// that path terminates before a decoder transition. Other search loops do not
+// dispatch the helper and retain a separate typed ignored outcome.
+struct WhisperPrefillChunkingRejectsPositionIds {
+  std::size_t chunk_positions;
+  bool valid() const { return chunk_positions > 0; }
+};
+struct PrefillChunkingRequiresCache {
+  std::size_t chunk_positions;
+  bool valid() const { return chunk_positions > 0; }
+};
+struct IgnorePrefillChunkingOutsideSampleSearch {
+  std::size_t chunk_positions;
+  std::string generation_mode;
+  bool valid() const {
+    return chunk_positions > 0 && !generation_mode.empty() &&
+           generation_mode != "sample";
+  }
+};
+using WhisperPrefillChunkPolicy =
+    std::variant<WhisperPrefillChunkingRejectsPositionIds,
+                 PrefillChunkingRequiresCache,
+                 IgnorePrefillChunkingOutsideSampleSearch>;
+
 // `return_legacy_cache` is a public-output projection. It does not change the
 // decoder's internal cache recurrence or any tensor value.
 struct EncoderDecoderCacheObject {

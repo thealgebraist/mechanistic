@@ -26,6 +26,7 @@ PYTHONPATH=work/venv/lib/python3.14/site-packages python3 verify_whisper_cpp23_c
 PYTHONPATH=work/venv/lib/python3.14/site-packages python3 verify_whisper_cpp23_model_applicability.py
 PYTHONPATH=work/venv/lib/python3.14/site-packages python3 verify_whisper_cpp23_deadline.py
 PYTHONPATH=work/venv/lib/python3.14/site-packages python3 verify_whisper_cpp23_cache_projection.py
+PYTHONPATH=work/venv/lib/python3.14/site-packages python3 verify_whisper_cpp23_cache_implementations.py
 PYTHONPATH=work/venv/lib/python3.14/site-packages python3 verify_whisper_cpp23_stop_strings.py
 PYTHONPATH=work/venv/lib/python3.14/site-packages python3 verify_whisper_cpp23_prompt_lookup.py
 PYTHONPATH=work/venv/lib/python3.14/site-packages python3 verify_whisper_cpp23_watermark.py
@@ -48,6 +49,14 @@ work/whisper_graph_cpp23_san --deadline-transition 1 1.000001 >/dev/null
 work/whisper_graph_cpp23_san --deadline-search work/whisper_tiny_en/model.safetensors outputs/whisper_cpp23_tensor_manifest.tsv work/whisper_sample.wav outputs/whisper_cpp23_hann_f32.bin outputs/whisper_cpp23_mel_filters_f32.bin 6 0 >/dev/null
 work/whisper_graph_cpp23_san --deadline-all-searches work/whisper_tiny_en/model.safetensors outputs/whisper_cpp23_tensor_manifest.tsv work/whisper_sample.wav outputs/whisper_cpp23_hann_f32.bin outputs/whisper_cpp23_mel_filters_f32.bin >/dev/null
 work/whisper_graph_cpp23_san --generation-cache-projection work/whisper_tiny_en/model.safetensors outputs/whisper_cpp23_tensor_manifest.tsv work/whisper_sample.wav outputs/whisper_cpp23_hann_f32.bin outputs/whisper_cpp23_mel_filters_f32.bin 4 legacy /tmp/whisper_generation_legacy_cache.bin >/dev/null
+work/whisper_graph_cpp23_san --generation-cache-implementation work/whisper_tiny_en/model.safetensors outputs/whisper_cpp23_tensor_manifest.tsv work/whisper_sample.wav outputs/whisper_cpp23_hann_f32.bin outputs/whisper_cpp23_mel_filters_f32.bin 4 dynamic '{"ignored":true}' /tmp/whisper_generation_dynamic_cache.bin >/dev/null
+work/whisper_graph_cpp23_san --generation-cache-implementation work/whisper_tiny_en/model.safetensors outputs/whisper_cpp23_tensor_manifest.tsv work/whisper_sample.wav outputs/whisper_cpp23_hann_f32.bin outputs/whisper_cpp23_mel_filters_f32.bin 4 static none /tmp/whisper_generation_static_cache.bin >/dev/null
+work/whisper_graph_cpp23_san --generation-cache-implementation unused unused unused unused unused 4 quantized none /tmp/unused.bin >/dev/null
+work/whisper_graph_cpp23_san --cache-all-searches work/whisper_tiny_en/model.safetensors outputs/whisper_cpp23_tensor_manifest.tsv work/whisper_sample.wav outputs/whisper_cpp23_hann_f32.bin outputs/whisper_cpp23_mel_filters_f32.bin dynamic >/dev/null
+work/whisper_graph_cpp23_san --cache-all-searches work/whisper_tiny_en/model.safetensors outputs/whisper_cpp23_tensor_manifest.tsv work/whisper_sample.wav outputs/whisper_cpp23_hann_f32.bin outputs/whisper_cpp23_mel_filters_f32.bin static >/dev/null
+work/whisper_graph_cpp23_san --generation-prefill-policy 2 sample cache >/dev/null
+work/whisper_graph_cpp23_san --generation-prefill-policy 2 sample no_cache >/dev/null
+work/whisper_graph_cpp23_san --generation-prefill-policy 2 beam cache >/dev/null
 work/whisper_graph_cpp23_san --stop-string-search work/whisper_tiny_en/model.safetensors outputs/whisper_cpp23_tensor_manifest.tsv work/whisper_sample.wav outputs/whisper_cpp23_hann_f32.bin outputs/whisper_cpp23_mel_filters_f32.bin outputs/whisper_cpp23_token_manifest.tsv outputs/whisper_cpp23_token_bytes.bin 448 'middle cl' >/dev/null
 work/whisper_graph_cpp23_san --prompt-lookup work/whisper_tiny_en/model.safetensors outputs/whisper_cpp23_tensor_manifest.tsv work/whisper_sample.wav outputs/whisper_cpp23_hann_f32.bin outputs/whisper_cpp23_mel_filters_f32.bin outputs/whisper_cpp23_token_manifest.tsv outputs/whisper_cpp23_token_bytes.bin 50257,50362,1770,13,2264,346,353,318,262,46329,286,262,46329 5 1 25 >/dev/null
 work/whisper_graph_cpp23_san --watermark-mass work/whisper_tiny_en/model.safetensors outputs/whisper_cpp23_tensor_manifest.tsv work/whisper_sample.wav outputs/whisper_cpp23_hann_f32.bin outputs/whisper_cpp23_mel_filters_f32.bin outputs/whisper_cpp23_token_manifest.tsv outputs/whisper_cpp23_token_bytes.bin selfhash 0.25 2.0 15485863 1 /tmp/whisper_watermark_mass.bin /tmp/whisper_watermark_mask.bin >/dev/null

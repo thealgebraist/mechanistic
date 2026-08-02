@@ -44,6 +44,7 @@ WHISPER_CPP23_GRAPH_REGRESSION_OK
 - `outputs/WHISPER_CPP23_CONVERSION_PROGRESS.md` — numerical and graph execution summary.
 - `outputs/WHISPER_PYTORCH_TO_CPP23_COVERAGE.md` — bidirectional module/state/checkpoint/opcode coverage.
 - `outputs/WHISPER_CPP23_GENERATION_EXTENSION_INVENTORY.md` — every pinned GenerationConfig field and non-default status.
+- `outputs/WHISPER_CPP23_CACHE_IMPLEMENTATIONS.md` — dynamic/static cache storage, search-mode routing, and pinned rejection boundaries.
 - `outputs/WHISPER_CPP23_VS_TRANSFORMERS_BENCHMARK.md` — fresh-process latency and peak RSS comparison.
 - `outputs/whisper_tiny_en_probabilistic_graph.svg` — readable graph overview.
 

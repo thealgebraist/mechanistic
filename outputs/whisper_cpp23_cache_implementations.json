@@ -1,0 +1,449 @@
+{
+  "certificate": "WHISPER_CPP23_CACHE_IMPLEMENTATIONS_1",
+  "transformers_version": "4.57.3",
+  "prepare_cache_source_sha256": "017d349fcfa316b29f3c4bc822bb0104abfd0f774f3639196b147a9a74162dae",
+  "prefill_chunking_source_sha256": "859ecc51842d50a49eee4dd1ca2911b08d7c1bb6d67a312316d6feeee31622ec",
+  "executable_case_count": 7,
+  "rejected_case_count": 5,
+  "prefill_policy_case_count": 5,
+  "prefill_rejected_case_count": 4,
+  "prefill_ignored_case_count": 1,
+  "all_sequences_exact": true,
+  "all_cpp23_storage_values_bitwise_equal": true,
+  "all_python_storage_values_bitwise_equal": true,
+  "search_mode_case_count": 6,
+  "all_search_mode_tokens_storage_invariant": true,
+  "beam_static_tokens_exact": true,
+  "sampled_beam_static_tokens_exact": true,
+  "custom_beam_cache_implementation_forwarded": true,
+  "contrastive_cache_forced_dynamic_full": true,
+  "custom_search_source_sha256": {
+    "group_beam": "07cb918df0a9298b89debb926b672bf8fd688cc2e66ba97a756cd04c12d02b42",
+    "constrained_beam": "176b15cece1977680c24e5847b63185f74c96a2cc25be79d1976f7bd185415bf",
+    "contrastive": "ea33addf7128014a238f3210abba3df7f8343acfb3880383f38ce5b34881c3d3"
+  },
+  "assisted_static_forced_dynamic": true,
+  "cache_config_ignored_for_non_quantized_cache": true,
+  "invalid_implementation_rejected": true,
+  "worst_max_absolute_cache_error": 1.9788742065429688e-05,
+  "executable_cases": [
+    {
+      "request": "default",
+      "python_implementation": null,
+      "python_self_cache_type": "DynamicCache",
+      "python_cross_cache_type": "DynamicCache",
+      "cpp23_storage": "DYNAMIC_APPEND",
+      "cache_config_status": "NONE",
+      "tokens": [
+        50257,
+        50362,
+        1770,
+        13
+      ],
+      "logical_positions": 3,
+      "capacity_positions": 3,
+      "serialized_floats": 4617216,
+      "allocated_self_floats": 9216,
+      "max_absolute_cache_error": 1.9788742065429688e-05,
+      "graph_nodes_visited": 74,
+      "python_warning_count": 0
+    },
+    {
+      "request": "dynamic",
+      "python_implementation": "dynamic",
+      "python_self_cache_type": "DynamicCache",
+      "python_cross_cache_type": "DynamicCache",
+      "cpp23_storage": "DYNAMIC_APPEND",
+      "cache_config_status": "IGNORED_NON_QUANTIZED",
+      "tokens": [
+        50257,
+        50362,
+        1770,
+        13
+      ],
+      "logical_positions": 3,
+      "capacity_positions": 3,
+      "serialized_floats": 4617216,
+      "allocated_self_floats": 9216,
+      "max_absolute_cache_error": 1.9788742065429688e-05,
+      "graph_nodes_visited": 74,
+      "python_warning_count": 0
+    },
+    {
+      "request": "dynamic_full",
+      "python_implementation": "dynamic_full",
+      "python_self_cache_type": "DynamicCache",
+      "python_cross_cache_type": "DynamicCache",
+      "cpp23_storage": "DYNAMIC_APPEND",
+      "cache_config_status": "NONE",
+      "tokens": [
+        50257,
+        50362,
+        1770,
+        13
+      ],
+      "logical_positions": 3,
+      "capacity_positions": 3,
+      "serialized_floats": 4617216,
+      "allocated_self_floats": 9216,
+      "max_absolute_cache_error": 1.9788742065429688e-05,
+      "graph_nodes_visited": 74,
+      "python_warning_count": 0
+    },
+    {
+      "request": "static",
+      "python_implementation": "static",
+      "python_self_cache_type": "StaticCache",
+      "python_cross_cache_type": "StaticCache",
+      "cpp23_storage": "STATIC_PREALLOCATED",
+      "cache_config_status": "NONE",
+      "tokens": [
+        50257,
+        50362,
+        1770,
+        13
+      ],
+      "logical_positions": 3,
+      "capacity_positions": 3,
+      "serialized_floats": 4617216,
+      "allocated_self_floats": 9216,
+      "max_absolute_cache_error": 1.9788742065429688e-05,
+      "graph_nodes_visited": 74,
+      "python_warning_count": 0
+    },
+    {
+      "request": "sliding_window",
+      "python_implementation": "sliding_window",
+      "python_self_cache_type": "StaticCache",
+      "python_cross_cache_type": "StaticCache",
+      "cpp23_storage": "STATIC_PREALLOCATED_DEPRECATED_ALIAS",
+      "cache_config_status": "NONE",
+      "tokens": [
+        50257,
+        50362,
+        1770,
+        13
+      ],
+      "logical_positions": 3,
+      "capacity_positions": 3,
+      "serialized_floats": 4617216,
+      "allocated_self_floats": 9216,
+      "max_absolute_cache_error": 1.9788742065429688e-05,
+      "graph_nodes_visited": 74,
+      "python_warning_count": 0
+    },
+    {
+      "request": "hybrid",
+      "python_implementation": "hybrid",
+      "python_self_cache_type": "StaticCache",
+      "python_cross_cache_type": "StaticCache",
+      "cpp23_storage": "STATIC_PREALLOCATED_DEPRECATED_ALIAS",
+      "cache_config_status": "NONE",
+      "tokens": [
+        50257,
+        50362,
+        1770,
+        13
+      ],
+      "logical_positions": 3,
+      "capacity_positions": 3,
+      "serialized_floats": 4617216,
+      "allocated_self_floats": 9216,
+      "max_absolute_cache_error": 1.9788742065429688e-05,
+      "graph_nodes_visited": 74,
+      "python_warning_count": 0
+    },
+    {
+      "request": "hybrid_chunked",
+      "python_implementation": "hybrid_chunked",
+      "python_self_cache_type": "StaticCache",
+      "python_cross_cache_type": "StaticCache",
+      "cpp23_storage": "STATIC_PREALLOCATED_DEPRECATED_ALIAS",
+      "cache_config_status": "NONE",
+      "tokens": [
+        50257,
+        50362,
+        1770,
+        13
+      ],
+      "logical_positions": 3,
+      "capacity_positions": 3,
+      "serialized_floats": 4617216,
+      "allocated_self_floats": 9216,
+      "max_absolute_cache_error": 1.9788742065429688e-05,
+      "graph_nodes_visited": 74,
+      "python_warning_count": 0
+    }
+  ],
+  "rejected_cases": [
+    {
+      "request": "offloaded",
+      "python_error": "AssertionError",
+      "python_message": "Torch not compiled with CUDA enabled",
+      "cpp23_status": "CPU_RUNTIME_UNAVAILABLE",
+      "cpp23_reason": "offloaded_cache_requires_accelerator"
+    },
+    {
+      "request": "offloaded_static",
+      "python_error": "AssertionError",
+      "python_message": "Torch not compiled with CUDA enabled",
+      "cpp23_status": "CPU_RUNTIME_UNAVAILABLE",
+      "cpp23_reason": "offloaded_cache_requires_accelerator"
+    },
+    {
+      "request": "offloaded_hybrid",
+      "python_error": "AssertionError",
+      "python_message": "Torch not compiled with CUDA enabled",
+      "cpp23_status": "CPU_RUNTIME_UNAVAILABLE",
+      "cpp23_reason": "offloaded_cache_requires_accelerator"
+    },
+    {
+      "request": "offloaded_hybrid_chunked",
+      "python_error": "AssertionError",
+      "python_message": "Torch not compiled with CUDA enabled",
+      "cpp23_status": "CPU_RUNTIME_UNAVAILABLE",
+      "cpp23_reason": "offloaded_cache_requires_accelerator"
+    },
+    {
+      "request": "quantized",
+      "python_error": "ValueError",
+      "python_message": "This model does not support the quantized cache. If you want your model to support quantized cache, please open an issue and tag @zucchini-nlp.",
+      "cpp23_status": "MODEL_REJECTED",
+      "cpp23_reason": "quantized_cache_rejects_encoder_decoder"
+    }
+  ],
+  "prefill_policy_cases": [
+    {
+      "chunk_positions": 1,
+      "python_error": "TypeError",
+      "python_reason": "WhisperForConditionalGeneration.forward rejects position_ids",
+      "cpp23_status": "MODEL_REJECTED",
+      "exact_rejection_category": true
+    },
+    {
+      "chunk_positions": 2,
+      "python_error": "TypeError",
+      "python_reason": "WhisperForConditionalGeneration.forward rejects position_ids",
+      "cpp23_status": "MODEL_REJECTED",
+      "exact_rejection_category": true
+    },
+    {
+      "chunk_positions": 8,
+      "python_error": "TypeError",
+      "python_reason": "WhisperForConditionalGeneration.forward rejects position_ids",
+      "cpp23_status": "MODEL_REJECTED",
+      "exact_rejection_category": true
+    },
+    {
+      "chunk_positions": 2,
+      "mode": "sample",
+      "cache": "no_cache",
+      "python_error": "ValueError",
+      "python_reason": "prefill chunking requires past_key_values",
+      "cpp23_status": "CONFIGURATION_REJECTED",
+      "exact_rejection_category": true
+    },
+    {
+      "chunk_positions": 2,
+      "mode": "beam",
+      "cache": "cache",
+      "python_tokens": [
+        50257,
+        50362,
+        1770,
+        13,
+        2264,
+        346,
+        353,
+        318
+      ],
+      "baseline_tokens": [
+        50257,
+        50362,
+        1770,
+        13,
+        2264,
+        346,
+        353,
+        318
+      ],
+      "cpp23_status": "MODEL_IGNORED",
+      "tokens_unchanged": true
+    }
+  ],
+  "search_mode_cases": {
+    "dynamic": [
+      {
+        "mode": "beam",
+        "request": "dynamic",
+        "storage": "DYNAMIC_APPEND",
+        "tokens": [
+          1770,
+          13,
+          2264,
+          346,
+          353,
+          318
+        ],
+        "graph_nodes_visited": 74
+      },
+      {
+        "mode": "group_beam",
+        "request": "dynamic",
+        "storage": "DYNAMIC_APPEND",
+        "tokens": [
+          1770,
+          13,
+          2264,
+          346,
+          353,
+          318
+        ],
+        "graph_nodes_visited": 74
+      },
+      {
+        "mode": "constrained_beam",
+        "request": "dynamic",
+        "storage": "DYNAMIC_APPEND",
+        "tokens": [
+          1770,
+          13,
+          2264,
+          346,
+          353,
+          318
+        ],
+        "graph_nodes_visited": 74
+      },
+      {
+        "mode": "sampled_beam",
+        "request": "dynamic",
+        "storage": "DYNAMIC_APPEND",
+        "tokens": [
+          1770,
+          13,
+          2264,
+          346,
+          353,
+          318
+        ],
+        "graph_nodes_visited": 74
+      },
+      {
+        "mode": "contrastive",
+        "request": "dynamic",
+        "storage": "DYNAMIC_FULL_CONTRASTIVE_OVERRIDE",
+        "tokens": [
+          1770,
+          627,
+          346,
+          353,
+          318,
+          262
+        ],
+        "graph_nodes_visited": 74
+      },
+      {
+        "mode": "prompt_lookup",
+        "request": "dynamic",
+        "storage": "DYNAMIC_ASSISTED_OVERRIDE",
+        "tokens": [
+          1770,
+          13,
+          2264,
+          346,
+          353,
+          318
+        ],
+        "graph_nodes_visited": 74
+      }
+    ],
+    "static": [
+      {
+        "mode": "beam",
+        "request": "static",
+        "storage": "STATIC_PREALLOCATED",
+        "tokens": [
+          1770,
+          13,
+          2264,
+          346,
+          353,
+          318
+        ],
+        "graph_nodes_visited": 74
+      },
+      {
+        "mode": "group_beam",
+        "request": "static",
+        "storage": "STATIC_PREALLOCATED",
+        "tokens": [
+          1770,
+          13,
+          2264,
+          346,
+          353,
+          318
+        ],
+        "graph_nodes_visited": 74
+      },
+      {
+        "mode": "constrained_beam",
+        "request": "static",
+        "storage": "STATIC_PREALLOCATED",
+        "tokens": [
+          1770,
+          13,
+          2264,
+          346,
+          353,
+          318
+        ],
+        "graph_nodes_visited": 74
+      },
+      {
+        "mode": "sampled_beam",
+        "request": "static",
+        "storage": "STATIC_PREALLOCATED",
+        "tokens": [
+          1770,
+          13,
+          2264,
+          346,
+          353,
+          318
+        ],
+        "graph_nodes_visited": 74
+      },
+      {
+        "mode": "contrastive",
+        "request": "static",
+        "storage": "DYNAMIC_FULL_CONTRASTIVE_OVERRIDE",
+        "tokens": [
+          1770,
+          627,
+          346,
+          353,
+          318,
+          262
+        ],
+        "graph_nodes_visited": 74
+      },
+      {
+        "mode": "prompt_lookup",
+        "request": "static",
+        "storage": "DYNAMIC_ASSISTED_OVERRIDE",
+        "tokens": [
+          1770,
+          13,
+          2264,
+          346,
+          353,
+          318
+        ],
+        "graph_nodes_visited": 74
+      }
+    ]
+  },
+  "scope": "Finite two-token greedy generation on one recording under the pinned CPU runtime. Dynamic/static/deprecated-static storage and model/runtime rejection paths are covered; offloaded GPU execution is not claimed."
+}

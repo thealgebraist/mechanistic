@@ -1154,7 +1154,33 @@ struct LayerKV {
 struct DecoderKVState {
   std::array<LayerKV, 4> layers;
   std::size_t position = 0;
+  whisper_interface::ExecutableGenerationCache implementation{
+      whisper_interface::DefaultDynamicGenerationCache{}};
 };
+static std::optional<std::size_t> static_cache_capacity(
+    const whisper_interface::ExecutableGenerationCache &implementation) {
+  if (const auto *value =
+          std::get_if<whisper_interface::StaticGenerationCache>(
+              &implementation))
+    return value->maximum_positions;
+  if (const auto *value =
+          std::get_if<whisper_interface::DeprecatedStaticGenerationCache>(
+              &implementation))
+    return value->maximum_positions;
+  return std::nullopt;
+}
+static bool valid_generation_cache(
+    const whisper_interface::ExecutableGenerationCache &implementation) {
+  return std::visit([](const auto &value) { return value.valid(); },
+                    implementation);
+}
+static bool self_cache_shape_valid(const DecoderKVState &state,
+                                   const LayerKV &layer) {
+  const auto positions = static_cache_capacity(state.implementation)
+                             .value_or(state.position);
+  return layer.self_key.size() == positions * 384 &&
+         layer.self_value.size() == positions * 384;
+}
 struct AlignmentTrace {
   static constexpr std::size_t heads = 8, source_positions = 1500;
   F32 weights;
@@ -1208,15 +1234,16 @@ static F32 serialize_cache(const DecoderKVState &state) {
   F32 serialized;
   serialized.reserve(4 * (2 * state.position * 384 + 2 * 1500 * 384));
   for (const auto &layer : state.layers) {
-    if (layer.self_key.size() != state.position * 384 ||
-        layer.self_value.size() != state.position * 384 ||
+    if (!self_cache_shape_valid(state, layer) ||
         layer.cross_key.size() != 1500 * 384 ||
         layer.cross_value.size() != 1500 * 384)
       throw std::runtime_error("cache serialization shape");
     serialized.insert(serialized.end(), layer.self_key.begin(),
-                      layer.self_key.end());
+                      layer.self_key.begin() +
+                          static_cast<std::ptrdiff_t>(state.position * 384));
     serialized.insert(serialized.end(), layer.self_value.begin(),
-                      layer.self_value.end());
+                      layer.self_value.begin() +
+                          static_cast<std::ptrdiff_t>(state.position * 384));
     serialized.insert(serialized.end(), layer.cross_key.begin(),
                       layer.cross_key.end());
     serialized.insert(serialized.end(), layer.cross_value.begin(),
@@ -1231,7 +1258,10 @@ class CachedDecoder {
                                S = 1500;
   F32 attend_one(const F32 &query, const F32 &memory, LayerKV &cache,
                  const generated_whisper::Node &node, bool cross,
-                 std::size_t layer, AlignmentTrace *alignment) {
+                 std::size_t layer, std::size_t target_position,
+                 const whisper_interface::ExecutableGenerationCache
+                     &implementation,
+                 AlignmentTrace *alignment) {
     auto q = linear(query, 1, D, graph_weight(t_, node, ".q_proj.weight"), D,
                     graph_weight(t_, node, ".q_proj.bias"));
     F32 *keys;
@@ -1252,11 +1282,29 @@ class CachedDecoder {
       auto k = linear(query, 1, D, graph_weight(t_, node, ".k_proj.weight"), D);
       auto v = linear(query, 1, D, graph_weight(t_, node, ".v_proj.weight"), D,
                       graph_weight(t_, node, ".v_proj.bias"));
-      cache.self_key.insert(cache.self_key.end(), k.begin(), k.end());
-      cache.self_value.insert(cache.self_value.end(), v.begin(), v.end());
+      if (const auto capacity = static_cache_capacity(implementation)) {
+        if (target_position >= *capacity)
+          throw std::runtime_error("static cache capacity");
+        if (cache.self_key.empty()) {
+          cache.self_key.resize(*capacity * D);
+          cache.self_value.resize(*capacity * D);
+        }
+        if (cache.self_key.size() != *capacity * D ||
+            cache.self_value.size() != *capacity * D)
+          throw std::runtime_error("static cache allocation shape");
+        std::copy(k.begin(), k.end(),
+                  cache.self_key.begin() +
+                      static_cast<std::ptrdiff_t>(target_position * D));
+        std::copy(v.begin(), v.end(),
+                  cache.self_value.begin() +
+                      static_cast<std::ptrdiff_t>(target_position * D));
+      } else {
+        cache.self_key.insert(cache.self_key.end(), k.begin(), k.end());
+        cache.self_value.insert(cache.self_value.end(), v.begin(), v.end());
+      }
       keys = &cache.self_key;
       values = &cache.self_value;
-      source = keys->size() / D;
+      source = target_position + 1;
     }
     float scale = 1 / std::sqrt(float(HD));
     for (auto &z : q)
@@ -1284,7 +1332,7 @@ public:
            AlignmentTrace *alignment = nullptr, F32 *final_hidden = nullptr) {
     using namespace generated_whisper;
     if (token < 0 || token >= static_cast<std::int32_t>(V) ||
-        state.position >= 448)
+        state.position >= 448 || !valid_generation_cache(state.implementation))
       throw std::runtime_error("cached decoder position");
     F32 x, branch, normed, logits;
     for (std::size_t i = 30; i <= 69; ++i) {
@@ -1310,11 +1358,13 @@ public:
         break;
       case Opcode::CachedSelfAttention:
         branch = attend_one(normed, normed, state.layers[(i - 33) / 9], node,
-                            false, (i - 33) / 9, alignment);
+                            false, (i - 33) / 9, state.position,
+                            state.implementation, alignment);
         break;
       case Opcode::CrossAttention:
         branch = attend_one(normed, memory, state.layers[(i - 36) / 9], node,
-                            true, (i - 36) / 9, alignment);
+                            true, (i - 36) / 9, state.position,
+                            state.implementation, alignment);
         break;
       case Opcode::MlpGelu:
         branch = linear(normed, 1, D, graph_weight(t_, node, ".fc1.weight"), FF,
@@ -2290,20 +2340,23 @@ static GenerationResult generate(
     const StopStringPredicate *stop_string = nullptr,
     std::vector<SynthIDWatermarkTrace> *synthid_traces = nullptr,
     DecoderKVState *returned_cache = nullptr,
-    GenerationDeadlineRuntime *deadline = nullptr) {
+    GenerationDeadlineRuntime *deadline = nullptr,
+    const whisper_interface::ExecutableGenerationCache *cache_implementation =
+        nullptr) {
   using namespace generated_whisper;
   const bool timestamp_mode =
       std::holds_alternative<whisper_interface::TimestampTokens>(time_output) ||
       std::holds_alternative<whisper_interface::Segments>(time_output);
   std::vector<std::int32_t> stack;
   DecoderKVState state;
+  if (cache_implementation)
+    state.implementation = *cache_implementation;
   GenerationResult result;
   auto finalize = [&]() {
     result.cache_positions = state.position;
     result.deadline_checks = deadline ? deadline->checks : 0;
     for (const auto &layer : state.layers)
-      if (layer.self_key.size() != state.position * 384 ||
-          layer.self_value.size() != state.position * 384 ||
+      if (!self_cache_shape_valid(state, layer) ||
           layer.cross_key.size() != 1500 * 384 ||
           layer.cross_value.size() != 1500 * 384)
         throw std::runtime_error("cache shape invariant");
@@ -2519,12 +2572,16 @@ static BeamSearchResult beam_search(
     const whisper_interface::StandardBeamSearch &configuration,
     std::size_t maximum_positions, GraphExecutionAudit &audit,
     const whisper_interface::GenerationLogitPolicies *policies = nullptr,
-    GenerationDeadlineRuntime *deadline = nullptr) {
+    GenerationDeadlineRuntime *deadline = nullptr,
+    const whisper_interface::ExecutableGenerationCache *cache_implementation =
+        nullptr) {
   using namespace generated_whisper;
   if (!configuration.valid() || prefix.empty() ||
       prefix.size() >= maximum_positions || maximum_positions > 448)
     throw std::runtime_error("beam search ADT invariant");
   LiveBeam initial;
+  if (cache_implementation)
+    initial.state.implementation = *cache_implementation;
   for (auto token : prefix) {
     audit.hit(nodes[73]);
     initial.stack.push_back(token);
@@ -2718,12 +2775,16 @@ static BeamSearchResult group_beam_search(
     const whisper_interface::DiverseGroupBeamSearch &configuration,
     std::size_t maximum_positions, GraphExecutionAudit &audit,
     const whisper_interface::GenerationLogitPolicies *policies = nullptr,
-    GenerationDeadlineRuntime *deadline = nullptr) {
+    GenerationDeadlineRuntime *deadline = nullptr,
+    const whisper_interface::ExecutableGenerationCache *cache_implementation =
+        nullptr) {
   using namespace generated_whisper;
   if (!configuration.valid() || prefix.empty() ||
       prefix.size() >= maximum_positions || maximum_positions > 448)
     throw std::runtime_error("group beam search ADT invariant");
   LiveBeam initial;
+  if (cache_implementation)
+    initial.state.implementation = *cache_implementation;
   for (auto token : prefix) {
     audit.hit(nodes[73]);
     initial.stack.push_back(token);
@@ -2759,6 +2820,9 @@ static BeamSearchResult group_beam_search(
       }
       std::vector<BeamCandidate> candidates;
       candidates.reserve(group.live.size() * 51864);
+      const bool length_boundary =
+          !group.live.empty() &&
+          group.live.front().stack.size() + 1 >= maximum_positions;
       if (!synthid_rows.empty() && !first_group_position &&
           group.live.size() != group_size)
         throw std::runtime_error("SynthID group beam-row cardinality");
@@ -2824,7 +2888,8 @@ static BeamSearchResult group_beam_search(
         for (std::int32_t token = 0; token < 51864; ++token) {
           const float score = group.live[beam_index].cumulative_log_probability +
                               log_probability[static_cast<std::size_t>(token)];
-          candidates.push_back({beam_index, token, score, token == eos_token});
+          candidates.push_back(
+              {beam_index, token, score, token == eos_token || length_boundary});
         }
       }
       result.expanded_candidates += candidates.size();
@@ -2858,6 +2923,10 @@ static BeamSearchResult group_beam_search(
                 });
       if (group.finished.size() > group_size)
         group.finished.resize(group_size);
+      if (length_boundary)
+        for (std::size_t rank = 0;
+             rank < std::min(group_size, candidates.size()); ++rank)
+          earlier_group_tokens.push_back(candidates[rank].token);
 
       std::vector<LiveBeam> next;
       next.reserve(group_size);
@@ -2899,8 +2968,9 @@ static BeamSearchResult group_beam_search(
       }
       if (group.live.empty()) {
         group.done = true;
-        earlier_group_tokens.insert(earlier_group_tokens.end(), group_size,
-                                    generated_whisper::eos_token);
+        if (!length_boundary)
+          earlier_group_tokens.insert(earlier_group_tokens.end(), group_size,
+                                      generated_whisper::eos_token);
         continue;
       }
       if (std::holds_alternative<whisper_interface::StopWhenAllBeamsFinished>(
@@ -3119,12 +3189,16 @@ static BeamSearchResult constrained_beam_search(
     const whisper_interface::ConstrainedBeamSearch &configuration,
     std::size_t maximum_positions, GraphExecutionAudit &audit,
     const whisper_interface::GenerationLogitPolicies *policies = nullptr,
-    GenerationDeadlineRuntime *deadline = nullptr) {
+    GenerationDeadlineRuntime *deadline = nullptr,
+    const whisper_interface::ExecutableGenerationCache *cache_implementation =
+        nullptr) {
   using namespace generated_whisper;
   if (!configuration.valid() || prefix.empty() ||
       prefix.size() >= maximum_positions || maximum_positions > 448)
     throw std::runtime_error("constrained beam search ADT invariant");
   LiveBeam initial;
+  if (cache_implementation)
+    initial.state.implementation = *cache_implementation;
   for (auto token : prefix) {
     audit.hit(nodes[73]);
     initial.stack.push_back(token);
@@ -3301,10 +3375,12 @@ static BeamSearchResult constrained_beam_search(
           candidate.cumulative_log_probability;
       branch.parent_beams.push_back(candidate.parent);
       branch.stack.push_back(candidate.token);
-      audit.hit(nodes[73]);
-      branch.next_logits =
-          cached.step(candidate.token, memory, branch.state, nullptr);
-      ++result.cache_branches;
+      if (branch.stack.size() < maximum_positions) {
+        audit.hit(nodes[73]);
+        branch.next_logits =
+            cached.step(candidate.token, memory, branch.state, nullptr);
+        ++result.cache_branches;
+      }
       next.push_back(std::move(branch));
     }
     live = std::move(next);
@@ -3439,12 +3515,16 @@ static SampledBeamSearchResult sampled_beam_search(
     const whisper_interface::SampledBeamSearch &configuration,
     std::size_t maximum_positions, GraphExecutionAudit &audit,
     const whisper_interface::GenerationLogitPolicies *policies = nullptr,
-    GenerationDeadlineRuntime *deadline = nullptr) {
+    GenerationDeadlineRuntime *deadline = nullptr,
+    const whisper_interface::ExecutableGenerationCache *cache_implementation =
+        nullptr) {
   using namespace generated_whisper;
   if (!configuration.valid() || prefix.empty() ||
       prefix.size() >= maximum_positions || maximum_positions > 448)
     throw std::runtime_error("sampled beam search ADT invariant");
   LiveBeam initial;
+  if (cache_implementation)
+    initial.state.implementation = *cache_implementation;
   for (auto token : prefix) {
     audit.hit(nodes[73]);
     initial.stack.push_back(token);
@@ -4671,6 +4751,124 @@ int main(int argc, char **argv) try {
     execution.require_all();
     return 0;
   }
+  if (argc == 8 && std::string(argv[1]) == "--cache-all-searches") {
+    TensorStore tensors(argv[2], argv[3]);
+    audit_graph(tensors);
+    GraphExecutionAudit execution;
+    auto mel = execute_frontend(argv[4], read_f32(argv[5]), read_f32(argv[6]),
+                                execution);
+    std::vector<std::pair<std::string, F32>> trace;
+    Encoder encoder(tensors, execution);
+    auto memory = encoder.run(mel, trace);
+    CachedDecoder cached(tensors, execution);
+    constexpr std::size_t maximum_positions = 8;
+    const std::string request = argv[7];
+    whisper_interface::ExecutableGenerationCache implementation;
+    std::string_view storage;
+    if (request == "dynamic") {
+      implementation = whisper_interface::DynamicGenerationCache{};
+      storage = "DYNAMIC_APPEND";
+    } else if (request == "static") {
+      implementation =
+          whisper_interface::StaticGenerationCache{maximum_positions - 1};
+      storage = "STATIC_PREALLOCATED";
+    } else {
+      throw std::runtime_error("cache all searches implementation");
+    }
+    auto generated_suffix = [](std::span<const std::int32_t> tokens,
+                               bool drop_eos_padding) {
+      std::vector<std::int32_t> output(
+          tokens.begin() + static_cast<std::ptrdiff_t>(
+                               generated_whisper::forced_prefix.size()),
+          tokens.end());
+      if (drop_eos_padding && !output.empty() &&
+          output.back() == generated_whisper::eos_token)
+        output.pop_back();
+      return output;
+    };
+    auto print = [&](std::string_view mode, std::string_view mode_storage,
+                     std::span<const std::int32_t> tokens) {
+      std::cout << "WHISPER_CPP23_CACHE_SEARCH mode=" << mode
+                << " request=" << request << " storage=" << mode_storage
+                << " tokens=";
+      for (std::size_t index = 0; index < tokens.size(); ++index) {
+        if (index)
+          std::cout << ',';
+        std::cout << tokens[index];
+      }
+      std::cout << " graph_nodes_visited=" << execution.visited() << "\n";
+    };
+    {
+      const whisper_interface::StandardBeamSearch configuration{
+          2, 1, 1.0f, whisper_interface::HeuristicBeamStopping{}};
+      auto result = beam_search(
+          cached, memory, generated_whisper::forced_prefix, configuration,
+          maximum_positions, execution, nullptr, nullptr, &implementation);
+      auto tokens = generated_suffix(result.sequences.front().tokens, false);
+      print("beam", storage, tokens);
+    }
+    {
+      const whisper_interface::DiverseGroupBeamSearch configuration{
+          4, 2, 1, 0.5f, 1.0f,
+          whisper_interface::HeuristicBeamStopping{}};
+      auto result = group_beam_search(
+          cached, memory, generated_whisper::forced_prefix, configuration,
+          maximum_positions, execution, nullptr, nullptr, &implementation);
+      auto tokens = generated_suffix(result.sequences.front().tokens, false);
+      print("group_beam", storage, tokens);
+    }
+    {
+      const whisper_interface::ConstrainedBeamSearch configuration{
+          4, 1, 1.0f, whisper_interface::HeuristicBeamStopping{},
+          {whisper_interface::ForcedPhrase{{1770}}}};
+      auto result = constrained_beam_search(
+          cached, memory, generated_whisper::forced_prefix, configuration,
+          maximum_positions, execution, nullptr, nullptr, &implementation);
+      auto tokens = generated_suffix(result.sequences.front().tokens, true);
+      print("constrained_beam", storage, tokens);
+    }
+    {
+      const whisper_interface::SamplingFilters sampling{
+          whisper_interface::NoTopK{}, whisper_interface::NoTopP{},
+          whisper_interface::NoMinP{}, whisper_interface::NoTypicalP{},
+          whisper_interface::NoEpsilonCutoff{},
+          whisper_interface::NoEtaCutoff{}};
+      const whisper_interface::SampledBeamSearch configuration{
+          2, 1, 1.0f, 11, 1.0f,
+          whisper_interface::HeuristicBeamStopping{}, sampling};
+      auto result = sampled_beam_search(
+          cached, memory, generated_whisper::forced_prefix, configuration,
+          maximum_positions, execution, nullptr, nullptr, &implementation);
+      auto tokens = generated_suffix(result.sequences.front().tokens, false);
+      print("sampled_beam", storage, tokens);
+    }
+    {
+      const whisper_interface::ContrastiveSearchForcesDynamicFullCache forced{
+          request};
+      if (!forced.valid())
+        throw std::runtime_error("contrastive cache override ADT invariant");
+      const whisper_interface::ContrastiveSearch configuration{
+          4, 0.6f, whisper_interface::SequentialCandidateEvaluation{}};
+      auto result = contrastive_search(
+          cached, memory, generated_whisper::forced_prefix, configuration,
+          maximum_positions, execution);
+      auto tokens = generated_suffix(result.tokens, false);
+      print("contrastive", "DYNAMIC_FULL_CONTRASTIVE_OVERRIDE", tokens);
+    }
+    {
+      const whisper_interface::AssistedGenerationForcesDynamicCache forced{
+          request};
+      if (!forced.valid())
+        throw std::runtime_error("assisted cache override ADT invariant");
+      const whisper_interface::PromptLookupSearch configuration{3, 2};
+      auto result = prompt_lookup_search(
+          cached, memory, generated_whisper::forced_prefix, configuration,
+          maximum_positions, execution);
+      print("prompt_lookup", "DYNAMIC_ASSISTED_OVERRIDE", result.tokens);
+    }
+    execution.require_all();
+    return 0;
+  }
   if (argc == 4 && std::string(argv[1]) == "--generation-applicability") {
     const std::string field = argv[2], value = argv[3];
     if (field == "bos_token_id") {
@@ -4731,6 +4929,158 @@ int main(int argc, char **argv) try {
       return 0;
     }
     throw std::runtime_error("unknown generation applicability field");
+  }
+  if (argc == 5 &&
+      std::string(argv[1]) == "--generation-prefill-policy") {
+    const auto chunk_positions = parse_optional_size(argv[2]);
+    if (!chunk_positions)
+      throw std::runtime_error("prefill chunk size");
+    const std::string mode = argv[3], cache = argv[4];
+    whisper_interface::WhisperPrefillChunkPolicy policy;
+    std::string_view status, reason;
+    if (mode == "sample" && cache == "cache") {
+      policy = whisper_interface::WhisperPrefillChunkingRejectsPositionIds{
+          *chunk_positions};
+      status = "MODEL_REJECTED";
+      reason = "whisper_forward_rejects_position_ids";
+    } else if (mode == "sample" && cache == "no_cache") {
+      policy =
+          whisper_interface::PrefillChunkingRequiresCache{*chunk_positions};
+      status = "CONFIGURATION_REJECTED";
+      reason = "prefill_chunking_requires_cache";
+    } else if (mode != "sample" && cache == "cache") {
+      policy = whisper_interface::IgnorePrefillChunkingOutsideSampleSearch{
+          *chunk_positions, mode};
+      status = "MODEL_IGNORED";
+      reason = "prefill_chunking_only_dispatched_by_sample_search";
+    } else {
+      throw std::runtime_error("prefill policy mode/cache");
+    }
+    if (!std::visit([](const auto &value) { return value.valid(); }, policy))
+      throw std::runtime_error("prefill policy ADT invariant");
+    std::cout << "WHISPER_CPP23_PREFILL_POLICY chunk_positions="
+              << *chunk_positions << " mode=" << mode << " cache=" << cache
+              << " status=" << status << " reason=" << reason << "\n";
+    return 0;
+  }
+  if (argc == 11 &&
+      std::string(argv[1]) == "--generation-cache-implementation") {
+    const std::string request = argv[8];
+    if (request == "offloaded" || request == "offloaded_static" ||
+        request == "offloaded_hybrid" ||
+        request == "offloaded_hybrid_chunked") {
+      const whisper_interface::OffloadedCacheRequiresAccelerator rejected{
+          request};
+      if (!rejected.valid())
+        throw std::runtime_error("offloaded cache rejection ADT invariant");
+      std::cout << "WHISPER_CPP23_CACHE_REJECTION request=" << request
+                << " status=CPU_RUNTIME_UNAVAILABLE"
+                   " reason=offloaded_cache_requires_accelerator\n";
+      return 0;
+    }
+    if (request == "quantized") {
+      const whisper_interface::QuantizedCacheRejectsEncoderDecoder rejected{};
+      if (!rejected.valid())
+        throw std::runtime_error("quantized cache rejection ADT invariant");
+      std::cout << "WHISPER_CPP23_CACHE_REJECTION request=" << request
+                << " status=MODEL_REJECTED"
+                   " reason=quantized_cache_rejects_encoder_decoder\n";
+      return 0;
+    }
+    const auto maximum_positions = parse_optional_size(argv[7]);
+    if (!maximum_positions ||
+        *maximum_positions <= generated_whisper::forced_prefix.size())
+      throw std::runtime_error("generation cache maximum positions");
+    whisper_interface::ExecutableGenerationCache implementation;
+    std::string_view storage;
+    if (request == "default") {
+      implementation = whisper_interface::DefaultDynamicGenerationCache{};
+      storage = "DYNAMIC_APPEND";
+    } else if (request == "dynamic") {
+      implementation = whisper_interface::DynamicGenerationCache{};
+      storage = "DYNAMIC_APPEND";
+    } else if (request == "dynamic_full") {
+      implementation = whisper_interface::DynamicFullGenerationCache{};
+      storage = "DYNAMIC_APPEND";
+    } else if (request == "static") {
+      implementation =
+          whisper_interface::StaticGenerationCache{*maximum_positions - 1};
+      storage = "STATIC_PREALLOCATED";
+    } else {
+      std::optional<whisper_interface::DeprecatedStaticCacheName> alias;
+      if (request == "sliding_window")
+        alias = whisper_interface::DeprecatedStaticCacheName::SlidingWindow;
+      else if (request == "hybrid")
+        alias = whisper_interface::DeprecatedStaticCacheName::Hybrid;
+      else if (request == "hybrid_chunked")
+        alias = whisper_interface::DeprecatedStaticCacheName::HybridChunked;
+      if (!alias)
+        throw std::runtime_error("unknown generation cache implementation");
+      implementation = whisper_interface::DeprecatedStaticGenerationCache{
+          *alias, *maximum_positions - 1};
+      storage = "STATIC_PREALLOCATED_DEPRECATED_ALIAS";
+    }
+    whisper_interface::WhisperCacheConfiguration cache_configuration;
+    std::string_view configuration_status;
+    if (std::string_view(argv[9]) == "none") {
+      cache_configuration = whisper_interface::NoCacheConfiguration{};
+      configuration_status = "NONE";
+    } else {
+      cache_configuration =
+          whisper_interface::IgnoredNonQuantizedCacheConfiguration{argv[9]};
+      configuration_status = "IGNORED_NON_QUANTIZED";
+    }
+    if (!valid_generation_cache(implementation) ||
+        !std::visit([](const auto &value) { return value.valid(); },
+                    cache_configuration))
+      throw std::runtime_error("generation cache implementation ADT invariant");
+    TensorStore tensors(argv[2], argv[3]);
+    audit_graph(tensors);
+    GraphExecutionAudit execution;
+    auto mel = execute_frontend(argv[4], read_f32(argv[5]), read_f32(argv[6]),
+                                execution);
+    std::vector<std::pair<std::string, F32>> trace;
+    Encoder encoder(tensors, execution);
+    auto memory = encoder.run(mel, trace);
+    Decoder decoder(tensors, execution);
+    CachedDecoder cached(tensors, execution);
+    DecoderKVState returned_cache;
+    auto generated = generate(
+        decoder, cached, memory, Selection::Greedy, 0.0f, 0, false, {},
+        generated_whisper::forced_prefix, whisper_interface::NoTimestamps{},
+        nullptr, nullptr, execution, nullptr, *maximum_positions, nullptr,
+        nullptr, &returned_cache, nullptr, &implementation);
+    execution.require_all();
+    auto serialized = serialize_cache(returned_cache);
+    write_f32(argv[10], serialized);
+    std::size_t allocated_self_floats = 0;
+    for (const auto &layer : returned_cache.layers)
+      allocated_self_floats += layer.self_key.size() + layer.self_value.size();
+    const auto capacity_positions =
+        static_cache_capacity(returned_cache.implementation)
+            .value_or(returned_cache.position);
+    std::cout << "WHISPER_CPP23_CACHE_IMPLEMENTATION request=" << request
+              << " storage=" << storage
+              << " config=" << configuration_status << " tokens=";
+    bool separator = false;
+    for (const auto token : generated_whisper::forced_prefix) {
+      if (separator)
+        std::cout << ',';
+      std::cout << token;
+      separator = true;
+    }
+    for (const auto token : generated.tokens) {
+      if (separator)
+        std::cout << ',';
+      std::cout << token;
+      separator = true;
+    }
+    std::cout << " logical_positions=" << returned_cache.position
+              << " capacity_positions=" << capacity_positions
+              << " serialized_floats=" << serialized.size()
+              << " allocated_self_floats=" << allocated_self_floats
+              << " graph_nodes_visited=" << execution.visited() << "\n";
+    return 0;
   }
   if (argc == 10 &&
       std::string(argv[1]) == "--generation-cache-projection") {

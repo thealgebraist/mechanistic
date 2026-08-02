@@ -104,7 +104,7 @@ generate = {
     "generation_config": (
         "PINNED_EXECUTABLE_PLUS_POLICIES",
         "GenerationRequest",
-        "pinned English policy plus typed sequence bias, repetition, no-repeat n-gram, forbidden-sequence, boundary/decay/length, repair/normalization, six sampling filters, contrastive hidden-state ranking, greedy stop-string and prompt-lookup speculation, standard/sampled/diverse-group beam search, and phrase/disjunction-constrained beam search",
+        "pinned English policy plus typed cache-allocation/rejection behavior, sequence bias, repetition, no-repeat n-gram, forbidden-sequence, boundary/decay/length, repair/normalization, six sampling filters, contrastive hidden-state ranking, greedy stop-string and prompt-lookup speculation, standard/sampled/diverse-group beam search, and phrase/disjunction-constrained beam search",
     ),
     "logits_processor": (
         "EXECUTABLE_NAMED_SUBSET",
